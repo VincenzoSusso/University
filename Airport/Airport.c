@@ -17,8 +17,8 @@
 /*****************************************************************************************************************************************************
 *                                                                                                                                                    *
 *  Author : WinEnzo                                                                                                                                  *
-*  Name : Airport.c                                                                                                                               *
-*  Purpose : Traccia pre-test del 15/11/2011                                                                                                          *
+*  Name : Airport.c                                                                                                                                  *
+*  Purpose : Pre-test of 15/11/2011                                                                                                                  *
 *  Date : 13/11/2018                                                                                                                                 *
 *                                                                                                                                                    *
 *****************************************************************************************************************************************************/
@@ -28,9 +28,9 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define MAXCHAR 100 //Usato come valore MAX delle stringhe di caratteri
+#define MAXCHAR 100 //MAX lenght of strings
 
-// Struct utilizzata per immagazzinare i fly
+// Struct used to store the information about flies
 struct flies
 {
     int id_fly;
