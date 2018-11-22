@@ -18,7 +18,7 @@
 *                                                                                                                                                    *
 *  Author : WinEnzo                                                                                                                                  *
 *  Name : Max.c                                                                                                                                      *
-*  Purpose : The purpose of this program is to determine the max between two integers value                                                          *
+*  Purpose : The purpose of this program is to determine the max between two integers value.                                                         *
 *  Date : 20/11/2018                                                                                                                                 *
 *                                                                                                                                                    *
 *****************************************************************************************************************************************************/
@@ -42,7 +42,7 @@ int main(void)
         "/********************************************************************************************************\n"
         "*  Author : WinEnzo                                                                                     *\n"
         "*  Name : Max.c                                                                                         *\n"
-        "*  Purpose : The purpose of this program is to determine the max between two integers value             *\n"
+        "*  Purpose : The purpose of this program is to determine the max between two integers value.            *\n"
         "*  Date : 20/11/2018                                                                                    *\n"
         "********************************************************************************************************/\n\n"
     );
