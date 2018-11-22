@@ -17,8 +17,8 @@
 /*****************************************************************************************************************************************************
 *                                                                                                                                                    *
 *  Author : WinEnzo                                                                                                                                  *
-*  Name : Conversion.c                                                                                                                                  *
-*  Purpose : The purpose of this program is to convert a distance in from miles to km (1 miles = 1.609 km)                                                                                                                 *
+*  Name : Conversion.c                                                                                                                               *
+*  Purpose : The purpose of this program is to convert a distance in from miles to km (1 miles = 1.609 km).                                          *
 *  Date : 19/11/2018                                                                                                                                 *
 *                                                                                                                                                    *
 *****************************************************************************************************************************************************/
@@ -45,7 +45,7 @@ int main(void)
         "*  Author : WinEnzo                                                                                     *\n"
         "*  Name : Conversion.c                                                                                  *\n"
         "*  Purpose : The purpose of this program is to convert a distance in from miles to km                   *\n"
-        "*            (1 miles = 1.609 km)                                                                       *\n"
+        "*            (1 miles = 1.609 km).                                                                      *\n"
         "*  Date : 19/11/2018                                                                                    *\n"
         "********************************************************************************************************/\n\n"
     );

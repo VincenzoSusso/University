@@ -18,7 +18,7 @@
 *                                                                                                                                                    *
 *  Author : WinEnzo                                                                                                                                  *
 *  Name : BMI.c                                                                                                                                      *
-*  Purpose : This program calculate your BMI                                                                                                         *
+*  Purpose : This program calculate your BMI.                                                                                                        *
 *  Date : 19/11/2018                                                                                                                                 *
 *                                                                                                                                                    *
 *****************************************************************************************************************************************************/
@@ -42,7 +42,7 @@ int main (void)
         "/********************************************************************************************************\n"
         "*  Author : WinEnzo                                                                                     *\n"
         "*  Name : BMI.c                                                                                         *\n"
-        "*  Purpose : This program calculate your BMI                                                            *\n"
+        "*  Purpose : This program calculate your BMI.                                                           *\n"
         "*  Date : 13/11/2018                                                                                    *\n"
         "********************************************************************************************************/\n\n"
     );

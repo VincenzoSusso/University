@@ -19,7 +19,7 @@
 *  Author : WinEnzo                                                                                                                                  *
 *  Name : Area.c                                                                                                                                     *
 *  Purpose : The purpose of this program is to calculate the area of the rectangle or the area of the triangle by giving the possibility to the      *
-*            user to choose what to do                                                                                                               *
+*            user to choose what to do.                                                                                                              *
 *  Date : 20/11/2018                                                                                                                                 *
 *                                                                                                                                                    *
 *****************************************************************************************************************************************************/
@@ -44,7 +44,7 @@ int main(void)
         "*  Author : WinEnzo                                                                                     *\n"
         "*  Name : Area.c                                                                                        *\n"
         "*  Purpose : The purpose of this program is to calculate the area of the rectangle or the area of the   *\n"
-        "*            the triangle by giving the possibility to the user to choose what to do                    *\n"
+        "*            the triangle by giving the possibility to the user to choose what to do.                   *\n"
         "*  Date : 20/11/2018                                                                                    *\n"
         "********************************************************************************************************/\n\n"
     );
