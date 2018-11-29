@@ -65,23 +65,23 @@ int main(void)
                                                              2 --> Used to take as input the number of sequences 
                                                              3 --> Used as index of the array */
         
-    for(int i = MINARRAY; i < N; i++)
+    for(int i = MINARRAY; i < N; i++) //Used to fill the array
     {
-        fibonacci[i] = fibonacci[i - MINARRAY] + fibonacci[i - 1]; //Used to fill the array
+        fibonacci[i] = fibonacci[i - MINARRAY] + fibonacci[i - 1];
     }
 
-    do
+    do //Check the value of the sequence (>= 1)
     {
-        printf("Insert the number of sequence: "); //Check the value of the sequence (>= 1)
+        printf("Insert the number of sequence: ");
         scanf("%d", &sequence);
     }
     while(sequence < MIN);
 
     printf("\nThe fibonacci sequence is: %d", fibonacci[0]); //Used to print the first number
 
-    for(int i = 1; i < sequence; i++)
+    for(int i = 1; i < sequence; i++) //Used to calculate the elements and show them
     {
-        index = i % N; //Used to calculate the reminder and re-start the position of the array
+        index = i % N; //Used to re-start the position of the array and re-set elements
         if(index == 0)
         {        
             fibonacci[index] = fibonacci[N - MINARRAY] + fibonacci[N - 1]; //Used to re-set the first one element of the array
