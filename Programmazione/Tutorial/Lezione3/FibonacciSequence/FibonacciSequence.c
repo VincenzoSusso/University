@@ -57,7 +57,7 @@ int main(void)
     //--------------------------------------
 
     //--------------------------------------
-    printf("FibonacciSequence\n\n");
+    printf("FibonacciSequence - Using an array of %d element\n\n", N);
     //--------------------------------------
 
     //--------------------------------------
@@ -70,12 +70,6 @@ int main(void)
         fibonacci[i] = fibonacci[i - MINARRAY] + fibonacci[i - 1]; //Used to fill the array
     }
 
-    /*for(int i = 0; i < N; i++)
-    {
-        printf("v[%d] --> %d\n", i, fibonacci[i]);
-    }*/
-
-    
     do
     {
         printf("Insert the number of sequence: "); //Check the value of the sequence (>= 1)
@@ -83,22 +77,25 @@ int main(void)
     }
     while(sequence < MIN);
 
-    printf("\nThe fibonacci sequence is: ");
+    printf("\nThe fibonacci sequence is: %d", fibonacci[0]); //Used to print the first number
 
-    for(int i = 0; i < sequence; i++)
+    for(int i = 1; i < sequence; i++)
     {
-        index = i % N;
-        if((index) == 0)
+        index = i % N; //Used to calculate the reminder and re-start the position of the array
+        if(index == 0)
         {        
-            fibonacci[index] = fibonacci[N - MINARRAY] + fibonacci[N - 1];   
-            fibonacci[index + 1] = fibonacci[index - 1] + fibonacci[N - 1]; 
-            
-            for(int j = index + MINARRAY; i < N; i++)
+            fibonacci[index] = fibonacci[N - MINARRAY] + fibonacci[N - 1]; //Used to re-set the first one element of the array
+            index++; //Point to the second one element
+            fibonacci[index] = fibonacci[index - 1] + fibonacci[N - 1]; //Used to re-set the second one element of the array
+
+            for(int j = MINARRAY; j < N; j++) //Used to re-set all the remaining elements of the array
             {  
                 fibonacci[j] = fibonacci[j - 1] + fibonacci[j - 2]; //Used to fill the array  
             }
+
+            index = i % N; //Used to restore the index of the array
         }
-        printf("%d, ", fibonacci[index]);
+        printf(", %d", fibonacci[index]); //Output of the array
     }    
     
     printf("\n");
