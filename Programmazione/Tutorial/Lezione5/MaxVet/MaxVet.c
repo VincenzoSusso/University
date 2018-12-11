@@ -28,10 +28,12 @@
 
 #define MIN 1 //Min size of the array
 
+//Function Prototypes
 void introduction(void); //Used to print the introduction
 void set_vet(int vet[], int n); //Used to set elements of the array
 int get_max(int vet[], int n); //Used to get the max element of the array
 
+//Main
 int main(void)
 {
     int numbers = 1;
