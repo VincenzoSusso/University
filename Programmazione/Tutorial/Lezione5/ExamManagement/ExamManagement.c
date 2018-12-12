@@ -43,13 +43,13 @@ typedef struct
     int oral_test;
     int laboratory_test;
     int average_exam;
-} Students;
+} Students_t;
 
 //Function Prototypes
 void introduction(void); //Used to print the introduction
 int set_number_candidates(void); //Used to set the number of candidates
-void set_candidates(Students *candidate[], int n); //Used to set the information about candidates
-void get_candidates(Students candidate[], int n); //Used to print information about students
+void set_candidates(const int n, Students_t candidate[]); //Used to set the information about candidates
+void get_candidates(const int n, const Students_t candidate[]); //Used to print information about candidates
 
 //Main
 int main(void)
@@ -61,11 +61,11 @@ int main(void)
 
     n = set_number_candidates(); //Used to set the number of candidates
 
-    Students candidate[n]; //Defining a new variable (array of candidate)
+    Students_t candidate[n]; //Defining a new variable (array of candidate)
 
+    set_candidates(n, candidate); //Used to set informations about candidates
+    get_candidates(n, candidate); //Used to print informations about candidates
     printf("\n");
-    set_candidates(&candidate, n); //Used to give information about students
-    get_candidates(candidate, n); //Used to print information about students
 
     exit(EXIT_SUCCESS);
 }
@@ -112,41 +112,53 @@ int set_number_candidates(void) //Used to set the number of candidates
     return n;
 }
 
-void set_candidates(Students *candidate[], int n) //Used to set the information about the candidates
+void set_candidates(const int n, Students_t candidate[]) //Used to set the information about the candidates
 {
     for(int i = 0; i < n; i++)
     {
-        printf("Insert the name of the %d^ candidate: ", i+1);
-        scanf("%s", candidate[i] -> name);
+        printf("\n\aInsert the name of the %d^ candidate: ", i+1); //Input name
+        scanf("%s", candidate[i].name);
 
-        printf("Insert the surname of the %d^ candidate", i+1);
-        scanf("%s", candidate[i] -> surname);
+        printf("Insert the surname of the %d^ candidate: ", i+1); //Input surname
+        scanf("%s", candidate[i].surname);
+        
+        do //Input written test grade and check about the value of the variable
+        {
+            printf("Insert the grade of the written test of the %d^ candidate (Min %d / Max %d): ", i+1, MIN_TEST, MAX_TEST);
+            scanf("%d", &candidate[i].written_test);
+        }
+        while((candidate[i].written_test < MIN_TEST) || (candidate[i].written_test > MAX_TEST));
 
-        printf("Insert the grade of the written test of the %d^ candidate (Min %d / Max %d): ", i+1, MIN_TEST, MAX_TEST);
-        scanf("%d", &candidate[i] -> written_test);
+        do //Input oral test grade and check about the value of the variable
+        {
+            printf("Insert the grade of the oral test of the %d^ candidate (Min %d / Max %d): ", i+1, MIN_TEST, MAX_TEST);
+            scanf("%d", &candidate[i].oral_test);
+        }
+        while((candidate[i].oral_test < MIN_TEST) || (candidate[i].oral_test > MAX_TEST));
 
-        printf("Insert the grade of the oral test of the %d^ candidate (Min %d / Max %d): ", i+1, MIN_TEST, MAX_TEST);
-        scanf("%d", &candidate[i] -> oral_test);
+        do //Input laboratory test grade and check about the value of the variable
+        {
+            printf("Insert the grade of the laboratory test of the %d^ candidate (Min %d / Max %d): ", i+1, MIN_TEST, MAX_TEST);
+            scanf("%d", &candidate[i].laboratory_test);
+        }
+        while((candidate[i].laboratory_test < MIN_TEST) || (candidate[i].laboratory_test > MAX_TEST));
 
-        printf("Insert the grade of the laboratory test of the %d^ candidate (Min %d / Max %d): ", i+1, MIN_TEST, MAX_TEST);
-        scanf("%d", &candidate[i] -> laboratory_test);
-
-        candidate[i] -> average_exam = (candidate[i] -> written_test + candidate[i] -> oral_test + candidate[i] -> laboratory_test) / TOTAL_TEST;
+        candidate[i].average_exam = (candidate[i].written_test + candidate[i].oral_test + candidate[i].laboratory_test) / TOTAL_TEST;
     }
 }
 
-void get_candidates(Students candidate[], int n) //Used to print information about students
+void get_candidates(const int n,const Students_t candidate[]) //Used to print information about students
 {
     for(int i = 0; i < n; i++)
     {
-        printf("--------------------------------------------------------------------------------------------------");
-        printf("Information about %d student: ", i+1);
-        printf("Name of %d student: %s",i+1, candidate[i].name);
-        printf("Surname of %d student: %s",i+1, candidate[i].surname);
-        printf("Grade of the written test of %d student: %d",i+1, candidate[i].written_test);
-        printf("Grade of the oral test of %d student: %d",i+1, candidate[i].oral_test);
-        printf("Grade of the laboratory test of %d student: %d",i+1, candidate[i].laboratory_test);
-        printf("Average of the Exam of %d student: %d",i+1, candidate[i].oral_test);
-        printf("--------------------------------------------------------------------------------------------------");
+        printf("\n--------------------------------------------------------------------------");
+        printf("\nInformation about %d^ student", i+1);
+        printf("\nName of %d^ student: %s",i+1, candidate[i].name);
+        printf("\nSurname of %d^ student: %s",i+1, candidate[i].surname);
+        printf("\nGrade of the written test of %d^ student: %d",i+1, candidate[i].written_test);
+        printf("\nGrade of the oral test of %d^ student: %d",i+1, candidate[i].oral_test);
+        printf("\nGrade of the laboratory test of %d^ student: %d",i+1, candidate[i].laboratory_test);
+        printf("\nAverage of the exam of %d^ student: %d",i+1, candidate[i].average_exam);
+        printf("\n--------------------------------------------------------------------------");
     }
 }
