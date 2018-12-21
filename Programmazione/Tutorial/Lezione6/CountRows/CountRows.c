@@ -17,8 +17,8 @@
 /*****************************************************************************************************************************************************
 *                                                                                                                                                    *
 *  Author : WinEnzo                                                                                                                                  *
-*  Name : Introduction.h                                                                                                                             *
-*  Purpose : The purpose of this header is to manage the introduction of the program "WriteFile.c".                                                  *                     
+*  Name : CountRows.c                                                                                                                                *
+*  Purpose : The purpose of this program is to count the number of rows of a file that has given in input by the user.                               *                     
 *  Date : 18/12/2018                                                                                                                                 *
 *                                                                                                                                                    *
 *****************************************************************************************************************************************************/
@@ -45,7 +45,7 @@ int main(void)
     exit(EXIT_SUCCESS);
 }
 
-//Functions
+// -- Functions --
 void read_path(char path[]) //Used to read the path of the file
 {
     printf("Insert the path of the file that you want to count the rows: ");
