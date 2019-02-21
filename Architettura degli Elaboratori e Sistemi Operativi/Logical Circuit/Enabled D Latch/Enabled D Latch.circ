@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="2.7.1" version="1.0">
+This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
+<lib desc="#Wiring" name="0"/>
+  <lib desc="#Gates" name="1"/>
+  <lib desc="#Plexers" name="2"/>
+  <lib desc="#Arithmetic" name="3"/>
+  <lib desc="#Memory" name="4">
+    <tool name="ROM">
+      <a name="contents">addr/data: 8 8
+0
+</a>
+    </tool>
+  </lib>
+  <lib desc="#I/O" name="5"/>
+  <lib desc="#Base" name="6">
+    <tool name="Text Tool">
+      <a name="text" val=""/>
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="halign" val="center"/>
+      <a name="valign" val="base"/>
+    </tool>
+  </lib>
+  <main name="Enabled D Latch"/>
+  <options>
+    <a name="gateUndefined" val="ignore"/>
+    <a name="simlimit" val="1000"/>
+    <a name="simrand" val="0"/>
+  </options>
+  <mappings>
+    <tool lib="6" map="Button2" name="Menu Tool"/>
+    <tool lib="6" map="Button3" name="Menu Tool"/>
+    <tool lib="6" map="Ctrl Button1" name="Menu Tool"/>
+  </mappings>
+  <toolbar>
+    <tool lib="6" name="Poke Tool"/>
+    <tool lib="6" name="Edit Tool"/>
+    <tool lib="6" name="Text Tool">
+      <a name="text" val=""/>
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="halign" val="center"/>
+      <a name="valign" val="base"/>
+    </tool>
+    <sep/>
+    <tool lib="0" name="Pin">
+      <a name="tristate" val="false"/>
+    </tool>
+    <tool lib="0" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </tool>
+    <tool lib="1" name="NOT Gate"/>
+    <tool lib="1" name="AND Gate"/>
+    <tool lib="1" name="OR Gate"/>
+  </toolbar>
+  <circuit name="Enabled D Latch">
+    <a name="circuit" val="Enabled D Latch"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <wire from="(450,280)" to="(500,280)"/>
+    <wire from="(450,200)" to="(500,200)"/>
+    <wire from="(450,250)" to="(630,250)"/>
+    <wire from="(560,300)" to="(620,300)"/>
+    <wire from="(300,140)" to="(300,340)"/>
+    <wire from="(630,180)" to="(630,250)"/>
+    <wire from="(620,230)" to="(620,300)"/>
+    <wire from="(450,230)" to="(620,230)"/>
+    <wire from="(450,250)" to="(450,280)"/>
+    <wire from="(450,200)" to="(450,230)"/>
+    <wire from="(630,180)" to="(650,180)"/>
+    <wire from="(330,240)" to="(360,240)"/>
+    <wire from="(350,340)" to="(380,340)"/>
+    <wire from="(300,340)" to="(320,340)"/>
+    <wire from="(360,180)" to="(380,180)"/>
+    <wire from="(360,300)" to="(380,300)"/>
+    <wire from="(620,300)" to="(650,300)"/>
+    <wire from="(290,140)" to="(300,140)"/>
+    <wire from="(560,180)" to="(630,180)"/>
+    <wire from="(300,140)" to="(380,140)"/>
+    <wire from="(360,180)" to="(360,240)"/>
+    <wire from="(360,240)" to="(360,300)"/>
+    <wire from="(430,160)" to="(500,160)"/>
+    <wire from="(430,320)" to="(500,320)"/>
+    <comp lib="0" loc="(650,300)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="Q"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="1" loc="(430,160)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="1" loc="(560,300)" name="NOR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(330,240)" name="Clock"/>
+    <comp lib="0" loc="(290,140)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="D"/>
+    </comp>
+    <comp lib="1" loc="(560,180)" name="NOR Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(650,180)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="NOT Q"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="1" loc="(350,340)" name="NOT Gate"/>
+    <comp lib="1" loc="(430,320)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="6" loc="(476,107)" name="Text">
+      <a name="text" val="Enabled D Latch"/>
+      <a name="font" val="SansSerif bold 32"/>
+    </comp>
+  </circuit>
+</project>
