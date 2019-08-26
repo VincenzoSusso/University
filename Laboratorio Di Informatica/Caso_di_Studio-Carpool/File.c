@@ -39,16 +39,18 @@ bool writeFile(char path[], void *pointer, size_t pointer_size)
 	int number_member_written = 0;
 
 	file = fopen(path, "ab");
-	if(!file)
+	if(file)
 	{
-		file_written = false;
+		number_member_written = fwrite(pointer, pointer_size, NUMBER_MEMBER_FILE, file);
+
+		if(number_member_written < NUMBER_MEMBER_FILE)
+		{
+			// The writing of the file has failed
+			file_written = false;
+		}
 	}
-
-	number_member_written = fwrite(pointer, pointer_size, NUMBER_MEMBER_FILE, file);
-
-	if(number_member_written < NUMBER_MEMBER_FILE)
+	else
 	{
-		// The writing of the file has failed
 		file_written = false;
 	}
 
@@ -57,29 +59,24 @@ bool writeFile(char path[], void *pointer, size_t pointer_size)
 	return file_written;
 }
 
-bool readDriversFile(char path[], void* pointer, size_t pointer_size)
+bool readFile(char path[], void* pointer, size_t pointer_size, int offset)
 {
 	bool file_read = true;
-	bool flag = true;
-
-	int number_member_read = 0;
 	FILE *file = NULL;
+	int number_member_read = 0;
 
 	file = fopen(path, "rb");
 
-	if(!file)
+	if(file)
 	{
-		file_read = false;
-	}
-
-	while(flag && file_read)
-	{
+ 		fseek(file, offset * pointer_size, SEEK_CUR);
 		number_member_read = fread(pointer, pointer_size, NUMBER_MEMBER_FILE, file);
+
 		if(number_member_read < NUMBER_MEMBER_FILE)
 		{
 			if(feof(file))
 			{
-				flag = false;
+				file_read = false;
 			}
 			else
 			{
@@ -87,7 +84,10 @@ bool readDriversFile(char path[], void* pointer, size_t pointer_size)
 			}
 		}
 	}
-
+	else
+	{
+		file_read = false;
+	}
 
 	fclose(file);
 

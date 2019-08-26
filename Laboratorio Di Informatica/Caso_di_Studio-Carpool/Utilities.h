@@ -48,6 +48,7 @@ void clearBuffer(void);
 void initializeCMD(void); // This function is used to enable ANSI escape sequences on CMD
 void printfError(char string[]); // This function is used to make a printf() in red color
 void addNullCharacterString(char string[]);
+void capitalizeString(char string[]); // This procedure converts the first letter of the string to uppercase and the other ones to lowercase
 bool isIncluded(int min, int max, int number); // This function return true if the number is included between min and max
 bool isLatinString(char string[]); // This function return true if each character of the string belongs to the Latin alphabet
 bool isVoidString(char string[]);

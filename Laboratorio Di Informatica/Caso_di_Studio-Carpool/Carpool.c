@@ -34,6 +34,44 @@ void showMenu(void)
 	printf("\n+--------------------+------------------+");
 }
 
+const char *readGender(const Gender_t *gender)
+{
+	static char gender_name[LENGHT_ARRAY_GENDER] = NULL_STRING;
+
+	strcpy(gender_name, NULL_STRING);
+
+	if(*gender == male)
+	{
+		strcpy(gender_name, READ_GENDER_MALE);
+	}
+	else if(*gender == female)
+	{
+		strcpy(gender_name, READ_GENDER_FEMALE);
+	}
+	else
+	{
+		strcpy(gender_name, READ_GENDER_CUSTOM);
+	}
+
+	return gender_name;
+}
+
+const char *readRating(const Rating_t *rating)
+{
+	unsigned short i = 0;
+	static char rating_star[LENGHT_ARRAY_RATING] = NULL_STRING;
+
+	strcpy(rating_star, NULL_STRING);
+	for(i = 0; i < *rating; i++)
+	{
+		strcat(rating_star, STAR_CHARACTER);
+	}
+
+	addNullCharacterString(rating_star);
+
+	return rating_star;
+}
+
 void setWord(char word[], const char printf_value[]) // The procedure set a valid value to the word passed by pointer
 {
 	bool flag = false;
@@ -170,30 +208,62 @@ void setRating(Rating_t *rating, char printf_value[])
 	while(flag);
 }
 
-Driver_t addDriver(void)
+void resetDriver(Driver_t *driver)
 {
-	Driver_t driver = {0, NULL_STRING, NULL_STRING, NULL_STRING, NULL_STRING, NULL_STRING, {MIN_YEAR, january, MIN_DAY - 1}, male - 1 ,one_star -1, one_star - 1, one_star - 1};
+	driver -> id = 0;
+	strcpy(driver -> name, NULL_STRING);
+	strcpy(driver -> surname, NULL_STRING);
+	strcpy(driver -> email, NULL_STRING);
+	strcpy(driver -> password, NULL_STRING);
+	strcpy(driver -> phone_number, NULL_STRING);
+	driver -> birthday.year = MIN_YEAR - 1;
+	driver -> birthday.month = january - 1;
+	driver -> birthday.day = MIN_DAY - 1;
+	driver -> gender = male - 1;
+	driver -> driving_capacity = one_star - 1;
+	driver -> comfort_capacity = one_star - 1;
+	driver -> average_rating = one_star - 1;
+}
 
-	setWord(driver.name, DRIVER_NAME_PRINTF_VALUE);
-	setWord(driver.surname, DRIVER_SURNAME_PRINTF_VALUE);
-	setEmail(driver.email);
-	setNumberPhone(driver.phone_number);
-	setDate(&driver.birthday, DRIVER_BIRTHDAY_PRINTF_VALUE);
-	setRating(&driver.driving_capacity, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE);
-	setRating(&driver.comfort_capacity, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE);
+void addDriver(Driver_t *driver)
+{
+	resetDriver(driver);
 
-	driver.average_rate = (driver.driving_capacity + driver.comfort_capacity) / 2;
+	setWord(driver -> name, DRIVER_NAME_PRINTF_VALUE);
+	capitalizeString(driver -> name);
 
-	return driver;
+	setWord(driver -> surname, DRIVER_SURNAME_PRINTF_VALUE);
+	capitalizeString(driver -> surname);
+
+	setEmail(driver -> email);
+	setNumberPhone(driver -> phone_number);
+	setDate(&driver -> birthday, DRIVER_BIRTHDAY_PRINTF_VALUE);
+	setRating(&driver -> driving_capacity, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE);
+	setRating(&driver -> comfort_capacity, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE);
+
+	driver -> average_rating = (driver -> driving_capacity + driver -> comfort_capacity) / 2;
 }
 
 void readDriver(const Driver_t *driver)
 {
-	printf("\nName: %s", driver -> name);
-	printf("\nSurname: %s", driver -> surname);
-	printf("\nEmail: %s", driver -> email);
-	printf("\nBirthday (yyyy/mm/dd): %hu/%hu/%hu", driver -> birthday.year, driver -> birthday.month, driver -> birthday.day);
-	printf("\nDriving capacity: %d", driver -> driving_capacity);
-	printf("\nComfort capacity: %d", driver -> comfort_capacity);
-	printf("\nAverage Rate: %d", driver -> average_rate);
+	printf("\n|%4d|%14s|%15s|%31s|%14s|%16s|%4.4hu/%2.2d/%2.2hu| %6s |%5s|%5s|%5s", driver -> id,
+			driver -> name, driver -> surname, driver -> email, driver -> password, driver -> phone_number,
+			driver -> birthday.year, driver -> birthday.month, driver -> birthday.day,
+			readGender(&driver -> gender), readRating(&driver -> driving_capacity),
+			readRating(&driver -> comfort_capacity), readRating(&driver -> average_rating));
+	printf("\n+----+--------------+---------------+-------------------------------+--------------+----------------+----------+--------+---------------+---------------+-------------+");
 }
+
+/*void readAllDrivers(char path[])
+{
+	Driver_t *driver;
+	short i = 0;
+
+	do
+	{
+		readFile(path, driver, sizeof(*driver), i);
+		readDriver(driver);
+		i++;
+	}
+	while(driver)
+}*/

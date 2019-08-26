@@ -31,6 +31,16 @@
 #define DRIVER_DRIVING_CAPACITY_PRINTF_VALUE "driver's driving capacity"
 #define DRIVER_COMFORT_CAPACITY_PRINTF_VALUE "driver's comfort capacity"
 
+// Thoose constant are used in order to assign a literal output of the gender
+#define LENGHT_ARRAY_GENDER 7 // Lenght of the word "Custom" + null character
+#define READ_GENDER_MALE "Male"
+#define READ_GENDER_FEMALE "Female"
+#define READ_GENDER_CUSTOM "Custom"
+
+// Those constant are used in order to assign a graphic output of the rating
+#define LENGHT_ARRAY_RATING 6 // Five star + null character
+#define STAR_CHARACTER "*"
+
 // -- User-Defined types --
 typedef enum {one_star = 1, two_star, three_star, four_star, five_star} Rating_t;
 
@@ -65,15 +75,19 @@ typedef struct
 	Gender_t gender;
 	Rating_t driving_capacity;
 	Rating_t comfort_capacity;
-	Rating_t average_rate;
+	Rating_t average_rating;
 } Driver_t;
 
 // -- Procedure & Functions Prototypes --
 void showMenu(void);
+const char *readGender(const Gender_t *gender);
+const char *readRating(const Rating_t *rating);
 void setWord(char word[], const char printf_value[]); // The procedure set a valid value to the word passed by pointer
 void setEmail(char email[]);
 void setNumberPhone(char number_phone[]);
 void setDate(Date_t *date, const char printf_value[]); // The procedure set a valid value to the date passed by pointer
 void setRating(Rating_t *rating, char printf_value[]); // The procedure set a valid value to the rating passed by pointer
-Driver_t addDriver(void);
+void resetDriver(Driver_t *driver);
+void addDriver(Driver_t *driver);
 void readDriver(const Driver_t *driver);
+/*void readAllDrivers(char path[]);*/

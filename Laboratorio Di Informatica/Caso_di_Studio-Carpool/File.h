@@ -13,8 +13,6 @@
 #include <errno.h> // This library was used to check if a directory exists
 #include <direct.h> // This library was used to create directory
 
-#include "Carpool.h"
-
 // -- Constant --
 #define DIRECTORY_PATH "../Files"
 
@@ -26,4 +24,4 @@
 // -- Procedure & Functions Prototypes --
 bool isValidFile(char path[]);
 bool writeFile(char path[], void *pointer, size_t pointer_size);
-void *readDriversFile(char path[]);
+bool readFile(char path[], void* pointer, size_t pointer_size, int offset);

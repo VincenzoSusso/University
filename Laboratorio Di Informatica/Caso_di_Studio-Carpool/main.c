@@ -11,6 +11,8 @@
 // -- Libraries --
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "Carpool.h"
 #include "File.h"
 
 // -- Constant --
@@ -23,20 +25,23 @@
 // -- Main --
 int main(void)
 {
-	bool flag = true;
+	bool flag = true; // This flag is used in order to repeat the do-while cycle
+	bool operation = false; // This flag is used in order to comunicate to the user if an operation has failed
 	char choose_input[MAX_LENGHT_CHOOSE_INPUT] = NULL_STRING;
 	Menu_choose_t choose_menu = not_valid_choice;
+	unsigned short i = 0; // Used to manage the cycle
+	Driver_t driver;
 
 	initializeCMD();
 
 	if(!isValidFile(DRIVERS_FILE_PATH))
 	{
-		printfError("\nAn error has occured during the opening of the driver's file");
+		printfError("\nAn error has occured during the opening of the driver's file!");
 		flag = false;
 	}
 	if(!isValidFile(TRAVELS_FILE_PATH))
 	{
-		printfError("\nAn error has occured during the opening of the travel's file");
+		printfError("\nAn error has occured during the opening of the travel's file!");
 		flag = false;
 	}
 	/*if(!isValidFile(ID_FILE_PATH))
@@ -48,8 +53,12 @@ int main(void)
 	while(flag)
 	{
 		// Reset variable
+		operation = false;
 		strcpy(choose_input, NULL_STRING);
 		choose_menu = not_valid_choice;
+		i = 0;
+		resetDriver(&driver);
+		// End reset variable
 
 		showMenu();
 
@@ -64,18 +73,23 @@ int main(void)
 		else
 		{
 			printfError("\nThe choice that you have made is not valid!");
+			printf("\n\n");
+			system("PAUSE");
 		}
-
-		Driver_t driver;
 
 		switch(choose_menu)
 		{
 			case add_driver:
-
-				driver = addDriver();
-				readDriver(&driver);
-				int a = writeFile(DRIVERS_FILE_PATH, &driver, sizeof(driver));
-				printf("\n%d\n", a);
+				addDriver(&driver);
+				operation = writeFile(DRIVERS_FILE_PATH, &driver, sizeof(driver));
+				if(operation)
+				{
+					printf("\nThe driver has been added to the system");
+				}
+				else
+				{
+					printfError("\nAn error has occurred during the adding of the driver");
+				}
 				printf("\n\n");
 				system("PAUSE");
 				break;
@@ -84,6 +98,27 @@ int main(void)
 			case delete_driver:
 				break;
 			case show_all_driver:
+				i = 0;
+				printf("\n+----+--------------+---------------+-------------------------------+--------------+----------------+----------+--------+---------------+---------------+-------------+");
+				printf("\n| ID |     Name     |    Surname    |             Email             |   Password   |  Phone Number  | Birthday | Gender | Drv. Capacity | Cmf. Capacity | Avg. Rating |");
+				printf("\n+----+--------------+---------------+-------------------------------+--------------+----------------+----------+--------+---------------+---------------+-------------+");
+				do
+				{
+					operation = readFile(DRIVERS_FILE_PATH, &driver, sizeof(driver), i);
+					readDriver(&driver);
+					i++;
+				}
+				while(operation);
+				if(operation)
+				{
+					printf("\nThe drivers have been read");
+				}
+				else
+				{
+					printfError("\nAn error has occurred during the reading of the drivers");
+				}
+				printf("\n\n");
+				system("PAUSE");
 				break;
 			case add_travel:
 				break;

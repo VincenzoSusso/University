@@ -33,6 +33,19 @@ void addNullCharacterString(char string[])
 	strcat(string, NULL_STRING);
 }
 
+void capitalizeString(char string[]) // This procedure converts the first letter of the string to uppercase and the other ones to lowercase
+{
+	unsigned short i = 0;
+
+	string[i] = toupper(string[i]);
+
+	for(i = 1; i < strlen(string); i++)
+	{
+		string[i] = tolower(string[i]);
+	}
+
+}
+
 bool isIncluded(int min, int max, int number) // This function return true if the number is included between min and max
 {
 	bool included_number = false;
@@ -98,7 +111,8 @@ bool isEmail(char email[])
 	char *local_part = NULL; // Used to point to the email address' local-part
 	char *domain = NULL; // Used to point to the email-address' domain
 
-	copied_email = malloc(sizeof(char) * strlen(email));
+	// The + 1 was added in order to allow the dynamic array to store the null character
+	copied_email = malloc(sizeof(char) * (strlen(email) + 1));
 
 	if(copied_email != NULL)
 	{
@@ -115,7 +129,7 @@ bool isEmail(char email[])
 	if(domain != NULL && valid_email)
 	{
 		// It means that the local-part of the email starts or ends with a period
-		if(*local_part == PERIOD_CHARACTER || *(local_part + (int) strlen(local_part) - 1) == PERIOD_CHARACTER)
+		if(*local_part == PERIOD_CHARACTER || *(local_part + (int) (strlen(local_part) - 1)) == PERIOD_CHARACTER)
 		{
 			valid_email = false;
 		}
@@ -129,7 +143,7 @@ bool isEmail(char email[])
 			}
 
 			// It means that the local part of the email constains two dots that appear consecutively
-			if(i < (int) strlen(local_part) - 1 && *(local_part + i) == PERIOD_CHARACTER && *(local_part + i + 1) == PERIOD_CHARACTER)
+			if(i < (int) (strlen(local_part) - 1) && *(local_part + i) == PERIOD_CHARACTER && *(local_part + i + 1) == PERIOD_CHARACTER)
 			{
 				valid_email = false;
 			}
@@ -180,7 +194,8 @@ bool isNumberPhone(char phone_number[])
 	char *subscriber_number = NULL; // Used to point to the number path of the number phone
 	unsigned short i = 0;
 
-	copied_number_phone = malloc(sizeof(char) * strlen(phone_number));
+	// The + 1 was added in order to allow the dynamic array to store the null character
+	copied_number_phone = malloc(sizeof(char) * (strlen(phone_number) + 1));
 
 	if(copied_number_phone != NULL)
 	{
