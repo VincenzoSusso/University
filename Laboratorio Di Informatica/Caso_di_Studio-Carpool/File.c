@@ -2,9 +2,9 @@
 #include "File.h"
 
 // -- Procedure & Functions --
-bool isValidFile(char path[])
+File_status_t isValidFile(char path[])
 {
-	bool valid_file = true;
+	File_status_t valid_file = done;
 	FILE *file = NULL;
 
 	errno = 0; // Reset the value of errno which may have been modified by others errors
@@ -16,7 +16,7 @@ bool isValidFile(char path[])
 		 */
 		if(errno != EEXIST)
 		{
-			valid_file = false;
+			valid_file = error;
 		}
 	}
 	errno = 0;
@@ -25,16 +25,16 @@ bool isValidFile(char path[])
 	file = fopen(path, "ab");
 	if(!file)
 	{
-		valid_file = false;
+		valid_file = error;
 	}
 	fclose(file);
 
 	return valid_file;
 }
 
-bool writeFile(char path[], void *pointer, size_t pointer_size)
+File_status_t writeFile(char path[], void *pointer, size_t pointer_size)
 {
-	bool file_written = true;
+	File_status_t file_written = done;
 	FILE *file = NULL;
 	int number_member_written = 0;
 
@@ -46,12 +46,13 @@ bool writeFile(char path[], void *pointer, size_t pointer_size)
 		if(number_member_written < NUMBER_MEMBER_FILE)
 		{
 			// The writing of the file has failed
-			file_written = false;
+			file_written = error;
 		}
 	}
 	else
 	{
-		file_written = false;
+		// The file cannot be opened
+		file_written = error;
 	}
 
 	fclose(file);
@@ -59,9 +60,9 @@ bool writeFile(char path[], void *pointer, size_t pointer_size)
 	return file_written;
 }
 
-bool readFile(char path[], void* pointer, size_t pointer_size, int offset)
+File_status_t readFile(char path[], void* pointer, size_t pointer_size, int offset)
 {
-	bool file_read = true;
+	File_status_t file_read = done;
 	FILE *file = NULL;
 	int number_member_read = 0;
 
@@ -69,24 +70,28 @@ bool readFile(char path[], void* pointer, size_t pointer_size, int offset)
 
 	if(file)
 	{
- 		fseek(file, offset * pointer_size, SEEK_CUR);
+ 		fseek(file, (offset * (long int) pointer_size), SEEK_CUR);
+
 		number_member_read = fread(pointer, pointer_size, NUMBER_MEMBER_FILE, file);
 
 		if(number_member_read < NUMBER_MEMBER_FILE)
 		{
 			if(feof(file))
 			{
-				file_read = false;
+				// The file is finished
+				file_read = fail;
 			}
 			else
 			{
-				file_read = false;
+				// An error has occurred during the reading of the file
+				file_read = error;
 			}
 		}
 	}
 	else
 	{
-		file_read = false;
+		// The file cannot be opened
+		file_read = error;
 	}
 
 	fclose(file);

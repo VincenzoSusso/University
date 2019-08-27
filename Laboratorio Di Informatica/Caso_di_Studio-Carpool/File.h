@@ -20,8 +20,14 @@
 
 // -- User-Defined types --
 
+/* 	Used to get the status of the operations with files:
+  	- error: this value is returned when a fatal error has occurred
+    - fail: this value is returned when a minor error has occurred
+   	- done: this value is returned when error has not occurred
+*/
+typedef enum {error = 0, fail, done} File_status_t;
 
 // -- Procedure & Functions Prototypes --
-bool isValidFile(char path[]);
-bool writeFile(char path[], void *pointer, size_t pointer_size);
-bool readFile(char path[], void* pointer, size_t pointer_size, int offset);
+File_status_t isValidFile(char path[]);
+File_status_t writeFile(char path[], void *pointer, size_t pointer_size);
+File_status_t readFile(char path[], void* pointer, size_t pointer_size, int offset);

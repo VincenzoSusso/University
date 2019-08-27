@@ -19,6 +19,12 @@
 // -- Constant --
 #define NEWLINE_CHARACTER '\n' // This character is used in order to clear the buffer
 
+// Those characters are used in order to check if the string is a void string
+#define NEWLINE_STRING "\n"
+#define SPACE_STRING " "
+#define NULL_STRING "\0"
+#define SPACE_CHARACTER ' ' // Used to check the password
+
 // Those constants are used in order to check the email
 #define PERIOD_CHARACTER '.'
 #define AT_SIGN_CHARACTER '@'
@@ -30,10 +36,9 @@
 #define MAX_LENGHT_COUNTRY_CODE 4 // This constant was obtained by Plus character + country code lenght
 #define MAX_LENGHT_SUBSCRIBER_NUMBER 12
 
-// Those characters are used in order to check if the string is a void string
-#define NEWLINE_STRING "\n"
-#define SPACE_STRING " "
-#define NULL_STRING "\0"
+// Those constants are used in order to check the password
+#define MIN_UPPERCASE_CHARACTERS 1
+#define MIN_NUMBER_CHARACTERS 1
 
 #define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004 // This line is only for older versions of windows headers (pre Win 10)
 
@@ -53,4 +58,5 @@ bool isIncluded(int min, int max, int number); // This function return true if t
 bool isLatinString(char string[]); // This function return true if each character of the string belongs to the Latin alphabet
 bool isVoidString(char string[]);
 bool isEmail(char email[]);
+bool isPassword(char password[]);
 bool isNumberPhone(char phone_number[]);

@@ -87,6 +87,49 @@ bool isVoidString(char string[])
     return void_string;
 }
 
+bool isPassword(char password[])
+{
+	bool valid_password = false;
+	bool space = false; // This varible is used to check if the string has a space
+	unsigned short i = 0;
+	unsigned short uppercase_characters = 0;
+	unsigned short number_characters = 0;
+
+	for(i = 0; i < strlen(password); i++)
+	{
+		if(isupper(password[i]))
+		{
+			uppercase_characters++;
+		}
+
+		if(isdigit(password[i]))
+		{
+			number_characters++;
+		}
+
+		if(password[i] == SPACE_CHARACTER)
+		{
+			// The password is not valid
+			space = true;
+			i = strlen(password);
+		}
+
+		if(uppercase_characters >= MIN_UPPERCASE_CHARACTERS && number_characters >= MIN_NUMBER_CHARACTERS)
+		{
+			// The password is valid - Get out from the loop
+			i = strlen(password);
+		}
+	}
+
+	if((uppercase_characters >= MIN_UPPERCASE_CHARACTERS) && (number_characters >= MIN_NUMBER_CHARACTERS) && (!space))
+	{
+		// The password is valid
+		valid_password = true;
+	}
+
+	return valid_password;
+}
+
 bool isEmail(char email[])
 {
 	/*

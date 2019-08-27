@@ -26,9 +26,9 @@
 int main(void)
 {
 	bool flag = true; // This flag is used in order to repeat the do-while cycle
-	bool operation = false; // This flag is used in order to comunicate to the user if an operation has failed
 	char choose_input[MAX_LENGHT_CHOOSE_INPUT] = NULL_STRING;
 	Menu_choose_t choose_menu = not_valid_choice;
+	short operation = false; // This flag is used in order to comunicate to the user if an operation has failed
 	unsigned short i = 0; // Used to manage the cycle
 	Driver_t driver;
 
@@ -72,7 +72,7 @@ int main(void)
 		}
 		else
 		{
-			printfError("\nThe choice that you have made is not valid!");
+			printfError("\n\nThe choice that you have made is not valid!");
 			printf("\n\n");
 			system("PAUSE");
 		}
@@ -81,14 +81,14 @@ int main(void)
 		{
 			case add_driver:
 				addDriver(&driver);
-				operation = writeFile(DRIVERS_FILE_PATH, &driver, sizeof(driver));
+				operation = (short) writeFile(DRIVERS_FILE_PATH, &driver, sizeof(driver));
 				if(operation)
 				{
-					printf("\nThe driver has been added to the system");
+					printf("\n\nThe driver has been added to the system");
 				}
 				else
 				{
-					printfError("\nAn error has occurred during the adding of the driver");
+					printfError("\n\nAn error has occurred during the adding of the driver");
 				}
 				printf("\n\n");
 				system("PAUSE");
@@ -104,18 +104,21 @@ int main(void)
 				printf("\n+----+--------------+---------------+-------------------------------+--------------+----------------+----------+--------+---------------+---------------+-------------+");
 				do
 				{
-					operation = readFile(DRIVERS_FILE_PATH, &driver, sizeof(driver), i);
-					readDriver(&driver);
+					operation = (short) readFile(DRIVERS_FILE_PATH, &driver, sizeof(driver), i);
+					if(operation == done)
+					{
+						readDriver(&driver);
+					}
 					i++;
 				}
-				while(operation);
+				while(operation == done);
 				if(operation)
 				{
-					printf("\nThe drivers have been read");
+					printf("\n\nThe drivers have been read");
 				}
 				else
 				{
-					printfError("\nAn error has occurred during the reading of the drivers");
+					printfError("\n\nAn error has occurred during the reading of the drivers");
 				}
 				printf("\n\n");
 				system("PAUSE");
@@ -147,7 +150,6 @@ int main(void)
 		int a = readDriverFile(DRIVERS_FILE_PATH);
 		printf("\n%d\n", a);*/
 	}
-
 
 	printf("\n\n");
 	system("PAUSE");

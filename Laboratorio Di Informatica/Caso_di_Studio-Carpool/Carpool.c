@@ -36,40 +36,18 @@ void showMenu(void)
 
 const char *readGender(const Gender_t *gender)
 {
-	static char gender_name[LENGHT_ARRAY_GENDER] = NULL_STRING;
+	const static char *gender_name[LENGHT_ARRAY_GENDER] = {READ_GENDER_MALE, READ_GENDER_FEMALE, READ_GENDER_CUSTOM};
 
-	strcpy(gender_name, NULL_STRING);
-
-	if(*gender == male)
-	{
-		strcpy(gender_name, READ_GENDER_MALE);
-	}
-	else if(*gender == female)
-	{
-		strcpy(gender_name, READ_GENDER_FEMALE);
-	}
-	else
-	{
-		strcpy(gender_name, READ_GENDER_CUSTOM);
-	}
-
-	return gender_name;
+	return gender_name[*gender]; // - 1 was added because the array starts from 0
 }
 
 const char *readRating(const Rating_t *rating)
 {
-	unsigned short i = 0;
-	static char rating_star[LENGHT_ARRAY_RATING] = NULL_STRING;
+	const static char *rating_star[LENGHT_ARRAY_RATING] = {READ_RATING_ONE_STAR, READ_RATING_TWO_STAR,
+														  READ_RATING_THREE_STAR, READ_RATING_FOUR_STAR,
+														  READ_RATING_FIVE_STAR};
 
-	strcpy(rating_star, NULL_STRING);
-	for(i = 0; i < *rating; i++)
-	{
-		strcat(rating_star, STAR_CHARACTER);
-	}
-
-	addNullCharacterString(rating_star);
-
-	return rating_star;
+	return rating_star[*rating - 1]; // - 1 was added because the array starts from 0 while the value one_star starts from 1
 }
 
 void setWord(char word[], const char printf_value[]) // The procedure set a valid value to the word passed by pointer
@@ -112,6 +90,29 @@ void setEmail(char email[])
 		if(flag)
 		{
 			printf("\nThe email that you have entered is not valid (the format should be \"local-part@domain\")");
+		}
+
+	}
+	while(flag);
+}
+
+void setPassword(char password[])
+{
+	bool flag = false;
+
+	do
+	{
+		flag = false;
+
+		printf("\nEnter the password (It should contain at least %d characters, an uppercase character and an number character): ", MIN_LENGHT_PASSWORD);
+		scanf("%23[^\n]s", password);
+		addNullCharacterString(password);
+		clearBuffer();
+
+		flag = isVoidString(password) || !isPassword(password) || !isIncluded(MIN_LENGHT_PASSWORD, MAX_LENGHT_STRINGS, (int) strlen(password));
+		if(flag)
+		{
+			printf("\nThe password that you have entered is not valid (the password should contain at least %d characters, an uppercase character and an number character)", MIN_LENGHT_PASSWORD);
 		}
 
 	}
@@ -182,6 +183,51 @@ void setDate(Date_t *date, const char printf_value[]) // The procedure set a val
 	while(flag);
 }
 
+void setGender(Gender_t *gender)
+{
+	bool flag = false;
+	unsigned short i = 0;
+	char gender_input[MAX_LENGHT_GENDER_STRING] = NULL_STRING;
+	bool number_input = false; // This variable is used to understand if the input is a number
+
+	do
+	{
+		flag = false;
+
+		printf("\nEnter your gender (Male = 0, Female = 1, Custom = 2): ");
+		scanf("%3[^\n]s", gender_input);
+		addNullCharacterString(gender_input);
+		clearBuffer();
+
+		for(i = 0; i < strlen(gender_input); i++)
+		{
+			if(!isdigit(gender_input[i]))
+			{
+				number_input = true;
+				i = strlen(gender_input);
+			}
+		}
+
+		if(number_input)
+		{
+			*gender = (Gender_t) strtol(gender_input, NULL, 10);
+
+			flag = !isIncluded(male, custom, *gender);
+		}
+		else
+		{
+			flag = true;
+		}
+
+		if(flag)
+		{
+			printf("\nThe gender that you have entered is not valid");
+		}
+
+	}
+	while(flag);
+}
+
 void setRating(Rating_t *rating, char printf_value[])
 {
 	bool flag = false;
@@ -236,8 +282,10 @@ void addDriver(Driver_t *driver)
 	capitalizeString(driver -> surname);
 
 	setEmail(driver -> email);
+	setPassword(driver -> password);
 	setNumberPhone(driver -> phone_number);
 	setDate(&driver -> birthday, DRIVER_BIRTHDAY_PRINTF_VALUE);
+	setGender(&driver -> gender);
 	setRating(&driver -> driving_capacity, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE);
 	setRating(&driver -> comfort_capacity, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE);
 

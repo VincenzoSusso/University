@@ -42,7 +42,7 @@
 #define DATE_DELIMITER "/"
 
 // -- User-Defined types --
-typedef enum {january  = 1, february, march, april, may, june, july, august, september, october, november, december} Month_t;
+typedef enum {january = 1, february, march, april, may, june, july, august, september, october, november, december} Month_t;
 
 typedef struct
 {
