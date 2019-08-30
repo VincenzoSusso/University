@@ -2,43 +2,11 @@
 #include "Carpool.h"
 
 // -- Procedure & Functions --
-void showMenu(void)
-{
-	printf("\n\nMenu':");
-	printf("\n+--------------------+------------------+");
-	printf("\n|  Number of Choice  |      Option      |");
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |    Add Driver    |", add_driver);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |    Edit Driver   |", edit_driver);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |   Delete Driver  |", delete_driver);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          | Show All Drivers |", show_all_driver);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |    Add Travel    |", add_travel);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |    Edit Travel   |", edit_travel);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |   Delete Travel  |", delete_travel);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          | Show All Travels |", show_all_travel);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |   Book a Travel  |", book_travel);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |    Sort Drivers  |", sort_driver);
-	printf("\n+--------------------+------------------+");
-	printf("\n|        %d          |    Sort Travels  |", sort_travel);
-	printf("\n+--------------------+------------------+");
-	printf("\n|        %d          |       Exit       |", exit_menu);
-	printf("\n+--------------------+------------------+");
-}
-
 const char *readGender(const Gender_t *gender)
 {
 	const static char *gender_name[LENGHT_ARRAY_GENDER] = {READ_GENDER_MALE, READ_GENDER_FEMALE, READ_GENDER_CUSTOM};
 
-	return gender_name[*gender]; // - 1 was added because the array starts from 0
+	return gender_name[*gender];
 }
 
 const char *readRating(const Rating_t *rating)
@@ -145,7 +113,7 @@ void setNumberPhone(char phone_number[])
 void setDate(Date_t *date, const char printf_value[]) // The procedure set a valid value to the date passed by pointer
 {
 	bool flag = false;
-	char date_input[MAX_LENGHT_DATE_STRING] = NULL_STRING; // This string is used in order to take the input
+	char date_input[MAX_LENGHT_DATE_STRING_INPUT] = NULL_STRING; // This string is used in order to take the input
 
 	// Thoose pointer are used to point to the part of the date
 	char *year = NULL;
@@ -168,9 +136,13 @@ void setDate(Date_t *date, const char printf_value[]) // The procedure set a val
 		if(month != NULL && day != NULL)
 		{
 			// The string that the user has entered has a valid format
-			date -> year = (unsigned short) strtoul(year, NULL, 10);
-			date -> month = (unsigned short) strtoul(month, NULL, 10);
-			date -> day = (unsigned short) strtoul(day, NULL, 10);
+			if(isNumberString(year) && isNumberString(month) && isNumberString(day))
+			{
+				// The string has the correct characters
+				date -> year = (unsigned short) strtoul(year, NULL, 10);
+				date -> month = (unsigned short) strtoul(month, NULL, 10);
+				date -> day = (unsigned short) strtoul(day, NULL, 10);
+			}
 		}
 
 		flag = !isValidDate(*date);
@@ -186,9 +158,7 @@ void setDate(Date_t *date, const char printf_value[]) // The procedure set a val
 void setGender(Gender_t *gender)
 {
 	bool flag = false;
-	unsigned short i = 0;
-	char gender_input[MAX_LENGHT_GENDER_STRING] = NULL_STRING;
-	bool number_input = false; // This variable is used to understand if the input is a number
+	char gender_input[MAX_LENGHT_GENDER_STRING_INPUT] = NULL_STRING;
 
 	do
 	{
@@ -199,23 +169,21 @@ void setGender(Gender_t *gender)
 		addNullCharacterString(gender_input);
 		clearBuffer();
 
-		for(i = 0; i < strlen(gender_input); i++)
+		if(isNumberString(gender_input))
 		{
-			if(!isdigit(gender_input[i]))
-			{
-				number_input = true;
-				i = strlen(gender_input);
-			}
-		}
-
-		if(number_input)
-		{
+			// The input can be converted to Gender_t
 			*gender = (Gender_t) strtol(gender_input, NULL, 10);
 
-			flag = !isIncluded(male, custom, *gender);
+			if(!isIncluded(male, custom, *gender))
+			{
+				// The string is not included
+				flag = true;
+			}
+
 		}
 		else
 		{
+			// The string is not a number
 			flag = true;
 		}
 
@@ -231,7 +199,7 @@ void setGender(Gender_t *gender)
 void setRating(Rating_t *rating, char printf_value[])
 {
 	bool flag = false;
-	char rating_input[MAX_LENGHT_RATING_STRING] = NULL_STRING; // This string is used in order to take the input
+	char rating_input[MAX_LENGHT_RATING_STRING_INPUT] = NULL_STRING; // This string is used in order to take the input
 
 	do
 	{
@@ -242,9 +210,21 @@ void setRating(Rating_t *rating, char printf_value[])
 		addNullCharacterString(rating_input);
 		clearBuffer();
 
-		*rating = (int) strtol(rating_input, NULL, 10);
+		if(isNumberString(rating_input))
+		{
+			// The input can be converted to Rating_t
+			*rating = (int) strtol(rating_input, NULL, 10);
+			if(!isIncluded(one_star, five_star, *rating))
+			{
+				flag = true;
+			}
+		}
+		else
+		{
+			// The string is not a number
+			flag = true;
+		}
 
-		flag = !isIncluded(one_star, five_star, *rating);
 		if(flag)
 		{
 			printf("\nThe %s that you have entered is not valid (it should be between %d and %d)", printf_value, one_star, five_star);
@@ -269,11 +249,14 @@ void resetDriver(Driver_t *driver)
 	driver -> driving_capacity = one_star - 1;
 	driver -> comfort_capacity = one_star - 1;
 	driver -> average_rating = one_star - 1;
+	driver -> deleted = false;
 }
 
-void addDriver(Driver_t *driver)
+void setDriver(Driver_t *driver, unsigned long id)
 {
 	resetDriver(driver);
+
+	driver -> id = id;
 
 	setWord(driver -> name, DRIVER_NAME_PRINTF_VALUE);
 	capitalizeString(driver -> name);
@@ -290,28 +273,154 @@ void addDriver(Driver_t *driver)
 	setRating(&driver -> comfort_capacity, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE);
 
 	driver -> average_rating = (driver -> driving_capacity + driver -> comfort_capacity) / 2;
+
+	driver -> deleted = false;
 }
 
 void readDriver(const Driver_t *driver)
 {
-	printf("\n|%4d|%14s|%15s|%31s|%14s|%16s|%4.4hu/%2.2d/%2.2hu| %6s |%5s|%5s|%5s", driver -> id,
-			driver -> name, driver -> surname, driver -> email, driver -> password, driver -> phone_number,
-			driver -> birthday.year, driver -> birthday.month, driver -> birthday.day,
-			readGender(&driver -> gender), readRating(&driver -> driving_capacity),
-			readRating(&driver -> comfort_capacity), readRating(&driver -> average_rating));
-	printf("\n+----+--------------+---------------+-------------------------------+--------------+----------------+----------+--------+---------------+---------------+-------------+");
+	if(!driver -> deleted)
+	{
+		printf("\n|%4lu|%14s|%15s|%31s|%14s|%16s|%4.4hu/%2.2d/%2.2hu| %6s |%5s|%5s|%5s|", driver -> id,
+				driver -> name, driver -> surname, driver -> email, driver -> password, driver -> phone_number,
+				driver -> birthday.year, driver -> birthday.month, driver -> birthday.day,
+				readGender(&driver -> gender), readRating(&driver -> driving_capacity),
+				readRating(&driver -> comfort_capacity), readRating(&driver -> average_rating));
+		printf("\n+----+--------------+---------------+-------------------------------+--------------+----------------+----------+--------+---------------+---------------+-------------+");
+	}
 }
 
-/*void readAllDrivers(char path[])
+bool isIdDriverEqual(const Driver_t *driver, const unsigned long *id)
 {
-	Driver_t *driver;
-	short i = 0;
+	bool equal_id = false;
+
+	if(!(driver -> deleted))
+	{
+		if(driver -> id == *id)
+		{
+			equal_id = true;
+		}
+	}
+
+	return equal_id;
+}
+
+File_status_t addDriver(char path[], const unsigned long *id_driver) // This function return true if the driver has been added to the system
+{
+	File_status_t operation = error;
+	Driver_t driver;
+
+	resetDriver(&driver);
+
+	setDriver(&driver, *id_driver);
+	operation = writeFile(path, &driver, sizeof(driver), 0, SEEK_END);
+
+	return operation;
+}
+
+File_status_t editDriver(char path[], const unsigned long *id_driver)
+{
+	File_status_t operation = done;
+
+	return operation;
+}
+
+File_status_t deleteDriver(char path[]) // This function returns true if the driver has been deleted to the system
+{
+	File_status_t operation = done;
+	Driver_t driver;
+	long int index_id = INDEX_ID_NOT_FOUND;
+	unsigned long id_input = 0; // Variable that will store the index
+	char id_input_string[MAX_LENGHT_ID_STRING_INPUT] = NULL_STRING;
+
+	resetDriver(&driver);
+
+	printf("\n\nEnter the ID of the driver that you want to delete: ");
+	scanf("%s", id_input_string);
+	clearBuffer();
+
+	if(isNumberString(id_input_string))
+	{
+		id_input = strtol(id_input_string, NULL, 10);
+	}
+	else
+	{
+		operation = error;
+	}
+
+	index_id = getIndexDriver(path, &id_input);
+
+	if(index_id != INDEX_ID_NOT_FOUND)
+	{
+		driver.deleted = true;
+		operation = writeFile(path, &driver, sizeof(driver), index_id, SEEK_SET);
+	}
+	else
+	{
+		operation = error;
+	}
+
+	return operation;
+}
+
+File_status_t showAllDrivers(char path[]) // This function return true if has read all records of the file, "path" is the path of the file that stores the drivers
+{
+	File_status_t operation = error;
+	Driver_t driver;
+	long int i = 0;
+
+	resetDriver(&driver);
+
+	printf("\n+----+--------------+---------------+-------------------------------+--------------+----------------+----------+--------+---------------+---------------+-------------+");
+	printf("\n| ID |     Name     |    Surname    |             Email             |   Password   |  Phone Number  | Birthday | Gender | Drv. Capacity | Cmf. Capacity | Avg. Rating |");
+	printf("\n+----+--------------+---------------+-------------------------------+--------------+----------------+----------+--------+---------------+---------------+-------------+");
 
 	do
 	{
-		readFile(path, driver, sizeof(*driver), i);
-		readDriver(driver);
+		operation = readFile(path, &driver, sizeof(driver), i, SEEK_CUR);
+		if(operation == done)
+		{
+			readDriver(&driver);
+		}
 		i++;
 	}
-	while(driver)
-}*/
+	while(operation == done);
+
+	return operation;
+}
+
+File_status_t updateID(char path[], const long int offset, unsigned long *id)
+{
+	File_status_t operation = error;
+
+	(*id)++;
+	operation = writeFile(path, id, sizeof(*id), offset, SEEK_SET);
+
+	return operation;
+}
+
+long int getIndexDriver(char path[], const unsigned long *id)
+{
+	File_status_t operation = error;
+	Driver_t driver;
+	unsigned long i = 0;
+	unsigned long index_id = INDEX_ID_NOT_FOUND;
+
+	resetDriver(&driver);
+
+	do
+	{
+		operation = readFile(path, &driver, sizeof(driver), i, SEEK_CUR);
+		if(operation == done)
+		{
+			if(isIdDriverEqual(&driver, id))
+			{
+				index_id = i;
+			}
+		}
+			i++;
+	}
+	while(operation == done);
+
+	return index_id;
+}

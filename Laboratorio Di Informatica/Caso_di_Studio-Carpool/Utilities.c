@@ -2,7 +2,7 @@
 #include "Utilities.h"
 
 // -- Procedure & Functions --
-int createRandomValue(int min, int max) // Return a random value between min and max
+int createRandomValue(const int min, const int max) // Return a random value between min and max
 {
     return rand() % (max - min + 1) + min;
 }
@@ -23,7 +23,7 @@ void initializeCMD(void) // This function is used to enable ANSI escape sequence
 	SetConsoleMode(console, consoleMode);
 }
 
-void printfError(char string[]) // This function is used to make a printf() in red color
+void printfError(const char string[]) // This function is used to make a printf() in red color
 {
 	printf("%s%s%s", RED, string, RESET);
 }
@@ -46,7 +46,7 @@ void capitalizeString(char string[]) // This procedure converts the first letter
 
 }
 
-bool isIncluded(int min, int max, int number) // This function return true if the number is included between min and max
+bool isIncluded(const int min, const int max, const int number) // This function return true if the number is included between min and max
 {
 	bool included_number = false;
 
@@ -58,7 +58,7 @@ bool isIncluded(int min, int max, int number) // This function return true if th
 	return included_number;
 }
 
-bool isLatinString(char string[]) // This function return true if each character of the string belongs to the Latin alphabet
+bool isLatinString(const char string[]) // This function return true if each character of the string belongs to the Latin alphabet
 {
 	bool latin_string = true;
 	unsigned short i = 0;
@@ -75,7 +75,24 @@ bool isLatinString(char string[]) // This function return true if each character
 	return latin_string;
 }
 
-bool isVoidString(char string[])
+bool isNumberString(const char string[]) // This function return true if each character of the string is a digit
+{
+	bool number = true;
+	unsigned short i = 0;
+
+	for(i = 0; i < strlen(string); i++)
+	{
+		if(!isdigit(string[i]))
+		{
+			number = false;
+			i = strlen(string);
+		}
+	}
+
+	return number;
+}
+
+bool isVoidString(const char string[])
 {
     bool void_string = false;
 
@@ -87,50 +104,7 @@ bool isVoidString(char string[])
     return void_string;
 }
 
-bool isPassword(char password[])
-{
-	bool valid_password = false;
-	bool space = false; // This varible is used to check if the string has a space
-	unsigned short i = 0;
-	unsigned short uppercase_characters = 0;
-	unsigned short number_characters = 0;
-
-	for(i = 0; i < strlen(password); i++)
-	{
-		if(isupper(password[i]))
-		{
-			uppercase_characters++;
-		}
-
-		if(isdigit(password[i]))
-		{
-			number_characters++;
-		}
-
-		if(password[i] == SPACE_CHARACTER)
-		{
-			// The password is not valid
-			space = true;
-			i = strlen(password);
-		}
-
-		if(uppercase_characters >= MIN_UPPERCASE_CHARACTERS && number_characters >= MIN_NUMBER_CHARACTERS)
-		{
-			// The password is valid - Get out from the loop
-			i = strlen(password);
-		}
-	}
-
-	if((uppercase_characters >= MIN_UPPERCASE_CHARACTERS) && (number_characters >= MIN_NUMBER_CHARACTERS) && (!space))
-	{
-		// The password is valid
-		valid_password = true;
-	}
-
-	return valid_password;
-}
-
-bool isEmail(char email[])
+bool isEmail(const char email[])
 {
 	/*
 		The format of email addresses is local-part@domain.
@@ -229,13 +203,56 @@ bool isEmail(char email[])
 	return valid_email && (number_dot_domain == NUMBER_DOT_DOMAIN);
 }
 
-bool isNumberPhone(char phone_number[])
+bool isPassword(const char password[])
+{
+	bool valid_password = false;
+	bool space = false; // This varible is used to check if the string has a space
+	unsigned short i = 0;
+	unsigned short uppercase_characters = 0;
+	unsigned short number_characters = 0;
+
+	for(i = 0; i < strlen(password); i++)
+	{
+		if(isupper(password[i]))
+		{
+			uppercase_characters++;
+		}
+
+		if(isdigit(password[i]))
+		{
+			number_characters++;
+		}
+
+		if(password[i] == SPACE_CHARACTER)
+		{
+			// The password is not valid
+			space = true;
+			i = strlen(password);
+		}
+
+		if(uppercase_characters >= MIN_UPPERCASE_CHARACTERS && number_characters >= MIN_NUMBER_CHARACTERS)
+		{
+			// The password is valid - Get out from the loop
+			i = strlen(password);
+		}
+	}
+
+	if((uppercase_characters >= MIN_UPPERCASE_CHARACTERS) && (number_characters >= MIN_NUMBER_CHARACTERS) && (!space))
+	{
+		// The password is valid
+		valid_password = true;
+	}
+
+	return valid_password;
+}
+
+bool isNumberPhone(const char phone_number[])
 {
 	bool valid_phone_number = true;
 	char *copied_number_phone = NULL;
 	char *country_code = NULL; // Used to point to the country code of the number phone
 	char *subscriber_number = NULL; // Used to point to the number path of the number phone
-	unsigned short i = 0;
+	//unsigned short i = 0;
 
 	// The + 1 was added in order to allow the dynamic array to store the null character
 	copied_number_phone = malloc(sizeof(char) * (strlen(phone_number) + 1));
@@ -265,7 +282,9 @@ bool isNumberPhone(char phone_number[])
 			valid_phone_number = false;
 		}
 
-		i = 1; // The first character is a +
+		valid_phone_number = isNumberString(country_code + 1) && valid_phone_number;
+
+		/*i = 1; // The first character is a +
 		while(valid_phone_number && i < strlen(country_code))
 		{
 			if(!isdigit(*(country_code + i)))
@@ -275,9 +294,10 @@ bool isNumberPhone(char phone_number[])
 			}
 
 			i++;
-		}
+		}*/
 
-		i = 0;
+		valid_phone_number = isNumberString(subscriber_number) && valid_phone_number;
+		/*i = 0;
 		while(valid_phone_number && i < strlen(subscriber_number))
 		{
 			if(!isdigit(*(subscriber_number + i)))
@@ -287,7 +307,7 @@ bool isNumberPhone(char phone_number[])
 			}
 
 			i++;
-		}
+		}*/
 	}
 	else
 	{

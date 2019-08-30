@@ -8,10 +8,14 @@
 */
 
 // -- Libraries --
+#ifndef Carpool_h
+	#define Carpool_h
+
 #include <stdbool.h>
 #include <stdio.h>
 #include "Date.h"
 #include "Utilities.h"
+#include "File.h"
 
 // -- Constant --
 #define MAX_LENGHT_STRINGS 24
@@ -24,9 +28,12 @@
 #define MIN_LENGHT_PHONE_NUMBER 8 // For more information, please visit here: https://stackoverflow.com/questions/14894899/what-is-the-minimum-length-of-a-valid-international-phone-number
 #define MAX_LENGHT_PHONE_NUMBER 18 // This constant was obtained by Country code lenght + space + subscriber number lenght + null character
 
-#define MAX_LENGHT_DATE_STRING 11
-#define MAX_LENGHT_GENDER_STRING 4
-#define MAX_LENGHT_RATING_STRING 4
+#define MAX_LENGHT_DATE_STRING_INPUT 11
+#define MAX_LENGHT_GENDER_STRING_INPUT 4
+#define MAX_LENGHT_RATING_STRING_INPUT 4
+#define MAX_LENGHT_ID_STRING_INPUT 8
+
+#define INDEX_ID_NOT_FOUND -1 // This constant is used to check if the index of the ID has not been found
 
 #define DRIVER_NAME_PRINTF_VALUE "driver's name"
 #define DRIVER_SURNAME_PRINTF_VALUE "driver's surname"
@@ -53,26 +60,12 @@ typedef enum {one_star = 1, two_star, three_star, four_star, five_star} Rating_t
 
 typedef enum {male, female, custom} Gender_t;
 
-typedef enum
-{
-	add_driver,
-	edit_driver,
-	delete_driver,
-	show_all_driver,
-	add_travel,
-	edit_travel,
-	delete_travel,
-	show_all_travel,
-	book_travel,
-	sort_driver,
-	sort_travel,
-	exit_menu,
-	not_valid_choice
-} Menu_choose_t;
+typedef enum {id = -1, name, surname, email, password, phone_number, birthday, gender, driving_capacity,
+			 comfort_capacity, average_rate, deleted} Driver_members_t;
 
 typedef struct
 {
-	unsigned int id;
+	unsigned long id;
 	char name[MAX_LENGHT_STRINGS];
 	char surname[MAX_LENGHT_STRINGS];
 	char email[MAX_LENGHT_EMAIL];
@@ -83,10 +76,10 @@ typedef struct
 	Rating_t driving_capacity;
 	Rating_t comfort_capacity;
 	Rating_t average_rating;
+	bool deleted; // True mean that the record is deleted
 } Driver_t;
 
 // -- Procedure & Functions Prototypes --
-void showMenu(void);
 
 // For more information about those two function, please visit here: https://stackoverflow.com/questions/1496313/returning-c-string-from-a-function
 const char *readGender(const Gender_t *gender);
@@ -99,7 +92,21 @@ void setNumberPhone(char number_phone[]);
 void setDate(Date_t *date, const char printf_value[]); // The procedure set a valid value to the date passed by pointer
 void setGender(Gender_t *gender);
 void setRating(Rating_t *rating, char printf_value[]); // The procedure set a valid value to the rating passed by pointer
+
 void resetDriver(Driver_t *driver);
-void addDriver(Driver_t *driver);
+void setDriver(Driver_t *driver, unsigned long id);
 void readDriver(const Driver_t *driver);
-/*void readAllDrivers(char path[]);*/
+bool isIdDriverEqual(const Driver_t *driver, const unsigned long *id);
+
+
+
+// Those function uses files
+File_status_t addDriver(char path[], const unsigned long *id_driver); // This function returns true if the driver has been added to the system
+//File_status_t editDriver(char path[], const unsigned long *id_driver);
+File_status_t deleteDriver(char path[]); // This function returns true if the driver has been deleted to the system
+File_status_t showAllDrivers(char path[]); // This function returns true if has read all records of the file, "path" is the path of the file that stores the drivers
+
+
+File_status_t updateID(char path[], const long int offset, unsigned long *id); // This function returns true if the ID is update
+long int getIndexDriver(char path[], const unsigned long *id);
+#endif

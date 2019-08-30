@@ -9,6 +9,9 @@
 */
 
 // -- Libraries --
+#ifndef Utilities_h
+    #define Utilities_h
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -48,15 +51,18 @@
 #define BOLDWHITE "\033[1m\033[37m"
 
 // -- Procedure & Functions Prototypes --
-int createRandomValue(int min, int max); // Return a random value between min and max
+int createRandomValue(const int min, const int max); // Return a random value between min and max
 void clearBuffer(void);
 void initializeCMD(void); // This function is used to enable ANSI escape sequences on CMD
-void printfError(char string[]); // This function is used to make a printf() in red color
+void printfError(const char string[]); // This function is used to make a printf() in red color
 void addNullCharacterString(char string[]);
 void capitalizeString(char string[]); // This procedure converts the first letter of the string to uppercase and the other ones to lowercase
-bool isIncluded(int min, int max, int number); // This function return true if the number is included between min and max
-bool isLatinString(char string[]); // This function return true if each character of the string belongs to the Latin alphabet
-bool isVoidString(char string[]);
-bool isEmail(char email[]);
-bool isPassword(char password[]);
-bool isNumberPhone(char phone_number[]);
+bool isIncluded(const int min, const int max, const int number); // This function return true if the number is included between min and max
+bool isNumberString(const char string[]); // This function return true if each character of the string is a digit
+bool isLatinString(const char string[]); // This function return true if each character of the string belongs to the Latin alphabet
+bool isVoidString(const char string[]);
+bool isEmail(const char email[]);
+bool isPassword(const char password[]);
+bool isNumberPhone(const char phone_number[]);
+
+#endif

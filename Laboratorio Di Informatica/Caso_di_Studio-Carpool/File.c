@@ -32,15 +32,16 @@ File_status_t isValidFile(char path[])
 	return valid_file;
 }
 
-File_status_t writeFile(char path[], void *pointer, size_t pointer_size)
+File_status_t writeFile(char path[], void* pointer, size_t pointer_size, long int offset, int whence)
 {
 	File_status_t file_written = done;
 	FILE *file = NULL;
 	int number_member_written = 0;
 
-	file = fopen(path, "ab");
+	file = fopen(path, "rb+");
 	if(file)
 	{
+		fseek(file, (offset * (long int) pointer_size), whence);
 		number_member_written = fwrite(pointer, pointer_size, NUMBER_MEMBER_FILE, file);
 
 		if(number_member_written < NUMBER_MEMBER_FILE)
@@ -60,7 +61,7 @@ File_status_t writeFile(char path[], void *pointer, size_t pointer_size)
 	return file_written;
 }
 
-File_status_t readFile(char path[], void* pointer, size_t pointer_size, int offset)
+File_status_t readFile(char path[], void* pointer, size_t pointer_size, long int offset, int whence)
 {
 	File_status_t file_read = done;
 	FILE *file = NULL;
@@ -70,7 +71,7 @@ File_status_t readFile(char path[], void* pointer, size_t pointer_size, int offs
 
 	if(file)
 	{
- 		fseek(file, (offset * (long int) pointer_size), SEEK_CUR);
+ 		fseek(file, (offset * (long int) pointer_size), whence);
 
 		number_member_read = fread(pointer, pointer_size, NUMBER_MEMBER_FILE, file);
 

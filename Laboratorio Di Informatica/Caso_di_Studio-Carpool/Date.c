@@ -25,7 +25,7 @@ Time_t createRandomTime(void)
 	return time;
 }*/
 
-bool isLeapYear(unsigned short year)
+bool isLeapYear(const unsigned short year)
 {
 	bool leap_year = false;
 
@@ -42,7 +42,7 @@ bool isLeapYear(unsigned short year)
 	return leap_year;
 }
 
-bool isValidDate(Date_t date)
+bool isValidDate(const Date_t date)
 {
 	// Those variable are used in order to avoid bugs due to the use of the same variable for many scopes
 	bool valid_year = false;
@@ -97,7 +97,7 @@ bool isValidDate(Date_t date)
 	return (valid_year && valid_month && valid_day);
 }
 
-bool isValidTime(Time_t time)
+bool isValidTime(const Time_t time)
 {
 	// Those variable are used in order to avoid bugs due to the use of the same variable for many scopes
 	bool valid_hour = false;

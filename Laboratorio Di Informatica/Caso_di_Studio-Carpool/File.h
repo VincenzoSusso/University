@@ -8,6 +8,9 @@
 */
 
 // -- Libraries --
+#ifndef File_h
+	#define File_h
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <errno.h> // This library was used to check if a directory exists
@@ -29,5 +32,7 @@ typedef enum {error = 0, fail, done} File_status_t;
 
 // -- Procedure & Functions Prototypes --
 File_status_t isValidFile(char path[]);
-File_status_t writeFile(char path[], void *pointer, size_t pointer_size);
-File_status_t readFile(char path[], void* pointer, size_t pointer_size, int offset);
+File_status_t writeFile(char path[], void* pointer, size_t pointer_size, long int offset, int whence);
+File_status_t readFile(char path[], void* pointer, size_t pointer_size, long int offset, int whence);
+
+#endif

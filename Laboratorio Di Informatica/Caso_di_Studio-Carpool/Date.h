@@ -10,6 +10,9 @@
 */
 
 // -- Libraries --
+#ifndef Date_h
+	#define Date_h
+
 #include <stdbool.h>
 
 #include "Utilities.h"
@@ -60,9 +63,11 @@ typedef struct
 // -- Procedure & Functions Prototypes --
 /*Date_t createRandomDate(void);
 Time_t createRandomTime(void);*/
-bool isLeapYear(unsigned short year);
-bool isValidDate(Date_t date);
-bool isValidTime(Time_t time);
+bool isLeapYear(const unsigned short year);
+bool isValidDate(const Date_t date);
+bool isValidTime(const Time_t time);
 /*bool areDatesEquals(Date_t first_date, Date_t second_date);
 Date_t dataPiuRecente(Date_t first_date, Date_t second_date);
 Date_t dataMenoRecente(Date_t first_date, Date_t second_date); */
+
+#endif
