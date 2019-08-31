@@ -16,10 +16,9 @@ int main(void)
 {
 	bool flag = true; // This flag is used in order to repeat the do-while cycle
 	Menu_choice_t menu_choice = not_valid_choice;
-	Driver_t driver;
 
-	unsigned long id_drivers = 0;
-	unsigned long id_travels = 0;
+	int id_drivers = 0;
+	int id_travels = 0;
 
 	initializeCMD();
 
@@ -41,17 +40,11 @@ int main(void)
 
 	if(flag)
 	{
-		if(!readFile(ID_FILE_PATH, &id_drivers, sizeof(id_drivers), OFFSET_ID_DRIVER, SEEK_SET))
+		if(!readFile(ID_FILE_PATH, &id_drivers, sizeof(id_drivers), OFFSET_ID_DRIVER, SEEK_SET) && !readFile(ID_FILE_PATH, &id_travels, sizeof(id_travels), OFFSET_ID_TRAVEL, SEEK_SET))
 		{
 			// The IDs have not been read
 			flag = false;
 		}
-		if(!readFile(ID_FILE_PATH, &id_travels, sizeof(id_travels), OFFSET_ID_TRAVEL, SEEK_SET))
-		{
-			flag = false;
-		}
-		printf("\n\nIDDRIVER %lu:", id_drivers);
-		printf("\n\nIDtravel %lu:", id_travels);
 
 	}
 
@@ -59,18 +52,11 @@ int main(void)
 	{
 		// Reset variable
 		menu_choice = not_valid_choice;
-		resetDriver(&driver);
-		// End reset variable
 
 		showMenu();
 
 		// Get input
-		if(!setChoiceMenu(&menu_choice))
-		{
-			printfError("\n\nThe choice that you have made is not valid!");
-			printf("\n\n");
-			system("PAUSE");
-		}
+		setNumberInput((int *) &menu_choice, add_driver, exit_menu, MENU_CHOICHE_PRINTF_VALUE_INPUT, MENU_CHOICHE_PRINTF_VALUE_ERROR);
 
 		switch(menu_choice)
 		{
@@ -96,6 +82,22 @@ int main(void)
 				system("PAUSE");
 				break;
 			case edit_driver:
+				// Showing drivers
+				if(!showAllDrivers(DRIVERS_FILE_PATH))
+				{
+					printfError("\n\nAn error has occurred during the reading of the drivers");
+				}
+
+				// Editing driver
+				if(editDriver(DRIVERS_FILE_PATH))
+				{
+					printf("\nThe driver has been edited");
+				}
+				else
+				{
+					printfError("\n\nAn error has occurred during the editing of the driver");
+				}
+
 				printf("\n\n");
 				system("PAUSE");
 				break;
@@ -189,28 +191,4 @@ void showMenu(void)
 	printf("\n+--------------------+------------------+");
 	printf("\n|        %d          |       Exit       |", exit_menu);
 	printf("\n+--------------------+------------------+");
-}
-
-bool setChoiceMenu(Menu_choice_t *menu_choice)
-{
-	char menu_choice_input[MAX_LENGHT_CHOOSE_INPUT] = NULL_STRING;
-	bool valid_choice = false;
-
-	printf("\n\nEnter a choice: ");
-	scanf("%2[^\n]s", menu_choice_input);
-	addNullCharacterString(menu_choice_input);
-	clearBuffer();
-
-	if(isNumberString(menu_choice_input))
-	{
-		*menu_choice = (Menu_choice_t) strtol(menu_choice_input, NULL, 10);
-		valid_choice = isIncluded(add_driver, exit_menu, *menu_choice);
-	}
-	else
-	{
-		*menu_choice = not_valid_choice;
-		valid_choice = false;
-	}
-
-	return valid_choice;
 }

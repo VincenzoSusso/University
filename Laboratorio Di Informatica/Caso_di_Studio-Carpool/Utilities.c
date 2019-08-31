@@ -60,12 +60,16 @@ bool isIncluded(const int min, const int max, const int number) // This function
 
 bool isLatinString(const char string[]) // This function return true if each character of the string belongs to the Latin alphabet
 {
-	bool latin_string = true;
+	bool latin_string = false;
 	unsigned short i = 0;
 
 	for(i = 0; i < strlen(string); i++)
 	{
-		if(!isalpha(string[i]))
+		if(isalpha(string[i]))
+		{
+			latin_string = true;
+		}
+		else
 		{
 			latin_string = false;
 			i = strlen(string);
@@ -77,12 +81,16 @@ bool isLatinString(const char string[]) // This function return true if each cha
 
 bool isNumberString(const char string[]) // This function return true if each character of the string is a digit
 {
-	bool number = true;
+	bool number = false;
 	unsigned short i = 0;
 
 	for(i = 0; i < strlen(string); i++)
 	{
-		if(!isdigit(string[i]))
+		if(isdigit(string[i]))
+		{
+			number = true;
+		}
+		else
 		{
 			number = false;
 			i = strlen(string);
@@ -96,7 +104,7 @@ bool isVoidString(const char string[])
 {
     bool void_string = false;
 
-    if(!strcmp(string, SPACE_STRING) || !strcmp(string, NEWLINE_STRING))
+    if(!strcmp(string, SPACE_STRING) || !strcmp(string, NEWLINE_STRING) || !strcmp(string, NULL_STRING))
     {
     	void_string = true;
     }

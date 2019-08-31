@@ -18,10 +18,13 @@
 #define TRAVELS_FILE_PATH "../Files/Travels.dat"
 #define ID_FILE_PATH "../Files/ID.dat" // This file is used in order to generate unique ID for drivers and for travels
 
+// Those constant are used to manage the offset of the ID files
 #define OFFSET_ID_DRIVER 0
 #define OFFSET_ID_TRAVEL 1
 
-#define MAX_LENGHT_CHOOSE_INPUT 3
+// Those constant are used to take the input
+#define MENU_CHOICHE_PRINTF_VALUE_INPUT "Enter a choice: "
+#define MENU_CHOICHE_PRINTF_VALUE_ERROR "The choice that you have made is not valid"
 
 // -- User-Defined types --
 typedef enum
@@ -43,4 +46,3 @@ typedef enum
 
 // -- Procedure & Functions Prototypes --
 void showMenu(void);
-bool setChoiceMenu(Menu_choice_t *menu_choice); // Return true if the input is valid

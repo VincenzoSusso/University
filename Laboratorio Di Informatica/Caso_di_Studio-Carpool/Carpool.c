@@ -22,6 +22,8 @@ void setWord(char word[], const char printf_value[]) // The procedure set a vali
 {
 	bool flag = false;
 
+	strcpy(word, NULL_STRING); // Reset word
+
 	do
 	{
 		flag = false;
@@ -44,6 +46,8 @@ void setWord(char word[], const char printf_value[]) // The procedure set a vali
 void setEmail(char email[])
 {
 	bool flag = false;
+
+	strcpy(email, NULL_STRING); // Reset email
 
 	do
 	{
@@ -68,6 +72,8 @@ void setPassword(char password[])
 {
 	bool flag = false;
 
+	strcpy(password, NULL_STRING); // Reset password
+
 	do
 	{
 		flag = false;
@@ -91,6 +97,8 @@ void setNumberPhone(char phone_number[])
 {
 	bool flag = false;
 
+	strcpy(phone_number, NULL_STRING); // Reset phone number
+
 	do
 	{
 		flag = false;
@@ -110,71 +118,28 @@ void setNumberPhone(char phone_number[])
 	while(flag);
 }
 
-void setDate(Date_t *date, const char printf_value[]) // The procedure set a valid value to the date passed by pointer
+void setNumberInput(int *input, const int min, const int max, const char printf_value_input[], const char printf_value_error[])
 {
 	bool flag = false;
-	char date_input[MAX_LENGHT_DATE_STRING_INPUT] = NULL_STRING; // This string is used in order to take the input
-
-	// Thoose pointer are used to point to the part of the date
-	char *year = NULL;
-	char *month = NULL;
-	char *day = NULL;
+	char string_input[MAX_LENGHT_NUMBER_INPUT] = NULL_STRING;
 
 	do
 	{
 		flag = false;
 
-		printf("\nEnter the %s (yyyy%smm%sdd): ", printf_value, DATE_DELIMITER, DATE_DELIMITER);
-		scanf("%10[^\n]s", date_input);
-		addNullCharacterString(date_input);
+		printf("\n%s", printf_value_input);
+		scanf("%7[^\n]s", string_input);
+		addNullCharacterString(string_input);
 		clearBuffer();
 
-		year = strtok(date_input, DATE_DELIMITER);
-		month = strtok(NULL, DATE_DELIMITER);
-		day = strtok(NULL, NULL_STRING);
+		flag = !isNumberString(string_input) || isVoidString(string_input);
 
-		if(month != NULL && day != NULL)
-		{
-			// The string that the user has entered has a valid format
-			if(isNumberString(year) && isNumberString(month) && isNumberString(day))
-			{
-				// The string has the correct characters
-				date -> year = (unsigned short) strtoul(year, NULL, 10);
-				date -> month = (unsigned short) strtoul(month, NULL, 10);
-				date -> day = (unsigned short) strtoul(day, NULL, 10);
-			}
-		}
-
-		flag = !isValidDate(*date);
-		if(flag)
-		{
-			printf("\nThe %s that you have entered is not valid", printf_value);
-		}
-
-	}
-	while(flag);
-}
-
-void setGender(Gender_t *gender)
-{
-	bool flag = false;
-	char gender_input[MAX_LENGHT_GENDER_STRING_INPUT] = NULL_STRING;
-
-	do
-	{
-		flag = false;
-
-		printf("\nEnter your gender (Male = 0, Female = 1, Custom = 2): ");
-		scanf("%3[^\n]s", gender_input);
-		addNullCharacterString(gender_input);
-		clearBuffer();
-
-		if(isNumberString(gender_input))
+		if(!flag)
 		{
 			// The input can be converted to Gender_t
-			*gender = (Gender_t) strtol(gender_input, NULL, 10);
+			*input = (int) strtol(string_input, NULL, 10);
 
-			if(!isIncluded(male, custom, *gender))
+			if(!isIncluded(min, max, *input))
 			{
 				// The string is not included
 				flag = true;
@@ -189,45 +154,7 @@ void setGender(Gender_t *gender)
 
 		if(flag)
 		{
-			printf("\nThe gender that you have entered is not valid");
-		}
-
-	}
-	while(flag);
-}
-
-void setRating(Rating_t *rating, char printf_value[])
-{
-	bool flag = false;
-	char rating_input[MAX_LENGHT_RATING_STRING_INPUT] = NULL_STRING; // This string is used in order to take the input
-
-	do
-	{
-		flag = false;
-
-		printf("\nEnter the %s (between %d and %d): ", printf_value, one_star, five_star);
-		scanf("%3[^\n]s", rating_input);
-		addNullCharacterString(rating_input);
-		clearBuffer();
-
-		if(isNumberString(rating_input))
-		{
-			// The input can be converted to Rating_t
-			*rating = (int) strtol(rating_input, NULL, 10);
-			if(!isIncluded(one_star, five_star, *rating))
-			{
-				flag = true;
-			}
-		}
-		else
-		{
-			// The string is not a number
-			flag = true;
-		}
-
-		if(flag)
-		{
-			printf("\nThe %s that you have entered is not valid (it should be between %d and %d)", printf_value, one_star, five_star);
+			printf("\n%s", printf_value_error);
 		}
 
 	}
@@ -242,9 +169,7 @@ void resetDriver(Driver_t *driver)
 	strcpy(driver -> email, NULL_STRING);
 	strcpy(driver -> password, NULL_STRING);
 	strcpy(driver -> phone_number, NULL_STRING);
-	driver -> birthday.year = MIN_YEAR - 1;
-	driver -> birthday.month = january - 1;
-	driver -> birthday.day = MIN_DAY - 1;
+	resetDate(&driver -> birthday);
 	driver -> gender = male - 1;
 	driver -> driving_capacity = one_star - 1;
 	driver -> comfort_capacity = one_star - 1;
@@ -252,7 +177,7 @@ void resetDriver(Driver_t *driver)
 	driver -> deleted = false;
 }
 
-void setDriver(Driver_t *driver, unsigned long id)
+void setDriver(Driver_t *driver, int id)
 {
 	resetDriver(driver);
 
@@ -268,11 +193,11 @@ void setDriver(Driver_t *driver, unsigned long id)
 	setPassword(driver -> password);
 	setNumberPhone(driver -> phone_number);
 	setDate(&driver -> birthday, DRIVER_BIRTHDAY_PRINTF_VALUE);
-	setGender(&driver -> gender);
-	setRating(&driver -> driving_capacity, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE);
-	setRating(&driver -> comfort_capacity, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE);
+	setNumberInput((int *) &driver -> gender, male, custom, DRIVER_GENDER_PRINTF_VALUE_INPUT, DRIVER_GENDER_PRINTF_VALUE_ERROR);
+	setNumberInput((int *) &driver -> driving_capacity, one_star, five_star, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_INPUT, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_ERROR);
+	setNumberInput((int *) &driver -> comfort_capacity, one_star, five_star, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_INPUT, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_ERROR);
 
-	driver -> average_rating = (driver -> driving_capacity + driver -> comfort_capacity) / 2;
+	driver -> average_rating = (driver -> driving_capacity + driver -> comfort_capacity) / NUMBER_OF_RATING;
 
 	driver -> deleted = false;
 }
@@ -281,7 +206,7 @@ void readDriver(const Driver_t *driver)
 {
 	if(!driver -> deleted)
 	{
-		printf("\n|%4lu|%14s|%15s|%31s|%14s|%16s|%4.4hu/%2.2d/%2.2hu| %6s |%5s|%5s|%5s|", driver -> id,
+		printf("\n|%4d|%14s|%15s|%31s|%14s|%16s|%4.4hu/%2.2d/%2.2hu| %6s |%5s|%5s|%5s|", driver -> id,
 				driver -> name, driver -> surname, driver -> email, driver -> password, driver -> phone_number,
 				driver -> birthday.year, driver -> birthday.month, driver -> birthday.day,
 				readGender(&driver -> gender), readRating(&driver -> driving_capacity),
@@ -290,12 +215,13 @@ void readDriver(const Driver_t *driver)
 	}
 }
 
-bool isIdDriverEqual(const Driver_t *driver, const unsigned long *id)
+bool isIdDriverEqual(const Driver_t *driver, const int *id)
 {
 	bool equal_id = false;
 
 	if(!(driver -> deleted))
 	{
+		// The driver is not deleted
 		if(driver -> id == *id)
 		{
 			equal_id = true;
@@ -305,22 +231,119 @@ bool isIdDriverEqual(const Driver_t *driver, const unsigned long *id)
 	return equal_id;
 }
 
-File_status_t addDriver(char path[], const unsigned long *id_driver) // This function return true if the driver has been added to the system
+void showMemberDriver(void)
+{
+	printf("\n\n\n+--------------------+------------------+");
+	printf("\n|  Number of Member  |      Member      |");
+	printf("\n+--------------------+------------------+");
+	printf("\n|         %d          |       Name       |", name);
+	printf("\n+--------------------+------------------+");
+	printf("\n|         %d          |      Surname     |", surname);
+	printf("\n+--------------------+------------------+");
+	printf("\n|         %d          |       Email      |", email);
+	printf("\n+--------------------+------------------+");
+	printf("\n|         %d          |     Password     |", password);
+	printf("\n+--------------------+------------------+");
+	printf("\n|         %d          |   Phone Number   |", phone_number);
+	printf("\n+--------------------+------------------+");
+	printf("\n|         %d          |     Birthday     |", birthday);
+	printf("\n+--------------------+------------------+");
+	printf("\n|         %d          |      Gender      |", gender);
+	printf("\n+--------------------+------------------+");
+	printf("\n|         %d          | Driving Capacity |", driving_capacity);
+	printf("\n+--------------------+------------------+");
+	printf("\n|         %d          | Comfort Capacity |", comfort_capacity);
+	printf("\n+--------------------+------------------+");
+}
+
+File_status_t addDriver(char path[], const int *id_driver) // This function return true if the driver has been added to the system
 {
 	File_status_t operation = error;
 	Driver_t driver;
 
 	resetDriver(&driver);
 
-	setDriver(&driver, *id_driver);
-	operation = writeFile(path, &driver, sizeof(driver), 0, SEEK_END);
-
+	setDriver(&driver, *id_driver); // Get information of the driver
+	operation = writeFile(path, &driver, sizeof(driver), 0, SEEK_END); // Write the driver into the file
 	return operation;
 }
 
-File_status_t editDriver(char path[], const unsigned long *id_driver)
+File_status_t editDriver(char path[])
 {
 	File_status_t operation = done;
+	Driver_t driver;
+	int id_input = 0; // This variable is used to get the input of the ID
+	Driver_members_t member_input = id - 1;
+	long int index_id = INDEX_ID_NOT_FOUND; // This variable is used to get the index of the ID
+
+	resetDriver(&driver);
+
+	// Get the ID of the driver that the user wants to edit
+	setNumberInput(&id_input, INT_MIN, INT_MAX, DRIVER_ID_EDIT_PRINTF_VALUE_INPUT, DRIVER_ID_EDIT_PRINTF_VALUE_ERROR);
+	index_id = getIndexDriver(path, &id_input);
+
+	if(index_id != INDEX_ID_NOT_FOUND)
+	{
+		// Loads driver from file
+		operation = readFile(path, &driver, sizeof(driver), index_id, SEEK_SET);
+		if(operation == done)
+		{
+			showMemberDriver(); // Output of the member
+
+			// Get the member of the driver that the user wants to edit
+			setNumberInput((int *) &member_input, name, comfort_capacity, DRIVER_MEMBER_PRINTF_VALUE_INPUT, DRIVER_MEMBER_PRINTF_VALUE_ERROR);
+
+			switch(member_input)
+			{
+				case name:
+					setWord(driver.name, DRIVER_NAME_PRINTF_VALUE);
+					capitalizeString(driver.name);
+					break;
+				case surname:
+					setWord(driver.surname, DRIVER_SURNAME_PRINTF_VALUE);
+					capitalizeString(driver.surname);
+					break;
+				case email:
+					setEmail(driver.email);
+					break;
+				case password:
+					setPassword(driver.password);
+					break;
+				case phone_number:
+					setNumberPhone(driver.phone_number);
+					break;
+				case birthday:
+					setDate(&driver.birthday, DRIVER_BIRTHDAY_PRINTF_VALUE);
+					break;
+				case gender:
+					setNumberInput((int *) &driver.gender, male, custom, DRIVER_GENDER_PRINTF_VALUE_INPUT, DRIVER_GENDER_PRINTF_VALUE_ERROR);
+					break;
+				case driving_capacity:
+					setNumberInput((int *) &driver.driving_capacity, one_star, five_star, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_INPUT, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_ERROR);
+					driver.average_rating = (driver.driving_capacity + driver.comfort_capacity) / NUMBER_OF_RATING;
+					break;
+				case comfort_capacity:
+					setNumberInput((int *) &driver.comfort_capacity, one_star, five_star, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_INPUT, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_ERROR);
+					driver.average_rating = (driver.driving_capacity + driver.comfort_capacity) / NUMBER_OF_RATING;
+					break;
+				default:
+					break;
+			}
+
+			// Write the edited driver into file
+			operation = writeFile(path, &driver, sizeof(driver), index_id, SEEK_SET);
+		}
+		else
+		{
+			// Force the operation to error in order to report the error
+			operation = error;
+		}
+	}
+	else
+	{
+		// The driver has non been found
+		operation = error;
+	}
 
 	return operation;
 }
@@ -329,34 +352,28 @@ File_status_t deleteDriver(char path[]) // This function returns true if the dri
 {
 	File_status_t operation = done;
 	Driver_t driver;
-	long int index_id = INDEX_ID_NOT_FOUND;
-	unsigned long id_input = 0; // Variable that will store the index
-	char id_input_string[MAX_LENGHT_ID_STRING_INPUT] = NULL_STRING;
+	int id_input = 0; // Variable that will store the input of the ID
+	long int index_id = INDEX_ID_NOT_FOUND; // Variable that will store the index of the ID
 
 	resetDriver(&driver);
 
-	printf("\n\nEnter the ID of the driver that you want to delete: ");
-	scanf("%s", id_input_string);
-	clearBuffer();
-
-	if(isNumberString(id_input_string))
-	{
-		id_input = strtol(id_input_string, NULL, 10);
-	}
-	else
-	{
-		operation = error;
-	}
-
-	index_id = getIndexDriver(path, &id_input);
+	// Get the ID of the driver that the user wants to delete
+	setNumberInput(&id_input, INT_MIN, INT_MAX, DRIVER_ID_DELETE_PRINTF_VALUE_INPUT, DRIVER_ID_DELETE_PRINTF_VALUE_ERROR);
+	index_id = getIndexDriver(path, &id_input); // Get index of the driver that the user wanna delete
 
 	if(index_id != INDEX_ID_NOT_FOUND)
 	{
-		driver.deleted = true;
-		operation = writeFile(path, &driver, sizeof(driver), index_id, SEEK_SET);
+		// The driver has been found so the system will delete him
+		operation = readFile(path, &driver, sizeof(driver), index_id, SEEK_SET);
+		if(operation == done)
+		{
+			driver.deleted = true;
+			operation = writeFile(path, &driver, sizeof(driver), index_id, SEEK_SET);
+		}
 	}
 	else
 	{
+		// The driver has non been found
 		operation = error;
 	}
 
@@ -380,6 +397,7 @@ File_status_t showAllDrivers(char path[]) // This function return true if has re
 		operation = readFile(path, &driver, sizeof(driver), i, SEEK_CUR);
 		if(operation == done)
 		{
+			// The driver has been read
 			readDriver(&driver);
 		}
 		i++;
@@ -389,7 +407,7 @@ File_status_t showAllDrivers(char path[]) // This function return true if has re
 	return operation;
 }
 
-File_status_t updateID(char path[], const long int offset, unsigned long *id)
+File_status_t updateID(char path[], const long int offset, int *id)
 {
 	File_status_t operation = error;
 
@@ -399,7 +417,7 @@ File_status_t updateID(char path[], const long int offset, unsigned long *id)
 	return operation;
 }
 
-long int getIndexDriver(char path[], const unsigned long *id)
+long int getIndexDriver(char path[], const int *id)
 {
 	File_status_t operation = error;
 	Driver_t driver;
@@ -413,6 +431,7 @@ long int getIndexDriver(char path[], const unsigned long *id)
 		operation = readFile(path, &driver, sizeof(driver), i, SEEK_CUR);
 		if(operation == done)
 		{
+			// The driver has been read
 			if(isIdDriverEqual(&driver, id))
 			{
 				index_id = i;

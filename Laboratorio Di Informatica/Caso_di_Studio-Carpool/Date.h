@@ -14,6 +14,7 @@
 	#define Date_h
 
 #include <stdbool.h>
+#include <string.h>
 
 #include "Utilities.h"
 
@@ -44,6 +45,8 @@
 
 #define DATE_DELIMITER "/"
 
+#define MAX_LENGHT_DATE_STRING_INPUT 11
+
 // -- User-Defined types --
 typedef enum {january = 1, february, march, april, may, june, july, august, september, october, november, december} Month_t;
 
@@ -66,6 +69,8 @@ Time_t createRandomTime(void);*/
 bool isLeapYear(const unsigned short year);
 bool isValidDate(const Date_t date);
 bool isValidTime(const Time_t time);
+void resetDate(Date_t *date);
+void setDate(Date_t *date, const char printf_value[]); // The procedure set a valid value to the date passed by pointer
 /*bool areDatesEquals(Date_t first_date, Date_t second_date);
 Date_t dataPiuRecente(Date_t first_date, Date_t second_date);
 Date_t dataMenoRecente(Date_t first_date, Date_t second_date); */

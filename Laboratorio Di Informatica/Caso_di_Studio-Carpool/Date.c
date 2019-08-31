@@ -45,56 +45,38 @@ bool isLeapYear(const unsigned short year)
 bool isValidDate(const Date_t date)
 {
 	// Those variable are used in order to avoid bugs due to the use of the same variable for many scopes
-	bool valid_year = false;
-	bool valid_month = false;
-	bool valid_day = false;
+	bool valid_date = false;
 
-	if(date.year >= MIN_YEAR && date.year <= MAX_YEAR)
-	{
-		valid_year = true;
-	}
 
-	if(date.month >= january && date.month<= december)
+	// If the year or the month is not valid, all the date is wrong
+	if(isIncluded(january, december, date.month) && isIncluded(MIN_YEAR, MAX_YEAR, date.year))
 	{
-		valid_month = true;
 		if(date.month == february)
 		{
 			if(isLeapYear(date.year))
 			{
 				// The year is a lap year so the month has twenty-nine days
-				if(date.day >= MIN_DAY && date.day <= MAX_DAY_FEBRUARY)
-				{
-					valid_day = true;
-				}
+				valid_date = isIncluded(MIN_DAY, MAX_DAY_FEBRUARY, date.day);
 			}
 			else
 			{
 				// The year is not a lap year so the month has twenty-eight days
-				if(date.day >= MIN_DAY && date.day < MAX_DAY_FEBRUARY)
-				{
-					valid_day = true;
-				}
+				valid_date = isIncluded(MIN_DAY, MAX_DAY_FEBRUARY - 1, date.day);
 			}
 		}
 		else if(date.month == april || date.month == june || date.month == september || date.month == november)
 		{
 			// The month has thirty days
-			if(date.day >= MIN_DAY && date.day < MAX_DAY)
-			{
-				valid_day = true;
-			}
+			valid_date = isIncluded(MIN_DAY, MAX_DAY - 1, date.day);
 		}
 		else
 		{
 			// The month has thirty-one days
-			if(date.day >= MIN_DAY && date.day <= MAX_DAY)
-			{
-				valid_day = true;;
-			}
+			valid_date = isIncluded(MIN_DAY, MAX_DAY, date.day);
 		}
 	}
 
-	return (valid_year && valid_month && valid_day);
+	return valid_date;
 }
 
 bool isValidTime(const Time_t time)
@@ -114,6 +96,60 @@ bool isValidTime(const Time_t time)
 	}
 
 	return (valid_hour && valid_minute);
+}
+
+void resetDate(Date_t *date)
+{
+	date -> year = MIN_YEAR - 1;
+	date -> month = january - 1;
+	date -> day = MIN_DAY - 1;
+}
+
+void setDate(Date_t *date, const char printf_value[]) // The procedure set a valid value to the date passed by pointer
+{
+	bool flag = false;
+	char date_input[MAX_LENGHT_DATE_STRING_INPUT] = NULL_STRING; // This string is used in order to take the input
+
+	resetDate(date);
+
+	// Thoose pointer are used to point to the part of the date
+	char *year = NULL;
+	char *month = NULL;
+	char *day = NULL;
+
+	do
+	{
+		flag = false;
+
+		printf("\nEnter the %s (yyyy%smm%sdd): ", printf_value, DATE_DELIMITER, DATE_DELIMITER);
+		scanf("%10[^\n]s", date_input);
+		addNullCharacterString(date_input);
+		clearBuffer();
+
+		year = strtok(date_input, DATE_DELIMITER);
+		month = strtok(NULL, DATE_DELIMITER);
+		day = strtok(NULL, NULL_STRING);
+
+		if(month != NULL && day != NULL)
+		{
+			// The string that the user has entered has a valid format
+			if(isNumberString(year) && isNumberString(month) && isNumberString(day))
+			{
+				// The string has the correct characters
+				date -> year = (unsigned short) strtoul(year, NULL, 10);
+				date -> month = (unsigned short) strtoul(month, NULL, 10);
+				date -> day = (unsigned short) strtoul(day, NULL, 10);
+			}
+		}
+
+		flag = !isValidDate(*date);
+		if(flag)
+		{
+			printf("\nThe %s that you have entered is not valid", printf_value);
+		}
+
+	}
+	while(flag);
 }
 
 /*
