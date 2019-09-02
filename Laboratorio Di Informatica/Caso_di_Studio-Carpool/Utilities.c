@@ -139,7 +139,7 @@ bool isEmail(const char email[])
 	// The + 1 was added in order to allow the dynamic array to store the null character
 	copied_email = malloc(sizeof(char) * (strlen(email) + 1));
 
-	if(copied_email != NULL)
+	if(copied_email)
 	{
 		strcpy(copied_email, email); // The use of the function strtok() modify the original string so I use a copied string to check the email
 		local_part = strtok(copied_email, AT_SIGN_STRING); // The function strtok() replaces the @ with a null character and splits the string
@@ -151,7 +151,7 @@ bool isEmail(const char email[])
 	}
 
 	// It means that the email has the @
-	if(domain != NULL && valid_email)
+	if(domain && valid_email)
 	{
 		// It means that the local-part of the email starts or ends with a period
 		if(*local_part == PERIOD_CHARACTER || *(local_part + (int) (strlen(local_part) - 1)) == PERIOD_CHARACTER)
@@ -260,14 +260,13 @@ bool isNumberPhone(const char phone_number[])
 	char *copied_number_phone = NULL;
 	char *country_code = NULL; // Used to point to the country code of the number phone
 	char *subscriber_number = NULL; // Used to point to the number path of the number phone
-	//unsigned short i = 0;
 
 	// The + 1 was added in order to allow the dynamic array to store the null character
 	copied_number_phone = malloc(sizeof(char) * (strlen(phone_number) + 1));
 
-	if(copied_number_phone != NULL)
+	if(copied_number_phone)
 	{
-		strcpy(copied_number_phone, phone_number); // The use of the function strtok() modify the original string so I use a copied string to check the email
+		strcpy(copied_number_phone, phone_number); // The use of the function strtok() modify the original string so I use a copied string to check the phone number
 		country_code = strtok(copied_number_phone, SPACE_STRING); // The function strtok() replaces the space with a null character and splits the string
 		subscriber_number = strtok(NULL, NULL_STRING); // The function strtok() takes a pointer NULL in order to re-start from the null character previously inserted
 	}
@@ -276,7 +275,7 @@ bool isNumberPhone(const char phone_number[])
 		valid_phone_number = false;
 	}
 
-	if(subscriber_number != NULL && valid_phone_number)
+	if(subscriber_number && valid_phone_number)
 	{
 		if(strlen(country_code) > MAX_LENGHT_COUNTRY_CODE || strlen(subscriber_number) > MAX_LENGHT_SUBSCRIBER_NUMBER)
 		{
@@ -292,30 +291,7 @@ bool isNumberPhone(const char phone_number[])
 
 		valid_phone_number = isNumberString(country_code + 1) && valid_phone_number;
 
-		/*i = 1; // The first character is a +
-		while(valid_phone_number && i < strlen(country_code))
-		{
-			if(!isdigit(*(country_code + i)))
-			{
-				// The user has not entered a digit
-				valid_phone_number = false;
-			}
-
-			i++;
-		}*/
-
 		valid_phone_number = isNumberString(subscriber_number) && valid_phone_number;
-		/*i = 0;
-		while(valid_phone_number && i < strlen(subscriber_number))
-		{
-			if(!isdigit(*(subscriber_number + i)))
-			{
-				// The user has not entered a digit
-				valid_phone_number = false;
-			}
-
-			i++;
-		}*/
 	}
 	else
 	{
@@ -325,4 +301,38 @@ bool isNumberPhone(const char phone_number[])
 	free(copied_number_phone);
 
 	return valid_phone_number;
+}
+
+bool isDecimalNumber(const char decimal_number[])
+{
+	bool valid_price = true;
+	char *copied_decimal_number = NULL;
+	char *integer_part = NULL;
+	char *decimal_portion = NULL;
+
+	// The + 1 was added in order to allow the dynamic array to store the null character
+	copied_decimal_number = malloc(sizeof(char) * (strlen(decimal_number) + 1));
+
+	if(copied_decimal_number)
+	{
+		strcpy(copied_decimal_number, decimal_number); // The use of the function strtok() modify the original string so I use a copied string to check the decimal number
+		integer_part = strtok(copied_decimal_number, PERIOD_STRING); // The function strtok() replaces the space with a null character and splits the string
+		decimal_portion = strtok(NULL, NULL_STRING); // The function strtok() takes a pointer NULL in order to re-start from the null character previously inserted
+	}
+	else
+	{
+		valid_price = false;
+	}
+
+	if(integer_part && valid_price)
+	{
+		valid_price = isNumberString(integer_part);
+	}
+
+	if(decimal_portion && valid_price)
+	{
+		valid_price = isNumberString(decimal_portion);
+	}
+
+	return valid_price;
 }

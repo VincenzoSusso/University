@@ -23,9 +23,6 @@
 #define MAX_DAY 31
 #define MAX_DAY_FEBRUARY 29
 
-#define MIN_YEAR 1900
-#define MAX_YEAR 2001
-
 /*
 	In the Gregorian calendar, every year that is exactly divisible by four is a leap year, except for years that are exactly divisible by 100,
 	but these centurial years are leap years if they are exactly divisible by 400.
@@ -38,14 +35,16 @@
 	The time is shown in 24-hour format
 */
 #define MIN_HOUR 0
-#define MAX_HOUR 24
+#define MAX_HOUR 23
 
 #define MIN_MINUTE 0
 #define MAX_MINUTE 59
 
 #define DATE_DELIMITER "/"
+#define TIME_DELIMITER ":"
 
 #define MAX_LENGHT_DATE_STRING_INPUT 11
+#define MAX_LENGHT_TIME_STRING_INPUT 6
 
 // -- User-Defined types --
 typedef enum {january = 1, february, march, april, may, june, july, august, september, october, november, december} Month_t;
@@ -67,10 +66,13 @@ typedef struct
 /*Date_t createRandomDate(void);
 Time_t createRandomTime(void);*/
 bool isLeapYear(const unsigned short year);
-bool isValidDate(const Date_t date);
-bool isValidTime(const Time_t time);
+bool isValidDate(const Date_t date, const unsigned short min_year, const unsigned short max_year);
 void resetDate(Date_t *date);
-void setDate(Date_t *date, const char printf_value[]); // The procedure set a valid value to the date passed by pointer
+void setDate(Date_t *date, const unsigned short min_year, const unsigned short max_year, const char printf_value[]); // The procedure set a valid value to the date passed by pointer
+
+bool isValidTime(const Time_t time);
+void resetTime(Time_t *time);
+void setTime(Time_t *time, const char printf_value[]); // The procedure set a valid value to the time passed by pointer
 /*bool areDatesEquals(Date_t first_date, Date_t second_date);
 Date_t dataPiuRecente(Date_t first_date, Date_t second_date);
 Date_t dataMenoRecente(Date_t first_date, Date_t second_date); */

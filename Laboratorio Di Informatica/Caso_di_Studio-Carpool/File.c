@@ -2,7 +2,7 @@
 #include "File.h"
 
 // -- Procedure & Functions --
-File_status_t isValidFile(char path[])
+File_status_t isValidFile(const char path_file[])
 {
 	File_status_t valid_file = done;
 	FILE *file = NULL;
@@ -22,7 +22,7 @@ File_status_t isValidFile(char path[])
 	errno = 0;
 
 	// Create a file named with the path if it doesn't exsist
-	file = fopen(path, "ab");
+	file = fopen(path_file, "ab");
 	if(!file)
 	{
 		valid_file = error;
@@ -32,13 +32,13 @@ File_status_t isValidFile(char path[])
 	return valid_file;
 }
 
-File_status_t writeFile(char path[], void* pointer, size_t pointer_size, long int offset, int whence)
+File_status_t writeFile(const char path_file[], void* pointer, size_t pointer_size, long int offset, int whence)
 {
 	File_status_t file_written = done;
 	FILE *file = NULL;
 	int number_member_written = 0;
 
-	file = fopen(path, "rb+");
+	file = fopen(path_file, "rb+");
 	if(file)
 	{
 		fseek(file, (offset * (long int) pointer_size), whence);
@@ -61,13 +61,13 @@ File_status_t writeFile(char path[], void* pointer, size_t pointer_size, long in
 	return file_written;
 }
 
-File_status_t readFile(char path[], void* pointer, size_t pointer_size, long int offset, int whence)
+File_status_t readFile(const char path_file[], void* pointer, size_t pointer_size, long int offset, int whence)
 {
 	File_status_t file_read = done;
 	FILE *file = NULL;
 	int number_member_read = 0;
 
-	file = fopen(path, "rb");
+	file = fopen(path_file, "rb");
 
 	if(file)
 	{

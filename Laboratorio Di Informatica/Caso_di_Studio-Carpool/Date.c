@@ -42,14 +42,14 @@ bool isLeapYear(const unsigned short year)
 	return leap_year;
 }
 
-bool isValidDate(const Date_t date)
+bool isValidDate(const Date_t date, const unsigned short min_year, const unsigned short max_year)
 {
 	// Those variable are used in order to avoid bugs due to the use of the same variable for many scopes
 	bool valid_date = false;
 
 
 	// If the year or the month is not valid, all the date is wrong
-	if(isIncluded(january, december, date.month) && isIncluded(MIN_YEAR, MAX_YEAR, date.year))
+	if(isIncluded(january, december, date.month) && isIncluded(min_year, max_year, date.year))
 	{
 		if(date.month == february)
 		{
@@ -79,43 +79,25 @@ bool isValidDate(const Date_t date)
 	return valid_date;
 }
 
-bool isValidTime(const Time_t time)
-{
-	// Those variable are used in order to avoid bugs due to the use of the same variable for many scopes
-	bool valid_hour = false;
-	bool valid_minute = false;
-
-	if(time.hour > MIN_HOUR && time.hour <= MAX_HOUR)
-	{
-		valid_hour = true;
-	}
-
-	if(time.minute >= MIN_MINUTE && time.minute <= MAX_MINUTE)
-	{
-		valid_minute = true;
-	}
-
-	return (valid_hour && valid_minute);
-}
-
 void resetDate(Date_t *date)
 {
-	date -> year = MIN_YEAR - 1;
+	date -> year = 0;
 	date -> month = january - 1;
 	date -> day = MIN_DAY - 1;
 }
 
-void setDate(Date_t *date, const char printf_value[]) // The procedure set a valid value to the date passed by pointer
+// The procedure set a valid value to the date passed by pointer
+void setDate(Date_t *date, const unsigned short min_year, const unsigned short max_year, const char printf_value[])
 {
 	bool flag = false;
 	char date_input[MAX_LENGHT_DATE_STRING_INPUT] = NULL_STRING; // This string is used in order to take the input
-
-	resetDate(date);
 
 	// Thoose pointer are used to point to the part of the date
 	char *year = NULL;
 	char *month = NULL;
 	char *day = NULL;
+
+	resetDate(date);
 
 	do
 	{
@@ -130,19 +112,81 @@ void setDate(Date_t *date, const char printf_value[]) // The procedure set a val
 		month = strtok(NULL, DATE_DELIMITER);
 		day = strtok(NULL, NULL_STRING);
 
-		if(month != NULL && day != NULL)
+		if(month && day)
 		{
 			// The string that the user has entered has a valid format
 			if(isNumberString(year) && isNumberString(month) && isNumberString(day))
 			{
 				// The string has the correct characters
-				date -> year = (unsigned short) strtoul(year, NULL, 10);
-				date -> month = (unsigned short) strtoul(month, NULL, 10);
-				date -> day = (unsigned short) strtoul(day, NULL, 10);
+				date -> year = (unsigned short) strtoul(year, NULL, BASE_STRTOL);
+				date -> month = (unsigned short) strtoul(month, NULL, BASE_STRTOL);
+				date -> day = (unsigned short) strtoul(day, NULL, BASE_STRTOL);
 			}
 		}
 
-		flag = !isValidDate(*date);
+		flag = !isValidDate(*date, min_year, max_year);
+		if(flag)
+		{
+			printf("\nThe %s that you have entered is not valid", printf_value);
+		}
+
+	}
+	while(flag);
+}
+
+bool isValidTime(const Time_t time)
+{
+	bool valid_time = false;
+
+	if(isIncluded(MIN_HOUR, MAX_HOUR, time.hour) && isIncluded(MIN_MINUTE, MAX_MINUTE, time.minute))
+	{
+		valid_time = true;
+	}
+
+	return valid_time;
+}
+
+void resetTime(Time_t *time)
+{
+	time -> hour = MIN_HOUR - 1;
+	time -> minute = MIN_MINUTE - 1;
+}
+
+void setTime(Time_t *time, const char printf_value[]) // The procedure set a valid value to the time passed by pointer
+{
+	bool flag = false;
+	char time_input[MAX_LENGHT_TIME_STRING_INPUT] = NULL_STRING; // This string is used in order to take the input
+
+	// Thoose pointer are used to point to the part of the date
+	char *hour = NULL;
+	char *minute = NULL;
+
+	resetTime(time);
+
+	do
+	{
+		flag = false;
+
+		printf("\nEnter the %s (hh%smm): ", printf_value, TIME_DELIMITER);
+		scanf("%5[^\n]s", time_input);
+		addNullCharacterString(time_input);
+		clearBuffer();
+
+		hour = strtok(time_input, TIME_DELIMITER);
+		minute = strtok(NULL, NULL_STRING);
+
+		if(minute)
+		{
+			// The string that the user has entered has a valid format
+			if(isNumberString(hour) && isNumberString(minute))
+			{
+				// The string has the correct characters
+				time -> hour = (unsigned short) strtoul(hour, NULL, BASE_STRTOL);
+				time -> minute = (unsigned short) strtoul(minute, NULL, BASE_STRTOL);
+			}
+		}
+
+		flag = !isValidTime(*time);
 		if(flag)
 		{
 			printf("\nThe %s that you have entered is not valid", printf_value);

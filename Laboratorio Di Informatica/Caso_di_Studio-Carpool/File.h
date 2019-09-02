@@ -31,8 +31,8 @@
 typedef enum {error = 0, fail, done} File_status_t;
 
 // -- Procedure & Functions Prototypes --
-File_status_t isValidFile(char path[]);
-File_status_t writeFile(char path[], void* pointer, size_t pointer_size, long int offset, int whence);
-File_status_t readFile(char path[], void* pointer, size_t pointer_size, long int offset, int whence);
+File_status_t isValidFile(const char path_file[]);
+File_status_t writeFile(const char path_file[], void* pointer, size_t pointer_size, long int offset, int whence);
+File_status_t readFile(const char path_file[], void* pointer, size_t pointer_size, long int offset, int whence);
 
 #endif

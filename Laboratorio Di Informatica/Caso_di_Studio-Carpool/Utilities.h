@@ -27,6 +27,7 @@
 #define SPACE_STRING " "
 #define NULL_STRING "\0"
 #define SPACE_CHARACTER ' ' // Used to check the password
+#define PERIOD_STRING "." // Used to check the decimal number
 
 // Those constants are used in order to check the email
 #define PERIOD_CHARACTER '.'
@@ -42,6 +43,8 @@
 // Those constants are used in order to check the password
 #define MIN_UPPERCASE_CHARACTERS 1
 #define MIN_NUMBER_CHARACTERS 1
+
+#define BASE_STRTOL 10 // Used to convert a string to long
 
 #define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004 // This line is only for older versions of windows headers (pre Win 10)
 
@@ -64,5 +67,6 @@ bool isVoidString(const char string[]);
 bool isEmail(const char email[]);
 bool isPassword(const char password[]);
 bool isNumberPhone(const char phone_number[]);
+bool isDecimalNumber(const char decimal_number[]);
 
 #endif

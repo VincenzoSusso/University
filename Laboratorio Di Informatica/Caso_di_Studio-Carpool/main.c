@@ -40,9 +40,14 @@ int main(void)
 
 	if(flag)
 	{
-		if(!readFile(ID_FILE_PATH, &id_drivers, sizeof(id_drivers), OFFSET_ID_DRIVER, SEEK_SET) && !readFile(ID_FILE_PATH, &id_travels, sizeof(id_travels), OFFSET_ID_TRAVEL, SEEK_SET))
+		if(!readFile(ID_FILE_PATH, &id_drivers, sizeof(id_drivers), OFFSET_ID_DRIVER, SEEK_SET))
 		{
-			// The IDs have not been read
+			// The driver's ID has not been read
+			flag = false;
+		}
+		if(!readFile(ID_FILE_PATH, &id_travels, sizeof(id_travels), OFFSET_ID_TRAVEL, SEEK_SET) && flag)
+		{
+			// The travel's ID has not been read
 			flag = false;
 		}
 
@@ -65,29 +70,23 @@ int main(void)
 				if(addDriver(DRIVERS_FILE_PATH, &id_drivers))
 				{
 					printf("\n\nThe driver has been added to the system");
+
+					// Updating ID
+					if(!updateID(ID_FILE_PATH, OFFSET_ID_DRIVER, &id_drivers))
+					{
+						printfError("\n\nAn error has occurred during the updating of the driver's ID");
+						flag = false;
+					}
 				}
 				else
 				{
 					printfError("\n\nAn error has occurred during the adding of the driver");
 				}
 
-				// Updating ID
-				if(!updateID(ID_FILE_PATH, OFFSET_ID_DRIVER, &id_drivers))
-				{
-					printfError("\n\nAn error has occurred during the updating of the ID's driver");
-					flag = false;
-				}
-
 				printf("\n\n");
 				system("PAUSE");
 				break;
 			case edit_driver:
-				// Showing drivers
-				if(!showAllDrivers(DRIVERS_FILE_PATH))
-				{
-					printfError("\n\nAn error has occurred during the reading of the drivers");
-				}
-
 				// Editing driver
 				if(editDriver(DRIVERS_FILE_PATH))
 				{
@@ -102,12 +101,6 @@ int main(void)
 				system("PAUSE");
 				break;
 			case delete_driver:
-				// Showing drivers
-				if(!showAllDrivers(DRIVERS_FILE_PATH))
-				{
-					printfError("\n\nAn error has occurred during the reading of the drivers");
-				}
-
 				// Deleting driver
 				if(deleteDriver(DRIVERS_FILE_PATH))
 				{
@@ -115,13 +108,13 @@ int main(void)
 				}
 				else
 				{
-					printfError("\n\nAn error has occurred during the deleting of the drivers");
+					printfError("\n\nAn error has occurred during the deleting of the driver");
 				}
 
 				printf("\n\n");
 				system("PAUSE");
 				break;
-			case show_all_driver:
+			case show_all_drivers:
 				// Showing drivers
 				if(showAllDrivers(DRIVERS_FILE_PATH))
 				{
@@ -131,16 +124,69 @@ int main(void)
 				{
 					printfError("\n\nAn error has occurred during the reading of the drivers");
 				}
+
 				printf("\n\n");
 				system("PAUSE");
 				break;
 			case add_travel:
+				// Adding Travel
+				if(addTravel(TRAVELS_FILE_PATH, DRIVERS_FILE_PATH, &id_travels))
+				{
+					printf("\n\nThe travel has been added to the system");
+
+					// Updating ID
+					if(!updateID(ID_FILE_PATH, OFFSET_ID_TRAVEL, &id_travels))
+					{
+						printfError("\n\nAn error has occurred during the updating of the travel's ID");
+						flag = false;
+					}
+				}
+				else
+				{
+					printfError("\n\nAn error has occurred during the adding of the travel");
+				}
+
+				printf("\n\n");
+				system("PAUSE");
 				break;
 			case edit_travel:
+				// Editing driver
+				if(editTravel(TRAVELS_FILE_PATH, DRIVERS_FILE_PATH))
+				{
+					printf("\nThe travel has been edited");
+				}
+				else
+				{
+					printfError("\n\nAn error has occurred during the editing of the travel");
+				}
+
+				printf("\n\n");
+				system("PAUSE");
 				break;
 			case delete_travel:
+				// Deleting travel
+				if(deleteTravel(TRAVELS_FILE_PATH, DRIVERS_FILE_PATH))
+				{
+					printf("\n\nThe travel has been deleted to the system");
+				}
+				else
+				{
+					printfError("\n\nAn error has occurred during the deleting of the travel");
+				}
 				break;
-			case show_all_travel:
+			case show_all_travels:
+				// Showing travel
+				if(ShowAllTravels(TRAVELS_FILE_PATH, DRIVERS_FILE_PATH))
+				{
+					printf("\n\nThe travels have been read");
+				}
+				else
+				{
+					printfError("\n\nAn error has occurred during the reading of the travels");
+				}
+
+				printf("\n\n");
+				system("PAUSE");
 				break;
 			case book_travel:
 				break;
@@ -173,7 +219,7 @@ void showMenu(void)
 	printf("\n+--------------------+------------------+");
 	printf("\n|         %d          |   Delete Driver  |", delete_driver);
 	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          | Show All Drivers |", show_all_driver);
+	printf("\n|         %d          | Show All Drivers |", show_all_drivers);
 	printf("\n+--------------------+------------------+");
 	printf("\n|         %d          |    Add Travel    |", add_travel);
 	printf("\n+--------------------+------------------+");
@@ -181,7 +227,7 @@ void showMenu(void)
 	printf("\n+--------------------+------------------+");
 	printf("\n|         %d          |   Delete Travel  |", delete_travel);
 	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          | Show All Travels |", show_all_travel);
+	printf("\n|         %d          | Show All Travels |", show_all_travels);
 	printf("\n+--------------------+------------------+");
 	printf("\n|         %d          |   Book a Travel  |", book_travel);
 	printf("\n+--------------------+------------------+");

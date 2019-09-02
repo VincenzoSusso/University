@@ -19,17 +19,35 @@
 #include "File.h"
 
 // -- Constant --
-#define MAX_LENGHT_STRINGS 24
+#define MAX_LENGHT_STRINGS 20
 #define MIN_LENGHT_STRINGS 2
 
-#define MAX_LENGHT_EMAIL 60
+#define MAX_LENGHT_EMAIL 40
 
 #define MIN_LENGHT_PASSWORD 8
 
 #define MIN_LENGHT_PHONE_NUMBER 8 // For more information, please visit here: https://stackoverflow.com/questions/14894899/what-is-the-minimum-length-of-a-valid-international-phone-number
 #define MAX_LENGHT_PHONE_NUMBER 18 // This constant was obtained by Country code lenght + space + subscriber number lenght + null character
 
+#define MAX_LENGHT_ADDITIONAL_NOTES 40
+
 #define MAX_LENGHT_NUMBER_INPUT 8
+
+#define MIN_YEAR_BIRTHDAY 1900
+#define MAX_YEAR_BIRTHDAY 2001
+
+#define MIN_YEAR_TRAVEL 2010
+#define MAX_YEAR_TRAVEL 2050
+
+#define MIN_PRICE 0.01
+#define MAX_PRICE 9999.99
+#define DOLLAR_CHARACTER "$"
+
+#define MAX_NUMBER_TOTAL_SEATS 9 // For more information, please visit here: https://www.moneymaxim.co.uk/faq/car-hire/maximum-occupancy
+#define MIN_NUMBER_TOTAL_SEATS 2
+
+#define MAX_NUMBER_FREE_SEATS 8 // Max Total seats - driver's seat
+#define MIN_NUMBER_FREE_SEATS 0
 
 #define NUMBER_OF_RATING 2 // Used to calculate the arithmetic mean
 
@@ -53,8 +71,15 @@
 #define DRIVER_NAME_PRINTF_VALUE "driver's name"
 #define DRIVER_SURNAME_PRINTF_VALUE "driver's surname"
 
+#define TRAVEL_DEPARTURE_DESTINATION_PRINTF_VALUE "travel's departure destination"
+#define TRAVEL_ARRIVAL_DESTINATION_PRINTF_VALUE "travel's arrival destination"
+
 // Thoose constant are used ad printf_value of the procedure setDate()
 #define DRIVER_BIRTHDAY_PRINTF_VALUE "driver's birthday"
+#define TRAVEL_DEPARTURE_DATE_PRINTF_VALUE "travel's departure date"
+
+// Thoose constant are used ad printf_value of the procedure setTime()
+#define TRAVEL_DEPARTURE_TIME_PRINTF_VALUE "travel's departure time"
 
 // Thoose constant are used as printf_value of the procedure setNumberInput()
 #define DRIVER_GENDER_PRINTF_VALUE_INPUT "Enter the driver's gender (Male = 0, Female = 1, Custom = 2): "
@@ -69,19 +94,40 @@
 #define DRIVER_ID_EDIT_PRINTF_VALUE_INPUT "Enter the ID of the driver that you want to edit: "
 #define DRIVER_ID_EDIT_PRINTF_VALUE_ERROR "The ID of the driver that you want to edit is not valid"
 
-#define DRIVER_MEMBER_PRINTF_VALUE_INPUT "Enter the number of member that you want to edit: "
-#define DRIVER_MEMBER_PRINTF_VALUE_ERROR "The number of member that you have entered is not valid"
+#define MEMBER_PRINTF_VALUE_INPUT "Enter the number of member that you want to edit: "
+#define MEMBER_PRINTF_VALUE_ERROR "The number of member that you have entered is not valid"
 
 #define DRIVER_ID_DELETE_PRINTF_VALUE_INPUT "Enter the ID of the driver that you want to delete: "
 #define DRIVER_ID_DELETE_PRINTF_VALUE_ERROR "The ID of the driver that you want to delete is not valid"
+
+#define TRAVEL_DRIVER_ID_PRINTF_VALUE_INPUT "Enter the ID of the driver that will offer the travel: "
+#define TRAVEL_DRIVER_ID_PRINTF_VALUE_ERROR "The ID of the driver that you have entered is not valid"
+
+#define TRAVEL_ADDITIONAL_NOTES_PRINTF_VALUE_INPUT "Do you want to add additional notes to the travel (No = 0, Yes = 1): "
+#define TRAVEL_ADDITIONAL_NOTES_PRINTF_VALUE_ERROR "The ID of the driver that you have entered is not valid"
+
+#define TRAVEL_TOTAL_SEAT_INPUT "Enter the driver's veicle total number seats (the number should be between 2 and 9, and it must include the driver's seat): "
+#define TRAVEL_TOTAL_SEAT_ERROR "The driver's veicle total number seats is not valid"
+
+#define TRAVEL_FREE_SEAT_INPUT "Enter the number of free seats of the driver's veicle (the number should be between 1 and 8): "
+#define TRAVEL_FREE_SEAT_ERROR "The number of free seats of the driver's veicle is not valid"
+
+#define TRAVEL_ID_EDIT_PRINTF_VALUE_INPUT "Enter the ID of the travel that you want to edit: "
+#define TRAVEL_ID_EDIT_PRINTF_VALUE_ERROR "The ID of the travel that you want to edit is not valid"
+
+#define TRAVEL_ID_DELETE_PRINTF_VALUE_INPUT "Enter the ID of the travel that you want to delete: "
+#define TRAVEL_ID_DELETE_PRINTF_VALUE_ERROR "The ID of the driver that you want to delete is not valid"
 
 // -- User-Defined types --
 typedef enum {one_star = 1, two_star, three_star, four_star, five_star} Rating_t;
 
 typedef enum {male, female, custom} Gender_t;
 
-typedef enum {id = -1, name, surname, email, password, phone_number, birthday, gender, driving_capacity,
-			 comfort_capacity, average_rating, deleted} Driver_members_t;
+typedef enum {id_driver = -1, name, surname, email, password, phone_number, birthday, gender, driving_capacity,
+			 comfort_capacity, average_rating, deleted_driver} Driver_members_t;
+
+typedef enum {id_travel = -2, id_driver_, departure_destination, arrival_destination, departure_date, departure_time,
+			 total_seats, free_seats, price, additional_notes, deleted_travel} Travel_members_t;
 
 typedef struct
 {
@@ -96,7 +142,7 @@ typedef struct
 	Rating_t driving_capacity;
 	Rating_t comfort_capacity;
 	Rating_t average_rating;
-	bool deleted; // True mean that the record is deleted
+	bool deleted; // True mean that the driver is deleted
 } Driver_t;
 
 typedef struct
@@ -105,10 +151,13 @@ typedef struct
 	int id_driver;
 	char departure_destination[MAX_LENGHT_STRINGS];
 	char arrival_destination[MAX_LENGHT_STRINGS];
-	char additional_notes[5];
+	char additional_notes[MAX_LENGHT_ADDITIONAL_NOTES];
+	Date_t departure_date;
+	Time_t departure_time;
 	double price;
-	unsigned short total_places;
-	unsigned short free_places;
+	unsigned short total_seats;
+	unsigned short free_seats;
+	bool deleted; // True mean that the travel is deleted
 } Travel_t;
 
 // -- Procedure & Functions Prototypes --
@@ -121,22 +170,41 @@ void setWord(char word[], const char printf_value[]); // The procedure set a val
 void setEmail(char email[]);
 void setPassword(char password[]);
 void setNumberPhone(char number_phone[]);
+void setAdditionalNotes(char additional_notes[]);
+void setPrice(double *price);
 void setNumberInput(int *input, const int min, const int max, const char printf_value_input[], const char printf_value_error[]);
 
 void resetDriver(Driver_t *driver);
-void setDriver(Driver_t *driver, int id);
+void setDriver(Driver_t *driver, const int *id);
 void readDriver(const Driver_t *driver);
 bool isIdDriverEqual(const Driver_t *driver, const int *id);
 void showMemberDriver(void);
 
+void resetTravel(Travel_t *travel);
+void setTravel(Travel_t *travel, const int *id, const char path_driver_file[]);
+void readTravel(const Travel_t *travel, const char path_driver_file[]);
+bool isIdTravelEqual(const Travel_t *travel, const int *id);
+void showMemberTravel(void);
 
 // Those function uses files
-File_status_t addDriver(char path[], const int *id_driver); // This function returns true if the driver has been added to the system
-File_status_t editDriver(char path[]); // This function returns true if the driver has been edited
-File_status_t deleteDriver(char path[]); // This function returns true if the driver has been deleted to the system
-File_status_t showAllDrivers(char path[]); // This function returns true if has read all records of the file, "path" is the path of the file that stores the drivers
+File_status_t addDriver(const char path_file_driver[], const int *id_driver); // This function returns true if the driver has been added to the system
+File_status_t editDriver(const char path_file_driver[]); // This function returns true if the driver has been edited
+File_status_t deleteDriver(const char path_file_driver[]); // This function returns true if the driver has been deleted to the system
+File_status_t showAllDrivers(const char path_file_driver[]); // This function returns true if it has read all records of the file
 
+File_status_t addTravel(const char path_file_travel[], const char path_file_driver[], const int *id_travel); // This function returns true if the travel has been added to the system
+File_status_t editTravel(const char path_file_travel[], const char path_file_driver[]); // This function returns true if the driver has been edited
+File_status_t deleteTravel(const char path_file_travel[], const char path_file_driver[]); // This function returns true if the travel has been deleted to the system
+File_status_t ShowAllTravels(const char path_file_travel[], const char path_file_driver[]); // This function returns true if it has read all records of the file
 
-File_status_t updateID(char path[], const long int offset, int *id); // This function returns true if the ID is update
-long int getIndexDriver(char path[], const int *id);
+File_status_t updateID(const char path_file[], const long int offset, int *id); // This function returns true if the ID is update
+
+// This function return the index of the ID, the ID is entered by the user using keyboard
+long int getIndexDriverUser(const char path_file_driver[], const char printf_value_input[], const char printf_value_error[]);
+long int getIndexTravelUser(const char path_file_travel[], const char path_file_driver[] ,const char printf_value_input[], const char printf_value_error[]);
+
+// This function return the index of the ID, the ID is passed by pointer
+long int getIndexDriver(const char path_file_driver[], const int *id);
+long int getIndexTravel(const char path_file_travel[], const char path_file_driver[], const int *id);
+
 #endif
