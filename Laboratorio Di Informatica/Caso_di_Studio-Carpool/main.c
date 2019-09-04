@@ -67,7 +67,7 @@ int main(void)
 		{
 			case add_driver:
 				// Adding Driver
-				if(addDriver(DRIVERS_FILE_PATH, &id_drivers))
+				if(addStruct(DRIVERS_FILE_PATH, TRAVELS_FILE_PATH, &id_drivers, DRIVER))
 				{
 					printf("\n\nThe driver has been added to the system");
 
@@ -88,7 +88,7 @@ int main(void)
 				break;
 			case edit_driver:
 				// Editing driver
-				if(editDriver(DRIVERS_FILE_PATH))
+				if(editStruct(DRIVERS_FILE_PATH, TRAVELS_FILE_PATH, DRIVER))
 				{
 					printf("\nThe driver has been edited");
 				}
@@ -102,7 +102,7 @@ int main(void)
 				break;
 			case delete_driver:
 				// Deleting driver
-				if(deleteDriver(DRIVERS_FILE_PATH))
+				if(deleteStruct(DRIVERS_FILE_PATH, TRAVELS_FILE_PATH, DRIVER))
 				{
 					printf("\n\nThe driver has been deleted to the system");
 				}
@@ -116,7 +116,7 @@ int main(void)
 				break;
 			case show_all_drivers:
 				// Showing drivers
-				if(showAllDrivers(DRIVERS_FILE_PATH))
+				if(showAllStructs(DRIVERS_FILE_PATH, TRAVELS_FILE_PATH, DRIVER))
 				{
 					printf("\n\nThe drivers have been read");
 				}
@@ -130,7 +130,7 @@ int main(void)
 				break;
 			case add_travel:
 				// Adding Travel
-				if(addTravel(TRAVELS_FILE_PATH, DRIVERS_FILE_PATH, &id_travels))
+				if(addStruct(DRIVERS_FILE_PATH, TRAVELS_FILE_PATH, &id_travels, TRAVEL))
 				{
 					printf("\n\nThe travel has been added to the system");
 
@@ -151,7 +151,7 @@ int main(void)
 				break;
 			case edit_travel:
 				// Editing driver
-				if(editTravel(TRAVELS_FILE_PATH, DRIVERS_FILE_PATH))
+				if(editStruct(DRIVERS_FILE_PATH, TRAVELS_FILE_PATH, TRAVEL))
 				{
 					printf("\nThe travel has been edited");
 				}
@@ -165,7 +165,7 @@ int main(void)
 				break;
 			case delete_travel:
 				// Deleting travel
-				if(deleteTravel(TRAVELS_FILE_PATH, DRIVERS_FILE_PATH))
+				if(deleteStruct(DRIVERS_FILE_PATH, TRAVELS_FILE_PATH, TRAVEL))
 				{
 					printf("\n\nThe travel has been deleted to the system");
 				}
@@ -173,10 +173,13 @@ int main(void)
 				{
 					printfError("\n\nAn error has occurred during the deleting of the travel");
 				}
+
+				printf("\n\n");
+				system("PAUSE");
 				break;
 			case show_all_travels:
 				// Showing travel
-				if(ShowAllTravels(TRAVELS_FILE_PATH, DRIVERS_FILE_PATH))
+				if(showAllStructs(DRIVERS_FILE_PATH, TRAVELS_FILE_PATH, TRAVEL))
 				{
 					printf("\n\nThe travels have been read");
 				}
@@ -192,7 +195,9 @@ int main(void)
 				break;
 			case sort_driver:
 				mergeSort(DRIVERS_FILE_PATH, 0, (getNumberRecord(DRIVERS_FILE_PATH, sizeof(Driver_t)) - 1));
-				showAllDrivers(DRIVERS_FILE_PATH);
+
+				printf("\n\n");
+				system("PAUSE");
 				break;
 			case sort_travel:
 				break;
@@ -203,8 +208,6 @@ int main(void)
 				break;
 		}
 	}
-
-	printf("\n%d: ", getNumberRecord(DRIVERS_FILE_PATH, sizeof(Driver_t)) - 1);
 
 	printf("\n\n");
 	system("PAUSE");

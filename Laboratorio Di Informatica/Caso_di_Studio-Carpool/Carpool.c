@@ -345,12 +345,12 @@ void resetTravel(Travel_t *travel)
 	travel -> deleted = false;
 }
 
-void setTravel(Travel_t *travel, const int *id, const char path_driver_file[])
+void setTravel(Travel_t *travel, const int *id, const char path_file_travel[], const char path_file_driver[])
 {
 	travel -> id = *id;
 	do
 	{
-		travel -> id_driver = getIndexDriverUser(path_driver_file, TRAVEL_DRIVER_ID_PRINTF_VALUE_INPUT, TRAVEL_DRIVER_ID_PRINTF_VALUE_ERROR);
+		travel -> id_driver = getIndexUser(path_file_driver, path_file_travel, TRAVEL_DRIVER_ID_PRINTF_VALUE_INPUT, TRAVEL_DRIVER_ID_PRINTF_VALUE_ERROR, TRAVEL);
 		if(travel -> id_driver == INDEX_NOT_FOUND)
 		{
 			printf("\nAn error has occurred during the acquisition of the driver's ID");
@@ -393,7 +393,7 @@ void readTravel(const Travel_t *travel, const char path_driver_file[])
 
 	if(!travel -> deleted)
 	{
-		readFile(path_driver_file, &driver, sizeof(driver), getIndexDriver(path_driver_file, &travel -> id_driver), SEEK_SET);
+		readFile(path_driver_file, &driver, sizeof(driver), getIndex(path_driver_file, &travel -> id_driver, DRIVER), SEEK_SET);
 		printf("\n|%4d|%14s %14s|%18s|%18s| %4.4hu/%2.2d/%2.2hu %2.2hu%s%2.2hu | %7.2lf%s |     %1hu    |     %1hu    |%40s|", travel -> id,
 				driver.name, driver.surname, travel -> departure_destination, travel -> arrival_destination,
 				travel -> departure_date.year, travel -> departure_date.month, travel -> departure_date.day,
@@ -443,300 +443,290 @@ void showMemberTravel(void)
 
 }
 
-File_status_t addDriver(const char path_file_driver[], const int *id_driver) // This function return true if the driver has been added to the system
+File_status_t addStruct(const char path_file_driver[], const char path_file_travel[], const int *id, bool select_struct) // This function returns true if the struct has been added to the system
 {
 	File_status_t operation = error;
 	Driver_t driver;
+	Travel_t travel;
 
 	resetDriver(&driver);
+	resetTravel(&travel);
 
-	setDriver(&driver, id_driver); // Get information of the driver
-	operation = writeFile(path_file_driver, &driver, sizeof(driver), 0, SEEK_END); // Write the driver into the file
+	if(select_struct)
+	{
+		setDriver(&driver, id); // Get information of the driver
+		operation = writeFile(path_file_driver, &driver, sizeof(Driver_t), 0, SEEK_END); // Write the driver into the file
+	}
+	else
+	{
+		setTravel(&travel, id, path_file_travel, path_file_driver); // Get information of the travel
+		operation = writeFile(path_file_travel, &travel, sizeof(Travel_t), 0, SEEK_END); // Write the travel into the file
+	}
+
 	return operation;
 }
 
-File_status_t editDriver(const char path_file_driver[])
+File_status_t editStruct(const char path_file_driver[], const char path_file_travel[], bool select_struct) // This function returns true if the struct has been edited
 {
 	File_status_t operation = done;
 	Driver_t driver;
-	Driver_members_t member_input = id_driver - 1;
+	Travel_t travel;
+	Driver_members_t member_input_driver = id_driver - 1;
+	Travel_members_t member_input_travel = id_travel - 1;
 	long int index_id = INDEX_NOT_FOUND; // This variable is used to get the index of the ID
 
 	resetDriver(&driver);
+	resetTravel(&travel);
 
-	// Get index of the driver that the user want to edit
-	index_id = getIndexDriverUser(path_file_driver, DRIVER_ID_EDIT_PRINTF_VALUE_INPUT, DRIVER_ID_EDIT_PRINTF_VALUE_ERROR);
-
-	if(index_id != INDEX_NOT_FOUND)
+	if(select_struct)
 	{
-		// Loads driver from file
-		operation = readFile(path_file_driver, &driver, sizeof(driver), index_id, SEEK_SET);
-		if(operation == done)
+
+		// Get index of the driver that the user want to edit
+		index_id = getIndexUser(path_file_driver, path_file_travel, DRIVER_ID_EDIT_PRINTF_VALUE_INPUT, DRIVER_ID_EDIT_PRINTF_VALUE_ERROR, DRIVER);
+
+		if(index_id != INDEX_NOT_FOUND)
 		{
-			showMemberDriver(); // Output of the member
-
-			// Get the member of the driver that the user wants to edit
-			setNumberInput((int *) &member_input, name, comfort_capacity, MEMBER_PRINTF_VALUE_INPUT, MEMBER_PRINTF_VALUE_ERROR);
-
-			switch(member_input)
+			// Loads driver from file
+			operation = readFile(path_file_driver, &driver, sizeof(Driver_t), index_id, SEEK_SET);
+			if(operation == done)
 			{
-				case name:
-					setWord(driver.name, DRIVER_NAME_PRINTF_VALUE);
-					capitalizeString(driver.name);
-					break;
-				case surname:
-					setWord(driver.surname, DRIVER_SURNAME_PRINTF_VALUE);
-					capitalizeString(driver.surname);
-					break;
-				case email:
-					setEmail(driver.email);
-					break;
-				case password:
-					setPassword(driver.password);
-					break;
-				case phone_number:
-					setNumberPhone(driver.phone_number);
-					break;
-				case birthday:
-					setDate(&driver.birthday, MIN_YEAR_BIRTHDAY, MAX_YEAR_BIRTHDAY, DRIVER_BIRTHDAY_PRINTF_VALUE);
-					break;
-				case gender:
-					setNumberInput((int *) &driver.gender, male, custom, DRIVER_GENDER_PRINTF_VALUE_INPUT, DRIVER_GENDER_PRINTF_VALUE_ERROR);
-					break;
-				case driving_capacity:
-					setNumberInput((int *) &driver.driving_capacity, one_star, five_star, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_INPUT, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_ERROR);
-					driver.average_rating = (driver.driving_capacity + driver.comfort_capacity) / NUMBER_OF_RATING;
-					break;
-				case comfort_capacity:
-					setNumberInput((int *) &driver.comfort_capacity, one_star, five_star, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_INPUT, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_ERROR);
-					driver.average_rating = (driver.driving_capacity + driver.comfort_capacity) / NUMBER_OF_RATING;
-					break;
-				default:
-					break;
-			}
+				showMemberDriver(); // Output of the member
 
-			// Write the edited driver into file
-			operation = writeFile(path_file_driver, &driver, sizeof(driver), index_id, SEEK_SET);
+				// Get the member of the driver that the user wants to edit
+				setNumberInput((int *) &member_input_driver, name, comfort_capacity, MEMBER_PRINTF_VALUE_INPUT, MEMBER_PRINTF_VALUE_ERROR);
+
+				switch(member_input_driver)
+				{
+					case name:
+						setWord(driver.name, DRIVER_NAME_PRINTF_VALUE);
+						capitalizeString(driver.name);
+						break;
+					case surname:
+						setWord(driver.surname, DRIVER_SURNAME_PRINTF_VALUE);
+						capitalizeString(driver.surname);
+						break;
+					case email:
+						setEmail(driver.email);
+						break;
+					case password:
+						setPassword(driver.password);
+						break;
+					case phone_number:
+						setNumberPhone(driver.phone_number);
+						break;
+					case birthday:
+						setDate(&driver.birthday, MIN_YEAR_BIRTHDAY, MAX_YEAR_BIRTHDAY, DRIVER_BIRTHDAY_PRINTF_VALUE);
+						break;
+					case gender:
+						setNumberInput((int *) &driver.gender, male, custom, DRIVER_GENDER_PRINTF_VALUE_INPUT, DRIVER_GENDER_PRINTF_VALUE_ERROR);
+						break;
+					case driving_capacity:
+						setNumberInput((int *) &driver.driving_capacity, one_star, five_star, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_INPUT, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_ERROR);
+						driver.average_rating = (driver.driving_capacity + driver.comfort_capacity) / NUMBER_OF_RATING;
+						break;
+					case comfort_capacity:
+						setNumberInput((int *) &driver.comfort_capacity, one_star, five_star, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_INPUT, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_ERROR);
+						driver.average_rating = (driver.driving_capacity + driver.comfort_capacity) / NUMBER_OF_RATING;
+						break;
+					default:
+						break;
+				}
+
+				// Write the edited driver into file
+				operation = writeFile(path_file_driver, &driver, sizeof(Driver_t), index_id, SEEK_SET);
+			}
+			else
+			{
+				// Force the operation to error in order to report the error
+				operation = error;
+			}
 		}
 		else
 		{
-			// Force the operation to error in order to report the error
+			// The driver has non been found
 			operation = error;
 		}
 	}
 	else
 	{
-		// The driver has non been found
-		operation = error;
-	}
+		// Get index of the travel that the user want to edit
+		index_id = getIndexUser(path_file_driver, path_file_travel, TRAVEL_ID_EDIT_PRINTF_VALUE_INPUT, TRAVEL_ID_EDIT_PRINTF_VALUE_ERROR, TRAVEL);
 
-	return operation;
-}
-
-File_status_t deleteDriver(const char path_file_driver[]) // This function returns true if the driver has been deleted to the system
-{
-	File_status_t operation = done;
-	Driver_t driver;
-	long int index_id = INDEX_NOT_FOUND; // Variable that will store the index of the ID
-
-	resetDriver(&driver);
-
-	// Get index of the driver that the user want to delete
-	index_id = getIndexDriverUser(path_file_driver, DRIVER_ID_DELETE_PRINTF_VALUE_INPUT, DRIVER_ID_DELETE_PRINTF_VALUE_ERROR);
-
-	if(index_id != INDEX_NOT_FOUND)
-	{
-		// The driver has been found so the system will delete him
-		operation = readFile(path_file_driver, &driver, sizeof(driver), index_id, SEEK_SET);
-		if(operation == done)
+		if(index_id != INDEX_NOT_FOUND)
 		{
-			driver.deleted = true;
-			operation = writeFile(path_file_driver, &driver, sizeof(driver), index_id, SEEK_SET);
-		}
-	}
-	else
-	{
-		// The driver has non been found
-		operation = error;
-	}
-
-	return operation;
-}
-
-File_status_t showAllDrivers(const char path_file_driver[]) // This function return true if has read all records of the file, "path" is the path of the file that stores the drivers
-{
-	File_status_t operation = error;
-	Driver_t driver;
-	long int i = 0;
-
-	resetDriver(&driver);
-
-	printf("\n+----+-----------------+-----------------+-----------------------------------+-------------------+-----------------+----------+------+----------+----------+---------+");
-	printf("\n| ID |       Name      |     Surname     |               Email               |      Password     |   Phone Number  | Birthday |Gender|Drv. Cpty.|Cmf. Cpty.|Avg. Rat.|");
-	printf("\n+----+-----------------+-----------------+-----------------------------------+-------------------+-----------------+----------+------+----------+----------+---------+");
-
-	do
-	{
-		operation = readFile(path_file_driver, &driver, sizeof(driver), i, SEEK_CUR);
-		if(operation == done)
-		{
-			// The driver has been read
-			readDriver(&driver);
-		}
-		i++;
-	}
-	while(operation == done);
-
-	return operation;
-}
-
-File_status_t addTravel(const char path_file_travel[], const char path_file_driver[], const int *id_travel) // This function returns true if the travel has been added to the system
-{
-	File_status_t operation = error;
-	Travel_t travel;
-
-	resetTravel(&travel);
-
-	setTravel(&travel, id_travel, path_file_driver); // Get information of the travel
-	operation = writeFile(path_file_travel, &travel, sizeof(travel), 0, SEEK_END); // Write the travel into the file
-	return operation;
-}
-
-File_status_t editTravel(const char path_file_travel[], const char path_file_driver[]) // This function returns true if the driver has been edited
-{
-	File_status_t operation = done;
-	Travel_t travel;
-	Travel_members_t member_input = id_travel - 1;
-	long int index_id = INDEX_NOT_FOUND; // This variable is used to get the index of the ID
-
-	resetTravel(&travel);
-
-	// Get index of the travel that the user want to edit
-	index_id = getIndexTravelUser(path_file_travel, path_file_driver, TRAVEL_ID_EDIT_PRINTF_VALUE_INPUT, TRAVEL_ID_EDIT_PRINTF_VALUE_ERROR);
-
-	if(index_id != INDEX_NOT_FOUND)
-	{
-		// Loads driver from file
-		operation = readFile(path_file_travel, &travel, sizeof(travel), index_id, SEEK_SET);
-		if(operation == done)
-		{
-			showMemberTravel(); // Output of the member
-
-			// Get the member of the driver that the user wants to edit
-			setNumberInput((int *) &member_input, name, comfort_capacity, MEMBER_PRINTF_VALUE_INPUT, MEMBER_PRINTF_VALUE_ERROR);
-
-			switch(member_input)
+			// Loads travel from file
+			operation = readFile(path_file_travel, &travel, sizeof(Travel_t), index_id, SEEK_SET);
+			if(operation == done)
 			{
-				case departure_destination:
-					setWord(travel.departure_destination, TRAVEL_DEPARTURE_DESTINATION_PRINTF_VALUE);
-					capitalizeString(travel.departure_destination);
-					break;
-				case arrival_destination:
-					setWord(travel.arrival_destination, TRAVEL_ARRIVAL_DESTINATION_PRINTF_VALUE);
-					capitalizeString(travel.arrival_destination);
-					break;
-				case departure_date:
-					setDate(&travel.departure_date, MIN_YEAR_TRAVEL, MAX_YEAR_TRAVEL, TRAVEL_DEPARTURE_DATE_PRINTF_VALUE);
-					break;
-				case departure_time:
-					setTime(&travel.departure_time, TRAVEL_DEPARTURE_TIME_PRINTF_VALUE);
-					break;
-				case total_seats:
-					setNumberInput((int *) &travel.total_seats, MIN_NUMBER_TOTAL_SEATS, MAX_NUMBER_TOTAL_SEATS, TRAVEL_TOTAL_SEAT_INPUT, TRAVEL_TOTAL_SEAT_ERROR);
-					break;
-				case free_seats:
-					do
-					{
-						setNumberInput((int *) &travel.free_seats, MIN_NUMBER_FREE_SEATS, MAX_NUMBER_FREE_SEATS, TRAVEL_FREE_SEAT_INPUT, TRAVEL_FREE_SEAT_ERROR);
+				showMemberTravel(); // Output of the member
 
-						if(!isIncluded(MIN_NUMBER_FREE_SEATS + 1, travel.total_seats - 1, travel.free_seats))
+				// Get the member of the travel that the user wants to edit
+				setNumberInput((int *) &member_input_travel, name, comfort_capacity, MEMBER_PRINTF_VALUE_INPUT, MEMBER_PRINTF_VALUE_ERROR);
+
+				switch(member_input_travel)
+				{
+					case departure_destination:
+						setWord(travel.departure_destination, TRAVEL_DEPARTURE_DESTINATION_PRINTF_VALUE);
+						capitalizeString(travel.departure_destination);
+						break;
+					case arrival_destination:
+						setWord(travel.arrival_destination, TRAVEL_ARRIVAL_DESTINATION_PRINTF_VALUE);
+						capitalizeString(travel.arrival_destination);
+						break;
+					case departure_date:
+						setDate(&travel.departure_date, MIN_YEAR_TRAVEL, MAX_YEAR_TRAVEL, TRAVEL_DEPARTURE_DATE_PRINTF_VALUE);
+						break;
+					case departure_time:
+						setTime(&travel.departure_time, TRAVEL_DEPARTURE_TIME_PRINTF_VALUE);
+						break;
+					case total_seats:
+						setNumberInput((int *) &travel.total_seats, MIN_NUMBER_TOTAL_SEATS, MAX_NUMBER_TOTAL_SEATS, TRAVEL_TOTAL_SEAT_INPUT, TRAVEL_TOTAL_SEAT_ERROR);
+						break;
+					case free_seats:
+						do
 						{
-							printf("\nThe number of free seat is bigger than the total of seat in the driver's veicle or you have entered 0 free seats");
-						}
-					}
-					while(!isIncluded(MIN_NUMBER_FREE_SEATS + 1, travel.total_seats - 1, travel.free_seats)); // (min number free seats + 1) was added because 0 free seat is useless, (total seat - 1) was added due to driver's seat
-					break;
-				case price:
-					setPrice(&travel.price);
-					break;
-				case additional_notes:
-					setAdditionalNotes(travel.additional_notes);
-					break;
-				default:
-					break;
-			}
+							setNumberInput((int *) &travel.free_seats, MIN_NUMBER_FREE_SEATS, MAX_NUMBER_FREE_SEATS, TRAVEL_FREE_SEAT_INPUT, TRAVEL_FREE_SEAT_ERROR);
 
-			// Write the edited driver into file
-			operation = writeFile(path_file_travel, &travel, sizeof(travel), index_id, SEEK_SET);
+							if(!isIncluded(MIN_NUMBER_FREE_SEATS + 1, travel.total_seats - 1, travel.free_seats))
+							{
+								printf("\nThe number of free seat is bigger than the total of seat in the driver's veicle or you have entered 0 free seats");
+							}
+						}
+						while(!isIncluded(MIN_NUMBER_FREE_SEATS + 1, travel.total_seats - 1, travel.free_seats)); // (min number free seats + 1) was added because 0 free seat is useless, (total seat - 1) was added due to driver's seat
+						break;
+					case price:
+						setPrice(&travel.price);
+						break;
+					case additional_notes:
+						setAdditionalNotes(travel.additional_notes);
+						break;
+					default:
+						break;
+				}
+
+				// Write the edited travel into file
+				operation = writeFile(path_file_travel, &travel, sizeof(Travel_t), index_id, SEEK_SET);
+			}
+			else
+			{
+				// Force the operation to error in order to report the error
+				operation = error;
+			}
 		}
 		else
 		{
-			// Force the operation to error in order to report the error
+			// The travel has non been found
+			operation = error;
+		}
+	}
+
+	return operation;
+}
+
+File_status_t deleteStruct(const char path_file_driver[], const char path_file_travel[], bool select_struct) // This function returns true if the struct has been deleted to the system
+{
+	File_status_t operation = done;
+	Driver_t driver;
+	Travel_t travel;
+	long int index_id = INDEX_NOT_FOUND; // Variable that will store the index of the ID
+
+	resetDriver(&driver);
+	resetTravel(&travel);
+
+	if(select_struct)
+	{
+
+		// Get index of the driver that the user want to delete
+		index_id = getIndexUser(path_file_driver, path_file_travel, DRIVER_ID_DELETE_PRINTF_VALUE_INPUT, DRIVER_ID_DELETE_PRINTF_VALUE_ERROR, DRIVER);
+
+		if(index_id != INDEX_NOT_FOUND)
+		{
+			// The driver has been found so the system will delete him
+			operation = readFile(path_file_driver, &driver, sizeof(Driver_t), index_id, SEEK_SET);
+			if(operation == done)
+			{
+				driver.deleted = true;
+				operation = writeFile(path_file_driver, &driver, sizeof(Driver_t), index_id, SEEK_SET);
+			}
+		}
+		else
+		{
+			// The driver has not been found
 			operation = error;
 		}
 	}
 	else
 	{
-		// The driver has non been found
-		operation = error;
-	}
+		// Get index of the driver that the user want to delete
+		index_id = getIndexUser(path_file_driver, path_file_travel, TRAVEL_ID_DELETE_PRINTF_VALUE_INPUT, TRAVEL_ID_DELETE_PRINTF_VALUE_ERROR, TRAVEL);
 
-	return operation;
-}
-
-File_status_t deleteTravel(const char path_file_travel[], const char path_file_driver[]) // This function returns true if the travel has been deleted to the system
-{
-	File_status_t operation = done;
-	Travel_t travel;
-	long int index_id = INDEX_NOT_FOUND; // Variable that will store the index of the ID
-
-	resetTravel(&travel);
-
-	// Get index of the driver that the user want to delete
-	index_id = getIndexTravelUser(path_file_travel, path_file_driver, TRAVEL_ID_DELETE_PRINTF_VALUE_INPUT, TRAVEL_ID_DELETE_PRINTF_VALUE_ERROR);
-
-	if(index_id != INDEX_NOT_FOUND)
-	{
-		// The driver has been found so the system will delete him
-		operation = readFile(path_file_travel, &travel, sizeof(travel), index_id, SEEK_SET);
-		if(operation == done)
+		if(index_id != INDEX_NOT_FOUND)
 		{
-			travel.deleted = true;
-			operation = writeFile(path_file_travel, &travel, sizeof(travel), index_id, SEEK_SET);
+			// The driver has been found so the system will delete him
+			operation = readFile(path_file_travel, &travel, sizeof(Travel_t), index_id, SEEK_SET);
+			if(operation == done)
+			{
+				travel.deleted = true;
+				operation = writeFile(path_file_travel, &travel, sizeof(Travel_t), index_id, SEEK_SET);
+			}
+		}
+		else
+		{
+			// The driver has non been found
+			operation = error;
 		}
 	}
-	else
-	{
-		// The driver has non been found
-		operation = error;
-	}
 
 	return operation;
 }
 
-File_status_t ShowAllTravels(const char path_file_travel[], const char path_file_driver[]) // This function returns true if it has read all records of the file
+File_status_t showAllStructs(const char path_file_driver[], const char path_file_travel[], bool select_struct) // This function returns if it has read all records of the file
 {
 	File_status_t operation = error;
+	Driver_t driver;
 	Travel_t travel;
 	long int i = 0;
 
+	resetDriver(&driver);
 	resetTravel(&travel);
 
-	printf("\n+----+-----------------------------+------------------+------------------+------------------+----------+----------+----------+----------------------------------------+");
-	printf("\n| ID |  Driver's Name and Surname  | Dep. Destination | Arr. Destination |Dep. Date and Time|   Price  |Tot. Seats|Free Seats|            Additional Notes            |");
-	printf("\n+----+-----------------------------+------------------+------------------+------------------+----------+----------+----------+----------------------------------------+");
-
-	do
+	if(select_struct)
 	{
-		operation = readFile(path_file_travel, &travel, sizeof(travel), i, SEEK_CUR);
-		if(operation == done)
+
+		printf("\n+----+-----------------+-----------------+-----------------------------------+-------------------+-----------------+----------+------+----------+----------+---------+");
+		printf("\n| ID |       Name      |     Surname     |               Email               |      Password     |   Phone Number  | Birthday |Gender|Drv. Cpty.|Cmf. Cpty.|Avg. Rat.|");
+		printf("\n+----+-----------------+-----------------+-----------------------------------+-------------------+-----------------+----------+------+----------+----------+---------+");
+
+		do
 		{
-			// The travel has been read
-			readTravel(&travel, path_file_driver);
+			operation = readFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_CUR);
+			if(operation == done)
+			{
+				// The driver has been read
+				readDriver(&driver);
+			}
+			i++;
 		}
-		i++;
+		while(operation == done);
 	}
-	while(operation == done);
+	else
+	{
+		printf("\n+----+-----------------------------+------------------+------------------+------------------+----------+----------+----------+----------------------------------------+");
+		printf("\n| ID |  Driver's Name and Surname  | Dep. Destination | Arr. Destination |Dep. Date and Time|   Price  |Tot. Seats|Free Seats|            Additional Notes            |");
+		printf("\n+----+-----------------------------+------------------+------------------+------------------+----------+----------+----------+----------------------------------------+");
+
+		do
+		{
+			operation = readFile(path_file_travel, &travel, sizeof(Travel_t), i, SEEK_CUR);
+			if(operation == done)
+			{
+				// The travel has been read
+				readTravel(&travel, path_file_driver);
+			}
+			i++;
+		}
+		while(operation == done);
+	}
 
 	return operation;
 }
@@ -746,131 +736,118 @@ File_status_t updateID(const char path_file[], const long int offset, int *id)
 	File_status_t operation = error;
 
 	(*id)++;
-	operation = writeFile(path_file, id, sizeof(*id), offset, SEEK_SET);
+	operation = writeFile(path_file, id, sizeof(int), offset, SEEK_SET);
 
 	return operation;
 }
 
 // This function return the index of the driver's ID, the driver's ID is entered by the user using keyboard
-long int getIndexDriverUser(const char path_file_driver[], const char printf_value_input[], const char printf_value_error[])
+long int getIndexUser(const char path_file_driver[], const char path_file_travel[], const char printf_value_input[], const char printf_value_error[], bool select_struct)
 {
 	File_status_t operation = error;
 	Driver_t driver;
-	unsigned long i = 0;
-	int id_input = 0; // Variable that will store the input of the ID
-	unsigned long index_id = INDEX_NOT_FOUND;
-
-	resetDriver(&driver);
-
-	if(showAllDrivers(path_file_driver))
-	{
-		// Get the ID of the driver
-		setNumberInput(&id_input, INT_MIN, INT_MAX, printf_value_input, printf_value_error);
-		do
-		{
-			operation = readFile(path_file_driver, &driver, sizeof(driver), i, SEEK_CUR);
-			if(operation == done)
-			{
-				// The driver has been read
-				if(isIdDriverEqual(&driver, &id_input))
-				{
-					index_id = i;
-				}
-			}
-				i++;
-		}
-		while(operation == done);
-	}
-
-	return index_id;
-}
-
-long int getIndexTravelUser(const char path_file_travel[], const char path_file_driver[] ,const char printf_value_input[], const char printf_value_error[])
-{
-	File_status_t operation = error;
 	Travel_t travel;
 	unsigned long i = 0;
 	int id_input = 0; // Variable that will store the input of the ID
 	unsigned long index_id = INDEX_NOT_FOUND;
 
+	resetDriver(&driver);
 	resetTravel(&travel);
 
-	if(ShowAllTravels(path_file_travel, path_file_driver))
+	if(select_struct)
 	{
-		// Get the ID of the driver
-		setNumberInput(&id_input, INT_MIN, INT_MAX, printf_value_input, printf_value_error);
-		do
+		if(showAllStructs(path_file_driver, path_file_travel, DRIVER))
 		{
-			operation = readFile(path_file_travel, &travel, sizeof(travel), i, SEEK_CUR);
-			if(operation == done)
+			// Get the ID of the driver
+			setNumberInput(&id_input, INT_MIN, INT_MAX, printf_value_input, printf_value_error);
+			do
 			{
-				// The driver has been read
-				if(isIdTravelEqual(&travel, &id_input))
+				operation = readFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_CUR);
+				if(operation == done)
 				{
-					index_id = i;
+					// The driver has been read
+					if(isIdDriverEqual(&driver, &id_input))
+					{
+						index_id = i;
+					}
 				}
+					i++;
 			}
-				i++;
+			while(operation == done);
 		}
-		while(operation == done);
+	}
+	else
+	{
+		if(showAllStructs(path_file_driver, path_file_travel, TRAVEL))
+		{
+			// Get the ID of the travel
+			setNumberInput(&id_input, INT_MIN, INT_MAX, printf_value_input, printf_value_error);
+			do
+			{
+				operation = readFile(path_file_travel, &travel, sizeof(Travel_t), i, SEEK_CUR);
+				if(operation == done)
+				{
+					// The travel has been read
+					if(isIdTravelEqual(&travel, &id_input))
+					{
+						index_id = i;
+					}
+				}
+				i++;
+			}
+			while(operation == done);
+		}
 	}
 
 	return index_id;
 }
 
 // This function return the index of the driver's ID, the driver's ID is passed by pointer
-long int getIndexDriver(const char path_file_driver[], const int *id)
+long int getIndex(const char path_file[], const int *id, bool select_struct)
 {
 	File_status_t operation = error;
 	Driver_t driver;
+	Travel_t travel;
 	unsigned long i = 0;
 	unsigned long index_id = INDEX_NOT_FOUND;
 
 	resetDriver(&driver);
-
-	do
-	{
-		operation = readFile(path_file_driver, &driver, sizeof(driver), i, SEEK_CUR);
-		if(operation == done)
-		{
-			// The driver has been read
-			if(isIdDriverEqual(&driver, id))
-			{
-				index_id = i;
-			}
-		}
-			i++;
-	}
-	while(operation == done);
-
-	return index_id;
-}
-
-long int getIndexTravel(const char path_file_travel[], const char path_file_driver[], const int *id)
-{
-	File_status_t operation = error;
-	Travel_t travel;
-	unsigned long i = 0;
-	int id_input = 0; // Variable that will store the input of the ID
-	unsigned long index_id = INDEX_NOT_FOUND;
-
 	resetTravel(&travel);
 
-	do
+	if(select_struct)
 	{
-		operation = readFile(path_file_travel, &travel, sizeof(travel), i, SEEK_CUR);
-		if(operation == done)
+		do
 		{
-			// The driver has been read
-			if(isIdTravelEqual(&travel, &id_input))
+			operation = readFile(path_file, &driver, sizeof(driver), i, SEEK_CUR);
+			if(operation == done)
 			{
-				index_id = i;
+				// The driver has been read
+				if(isIdDriverEqual(&driver, id))
+				{
+					index_id = i;
+				}
 			}
+				i++;
 		}
-			i++;
+		while(operation == done);
 	}
-	while(operation == done);
-
+	else
+	{
+		do
+		{
+			operation = readFile(path_file, &travel, sizeof(travel), i, SEEK_CUR);
+			if(operation == done)
+			{
+				// The travel has been read
+				if(isIdTravelEqual(&travel, id))
+				{
+					index_id = i;
+				}
+			}
+			i++;
+		}
+		while(operation == done);
+	}
 
 	return index_id;
 }

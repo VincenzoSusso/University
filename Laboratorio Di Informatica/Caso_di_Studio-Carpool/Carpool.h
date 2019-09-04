@@ -19,6 +19,9 @@
 #include "File.h"
 
 // -- Constant --
+#define DRIVER true
+#define TRAVEL false
+
 #define MAX_LENGHT_STRINGS 20
 #define MIN_LENGHT_STRINGS 2
 
@@ -181,31 +184,24 @@ bool isIdDriverEqual(const Driver_t *driver, const int *id);
 void showMemberDriver(void);
 
 void resetTravel(Travel_t *travel);
-void setTravel(Travel_t *travel, const int *id, const char path_driver_file[]);
+void setTravel(Travel_t *travel, const int *id, const char path_file_travel[], const char path_file_driver[]);
 void readTravel(const Travel_t *travel, const char path_driver_file[]);
 bool isIdTravelEqual(const Travel_t *travel, const int *id);
 void showMemberTravel(void);
 
 // Those function uses files
-File_status_t addDriver(const char path_file_driver[], const int *id_driver); // This function returns true if the driver has been added to the system
-File_status_t editDriver(const char path_file_driver[]); // This function returns true if the driver has been edited
-File_status_t deleteDriver(const char path_file_driver[]); // This function returns true if the driver has been deleted to the system
-File_status_t showAllDrivers(const char path_file_driver[]); // This function returns true if it has read all records of the file
-
-File_status_t addTravel(const char path_file_travel[], const char path_file_driver[], const int *id_travel); // This function returns true if the travel has been added to the system
-File_status_t editTravel(const char path_file_travel[], const char path_file_driver[]); // This function returns true if the driver has been edited
-File_status_t deleteTravel(const char path_file_travel[], const char path_file_driver[]); // This function returns true if the travel has been deleted to the system
-File_status_t ShowAllTravels(const char path_file_travel[], const char path_file_driver[]); // This function returns true if it has read all records of the file
+File_status_t addStruct(const char path_file_driver[], const char path_file_travel[], const int *id, bool select_struct); // This function returns true if the struct has been added to the system
+File_status_t editStruct(const char path_file_driver[], const char path_file_travel[], bool select_struct); // This function returns true if the struct has been edited
+File_status_t deleteStruct(const char path_file_driver[], const char path_file_travel[], bool select_struct); // This function returns true if the struct has been deleted to the system
+File_status_t showAllStructs(const char path_file_driver[], const char path_file_travel[], bool select_struct); // This function returns if it has read all records of the file
 
 File_status_t updateID(const char path_file[], const long int offset, int *id); // This function returns true if the ID is update
 
 // This function return the index of the ID, the ID is entered by the user using keyboard
-long int getIndexDriverUser(const char path_file_driver[], const char printf_value_input[], const char printf_value_error[]);
-long int getIndexTravelUser(const char path_file_travel[], const char path_file_driver[] ,const char printf_value_input[], const char printf_value_error[]);
+long int getIndexUser(const char path_file_driver[], const char path_file_travel[], const char printf_value_input[], const char printf_value_error[], bool select_struct);
 
 // This function return the index of the ID, the ID is passed by pointer
-long int getIndexDriver(const char path_file_driver[], const int *id);
-long int getIndexTravel(const char path_file_travel[], const char path_file_driver[], const int *id);
+long int getIndex(const char path_file[], const int *id, bool select_struct);
 
 void mergeSort(const char path_file[], long int start, long int end);
 void merge(const char path_file[], long int start, long int middle, long int end);
