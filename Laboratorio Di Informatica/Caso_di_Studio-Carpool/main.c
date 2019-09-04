@@ -191,6 +191,8 @@ int main(void)
 			case book_travel:
 				break;
 			case sort_driver:
+				mergeSort(DRIVERS_FILE_PATH, 0, (getNumberRecord(DRIVERS_FILE_PATH, sizeof(Driver_t)) - 1));
+				showAllDrivers(DRIVERS_FILE_PATH);
 				break;
 			case sort_travel:
 				break;
@@ -201,6 +203,8 @@ int main(void)
 				break;
 		}
 	}
+
+	printf("\n%d: ", getNumberRecord(DRIVERS_FILE_PATH, sizeof(Driver_t)) - 1);
 
 	printf("\n\n");
 	system("PAUSE");

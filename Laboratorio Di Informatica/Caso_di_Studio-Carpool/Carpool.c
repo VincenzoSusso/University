@@ -280,12 +280,12 @@ void readDriver(const Driver_t *driver)
 {
 	if(!driver -> deleted)
 	{
-		printf("\n|%4d|%14s|%15s|%31s|%14s|%16s|%4.4hu%s%2.2d%s%2.2hu| %6s |%5s|%5s|%5s|", driver -> id,
+		printf("\n|%4d|%17s|%17s|%35s|%19s|%17s|%4.4hu%s%2.2d%s%2.2hu|%6s|   %5s  |   %5s  |  %5s  |", driver -> id,
 				driver -> name, driver -> surname, driver -> email, driver -> password, driver -> phone_number,
 				driver -> birthday.year, DATE_DELIMITER, driver -> birthday.month, DATE_DELIMITER, driver -> birthday.day,
 				readGender(&driver -> gender), readRating(&driver -> driving_capacity),
 				readRating(&driver -> comfort_capacity), readRating(&driver -> average_rating));
-		printf("\n+----+--------------+---------------+-------------------------------+--------------+----------------+----------+--------+---------------+---------------+-------------+");
+		printf("\n+----+-----------------+-----------------+-----------------------------------+-------------------+-----------------+----------+------+----------+----------+---------+");
 	}
 }
 
@@ -351,12 +351,12 @@ void setTravel(Travel_t *travel, const int *id, const char path_driver_file[])
 	do
 	{
 		travel -> id_driver = getIndexDriverUser(path_driver_file, TRAVEL_DRIVER_ID_PRINTF_VALUE_INPUT, TRAVEL_DRIVER_ID_PRINTF_VALUE_ERROR);
-		if(travel -> id_driver == INDEX_ID_NOT_FOUND)
+		if(travel -> id_driver == INDEX_NOT_FOUND)
 		{
 			printf("\nAn error has occurred during the acquisition of the driver's ID");
 		}
 	}
-	while(travel -> id_driver == INDEX_ID_NOT_FOUND);
+	while(travel -> id_driver == INDEX_NOT_FOUND);
 
 	setWord(travel -> departure_destination, TRAVEL_DEPARTURE_DESTINATION_PRINTF_VALUE);
 	capitalizeString(travel -> departure_destination);
@@ -387,7 +387,6 @@ void setTravel(Travel_t *travel, const int *id, const char path_driver_file[])
 
 void readTravel(const Travel_t *travel, const char path_driver_file[])
 {
-	// https://www.cypress.com/file/54441/download
 	Driver_t driver; // Used to print name and surname of the driver's travel
 
 	resetDriver(&driver);
@@ -461,14 +460,14 @@ File_status_t editDriver(const char path_file_driver[])
 	File_status_t operation = done;
 	Driver_t driver;
 	Driver_members_t member_input = id_driver - 1;
-	long int index_id = INDEX_ID_NOT_FOUND; // This variable is used to get the index of the ID
+	long int index_id = INDEX_NOT_FOUND; // This variable is used to get the index of the ID
 
 	resetDriver(&driver);
 
 	// Get index of the driver that the user want to edit
 	index_id = getIndexDriverUser(path_file_driver, DRIVER_ID_EDIT_PRINTF_VALUE_INPUT, DRIVER_ID_EDIT_PRINTF_VALUE_ERROR);
 
-	if(index_id != INDEX_ID_NOT_FOUND)
+	if(index_id != INDEX_NOT_FOUND)
 	{
 		// Loads driver from file
 		operation = readFile(path_file_driver, &driver, sizeof(driver), index_id, SEEK_SET);
@@ -538,14 +537,14 @@ File_status_t deleteDriver(const char path_file_driver[]) // This function retur
 {
 	File_status_t operation = done;
 	Driver_t driver;
-	long int index_id = INDEX_ID_NOT_FOUND; // Variable that will store the index of the ID
+	long int index_id = INDEX_NOT_FOUND; // Variable that will store the index of the ID
 
 	resetDriver(&driver);
 
 	// Get index of the driver that the user want to delete
 	index_id = getIndexDriverUser(path_file_driver, DRIVER_ID_DELETE_PRINTF_VALUE_INPUT, DRIVER_ID_DELETE_PRINTF_VALUE_ERROR);
 
-	if(index_id != INDEX_ID_NOT_FOUND)
+	if(index_id != INDEX_NOT_FOUND)
 	{
 		// The driver has been found so the system will delete him
 		operation = readFile(path_file_driver, &driver, sizeof(driver), index_id, SEEK_SET);
@@ -572,9 +571,9 @@ File_status_t showAllDrivers(const char path_file_driver[]) // This function ret
 
 	resetDriver(&driver);
 
-	printf("\n+----+--------------+---------------+-------------------------------+--------------+----------------+----------+--------+---------------+---------------+-------------+");
-	printf("\n| ID |     Name     |    Surname    |             Email             |   Password   |  Phone Number  | Birthday | Gender | Drv. Capacity | Cmf. Capacity | Avg. Rating |");
-	printf("\n+----+--------------+---------------+-------------------------------+--------------+----------------+----------+--------+---------------+---------------+-------------+");
+	printf("\n+----+-----------------+-----------------+-----------------------------------+-------------------+-----------------+----------+------+----------+----------+---------+");
+	printf("\n| ID |       Name      |     Surname     |               Email               |      Password     |   Phone Number  | Birthday |Gender|Drv. Cpty.|Cmf. Cpty.|Avg. Rat.|");
+	printf("\n+----+-----------------+-----------------+-----------------------------------+-------------------+-----------------+----------+------+----------+----------+---------+");
 
 	do
 	{
@@ -608,14 +607,14 @@ File_status_t editTravel(const char path_file_travel[], const char path_file_dri
 	File_status_t operation = done;
 	Travel_t travel;
 	Travel_members_t member_input = id_travel - 1;
-	long int index_id = INDEX_ID_NOT_FOUND; // This variable is used to get the index of the ID
+	long int index_id = INDEX_NOT_FOUND; // This variable is used to get the index of the ID
 
 	resetTravel(&travel);
 
 	// Get index of the travel that the user want to edit
 	index_id = getIndexTravelUser(path_file_travel, path_file_driver, TRAVEL_ID_EDIT_PRINTF_VALUE_INPUT, TRAVEL_ID_EDIT_PRINTF_VALUE_ERROR);
 
-	if(index_id != INDEX_ID_NOT_FOUND)
+	if(index_id != INDEX_NOT_FOUND)
 	{
 		// Loads driver from file
 		operation = readFile(path_file_travel, &travel, sizeof(travel), index_id, SEEK_SET);
@@ -689,14 +688,14 @@ File_status_t deleteTravel(const char path_file_travel[], const char path_file_d
 {
 	File_status_t operation = done;
 	Travel_t travel;
-	long int index_id = INDEX_ID_NOT_FOUND; // Variable that will store the index of the ID
+	long int index_id = INDEX_NOT_FOUND; // Variable that will store the index of the ID
 
 	resetTravel(&travel);
 
 	// Get index of the driver that the user want to delete
 	index_id = getIndexTravelUser(path_file_travel, path_file_driver, TRAVEL_ID_DELETE_PRINTF_VALUE_INPUT, TRAVEL_ID_DELETE_PRINTF_VALUE_ERROR);
 
-	if(index_id != INDEX_ID_NOT_FOUND)
+	if(index_id != INDEX_NOT_FOUND)
 	{
 		// The driver has been found so the system will delete him
 		operation = readFile(path_file_travel, &travel, sizeof(travel), index_id, SEEK_SET);
@@ -742,8 +741,6 @@ File_status_t ShowAllTravels(const char path_file_travel[], const char path_file
 	return operation;
 }
 
-
-
 File_status_t updateID(const char path_file[], const long int offset, int *id)
 {
 	File_status_t operation = error;
@@ -761,7 +758,7 @@ long int getIndexDriverUser(const char path_file_driver[], const char printf_val
 	Driver_t driver;
 	unsigned long i = 0;
 	int id_input = 0; // Variable that will store the input of the ID
-	unsigned long index_id = INDEX_ID_NOT_FOUND;
+	unsigned long index_id = INDEX_NOT_FOUND;
 
 	resetDriver(&driver);
 
@@ -794,7 +791,7 @@ long int getIndexTravelUser(const char path_file_travel[], const char path_file_
 	Travel_t travel;
 	unsigned long i = 0;
 	int id_input = 0; // Variable that will store the input of the ID
-	unsigned long index_id = INDEX_ID_NOT_FOUND;
+	unsigned long index_id = INDEX_NOT_FOUND;
 
 	resetTravel(&travel);
 
@@ -827,7 +824,7 @@ long int getIndexDriver(const char path_file_driver[], const int *id)
 	File_status_t operation = error;
 	Driver_t driver;
 	unsigned long i = 0;
-	unsigned long index_id = INDEX_ID_NOT_FOUND;
+	unsigned long index_id = INDEX_NOT_FOUND;
 
 	resetDriver(&driver);
 
@@ -855,7 +852,7 @@ long int getIndexTravel(const char path_file_travel[], const char path_file_driv
 	Travel_t travel;
 	unsigned long i = 0;
 	int id_input = 0; // Variable that will store the input of the ID
-	unsigned long index_id = INDEX_ID_NOT_FOUND;
+	unsigned long index_id = INDEX_NOT_FOUND;
 
 	resetTravel(&travel);
 
@@ -876,4 +873,75 @@ long int getIndexTravel(const char path_file_travel[], const char path_file_driv
 
 
 	return index_id;
+}
+
+void mergeSort(const char path_file[], long int start, long int end)
+{
+	long int middle = 0;
+
+	if(start < end)
+	{
+		middle = (start + end) / 2;
+		mergeSort(path_file, start, middle);
+		mergeSort(path_file, middle + 1, end);
+
+		merge(path_file, start, middle, end);
+	}
+}
+
+void merge(const char path_file[], long int start, long int middle, long int end)
+{
+	Driver_t driver1;
+	Driver_t driver2;
+
+	long int i = start;
+	long int j = middle + 1;
+	long int k = 0;
+
+	isValidFile(MERGE_TEMP_FILE_PATH);
+
+	resetDriver(&driver1);
+	resetDriver(&driver2);
+
+	while(i <= middle && j <= end)
+	{
+		readFile(path_file, &driver1, sizeof(Driver_t), i, SEEK_SET);
+		readFile(path_file, &driver2, sizeof(Driver_t), j, SEEK_SET);
+
+		if(driver1.driving_capacity <= driver2.driving_capacity)
+		{
+			writeFile(MERGE_TEMP_FILE_PATH, &driver1, sizeof(Driver_t), k, SEEK_SET);
+			i++;
+		}
+		else
+		{
+			writeFile(MERGE_TEMP_FILE_PATH, &driver2, sizeof(Driver_t), k, SEEK_SET);
+			j++;
+		}
+		k++;
+	}
+
+	while(i <= middle)
+	{
+		readFile(path_file, &driver1, sizeof(Driver_t), i, SEEK_SET);
+		writeFile(MERGE_TEMP_FILE_PATH, &driver1, sizeof(Driver_t), k, SEEK_SET);
+		i++;
+		k++;
+	}
+
+	while(j <= end)
+	{
+		readFile(path_file, &driver1, sizeof(Driver_t), j, SEEK_SET);
+		writeFile(MERGE_TEMP_FILE_PATH, &driver1, sizeof(Driver_t), k, SEEK_SET);
+		j++;
+		k++;
+	}
+
+	for(i = start, j = 0; i <= end; i++, j++)
+	{
+		readFile(MERGE_TEMP_FILE_PATH, &driver1, sizeof(Driver_t), j, SEEK_SET);
+		writeFile(path_file, &driver1, sizeof(Driver_t), i, SEEK_SET);
+	}
+
+	deleteFile(MERGE_TEMP_FILE_PATH);
 }

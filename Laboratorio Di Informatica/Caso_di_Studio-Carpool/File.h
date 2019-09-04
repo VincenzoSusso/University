@@ -21,6 +21,9 @@
 
 #define NUMBER_MEMBER_FILE 1
 
+#define INDEX_NOT_FOUND -1 // This constant is used to check if the index has been found
+#define NUMBER_RECORD_ERROR -1 // This constant is used to check if an error has occurred
+
 // -- User-Defined types --
 
 /* 	Used to get the status of the operations with files:
@@ -32,7 +35,10 @@ typedef enum {error = 0, fail, done} File_status_t;
 
 // -- Procedure & Functions Prototypes --
 File_status_t isValidFile(const char path_file[]);
+File_status_t deleteFile(const char path_file[]);
 File_status_t writeFile(const char path_file[], void* pointer, size_t pointer_size, long int offset, int whence);
 File_status_t readFile(const char path_file[], void* pointer, size_t pointer_size, long int offset, int whence);
 
+long int getLastIndex(const char path_file[]);
+int getNumberRecord(const char path_file[], size_t size_record);
 #endif

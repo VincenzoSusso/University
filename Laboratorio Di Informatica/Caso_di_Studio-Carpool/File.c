@@ -32,6 +32,18 @@ File_status_t isValidFile(const char path_file[])
 	return valid_file;
 }
 
+File_status_t deleteFile(const char path_file[])
+{
+	File_status_t deleted_file = error;
+
+	if(!remove(path_file))
+	{
+		deleted_file = done;
+	}
+
+	return deleted_file;
+}
+
 File_status_t writeFile(const char path_file[], void* pointer, size_t pointer_size, long int offset, int whence)
 {
 	File_status_t file_written = done;
@@ -98,4 +110,34 @@ File_status_t readFile(const char path_file[], void* pointer, size_t pointer_siz
 	fclose(file);
 
 	return file_read;
+}
+
+long int getLastIndex(const char path_file[])
+{
+	FILE *file = NULL;
+	long int index = INDEX_NOT_FOUND;
+
+
+	file = fopen(path_file, "rb");
+
+	if(file)
+	{
+ 		fseek(file, 0, SEEK_END);
+ 		index = ftell(file);
+	}
+
+	fclose(file);
+
+	return index;
+}
+
+int getNumberRecord(const char path_file[], size_t size_record)
+{
+	int number_record = 0;
+	if(getLastIndex(path_file) != INDEX_NOT_FOUND)
+	{
+		number_record = getLastIndex(path_file) / size_record;
+	}
+
+	return number_record;
 }

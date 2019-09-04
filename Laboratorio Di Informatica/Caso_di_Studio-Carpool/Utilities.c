@@ -12,6 +12,20 @@ void clearBuffer(void)
     while(getchar() != NEWLINE_CHARACTER){};
 }
 
+void swap(void *first_pointer, void *second_pointer, size_t size_pointer) // The pointer must be of the same type
+{
+	// For more information please, visit here: https://stackoverflow.com/questions/2232706/swapping-objects-using-pointers
+
+	// char serves as the type for "generic" byte arrays
+	char *temp = malloc(size_pointer);
+
+	memcpy(temp, second_pointer, size_pointer);
+	memcpy(second_pointer, first_pointer, size_pointer);
+	memcpy(first_pointer, temp, size_pointer);
+
+	free(temp);
+}
+
 void initializeCMD(void) // This function is used to enable ANSI escape sequences on CMD
 {
 	// For more information, please visit here: https://stackoverflow.com/questions/47157714/escape-character-doesnt-work

@@ -65,8 +65,6 @@
 #define READ_RATING_FOUR_STAR "****"
 #define READ_RATING_FIVE_STAR "*****"
 
-#define INDEX_ID_NOT_FOUND -1 // This constant is used to check if the index of the ID has not been found
-
 // Thoose constant are used as printf_value of the procedure setWord()
 #define DRIVER_NAME_PRINTF_VALUE "driver's name"
 #define DRIVER_SURNAME_PRINTF_VALUE "driver's surname"
@@ -117,6 +115,8 @@
 
 #define TRAVEL_ID_DELETE_PRINTF_VALUE_INPUT "Enter the ID of the travel that you want to delete: "
 #define TRAVEL_ID_DELETE_PRINTF_VALUE_ERROR "The ID of the driver that you want to delete is not valid"
+
+#define MERGE_TEMP_FILE_PATH "../Files/Temp.dat"
 
 // -- User-Defined types --
 typedef enum {one_star = 1, two_star, three_star, four_star, five_star} Rating_t;
@@ -206,5 +206,8 @@ long int getIndexTravelUser(const char path_file_travel[], const char path_file_
 // This function return the index of the ID, the ID is passed by pointer
 long int getIndexDriver(const char path_file_driver[], const int *id);
 long int getIndexTravel(const char path_file_travel[], const char path_file_driver[], const int *id);
+
+void mergeSort(const char path_file[], long int start, long int end);
+void merge(const char path_file[], long int start, long int middle, long int end);
 
 #endif

@@ -56,6 +56,7 @@
 // -- Procedure & Functions Prototypes --
 int createRandomValue(const int min, const int max); // Return a random value between min and max
 void clearBuffer(void);
+void swap(void *first_pointer, void *second_pointer, size_t size_pointer); // The pointer must be of the same type
 void initializeCMD(void); // This function is used to enable ANSI escape sequences on CMD
 void printfError(const char string[]); // This function is used to make a printf() in red color
 void addNullCharacterString(char string[]);
