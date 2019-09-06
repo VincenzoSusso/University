@@ -20,7 +20,12 @@ int main(void)
 	int id_drivers = 0;
 	int id_travels = 0;
 
+	double sorting_seconds = 0; // Store seconds that the sorting has spent
+
 	initializeCMD();
+	introduction();
+	printf("\n\n\n");
+	system("PAUSE");
 
 	if(!isValidFile(DRIVERS_FILE_PATH))
 	{
@@ -57,6 +62,7 @@ int main(void)
 	{
 		// Reset variable
 		menu_choice = not_valid_choice;
+		sorting_seconds = 0;
 
 		showMenu();
 
@@ -193,13 +199,35 @@ int main(void)
 				break;
 			case book_travel:
 				break;
-			case sort_driver:
-				mergeSort(DRIVERS_FILE_PATH, 0, (getNumberRecord(DRIVERS_FILE_PATH, sizeof(Driver_t)) - 1));
+			case sort_drivers:
+				// Sorting Drivers
+				sorting_seconds = setSort(DRIVERS_FILE_PATH, 0, (getNumberRecord(DRIVERS_FILE_PATH, sizeof(Driver_t)) - 1), DRIVER);
+				if(sorting_seconds)
+				{
+					printf("\n\nThe drivers have been sorted in %.3lf seconds", sorting_seconds);
+				}
+				else
+				{
+					printfError("\n\nAn error has occurred during the sorting of the drivers");
+				}
 
 				printf("\n\n");
 				system("PAUSE");
 				break;
-			case sort_travel:
+			case sort_travels:
+				// Sorting Travels
+				sorting_seconds = setSort(TRAVELS_FILE_PATH, 0, (getNumberRecord(TRAVELS_FILE_PATH, sizeof(Travel_t)) - 1), TRAVEL);
+				if(sorting_seconds)
+				{
+					printf("\n\nThe travels have been sorted in %.3lf seconds", sorting_seconds);
+				}
+				else
+				{
+					printfError("\n\nAn error has occurred during the sorting of the travels");
+				}
+
+				printf("\n\n");
+				system("PAUSE");
 				break;
 			case exit_menu:
 				flag = false;
@@ -212,6 +240,33 @@ int main(void)
 	printf("\n\n");
 	system("PAUSE");
     exit(EXIT_SUCCESS);
+}
+
+void introduction(void)
+{
+	printf("\n +--------------------------------------------------------------------------------+");
+	printf("\n | ****************************************************************************** |");
+	printf("\n | * +------------------------------------------------------------------------+ * |");
+	printf("\n | * |                                                                        | * |");
+	printf("\n | * |                                                                        | * |");
+	printf("\n | * |      /$$$$$$                                                    /$$    | * |");
+	printf("\n | * |     /$$__  $$                                                  | $$    | * |");
+	printf("\n | * |    | $$  \\__/  /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$ | $$    | * |");
+	printf("\n | * |    | $$       |____  $$ /$$__  $$ /$$__  $$ /$$__  $$ /$$__  $$| $$    | * |");
+	printf("\n | * |    | $$        /$$$$$$$| $$  \\__/| $$  \\ $$| $$  \\ $$| $$  \\ $$| $$    | * |");
+	printf("\n | * |    | $$    $$ /$$__  $$| $$      | $$  | $$| $$  | $$| $$  | $$| $$    | * |");
+	printf("\n | * |    |  $$$$$$/|  $$$$$$$| $$      | $$$$$$$/|  $$$$$$/|  $$$$$$/| $$    | * |");
+	printf("\n | * |     \\______/  \\_______/|__/      | $$____/  \\______/  \\______/ |__/    | * |");
+	printf("\n | * |                                  | $$                                  | * |");
+	printf("\n | * |                                  | $$                                  | * |");
+	printf("\n | * |                                  |__/                                  | * |");
+	printf("\n | * |                                                                        | * |");
+	printf("\n | * |                                                                        | * |");
+	printf("\n | * +------------------------------------------------------------------------+ * |");
+	printf("\n | ****************************************************************************** |");
+	printf("\n +--------------------------------------------------------------------------------+");
+	printf("\n\nFor a Better Visualization, Set the Program in Fullscreen");
+	printf("\n\nThis Program was Compiled on %s at %s", __DATE__, __TIME__);
 }
 
 void showMenu(void)
@@ -238,9 +293,9 @@ void showMenu(void)
 	printf("\n+--------------------+------------------+");
 	printf("\n|         %d          |   Book a Travel  |", book_travel);
 	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |    Sort Drivers  |", sort_driver);
+	printf("\n|         %d          |    Sort Drivers  |", sort_drivers);
 	printf("\n+--------------------+------------------+");
-	printf("\n|        %d          |    Sort Travels  |", sort_travel);
+	printf("\n|        %d          |    Sort Travels  |", sort_travels);
 	printf("\n+--------------------+------------------+");
 	printf("\n|        %d          |       Exit       |", exit_menu);
 	printf("\n+--------------------+------------------+");

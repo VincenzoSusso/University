@@ -38,11 +38,12 @@ typedef enum
 	delete_travel,
 	show_all_travels,
 	book_travel,
-	sort_driver,
-	sort_travel,
+	sort_drivers,
+	sort_travels,
 	exit_menu,
 	not_valid_choice
 } Menu_choice_t;
 
 // -- Procedure & Functions Prototypes --
+void introduction(void);
 void showMenu(void);

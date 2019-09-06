@@ -17,6 +17,7 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <string.h>
+#include <time.h>
 #include <windows.h>
 
 // -- Constant --
@@ -70,4 +71,5 @@ bool isPassword(const char password[]);
 bool isNumberPhone(const char phone_number[]);
 bool isDecimalNumber(const char decimal_number[]);
 
+double getSecondSort(const time_t start, const time_t end); //Used to calculate the number of second that the sort has spent
 #endif

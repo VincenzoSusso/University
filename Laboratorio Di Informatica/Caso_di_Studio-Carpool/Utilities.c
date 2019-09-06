@@ -350,3 +350,8 @@ bool isDecimalNumber(const char decimal_number[])
 
 	return valid_price;
 }
+
+double getSecondSort(const time_t start, const time_t end) //Used to calculate the number of second that the sort has spend
+{
+     return  ((double) (end - start)) / CLOCKS_PER_SEC;
+}

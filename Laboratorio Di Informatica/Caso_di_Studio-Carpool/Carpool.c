@@ -330,6 +330,49 @@ void showMemberDriver(void)
 	printf("\n+--------------------+------------------+");
 }
 
+void showSortingDriver(void)
+{
+	printf("\n\n\n+---------------------+-----------------------------+");
+	printf("\n|  Number of Sorting  |           Sorting           |");
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d          |        Increasing ID        |", increasing_id_driver);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d          |        Decreasing ID        |", decreasing_id_driver);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d          |       Increasing Name       |", increasing_name);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d          |       Decreasing Name       |", decreasing_name);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d          |      Increasing Surname     |", increasing_surname);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d          |      Decreasing Surname     |", decreasing_surname);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d          |       Increasing Email      |", increasing_email);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d          |       Decreasing Email      |", decreasing_email);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d          |     Increasing Birthday     |", increasing_birthday);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d          |     Decreasing Birthday     |", decreasing_birthday);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d         |      Increasing Gender      |", increasing_gender);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d         |      Decreasing Gender      |", decreasing_gender);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d         | Increasing Driving Capacity |", increasing_driving_capacity);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d         | Decreasing Driving Capacity |", decreasing_driving_capacity);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d         | Increasing Comfort Capacity |", increasing_comfort_capacity);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d         | Decreasing Comfort Capacity |", decreasing_comfort_capacity);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d         |  Increasing Average Rating  |", increasing_average_rating);
+	printf("\n+---------------------+-----------------------------+");
+	printf("\n|          %d         |  Decreasing Average Rating  |", decreasing_average_rating);
+	printf("\n+---------------------+-----------------------------+");
+}
+
 void resetTravel(Travel_t *travel)
 {
 	travel -> id = 0;
@@ -350,7 +393,7 @@ void setTravel(Travel_t *travel, const int *id, const char path_file_travel[], c
 	travel -> id = *id;
 	do
 	{
-		travel -> id_driver = getIndexUser(path_file_driver, path_file_travel, TRAVEL_DRIVER_ID_PRINTF_VALUE_INPUT, TRAVEL_DRIVER_ID_PRINTF_VALUE_ERROR, TRAVEL);
+		travel -> id_driver = getIndexUser(path_file_driver, path_file_travel, TRAVEL_DRIVER_ID_PRINTF_VALUE_INPUT, TRAVEL_DRIVER_ID_PRINTF_VALUE_ERROR, DRIVER);
 		if(travel -> id_driver == INDEX_NOT_FOUND)
 		{
 			printf("\nAn error has occurred during the acquisition of the driver's ID");
@@ -440,7 +483,41 @@ void showMemberTravel(void)
 	printf("\n+--------------------+-----------------------+");
 	printf("\n|         %d          |    Additional Notes   |", additional_notes);
 	printf("\n+--------------------+-----------------------+");
+}
 
+void showSortingTravel(void)
+{
+	printf("\n\n\n+---------------------+-----------------------------------+");
+	printf("\n|  Number of Sorting  |              Sorting              |");
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d          |           Increasing ID           |", increasing_id_travel);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d          |           Decreasing ID           |", decreasing_id_travel);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d          |  Increasing Departure Destination |", increasing_departure_destination);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d          |  Decreasing Departure Destination |", decreasing_departure_destination);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d          |   Increasing Arrival Destination  |", increasing_arrival_destination);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d          |   Decreasing Arrival Destination  |", decreasing_arrival_destination);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d          |     Increasing Departure Date     |", increasing_departure_date);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d          |     Decreasing Departure Date     |", decreasing_departure_date);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d          |          Increasing Price         |", increasing_price);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d          |          Decreasing Price         |", decreasing_price);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d         |       Increasing Total Seats      |", increasing_total_seats);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d         |       Decreasing Total Seats      |", decreasing_total_seats);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d         |       Increasing Free Seats       |", increasing_driving_capacity);
+	printf("\n+---------------------+-----------------------------------+");
+	printf("\n|          %d         |       Decreasing Free Seats       |", decreasing_driving_capacity);
+	printf("\n+---------------------+-----------------------------------+");
 }
 
 File_status_t addStruct(const char path_file_driver[], const char path_file_travel[], const int *id, bool select_struct) // This function returns true if the struct has been added to the system
@@ -731,6 +808,66 @@ File_status_t showAllStructs(const char path_file_driver[], const char path_file
 	return operation;
 }
 
+File_status_t bookTravel(const char path_file_driver[], const char path_file_travel[])
+{
+	File_status_t reading_operation = error;
+	File_status_t writing_operation = error;
+	Travel_t travel;
+	char departure_destination[MAX_LENGHT_STRINGS] = NULL_STRING;
+	char arrival_destination[MAX_LENGHT_STRINGS] = NULL_STRING;
+	Date_t departure_date;
+	Time_t departure_time;
+	double price = 0;
+	unsigned short number_seats = 0;
+	long int i = 0; // Index of the travel's file
+	long int j = 0; // Index of the temporary file
+
+	resetTravel(&travel);
+	resetDate(&departure_date);
+	resetTime(&departure_time);
+
+	if(isValidFile(BOOK_TRAVEL_TEMP_FILE_PATH))
+	{
+
+
+		setWord(departure_destination, TRAVEL_DEPARTURE_DESTINATION_PRINTF_VALUE);
+		capitalizeString(departure_destination);
+
+		setWord(arrival_destination, TRAVEL_ARRIVAL_DESTINATION_PRINTF_VALUE);
+		capitalizeString(arrival_destination);
+
+		setDate(&departure_date, MIN_YEAR_TRAVEL, MAX_YEAR_TRAVEL, TRAVEL_DEPARTURE_DATE_PRINTF_VALUE);
+		setTime(&departure_time, TRAVEL_DEPARTURE_TIME_PRINTF_VALUE);
+
+		setPrice(&price);
+
+		setNumberInput((int *) &number_seats, MIN_NUMBER_FREE_SEATS + 1, MAX_NUMBER_FREE_SEATS, BOOK_TRAVEL_SEATS_PRINTF_VALUE_INPUT, BOOK_TRAVEL_SEATS_PRINTF_VALUE_ERROR);
+
+		do
+		{
+			reading_operation = readFile(path_file_driver, &travel, sizeof(Travel_t), i, SEEK_CUR);
+			if(reading_operation == done)
+			{
+				if((strcmp(departure_destination, travel.departure_destination) == 0) && (strcmp(arrival_destination, travel.arrival_destination) == 0) && (cmpDate(&departure_date, &travel.departure_date) == EQUALS_DATE) && (cmpTime(&departure_time, &travel.departure_time) >= EQUALS_DATE) && (free_seats >= travel.free_seats))
+				{
+					writing_operation = writeFile(BOOK_TRAVEL_TEMP_FILE_PATH, &travel.id , sizeof(int), j, SEEK_SET);
+					if(!writing_operation)
+					{
+						reading_operation = error;
+						writing_operation = error;
+					}
+					j++;
+				}
+			}
+			i++;
+		}
+		while(reading_operation == done);
+
+		deleteFile(BOOK_TRAVEL_TEMP_FILE_PATH);
+	}
+	return reading_operation;
+}
+
 File_status_t updateID(const char path_file[], const long int offset, int *id)
 {
 	File_status_t operation = error;
@@ -852,73 +989,579 @@ long int getIndex(const char path_file[], const int *id, bool select_struct)
 	return index_id;
 }
 
-void mergeSort(const char path_file[], long int start, long int end)
+double setSort(const char path_file[], long int start, long int end, bool select_struct) // It returns the seconds that the sort has spent
+{
+	double sorting_seconds = 0;
+	time_t sorting_start = 0;
+	time_t sorting_end = 0;
+	int sorting_input = -1;
+
+	if(select_struct)
+	{
+		showSortingDriver();
+		setNumberInput(&sorting_input, increasing_id_driver, decreasing_average_rating, SORTING_DRIVER_PRINTF_VALUE_INPUT, SORTING_DRIVER_PRINTF_VALUE_ERROR);
+		sorting_start = clock();
+		mergeSort(path_file, start, end, select_struct, sorting_input);
+		sorting_end = clock();
+	}
+	else
+	{
+		showSortingTravel();
+		setNumberInput(&sorting_input, increasing_id_travel, decreasing_free_seats, SORTING_TRAVEL_PRINTF_VALUE_INPUT, SORTING_TRAVEL_PRINTF_VALUE_ERROR);
+		sorting_start = clock();
+		mergeSort(path_file, start, end, select_struct, sorting_input);
+		sorting_end = clock();
+	}
+
+	if(sorting_start != -1 && sorting_end != -1)
+	{
+		// The functions clock() have not failed
+		sorting_seconds = getSecondSort(sorting_start, sorting_end);
+	}
+
+	return sorting_seconds;
+}
+
+void mergeSort(const char path_file[], long int start, long int end, bool select_struct, int kind_sorting)
 {
 	long int middle = 0;
 
 	if(start < end)
 	{
 		middle = (start + end) / 2;
-		mergeSort(path_file, start, middle);
-		mergeSort(path_file, middle + 1, end);
+		mergeSort(path_file, start, middle, select_struct, kind_sorting);
+		mergeSort(path_file, middle + 1, end, select_struct, kind_sorting);
 
-		merge(path_file, start, middle, end);
+		if(select_struct)
+		{
+			mergeDriver(path_file, start, middle, end, kind_sorting);
+		}
+		else
+		{
+			mergeTravel(path_file, start, middle, end, kind_sorting);
+		}
 	}
 }
 
-void merge(const char path_file[], long int start, long int middle, long int end)
+void mergeDriver(const char path_file[], long int start, long int middle, long int end, int kind_sorting)
 {
-	Driver_t driver1;
-	Driver_t driver2;
+	Driver_t first_driver;
+	Driver_t second_driver;
 
 	long int i = start;
 	long int j = middle + 1;
 	long int k = 0;
 
-	isValidFile(MERGE_TEMP_FILE_PATH);
+	resetDriver(&first_driver);
+	resetDriver(&second_driver);
 
-	resetDriver(&driver1);
-	resetDriver(&driver2);
-
-	while(i <= middle && j <= end)
+	if(isValidFile(MERGE_TEMP_FILE_PATH))
 	{
-		readFile(path_file, &driver1, sizeof(Driver_t), i, SEEK_SET);
-		readFile(path_file, &driver2, sizeof(Driver_t), j, SEEK_SET);
-
-		if(driver1.driving_capacity <= driver2.driving_capacity)
+		while(i <= middle && j <= end)
 		{
-			writeFile(MERGE_TEMP_FILE_PATH, &driver1, sizeof(Driver_t), k, SEEK_SET);
+			readFile(path_file, &first_driver, sizeof(Driver_t), i, SEEK_SET);
+			readFile(path_file, &second_driver, sizeof(Driver_t), j, SEEK_SET);
+
+			switch(kind_sorting)
+			{
+				case increasing_id_driver:
+					if(first_driver.id <= second_driver.id)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_id_driver:
+					if(first_driver.id >= second_driver.id)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_name:
+					if(strcmp(first_driver.name, second_driver.name) <= 0)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_name:
+					if(strcmp(first_driver.name, second_driver.name) >= 0)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_surname:
+					if(strcmp(first_driver.surname, second_driver.surname) <= 0)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_surname:
+					if(strcmp(first_driver.surname, second_driver.surname) >= 0)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_email:
+					if(strcmp(first_driver.email, second_driver.email) <= 0)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_email:
+					if(strcmp(first_driver.surname, second_driver.surname) >= 0)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_birthday:
+					if(cmpDate(&first_driver.birthday, &second_driver.birthday) <= EQUALS_DATE)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_birthday:
+					if(cmpDate(&first_driver.birthday, &second_driver.birthday) >= EQUALS_DATE)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_gender:
+					if(first_driver.gender <= second_driver.gender)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_gender:
+					if(first_driver.gender >= second_driver.gender)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_driving_capacity:
+					if(first_driver.driving_capacity <= second_driver.driving_capacity)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_driving_capacity:
+					if(first_driver.driving_capacity >= second_driver.driving_capacity)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_comfort_capacity:
+					if(first_driver.comfort_capacity <= second_driver.comfort_capacity)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_comfort_capacity:
+					if(first_driver.comfort_capacity >= second_driver.comfort_capacity)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_average_rating:
+					if(first_driver.average_rating <= second_driver.average_rating)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_average_rating:
+					if(first_driver.average_rating >= second_driver.average_rating)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				default:
+					break;
+			}
+			k++;
+		}
+
+		while(i <= middle)
+		{
+			readFile(path_file, &first_driver, sizeof(Driver_t), i, SEEK_SET);
+			writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
 			i++;
+			k++;
 		}
-		else
+
+		while(j <= end)
 		{
-			writeFile(MERGE_TEMP_FILE_PATH, &driver2, sizeof(Driver_t), k, SEEK_SET);
+			readFile(path_file, &first_driver, sizeof(Driver_t), j, SEEK_SET);
+			writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
 			j++;
+			k++;
 		}
-		k++;
-	}
 
-	while(i <= middle)
-	{
-		readFile(path_file, &driver1, sizeof(Driver_t), i, SEEK_SET);
-		writeFile(MERGE_TEMP_FILE_PATH, &driver1, sizeof(Driver_t), k, SEEK_SET);
-		i++;
-		k++;
-	}
+		for(i = start, j = 0; i <= end; i++, j++)
+		{
+			readFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), j, SEEK_SET);
+			writeFile(path_file, &first_driver, sizeof(Driver_t), i, SEEK_SET);
+		}
 
-	while(j <= end)
-	{
-		readFile(path_file, &driver1, sizeof(Driver_t), j, SEEK_SET);
-		writeFile(MERGE_TEMP_FILE_PATH, &driver1, sizeof(Driver_t), k, SEEK_SET);
-		j++;
-		k++;
+		deleteFile(MERGE_TEMP_FILE_PATH);
 	}
-
-	for(i = start, j = 0; i <= end; i++, j++)
-	{
-		readFile(MERGE_TEMP_FILE_PATH, &driver1, sizeof(Driver_t), j, SEEK_SET);
-		writeFile(path_file, &driver1, sizeof(Driver_t), i, SEEK_SET);
-	}
-
-	deleteFile(MERGE_TEMP_FILE_PATH);
 }
+
+void mergeTravel(const char path_file[], long int start, long int middle, long int end, int kind_sorting)
+{
+	Travel_t first_travel;
+	Travel_t second_travel;
+
+	long int i = start;
+	long int j = middle + 1;
+	long int k = 0;
+
+	resetTravel(&first_travel);
+	resetTravel(&second_travel);
+
+	if(isValidFile(MERGE_TEMP_FILE_PATH))
+	{
+		while(i <= middle && j <= end)
+		{
+			readFile(path_file, &first_travel, sizeof(Travel_t), i, SEEK_SET);
+			readFile(path_file, &second_travel, sizeof(Travel_t), j, SEEK_SET);
+
+			switch(kind_sorting)
+			{
+				case increasing_id_travel:
+					if(first_travel.id <= second_travel.id)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_id_travel:
+					if(first_travel.id >= second_travel.id)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_departure_destination:
+					if(strcmp(first_travel.departure_destination, second_travel.departure_destination) <= 0)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_departure_destination:
+					if(strcmp(first_travel.departure_destination, second_travel.departure_destination) >= 0)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_arrival_destination:
+					if(strcmp(first_travel.arrival_destination, second_travel.arrival_destination) <= 0)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_arrival_destination:
+					if(strcmp(first_travel.arrival_destination, second_travel.arrival_destination) >= 0)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_departure_date:
+					if(cmpDate(&first_travel.departure_date, &second_travel.departure_date) == EQUALS_DATE)
+					{
+						if(cmpTime(&first_travel.departure_time, &second_travel.departure_time) <= EQUALS_DATE)
+						{
+							writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+							i++;
+						}
+						else
+						{
+							writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+							j++;
+						}
+					}
+					else
+					{
+						if(cmpDate(&first_travel.departure_date, &second_travel.departure_date) < EQUALS_DATE)
+						{
+							writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+							i++;
+						}
+						else
+						{
+							writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+							j++;
+						}
+					}
+					break;
+				case decreasing_departure_date:
+					if(cmpDate(&first_travel.departure_date, &second_travel.departure_date) == EQUALS_DATE)
+					{
+						if(cmpTime(&first_travel.departure_time, &second_travel.departure_time) >= EQUALS_DATE)
+						{
+							writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+							i++;
+						}
+						else
+						{
+							writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+							j++;
+						}
+					}
+					else
+					{
+						if(cmpDate(&first_travel.departure_date, &second_travel.departure_date) > EQUALS_DATE)
+						{
+							writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+							i++;
+						}
+						else
+						{
+							writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+							j++;
+						}
+					}
+					break;
+				case increasing_price:
+					if(first_travel.price <= second_travel.price)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_price:
+					if(first_travel.price >= second_travel.price)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_total_seats:
+					if(first_travel.total_seats <= second_travel.total_seats)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_total_seats:
+					if(first_travel.total_seats >= second_travel.total_seats)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case increasing_free_seats:
+					if(first_travel.free_seats <= second_travel.free_seats)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				case decreasing_free_seats:
+					if(first_travel.free_seats >= second_travel.free_seats)
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+						i++;
+					}
+					else
+					{
+						writeFile(MERGE_TEMP_FILE_PATH, &second_travel, sizeof(Travel_t), k, SEEK_SET);
+						j++;
+					}
+					break;
+				default:
+					break;
+			}
+			k++;
+		}
+
+		while(i <= middle)
+		{
+			readFile(path_file, &first_travel, sizeof(Travel_t), i, SEEK_SET);
+			writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+			i++;
+			k++;
+		}
+
+		while(j <= end)
+		{
+			readFile(path_file, &first_travel, sizeof(Travel_t), j, SEEK_SET);
+			writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
+			j++;
+			k++;
+		}
+
+		for(i = start, j = 0; i <= end; i++, j++)
+		{
+			readFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), j, SEEK_SET);
+			writeFile(path_file, &first_travel, sizeof(Travel_t), i, SEEK_SET);
+		}
+
+		deleteFile(MERGE_TEMP_FILE_PATH);
+	}
+}
+

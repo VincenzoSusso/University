@@ -196,29 +196,98 @@ void setTime(Time_t *time, const char printf_value[]) // The procedure set a val
 	while(flag);
 }
 
-/*
-bool areDateUguali(Data_t prima_data, Data_t seconda_data)
+
+bool areDatesEquals(const Date_t *first_date, const Date_t *second_date)
 {
-    bool date_uguali = false;
-
-    if(prima_data.anno == seconda_data.anno)
-    {
-        // L'anno della prima e della seconda data coincidono
-        if(prima_data.mese == seconda_data.mese)
-        {
-            // Il mese della prima e della seconda data coincidono
-            if(prima_data.giorno == seconda_data.giorno)
-            {
-                // La prima data e la seconda coincidono
-                date_uguali = true;
-            }
-        }
-    }
-
-    return date_uguali;
+	return (first_date -> year == second_date -> year) && ((first_date -> month) == (second_date -> month)) && ((first_date -> day) == (second_date -> day));
 }
 
-Data_t dataPiuRecente(Data_t prima_data, Data_t seconda_data)
+int cmpDate(const Date_t *first_date, const Date_t *second_date)
+{
+	int comparison_dates = EQUALS_DATE;
+
+	if((first_date -> year) > (second_date -> year))
+	{
+		// The first date is older than the second one due to the year
+		comparison_dates = OLDER_DATE;
+	}
+	else if((first_date -> year) < (second_date -> year))
+	{
+		// The first date is latest than the second one due to the year
+		comparison_dates = LATEST_DATE;
+	}
+	else
+	{
+		if((first_date -> month) > (second_date -> month))
+		{
+			// The first date is older than the second one due to the month
+			comparison_dates = OLDER_DATE;
+		}
+		else if((first_date -> month) < (second_date -> month))
+		{
+			// The first date is latest than the second one due to the month
+			comparison_dates = LATEST_DATE;
+		}
+		else
+		{
+			if((first_date -> day) > (second_date -> day))
+			{
+				// The first date is older than the second one due to the day
+				comparison_dates = OLDER_DATE;
+			}
+			else if(first_date -> day < second_date -> day)
+			{
+				// The first date is latest than the second one due to the day
+				comparison_dates = LATEST_DATE;
+			}
+			else
+			{
+				// Both dates are equals
+				comparison_dates = EQUALS_DATE;
+			}
+		}
+	}
+
+	return comparison_dates;
+}
+
+int cmpTime(const Time_t *first_time, const Time_t *second_time)
+{
+	int comparison_times = EQUALS_DATE;
+
+	if((first_time -> hour) > (second_time -> hour))
+	{
+		// The first time is older that the second one due to hour
+		comparison_times = OLDER_DATE;
+	}
+	else if((first_time -> hour) < (second_time -> hour))
+	{
+		// The first time is latest that the second one due to hour
+		comparison_times = LATEST_DATE;
+	}
+	else
+	{
+		if((first_time -> minute) > (second_time -> minute))
+		{
+			// The first time is older that the second one due to minute
+			comparison_times = OLDER_DATE;
+		}
+		else if((first_time -> minute) > (second_time -> minute))
+		{
+			// The first time is latest that the second one due to hour
+			comparison_times = LATEST_DATE;
+		}
+		else
+		{
+			// The two times are equals
+			comparison_times = EQUALS_DATE;
+		}
+	}
+
+	return comparison_times;
+}
+
+/*Data_t dataPiuRecente(Data_t prima_data, Data_t seconda_data)
 {
     Data_t data_recente = {MIN_ANNO, gennaio, MIN_GIORNO};
 

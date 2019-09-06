@@ -119,7 +119,17 @@
 #define TRAVEL_ID_DELETE_PRINTF_VALUE_INPUT "Enter the ID of the travel that you want to delete: "
 #define TRAVEL_ID_DELETE_PRINTF_VALUE_ERROR "The ID of the driver that you want to delete is not valid"
 
-#define MERGE_TEMP_FILE_PATH "../Files/Temp.dat"
+#define BOOK_TRAVEL_SEATS_PRINTF_VALUE_INPUT "Enter the number of seats that you need: "
+#define BOOK_TRAVEL_SEATS_PRINTF_VALUE_ERROR "The number of seats that you have entered is not valid"
+
+#define SORTING_DRIVER_PRINTF_VALUE_INPUT "Enter the number of sorting that you want to do on the drivers: "
+#define SORTING_DRIVER_PRINTF_VALUE_ERROR "The number of sorting that you have entered is not valid"
+
+#define SORTING_TRAVEL_PRINTF_VALUE_INPUT "Enter the number of sorting that you want to do on the travels: "
+#define SORTING_TRAVEL_PRINTF_VALUE_ERROR "The number of sorting that you have entered is not valid"
+
+#define MERGE_TEMP_FILE_PATH "../Files/TempSort.dat"
+#define BOOK_TRAVEL_TEMP_FILE_PATH "../Files/TempBook.dat"
 
 // -- User-Defined types --
 typedef enum {one_star = 1, two_star, three_star, four_star, five_star} Rating_t;
@@ -129,8 +139,18 @@ typedef enum {male, female, custom} Gender_t;
 typedef enum {id_driver = -1, name, surname, email, password, phone_number, birthday, gender, driving_capacity,
 			 comfort_capacity, average_rating, deleted_driver} Driver_members_t;
 
+typedef enum {increasing_id_driver, decreasing_id_driver, increasing_name, decreasing_name, increasing_surname,
+			 decreasing_surname, increasing_email, decreasing_email, increasing_birthday, decreasing_birthday, increasing_gender,
+			 decreasing_gender, increasing_driving_capacity, decreasing_driving_capacity, increasing_comfort_capacity,
+			 decreasing_comfort_capacity, increasing_average_rating, decreasing_average_rating} Driver_sorting_t;
+
 typedef enum {id_travel = -2, id_driver_, departure_destination, arrival_destination, departure_date, departure_time,
 			 total_seats, free_seats, price, additional_notes, deleted_travel} Travel_members_t;
+
+typedef enum {increasing_id_travel, decreasing_id_travel, increasing_departure_destination, decreasing_departure_destination,
+			 increasing_arrival_destination, decreasing_arrival_destination, increasing_departure_date, decreasing_departure_date,
+			 increasing_price, decreasing_price, increasing_total_seats, decreasing_total_seats, increasing_free_seats,
+			 decreasing_free_seats} Travel_sorting_t;
 
 typedef struct
 {
@@ -182,18 +202,22 @@ void setDriver(Driver_t *driver, const int *id);
 void readDriver(const Driver_t *driver);
 bool isIdDriverEqual(const Driver_t *driver, const int *id);
 void showMemberDriver(void);
+void showSortingDriver(void);
 
 void resetTravel(Travel_t *travel);
 void setTravel(Travel_t *travel, const int *id, const char path_file_travel[], const char path_file_driver[]);
 void readTravel(const Travel_t *travel, const char path_driver_file[]);
 bool isIdTravelEqual(const Travel_t *travel, const int *id);
 void showMemberTravel(void);
+void showSortingTravel(void);
 
 // Those function uses files
 File_status_t addStruct(const char path_file_driver[], const char path_file_travel[], const int *id, bool select_struct); // This function returns true if the struct has been added to the system
 File_status_t editStruct(const char path_file_driver[], const char path_file_travel[], bool select_struct); // This function returns true if the struct has been edited
 File_status_t deleteStruct(const char path_file_driver[], const char path_file_travel[], bool select_struct); // This function returns true if the struct has been deleted to the system
 File_status_t showAllStructs(const char path_file_driver[], const char path_file_travel[], bool select_struct); // This function returns if it has read all records of the file
+
+File_status_t bookTravel(const char path_file_driver[], const char path_file_travel[]);
 
 File_status_t updateID(const char path_file[], const long int offset, int *id); // This function returns true if the ID is update
 
@@ -203,7 +227,9 @@ long int getIndexUser(const char path_file_driver[], const char path_file_travel
 // This function return the index of the ID, the ID is passed by pointer
 long int getIndex(const char path_file[], const int *id, bool select_struct);
 
-void mergeSort(const char path_file[], long int start, long int end);
-void merge(const char path_file[], long int start, long int middle, long int end);
+double setSort(const char path_file[], long int start, long int end, bool select_struct); // It returns the seconds that the sort has spent
+void mergeSort(const char path_file[], long int start, long int end, bool select_struct, int kind_sorting);
+void mergeDriver(const char path_file[], long int start, long int middle, long int end, int kind_sorting);
+void mergeTravel(const char path_file[], long int start, long int middle, long int end, int kind_sorting);
 
 #endif

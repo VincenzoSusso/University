@@ -46,6 +46,10 @@
 #define MAX_LENGHT_DATE_STRING_INPUT 11
 #define MAX_LENGHT_TIME_STRING_INPUT 6
 
+#define EQUALS_DATE 0
+#define OLDER_DATE 1
+#define LATEST_DATE -1
+
 // -- User-Defined types --
 typedef enum {january = 1, february, march, april, may, june, july, august, september, october, november, december} Month_t;
 
@@ -73,8 +77,10 @@ void setDate(Date_t *date, const unsigned short min_year, const unsigned short m
 bool isValidTime(const Time_t time);
 void resetTime(Time_t *time);
 void setTime(Time_t *time, const char printf_value[]); // The procedure set a valid value to the time passed by pointer
-/*bool areDatesEquals(Date_t first_date, Date_t second_date);
-Date_t dataPiuRecente(Date_t first_date, Date_t second_date);
+bool areDatesEquals(const Date_t *first_date, const Date_t *second_date);
+int cmpDate(const Date_t *first_date, const Date_t *second_date);
+int cmpTime(const Time_t *first_time, const Time_t *second_time);
+/*Date_t dataPiuRecente(Date_t first_date, Date_t second_date);
 Date_t dataMenoRecente(Date_t first_date, Date_t second_date); */
 
 #endif
