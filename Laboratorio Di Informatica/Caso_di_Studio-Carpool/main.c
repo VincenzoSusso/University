@@ -198,6 +198,18 @@ int main(void)
 				system("PAUSE");
 				break;
 			case book_travel:
+				// Booking travel
+				if(bookTravel(DRIVERS_FILE_PATH, TRAVELS_FILE_PATH))
+				{
+					printf("\n\nThe travel has been booked");
+				}
+				else
+				{
+					printfError("\n\nAn error has occurred during the booking of the travel");
+				}
+
+				printf("\n\n");
+				system("PAUSE");
 				break;
 			case sort_drivers:
 				// Sorting Drivers

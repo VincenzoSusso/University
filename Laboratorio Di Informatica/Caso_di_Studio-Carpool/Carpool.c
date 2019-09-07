@@ -347,17 +347,13 @@ void showSortingDriver(void)
 	printf("\n+---------------------+-----------------------------+");
 	printf("\n|          %d          |      Decreasing Surname     |", decreasing_surname);
 	printf("\n+---------------------+-----------------------------+");
-	printf("\n|          %d          |       Increasing Email      |", increasing_email);
-	printf("\n+---------------------+-----------------------------+");
-	printf("\n|          %d          |       Decreasing Email      |", decreasing_email);
-	printf("\n+---------------------+-----------------------------+");
 	printf("\n|          %d          |     Increasing Birthday     |", increasing_birthday);
 	printf("\n+---------------------+-----------------------------+");
 	printf("\n|          %d          |     Decreasing Birthday     |", decreasing_birthday);
 	printf("\n+---------------------+-----------------------------+");
-	printf("\n|          %d         |      Increasing Gender      |", increasing_gender);
+	printf("\n|          %d          |      Increasing Gender      |", increasing_gender);
 	printf("\n+---------------------+-----------------------------+");
-	printf("\n|          %d         |      Decreasing Gender      |", decreasing_gender);
+	printf("\n|          %d          |      Decreasing Gender      |", decreasing_gender);
 	printf("\n+---------------------+-----------------------------+");
 	printf("\n|          %d         | Increasing Driving Capacity |", increasing_driving_capacity);
 	printf("\n+---------------------+-----------------------------+");
@@ -370,7 +366,7 @@ void showSortingDriver(void)
 	printf("\n|          %d         |  Increasing Average Rating  |", increasing_average_rating);
 	printf("\n+---------------------+-----------------------------+");
 	printf("\n|          %d         |  Decreasing Average Rating  |", decreasing_average_rating);
-	printf("\n+---------------------+-----------------------------+");
+	printf("\n+---------------------+-----------------------------+\n");
 }
 
 void resetTravel(Travel_t *travel)
@@ -517,7 +513,7 @@ void showSortingTravel(void)
 	printf("\n|          %d         |       Increasing Free Seats       |", increasing_driving_capacity);
 	printf("\n+---------------------+-----------------------------------+");
 	printf("\n|          %d         |       Decreasing Free Seats       |", decreasing_driving_capacity);
-	printf("\n+---------------------+-----------------------------------+");
+	printf("\n+---------------------+-----------------------------------+\n");
 }
 
 File_status_t addStruct(const char path_file_driver[], const char path_file_travel[], const int *id, bool select_struct) // This function returns true if the struct has been added to the system
@@ -705,7 +701,9 @@ File_status_t deleteStruct(const char path_file_driver[], const char path_file_t
 	File_status_t operation = done;
 	Driver_t driver;
 	Travel_t travel;
+	int id = -1;
 	long int index_id = INDEX_NOT_FOUND; // Variable that will store the index of the ID
+	long int i = 0; // Used to search travel to delete after the delete of the driver
 
 	resetDriver(&driver);
 	resetTravel(&travel);
@@ -722,8 +720,25 @@ File_status_t deleteStruct(const char path_file_driver[], const char path_file_t
 			operation = readFile(path_file_driver, &driver, sizeof(Driver_t), index_id, SEEK_SET);
 			if(operation == done)
 			{
+				id = driver.id; // Get the ID in order to search the travel to delete
 				driver.deleted = true;
 				operation = writeFile(path_file_driver, &driver, sizeof(Driver_t), index_id, SEEK_SET);
+			}
+
+			if(operation == done)
+			{
+				i = 0;
+				do
+				{
+					operation = readFile(path_file_travel, &travel, sizeof(Travel_t), i, SEEK_SET);
+					if(operation == done && travel.id_driver == id)
+					{
+						travel.deleted = true;
+						operation = writeFile(path_file_travel, &travel, sizeof(Travel_t), i, SEEK_SET);
+					}
+					i++;
+				}
+				while(operation == done);
 			}
 		}
 		else
@@ -776,7 +791,7 @@ File_status_t showAllStructs(const char path_file_driver[], const char path_file
 
 		do
 		{
-			operation = readFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_CUR);
+			operation = readFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_SET);
 			if(operation == done)
 			{
 				// The driver has been read
@@ -794,7 +809,7 @@ File_status_t showAllStructs(const char path_file_driver[], const char path_file
 
 		do
 		{
-			operation = readFile(path_file_travel, &travel, sizeof(Travel_t), i, SEEK_CUR);
+			operation = readFile(path_file_travel, &travel, sizeof(Travel_t), i, SEEK_SET);
 			if(operation == done)
 			{
 				// The travel has been read
@@ -808,17 +823,23 @@ File_status_t showAllStructs(const char path_file_driver[], const char path_file
 	return operation;
 }
 
-File_status_t bookTravel(const char path_file_driver[], const char path_file_travel[])
+bool bookTravel(const char path_file_driver[], const char path_file_travel[])
 {
+	bool travel_booked = true;
 	File_status_t reading_operation = error;
 	File_status_t writing_operation = error;
 	Travel_t travel;
+
+	//Thoose variable are used to take the input
+	int id_input_travel = -1;
 	char departure_destination[MAX_LENGHT_STRINGS] = NULL_STRING;
 	char arrival_destination[MAX_LENGHT_STRINGS] = NULL_STRING;
 	Date_t departure_date;
 	Time_t departure_time;
-	double price = 0;
 	unsigned short number_seats = 0;
+
+	int id_travel = -1; // Used to check if the ID that the user has choosen is valid
+	bool valid_id_travel = false;
 	long int i = 0; // Index of the travel's file
 	long int j = 0; // Index of the temporary file
 
@@ -828,8 +849,7 @@ File_status_t bookTravel(const char path_file_driver[], const char path_file_tra
 
 	if(isValidFile(BOOK_TRAVEL_TEMP_FILE_PATH))
 	{
-
-
+		// Take input
 		setWord(departure_destination, TRAVEL_DEPARTURE_DESTINATION_PRINTF_VALUE);
 		capitalizeString(departure_destination);
 
@@ -839,22 +859,27 @@ File_status_t bookTravel(const char path_file_driver[], const char path_file_tra
 		setDate(&departure_date, MIN_YEAR_TRAVEL, MAX_YEAR_TRAVEL, TRAVEL_DEPARTURE_DATE_PRINTF_VALUE);
 		setTime(&departure_time, TRAVEL_DEPARTURE_TIME_PRINTF_VALUE);
 
-		setPrice(&price);
+		printf("\n%hu%s%hu", departure_time.hour, TIME_DELIMITER, departure_time.minute);
 
 		setNumberInput((int *) &number_seats, MIN_NUMBER_FREE_SEATS + 1, MAX_NUMBER_FREE_SEATS, BOOK_TRAVEL_SEATS_PRINTF_VALUE_INPUT, BOOK_TRAVEL_SEATS_PRINTF_VALUE_ERROR);
 
+		i = 0;
+		j = 0;
+
+		// Save valid travel to temporary file
 		do
 		{
-			reading_operation = readFile(path_file_driver, &travel, sizeof(Travel_t), i, SEEK_CUR);
+			reading_operation = readFile(path_file_travel, &travel, sizeof(Travel_t), i, SEEK_SET);
 			if(reading_operation == done)
 			{
-				if((strcmp(departure_destination, travel.departure_destination) == 0) && (strcmp(arrival_destination, travel.arrival_destination) == 0) && (cmpDate(&departure_date, &travel.departure_date) == EQUALS_DATE) && (cmpTime(&departure_time, &travel.departure_time) >= EQUALS_DATE) && (free_seats >= travel.free_seats))
+				if((strcmp(departure_destination, travel.departure_destination) == 0) && (strcmp(arrival_destination, travel.arrival_destination) == 0) && (cmpDate(&departure_date, &travel.departure_date) == equal) && (cmpTime(&departure_time, &travel.departure_time) <= equal) && (number_seats <= travel.free_seats))
 				{
 					writing_operation = writeFile(BOOK_TRAVEL_TEMP_FILE_PATH, &travel.id , sizeof(int), j, SEEK_SET);
 					if(!writing_operation)
 					{
 						reading_operation = error;
 						writing_operation = error;
+						travel_booked = false;
 					}
 					j++;
 				}
@@ -863,9 +888,72 @@ File_status_t bookTravel(const char path_file_driver[], const char path_file_tra
 		}
 		while(reading_operation == done);
 
+		if(j <= 0 && travel_booked)
+		{
+			// There's no travel
+			printf("\nThere's no travel that matches your research");
+			travel_booked = false;
+		}
+
+		if(travel_booked)
+		{
+			printf("\n+----+-----------------------------+------------------+------------------+------------------+----------+----------+----------+----------------------------------------+");
+			printf("\n| ID |  Driver's Name and Surname  | Dep. Destination | Arr. Destination |Dep. Date and Time|   Price  |Tot. Seats|Free Seats|            Additional Notes            |");
+			printf("\n+----+-----------------------------+------------------+------------------+------------------+----------+----------+----------+----------------------------------------+");
+
+			reading_operation = done;
+			i = 0;
+
+			// Printing valid travel
+			while(i < j && reading_operation == done)
+			{
+				reading_operation = readFile(BOOK_TRAVEL_TEMP_FILE_PATH, &id_travel, sizeof(int), i, SEEK_SET);
+				if(reading_operation == done)
+				{
+					reading_operation = readFile(path_file_travel, &travel, sizeof(Travel_t), getIndex(path_file_travel, &id_travel, TRAVEL), SEEK_SET);
+					readTravel(&travel, path_file_driver);
+				}
+				i++;
+			}
+
+			// Compare ID to the travel
+			do
+			{
+				// Get the number of the ID of the travel that the user wants to book
+				setNumberInput(&id_input_travel, INT_MIN, INT_MAX, BOOK_TRAVEL_ID_PRINTF_VALUE_INPUT, BOOK_TRAVEL_ID_PRINTF_VALUE_ERROR);
+				reading_operation = done;
+				i = 0;
+
+				while(i < j && reading_operation == done && travel_booked)
+				{
+					reading_operation = readFile(BOOK_TRAVEL_TEMP_FILE_PATH, &id_travel, sizeof(int), i, SEEK_SET);
+					if(id_input_travel == id_travel)
+					{
+						travel_booked = true;
+						valid_id_travel = true;
+						readFile(path_file_travel, &travel, sizeof(Travel_t), getIndex(path_file_travel, &id_travel, TRAVEL), SEEK_SET);
+						travel.free_seats -= number_seats;
+						writeFile(path_file_travel, &travel, sizeof(Travel_t), getIndex(path_file_travel, &id_travel, TRAVEL), SEEK_SET);
+					}
+					i++;
+				}
+
+				if(!valid_id_travel)
+				{
+					printf("\nThe ID that you have entered doesn't belong to the list");
+				}
+			}
+			while(!valid_id_travel);
+		}
+
 		deleteFile(BOOK_TRAVEL_TEMP_FILE_PATH);
 	}
-	return reading_operation;
+	else
+	{
+		printf("There was no travel that matched your research");
+	}
+
+	return travel_booked;
 }
 
 File_status_t updateID(const char path_file[], const long int offset, int *id)
@@ -899,7 +987,7 @@ long int getIndexUser(const char path_file_driver[], const char path_file_travel
 			setNumberInput(&id_input, INT_MIN, INT_MAX, printf_value_input, printf_value_error);
 			do
 			{
-				operation = readFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_CUR);
+				operation = readFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_SET);
 				if(operation == done)
 				{
 					// The driver has been read
@@ -921,7 +1009,7 @@ long int getIndexUser(const char path_file_driver[], const char path_file_travel
 			setNumberInput(&id_input, INT_MIN, INT_MAX, printf_value_input, printf_value_error);
 			do
 			{
-				operation = readFile(path_file_travel, &travel, sizeof(Travel_t), i, SEEK_CUR);
+				operation = readFile(path_file_travel, &travel, sizeof(Travel_t), i, SEEK_SET);
 				if(operation == done)
 				{
 					// The travel has been read
@@ -955,7 +1043,7 @@ long int getIndex(const char path_file[], const int *id, bool select_struct)
 	{
 		do
 		{
-			operation = readFile(path_file, &driver, sizeof(driver), i, SEEK_CUR);
+			operation = readFile(path_file, &driver, sizeof(driver), i, SEEK_SET);
 			if(operation == done)
 			{
 				// The driver has been read
@@ -972,7 +1060,7 @@ long int getIndex(const char path_file[], const int *id, bool select_struct)
 	{
 		do
 		{
-			operation = readFile(path_file, &travel, sizeof(travel), i, SEEK_CUR);
+			operation = readFile(path_file, &travel, sizeof(travel), i, SEEK_SET);
 			if(operation == done)
 			{
 				// The travel has been read
@@ -1136,32 +1224,8 @@ void mergeDriver(const char path_file[], long int start, long int middle, long i
 						j++;
 					}
 					break;
-				case increasing_email:
-					if(strcmp(first_driver.email, second_driver.email) <= 0)
-					{
-						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
-						i++;
-					}
-					else
-					{
-						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
-						j++;
-					}
-					break;
-				case decreasing_email:
-					if(strcmp(first_driver.surname, second_driver.surname) >= 0)
-					{
-						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
-						i++;
-					}
-					else
-					{
-						writeFile(MERGE_TEMP_FILE_PATH, &second_driver, sizeof(Driver_t), k, SEEK_SET);
-						j++;
-					}
-					break;
 				case increasing_birthday:
-					if(cmpDate(&first_driver.birthday, &second_driver.birthday) <= EQUALS_DATE)
+					if(cmpDate(&first_driver.birthday, &second_driver.birthday) <= equal)
 					{
 						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
 						i++;
@@ -1173,7 +1237,7 @@ void mergeDriver(const char path_file[], long int start, long int middle, long i
 					}
 					break;
 				case decreasing_birthday:
-					if(cmpDate(&first_driver.birthday, &second_driver.birthday) >= EQUALS_DATE)
+					if(cmpDate(&first_driver.birthday, &second_driver.birthday) >= equal)
 					{
 						writeFile(MERGE_TEMP_FILE_PATH, &first_driver, sizeof(Driver_t), k, SEEK_SET);
 						i++;
@@ -1406,9 +1470,9 @@ void mergeTravel(const char path_file[], long int start, long int middle, long i
 					}
 					break;
 				case increasing_departure_date:
-					if(cmpDate(&first_travel.departure_date, &second_travel.departure_date) == EQUALS_DATE)
+					if(cmpDate(&first_travel.departure_date, &second_travel.departure_date) == equal)
 					{
-						if(cmpTime(&first_travel.departure_time, &second_travel.departure_time) <= EQUALS_DATE)
+						if(cmpTime(&first_travel.departure_time, &second_travel.departure_time) <= equal)
 						{
 							writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
 							i++;
@@ -1421,7 +1485,7 @@ void mergeTravel(const char path_file[], long int start, long int middle, long i
 					}
 					else
 					{
-						if(cmpDate(&first_travel.departure_date, &second_travel.departure_date) < EQUALS_DATE)
+						if(cmpDate(&first_travel.departure_date, &second_travel.departure_date) < equal)
 						{
 							writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
 							i++;
@@ -1434,9 +1498,9 @@ void mergeTravel(const char path_file[], long int start, long int middle, long i
 					}
 					break;
 				case decreasing_departure_date:
-					if(cmpDate(&first_travel.departure_date, &second_travel.departure_date) == EQUALS_DATE)
+					if(cmpDate(&first_travel.departure_date, &second_travel.departure_date) == equal)
 					{
-						if(cmpTime(&first_travel.departure_time, &second_travel.departure_time) >= EQUALS_DATE)
+						if(cmpTime(&first_travel.departure_time, &second_travel.departure_time) >= equal)
 						{
 							writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
 							i++;
@@ -1449,7 +1513,7 @@ void mergeTravel(const char path_file[], long int start, long int middle, long i
 					}
 					else
 					{
-						if(cmpDate(&first_travel.departure_date, &second_travel.departure_date) > EQUALS_DATE)
+						if(cmpDate(&first_travel.departure_date, &second_travel.departure_date) > equal)
 						{
 							writeFile(MERGE_TEMP_FILE_PATH, &first_travel, sizeof(Travel_t), k, SEEK_SET);
 							i++;
@@ -1564,4 +1628,3 @@ void mergeTravel(const char path_file[], long int start, long int middle, long i
 		deleteFile(MERGE_TEMP_FILE_PATH);
 	}
 }
-

@@ -2,28 +2,9 @@
 #include "Utilities.h"
 
 // -- Procedure & Functions --
-int createRandomValue(const int min, const int max) // Return a random value between min and max
-{
-    return rand() % (max - min + 1) + min;
-}
-
 void clearBuffer(void)
 {
     while(getchar() != NEWLINE_CHARACTER){};
-}
-
-void swap(void *first_pointer, void *second_pointer, size_t size_pointer) // The pointer must be of the same type
-{
-	// For more information please, visit here: https://stackoverflow.com/questions/2232706/swapping-objects-using-pointers
-
-	// char serves as the type for "generic" byte arrays
-	char *temp = malloc(size_pointer);
-
-	memcpy(temp, second_pointer, size_pointer);
-	memcpy(second_pointer, first_pointer, size_pointer);
-	memcpy(first_pointer, temp, size_pointer);
-
-	free(temp);
 }
 
 void initializeCMD(void) // This function is used to enable ANSI escape sequences on CMD
@@ -319,7 +300,7 @@ bool isNumberPhone(const char phone_number[])
 
 bool isDecimalNumber(const char decimal_number[])
 {
-	bool valid_price = true;
+	bool valid_number = true;
 	char *copied_decimal_number = NULL;
 	char *integer_part = NULL;
 	char *decimal_portion = NULL;
@@ -335,20 +316,20 @@ bool isDecimalNumber(const char decimal_number[])
 	}
 	else
 	{
-		valid_price = false;
+		valid_number = false;
 	}
 
-	if(integer_part && valid_price)
+	if(integer_part && valid_number)
 	{
-		valid_price = isNumberString(integer_part);
+		valid_number = isNumberString(integer_part);
 	}
 
-	if(decimal_portion && valid_price)
+	if(decimal_portion && valid_number)
 	{
-		valid_price = isNumberString(decimal_portion);
+		valid_number = isNumberString(decimal_portion);
 	}
 
-	return valid_price;
+	return valid_number;
 }
 
 double getSecondSort(const time_t start, const time_t end) //Used to calculate the number of second that the sort has spend

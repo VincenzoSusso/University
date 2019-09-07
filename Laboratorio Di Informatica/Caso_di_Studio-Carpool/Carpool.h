@@ -122,6 +122,9 @@
 #define BOOK_TRAVEL_SEATS_PRINTF_VALUE_INPUT "Enter the number of seats that you need: "
 #define BOOK_TRAVEL_SEATS_PRINTF_VALUE_ERROR "The number of seats that you have entered is not valid"
 
+#define BOOK_TRAVEL_ID_PRINTF_VALUE_INPUT "Enter the ID of the travel that you want to book: "
+#define BOOK_TRAVEL_ID_PRINTF_VALUE_ERROR "The ID of the travel that you want to book is not valid"
+
 #define SORTING_DRIVER_PRINTF_VALUE_INPUT "Enter the number of sorting that you want to do on the drivers: "
 #define SORTING_DRIVER_PRINTF_VALUE_ERROR "The number of sorting that you have entered is not valid"
 
@@ -140,7 +143,7 @@ typedef enum {id_driver = -1, name, surname, email, password, phone_number, birt
 			 comfort_capacity, average_rating, deleted_driver} Driver_members_t;
 
 typedef enum {increasing_id_driver, decreasing_id_driver, increasing_name, decreasing_name, increasing_surname,
-			 decreasing_surname, increasing_email, decreasing_email, increasing_birthday, decreasing_birthday, increasing_gender,
+			 decreasing_surname, increasing_birthday, decreasing_birthday, increasing_gender,
 			 decreasing_gender, increasing_driving_capacity, decreasing_driving_capacity, increasing_comfort_capacity,
 			 decreasing_comfort_capacity, increasing_average_rating, decreasing_average_rating} Driver_sorting_t;
 
@@ -217,7 +220,7 @@ File_status_t editStruct(const char path_file_driver[], const char path_file_tra
 File_status_t deleteStruct(const char path_file_driver[], const char path_file_travel[], bool select_struct); // This function returns true if the struct has been deleted to the system
 File_status_t showAllStructs(const char path_file_driver[], const char path_file_travel[], bool select_struct); // This function returns if it has read all records of the file
 
-File_status_t bookTravel(const char path_file_driver[], const char path_file_travel[]);
+bool bookTravel(const char path_file_driver[], const char path_file_travel[]);
 
 File_status_t updateID(const char path_file[], const long int offset, int *id); // This function returns true if the ID is update
 

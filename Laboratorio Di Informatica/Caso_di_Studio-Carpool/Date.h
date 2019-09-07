@@ -46,12 +46,10 @@
 #define MAX_LENGHT_DATE_STRING_INPUT 11
 #define MAX_LENGHT_TIME_STRING_INPUT 6
 
-#define EQUALS_DATE 0
-#define OLDER_DATE 1
-#define LATEST_DATE -1
-
 // -- User-Defined types --
 typedef enum {january = 1, february, march, april, may, june, july, august, september, october, november, december} Month_t;
+
+typedef enum {older = -1, equal, later} Date_order_t;
 
 typedef struct
 {
@@ -67,8 +65,6 @@ typedef struct
 } Time_t;
 
 // -- Procedure & Functions Prototypes --
-/*Date_t createRandomDate(void);
-Time_t createRandomTime(void);*/
 bool isLeapYear(const unsigned short year);
 bool isValidDate(const Date_t date, const unsigned short min_year, const unsigned short max_year);
 void resetDate(Date_t *date);
@@ -78,9 +74,7 @@ bool isValidTime(const Time_t time);
 void resetTime(Time_t *time);
 void setTime(Time_t *time, const char printf_value[]); // The procedure set a valid value to the time passed by pointer
 bool areDatesEquals(const Date_t *first_date, const Date_t *second_date);
-int cmpDate(const Date_t *first_date, const Date_t *second_date);
-int cmpTime(const Time_t *first_time, const Time_t *second_time);
-/*Date_t dataPiuRecente(Date_t first_date, Date_t second_date);
-Date_t dataMenoRecente(Date_t first_date, Date_t second_date); */
+Date_order_t cmpDate(const Date_t *first_date, const Date_t *second_date);
+Date_order_t cmpTime(const Time_t *first_time, const Time_t *second_time);
 
 #endif

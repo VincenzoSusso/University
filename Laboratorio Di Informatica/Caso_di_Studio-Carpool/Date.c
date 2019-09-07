@@ -2,29 +2,6 @@
 #include "Date.h"
 
 // -- Procedure & Functions --
-/*Date_t createRandomDate(void)
-{
-    Date_t date = {MIN_YEAR, january, MIN_DAY};
-
-    // Creation of random value
-    date.year = createRandomValue(MIN_YEAR, MAX_YEAR);
-    date.month = createRandomValue(january, december);
-    date.day = createRandomValue(MIN_DAY, MAX_DAY);
-
-
-    return date;
-}
-
-Time_t createRandomTime(void)
-{
-	Time_t time = {MIN_HOUR, MIN_MINUTE};
-
-    time.hour = createRandomValue(MIN_HOUR, MAX_HOUR);
-    time.minute = createRandomValue(MIN_MINUTE, MAX_MINUTE);
-
-	return time;
-}*/
-
 bool isLeapYear(const unsigned short year)
 {
 	bool leap_year = false;
@@ -202,48 +179,48 @@ bool areDatesEquals(const Date_t *first_date, const Date_t *second_date)
 	return (first_date -> year == second_date -> year) && ((first_date -> month) == (second_date -> month)) && ((first_date -> day) == (second_date -> day));
 }
 
-int cmpDate(const Date_t *first_date, const Date_t *second_date)
+Date_order_t cmpDate(const Date_t *first_date, const Date_t *second_date)
 {
-	int comparison_dates = EQUALS_DATE;
+	Date_order_t comparison_dates = equal;
 
-	if((first_date -> year) > (second_date -> year))
+	if((first_date -> year) < (second_date -> year))
 	{
 		// The first date is older than the second one due to the year
-		comparison_dates = OLDER_DATE;
+		comparison_dates = older;
 	}
-	else if((first_date -> year) < (second_date -> year))
+	else if((first_date -> year) > (second_date -> year))
 	{
-		// The first date is latest than the second one due to the year
-		comparison_dates = LATEST_DATE;
+		// The first date is later than the second one due to the year
+		comparison_dates = later;
 	}
 	else
 	{
-		if((first_date -> month) > (second_date -> month))
+		if((first_date -> month) < (second_date -> month))
 		{
 			// The first date is older than the second one due to the month
-			comparison_dates = OLDER_DATE;
+			comparison_dates = older;
 		}
-		else if((first_date -> month) < (second_date -> month))
+		else if((first_date -> month) > (second_date -> month))
 		{
-			// The first date is latest than the second one due to the month
-			comparison_dates = LATEST_DATE;
+			// The first date is later than the second one due to the month
+			comparison_dates = later;
 		}
 		else
 		{
-			if((first_date -> day) > (second_date -> day))
+			if((first_date -> day) < (second_date -> day))
 			{
 				// The first date is older than the second one due to the day
-				comparison_dates = OLDER_DATE;
+				comparison_dates = older;
 			}
-			else if(first_date -> day < second_date -> day)
+			else if(first_date -> day > second_date -> day)
 			{
-				// The first date is latest than the second one due to the day
-				comparison_dates = LATEST_DATE;
+				// The first date is later than the second one due to the day
+				comparison_dates = later;
 			}
 			else
 			{
 				// Both dates are equals
-				comparison_dates = EQUALS_DATE;
+				comparison_dates = equal;
 			}
 		}
 	}
@@ -251,131 +228,38 @@ int cmpDate(const Date_t *first_date, const Date_t *second_date)
 	return comparison_dates;
 }
 
-int cmpTime(const Time_t *first_time, const Time_t *second_time)
+Date_order_t cmpTime(const Time_t *first_time, const Time_t *second_time)
 {
-	int comparison_times = EQUALS_DATE;
+	int comparison_times = equal;
 
-	if((first_time -> hour) > (second_time -> hour))
+	if((first_time -> hour) < (second_time -> hour))
 	{
 		// The first time is older that the second one due to hour
-		comparison_times = OLDER_DATE;
+		comparison_times = older;
 	}
-	else if((first_time -> hour) < (second_time -> hour))
+	else if((first_time -> hour) > (second_time -> hour))
 	{
 		// The first time is latest that the second one due to hour
-		comparison_times = LATEST_DATE;
+		comparison_times = later;
 	}
 	else
 	{
-		if((first_time -> minute) > (second_time -> minute))
+		if((first_time -> minute) < (second_time -> minute))
 		{
 			// The first time is older that the second one due to minute
-			comparison_times = OLDER_DATE;
+			comparison_times = older;
 		}
 		else if((first_time -> minute) > (second_time -> minute))
 		{
 			// The first time is latest that the second one due to hour
-			comparison_times = LATEST_DATE;
+			comparison_times = later;
 		}
 		else
 		{
 			// The two times are equals
-			comparison_times = EQUALS_DATE;
+			comparison_times = equal;
 		}
 	}
 
 	return comparison_times;
 }
-
-/*Data_t dataPiuRecente(Data_t prima_data, Data_t seconda_data)
-{
-    Data_t data_recente = {MIN_ANNO, gennaio, MIN_GIORNO};
-
-    if(prima_data.anno == seconda_data.anno)
-    {
-        // L'anno della prima e della seconda data coincidono
-        if(prima_data.mese == seconda_data.mese)
-        {
-            // Il mese della prima e della seconda data coincidono
-            if(prima_data.giorno >= seconda_data.giorno)
-            {
-                // La prima data e la seconda coincidono oppure la prima data è più recente
-                data_recente = prima_data;
-            }
-            else
-            {
-                // La seconda data è più recente
-                data_recente = seconda_data;
-            }
-        }
-        else if(prima_data.mese > seconda_data.mese)
-        {
-            // Il mese della prima data è più recente
-            data_recente = prima_data;
-        }
-        else
-        {
-            // Il mese della seconda data è più recente
-            data_recente = seconda_data;
-        }
-
-    }
-    else if(prima_data.anno > seconda_data.anno)
-    {
-        // L'anno della prima data è più recente
-        data_recente = prima_data;
-    }
-    else
-    {
-        // L'anno della seconda data è più recente
-        data_recente = seconda_data;
-    }
-
-    return data_recente;
-}
-Data_t dataMenoRecente(Data_t prima_data, Data_t seconda_data)
-{
-    Data_t data_meno_recente = {MAX_ANNO, dicembre, MAX_GIORNO};
-
-    if(prima_data.anno == seconda_data.anno)
-    {
-        // L'anno della prima e della seconda data coincidono
-        if(prima_data.mese == seconda_data.mese)
-        {
-            // Il mese della prima e della seconda data coincidono
-            if(prima_data.giorno <= seconda_data.giorno)
-            {
-                // La prima data e la seconda coincidono oppure la prima data è meno recente
-                data_meno_recente = prima_data;
-            }
-            else
-            {
-                // La seconda data è meno recente
-                data_meno_recente = seconda_data;
-            }
-        }
-        else if(prima_data.mese < seconda_data.mese)
-        {
-            // Il mese della prima data è meno recente
-            data_meno_recente = prima_data;
-        }
-        else
-        {
-            // Il mese della seconda data è più recente
-            data_meno_recente = seconda_data;
-        }
-
-    }
-    else if(prima_data.anno < seconda_data.anno)
-    {
-        // L'anno della prima data è meno recente
-        data_meno_recente = prima_data;
-    }
-    else
-    {
-        // L'anno della seconda data è meno recente
-        data_meno_recente = seconda_data;
-    }
-
-    return data_meno_recente;
-} */
