@@ -5,6 +5,7 @@
 	Surname: Susso
 	Freshman: 697538
    ------------------------------
+   This library was developed in order to manage drivers, travels, and the booking of travels.
 */
 
 // -- Libraries --
@@ -186,6 +187,15 @@ typedef struct
 	bool deleted; // True mean that the travel is deleted
 } Travel_t;
 
+typedef struct
+{
+	char departure_destination[MAX_LENGHT_STRINGS];
+	char arrival_destination[MAX_LENGHT_STRINGS];
+	Date_t departure_date;
+	Time_t departure_time;
+	unsigned short number_seats;
+} Booking_travel_t;
+
 // -- Procedure & Functions Prototypes --
 
 // For more information about those two function, please visit here: https://stackoverflow.com/questions/1496313/returning-c-string-from-a-function
@@ -213,6 +223,8 @@ void readTravel(const Travel_t *travel, const char path_driver_file[]);
 bool isIdTravelEqual(const Travel_t *travel, const int *id);
 void showMemberTravel(void);
 void showSortingTravel(void);
+
+void resetBookingTravel(Booking_travel_t *booking_travel);
 
 // Those function uses files
 File_status_t addStruct(const char path_file_driver[], const char path_file_travel[], const int *id, bool select_struct); // This function returns true if the struct has been added to the system

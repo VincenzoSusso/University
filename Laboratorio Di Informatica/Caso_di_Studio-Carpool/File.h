@@ -5,6 +5,7 @@
 	Surname: Susso
 	Freshman: 697538
    ------------------------------
+   This library was developed in order to manage files.
 */
 
 // -- Libraries --

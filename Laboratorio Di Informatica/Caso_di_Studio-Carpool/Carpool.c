@@ -516,6 +516,14 @@ void showSortingTravel(void)
 	printf("\n+---------------------+-----------------------------------+\n");
 }
 
+void resetBookingTravel(Booking_travel_t *booking_travel)
+{
+	strcpy(booking_travel -> departure_destination, NULL_STRING);
+	strcpy(booking_travel -> arrival_destination, NULL_STRING);
+	resetDate(&booking_travel -> departure_date);
+	resetTime(&booking_travel -> departure_time);
+}
+
 File_status_t addStruct(const char path_file_driver[], const char path_file_travel[], const int *id, bool select_struct) // This function returns true if the struct has been added to the system
 {
 	File_status_t operation = error;
@@ -829,14 +837,10 @@ bool bookTravel(const char path_file_driver[], const char path_file_travel[])
 	File_status_t reading_operation = error;
 	File_status_t writing_operation = error;
 	Travel_t travel;
+	Booking_travel_t booking_travel;
 
-	//Thoose variable are used to take the input
-	int id_input_travel = -1;
-	char departure_destination[MAX_LENGHT_STRINGS] = NULL_STRING;
-	char arrival_destination[MAX_LENGHT_STRINGS] = NULL_STRING;
-	Date_t departure_date;
-	Time_t departure_time;
-	unsigned short number_seats = 0;
+
+	int id_input_travel = -1; // This variable is used to take the input of the ID
 
 	int id_travel = -1; // Used to check if the ID that the user has choosen is valid
 	bool valid_id_travel = false;
@@ -844,24 +848,21 @@ bool bookTravel(const char path_file_driver[], const char path_file_travel[])
 	long int j = 0; // Index of the temporary file
 
 	resetTravel(&travel);
-	resetDate(&departure_date);
-	resetTime(&departure_time);
+	resetBookingTravel(&booking_travel);
 
 	if(isValidFile(BOOK_TRAVEL_TEMP_FILE_PATH))
 	{
 		// Take input
-		setWord(departure_destination, TRAVEL_DEPARTURE_DESTINATION_PRINTF_VALUE);
-		capitalizeString(departure_destination);
+		setWord(booking_travel.departure_destination, TRAVEL_DEPARTURE_DESTINATION_PRINTF_VALUE);
+		capitalizeString(booking_travel.departure_destination);
 
-		setWord(arrival_destination, TRAVEL_ARRIVAL_DESTINATION_PRINTF_VALUE);
-		capitalizeString(arrival_destination);
+		setWord(booking_travel.arrival_destination, TRAVEL_ARRIVAL_DESTINATION_PRINTF_VALUE);
+		capitalizeString(booking_travel.arrival_destination);
 
-		setDate(&departure_date, MIN_YEAR_TRAVEL, MAX_YEAR_TRAVEL, TRAVEL_DEPARTURE_DATE_PRINTF_VALUE);
-		setTime(&departure_time, TRAVEL_DEPARTURE_TIME_PRINTF_VALUE);
+		setDate(&booking_travel.departure_date, MIN_YEAR_TRAVEL, MAX_YEAR_TRAVEL, TRAVEL_DEPARTURE_DATE_PRINTF_VALUE);
+		setTime(&booking_travel.departure_time, TRAVEL_DEPARTURE_TIME_PRINTF_VALUE);
 
-		printf("\n%hu%s%hu", departure_time.hour, TIME_DELIMITER, departure_time.minute);
-
-		setNumberInput((int *) &number_seats, MIN_NUMBER_FREE_SEATS + 1, MAX_NUMBER_FREE_SEATS, BOOK_TRAVEL_SEATS_PRINTF_VALUE_INPUT, BOOK_TRAVEL_SEATS_PRINTF_VALUE_ERROR);
+		setNumberInput((int *) &booking_travel.number_seats, MIN_NUMBER_FREE_SEATS + 1, MAX_NUMBER_FREE_SEATS, BOOK_TRAVEL_SEATS_PRINTF_VALUE_INPUT, BOOK_TRAVEL_SEATS_PRINTF_VALUE_ERROR);
 
 		i = 0;
 		j = 0;
@@ -872,7 +873,7 @@ bool bookTravel(const char path_file_driver[], const char path_file_travel[])
 			reading_operation = readFile(path_file_travel, &travel, sizeof(Travel_t), i, SEEK_SET);
 			if(reading_operation == done)
 			{
-				if((strcmp(departure_destination, travel.departure_destination) == 0) && (strcmp(arrival_destination, travel.arrival_destination) == 0) && (cmpDate(&departure_date, &travel.departure_date) == equal) && (cmpTime(&departure_time, &travel.departure_time) <= equal) && (number_seats <= travel.free_seats))
+				if((strcmp(booking_travel.departure_destination, travel.departure_destination) == 0) && (strcmp(booking_travel.arrival_destination, travel.arrival_destination) == 0) && (cmpDate(&booking_travel.departure_date, &travel.departure_date) == equal) && (cmpTime(&booking_travel.departure_time, &travel.departure_time) <= equal) && (booking_travel.number_seats <= travel.free_seats))
 				{
 					writing_operation = writeFile(BOOK_TRAVEL_TEMP_FILE_PATH, &travel.id , sizeof(int), j, SEEK_SET);
 					if(!writing_operation)
@@ -932,7 +933,7 @@ bool bookTravel(const char path_file_driver[], const char path_file_travel[])
 						travel_booked = true;
 						valid_id_travel = true;
 						readFile(path_file_travel, &travel, sizeof(Travel_t), getIndex(path_file_travel, &id_travel, TRAVEL), SEEK_SET);
-						travel.free_seats -= number_seats;
+						travel.free_seats -= booking_travel.number_seats;
 						writeFile(path_file_travel, &travel, sizeof(Travel_t), getIndex(path_file_travel, &id_travel, TRAVEL), SEEK_SET);
 					}
 					i++;
