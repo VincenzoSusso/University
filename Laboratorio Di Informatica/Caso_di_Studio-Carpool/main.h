@@ -16,6 +16,7 @@
 // -- Constant --
 #define DRIVERS_FILE_PATH "../Files/Drivers.dat"
 #define TRAVELS_FILE_PATH "../Files/Travels.dat"
+#define RATINGS_FILE_PATH "../Files/Ratings.dat"
 #define ID_FILE_PATH "../Files/ID.dat" // This file is used in order to generate unique ID for drivers and for travels
 
 // Those constant are used to manage the offset of the ID files
@@ -38,6 +39,7 @@ typedef enum
 	delete_travel,
 	show_all_travels,
 	book_travel,
+	evaluate_driver,
 	sort_drivers,
 	sort_travels,
 	exit_menu,

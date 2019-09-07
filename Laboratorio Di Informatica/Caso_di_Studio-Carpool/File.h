@@ -23,7 +23,6 @@
 #define NUMBER_MEMBER_FILE 1
 
 #define INDEX_NOT_FOUND -1 // This constant is used to check if the index has been found
-#define NUMBER_RECORD_ERROR -1 // This constant is used to check if an error has occurred
 
 // -- User-Defined types --
 

@@ -37,6 +37,11 @@ int main(void)
 		printfError("\nAn error has occured during the opening of the travel's file!");
 		flag = false;
 	}
+	if(!isValidFile(RATINGS_FILE_PATH))
+	{
+		printfError("\nAn error has occured during the opening of the Rating's file");
+		flag = false;
+	}
 	if(!isValidFile(ID_FILE_PATH))
 	{
 		printfError("\nAn error has occured during the opening of the ID's file");
@@ -211,6 +216,20 @@ int main(void)
 				printf("\n\n");
 				system("PAUSE");
 				break;
+			case evaluate_driver:
+				// Evaluating driver
+				if(evaluateDriver(DRIVERS_FILE_PATH, RATINGS_FILE_PATH))
+				{
+					printf("\n\nThe rating has been added to the system");
+				}
+				else
+				{
+					printfError("\n\nAn error has occurred during the evaluating of the driver");
+				}
+
+				printf("\n\n");
+				system("PAUSE");
+				break;
 			case sort_drivers:
 				// Sorting Drivers
 				sorting_seconds = setSort(DRIVERS_FILE_PATH, 0, (getNumberRecord(DRIVERS_FILE_PATH, sizeof(Driver_t)) - 1), DRIVER);
@@ -284,31 +303,33 @@ void introduction(void)
 void showMenu(void)
 {
 	printf("\n\nMenu':");
-	printf("\n+--------------------+------------------+");
-	printf("\n|  Number of Choice  |      Option      |");
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |    Add Driver    |", add_driver);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |    Edit Driver   |", edit_driver);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |   Delete Driver  |", delete_driver);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          | Show All Drivers |", show_all_drivers);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |    Add Travel    |", add_travel);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |    Edit Travel   |", edit_travel);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |   Delete Travel  |", delete_travel);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          | Show All Travels |", show_all_travels);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |   Book a Travel  |", book_travel);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          |    Sort Drivers  |", sort_drivers);
-	printf("\n+--------------------+------------------+");
-	printf("\n|        %d          |    Sort Travels  |", sort_travels);
-	printf("\n+--------------------+------------------+");
-	printf("\n|        %d          |       Exit       |", exit_menu);
-	printf("\n+--------------------+------------------+");
+	printf("\n+--------------------+--------------------+");
+	printf("\n|  Number of Choice  |       Option       |");
+	printf("\n+--------------------+--------------------+");
+	printf("\n|         %d          |     Add Driver     |", add_driver);
+	printf("\n+--------------------+--------------------+");
+	printf("\n|         %d          |     Edit Driver    |", edit_driver);
+	printf("\n+--------------------+--------------------+");
+	printf("\n|         %d          |    Delete Driver   |", delete_driver);
+	printf("\n+--------------------+--------------------+");
+	printf("\n|         %d          |  Show All Drivers  |", show_all_drivers);
+	printf("\n+--------------------+--------------------+");
+	printf("\n|         %d          |     Add Travel     |", add_travel);
+	printf("\n+--------------------+--------------------+");
+	printf("\n|         %d          |     Edit Travel    |", edit_travel);
+	printf("\n+--------------------+--------------------+");
+	printf("\n|         %d          |    Delete Travel   |", delete_travel);
+	printf("\n+--------------------+--------------------+");
+	printf("\n|         %d          |  Show All Travels  |", show_all_travels);
+	printf("\n+--------------------+--------------------+");
+	printf("\n|         %d          |    Book a Travel   |", book_travel);
+	printf("\n+--------------------+--------------------+");
+	printf("\n|         %d          |  Evaluate a Driver |", evaluate_driver);
+	printf("\n+--------------------+--------------------+");
+	printf("\n|        %d          |     Sort Drivers   |", sort_drivers);
+	printf("\n+--------------------+--------------------+");
+	printf("\n|        %d          |     Sort Travels   |", sort_travels);
+	printf("\n+--------------------+--------------------+");
+	printf("\n|        %d          |        Exit        |", exit_menu);
+	printf("\n+--------------------+--------------------+");
 }

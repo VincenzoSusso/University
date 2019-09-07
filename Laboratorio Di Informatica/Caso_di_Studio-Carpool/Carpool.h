@@ -62,7 +62,8 @@
 #define READ_GENDER_CUSTOM "Custom"
 
 // Those constant are used in order to assign a graphic output of the rating
-#define LENGHT_ARRAY_RATING 5
+#define LENGHT_ARRAY_RATING 6
+#define READ_RATING_NONE "None"
 #define READ_RATING_ONE_STAR "*"
 #define READ_RATING_TWO_STAR "**"
 #define READ_RATING_THREE_STAR "***"
@@ -86,12 +87,6 @@
 // Thoose constant are used as printf_value of the procedure setNumberInput()
 #define DRIVER_GENDER_PRINTF_VALUE_INPUT "Enter the driver's gender (Male = 0, Female = 1, Custom = 2): "
 #define DRIVER_GENDER_PRINTF_VALUE_ERROR "The driver's gender that you have entered is not valid"
-
-#define DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_INPUT "Enter the driver's driving capacity (It should be between 1 and 5): "
-#define DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_ERROR "The driver's driving capacity that you have entered is not valid"
-
-#define DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_INPUT "Enter the driver's comfort capacity (It should be between 1 and 5): "
-#define DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_ERROR "The driver's driving capacity that you have entered is not valid"
 
 #define DRIVER_ID_EDIT_PRINTF_VALUE_INPUT "Enter the ID of the driver that you want to edit: "
 #define DRIVER_ID_EDIT_PRINTF_VALUE_ERROR "The ID of the driver that you want to edit is not valid"
@@ -132,16 +127,27 @@
 #define SORTING_TRAVEL_PRINTF_VALUE_INPUT "Enter the number of sorting that you want to do on the travels: "
 #define SORTING_TRAVEL_PRINTF_VALUE_ERROR "The number of sorting that you have entered is not valid"
 
+#define EVALUATE_ID_DRIVER_PRINTF_VALUE_INPUT "Enter the ID of the driver that you want to evaluate: "
+#define EVALUATE_ID_DRIVER_PRINTF_VALUE_ERROR "The ID that you have entered is not valid"
+
+#define EVALUATE_CHOICHE_RATING_PRINTF_VALUE_INPUT "Enter what you want to evaluate (Driving capacity = 0, Comfort capacity = 1): "
+#define EVALUATE_CHOICHE_RATING_PRINTF_VALUE_ERROR "The choice that you have entered is not valid"
+
+#define EVALUATE_DRIVING_CAPACITY_PRINTF_VALUE_INPUT "Enter the driver's driving capacity (It should be between 1 and 5): "
+#define EVALUATE_DRIVING_CAPACITY_PRINTF_VALUE_ERROR "The driver's driving capacity that you have entered is not valid"
+
+#define EVALUATE_COMFORT_CAPACITY_PRINTF_VALUE_INPUT "Enter the driver's comfort capacity (It should be between 1 and 5): "
+#define EVALUATE_COMFORT_CAPACITY_PRINTF_VALUE_ERROR "The driver's driving capacity that you have entered is not valid"
+
 #define MERGE_TEMP_FILE_PATH "../Files/TempSort.dat"
 #define BOOK_TRAVEL_TEMP_FILE_PATH "../Files/TempBook.dat"
 
 // -- User-Defined types --
-typedef enum {one_star = 1, two_star, three_star, four_star, five_star} Rating_t;
+typedef enum {none, one_star, two_star, three_star, four_star, five_star} Rating_t;
 
 typedef enum {male, female, custom} Gender_t;
 
-typedef enum {id_driver = -1, name, surname, email, password, phone_number, birthday, gender, driving_capacity,
-			 comfort_capacity, average_rating, deleted_driver} Driver_members_t;
+typedef enum {id_driver = -1, name, surname, email, password, phone_number, birthday, gender, deleted_driver} Driver_members_t;
 
 typedef enum {increasing_id_driver, decreasing_id_driver, increasing_name, decreasing_name, increasing_surname,
 			 decreasing_surname, increasing_birthday, decreasing_birthday, increasing_gender,
@@ -189,6 +195,13 @@ typedef struct
 
 typedef struct
 {
+	int id_driver;
+	bool option_rating; // If it is true it means that rating refers to driver capacity, otherwise it refers to comfort capacity
+	Rating_t rating;
+} Rating_operation_t;
+
+typedef struct
+{
 	char departure_destination[MAX_LENGHT_STRINGS];
 	char arrival_destination[MAX_LENGHT_STRINGS];
 	Date_t departure_date;
@@ -233,6 +246,9 @@ File_status_t deleteStruct(const char path_file_driver[], const char path_file_t
 File_status_t showAllStructs(const char path_file_driver[], const char path_file_travel[], bool select_struct); // This function returns if it has read all records of the file
 
 bool bookTravel(const char path_file_driver[], const char path_file_travel[]);
+
+File_status_t manageRating(const char path_file_driver[], const char path_file_rating[]);
+File_status_t evaluateDriver(const char path_file_driver[], const char path_file_rating[]);
 
 File_status_t updateID(const char path_file[], const long int offset, int *id); // This function returns true if the ID is update
 

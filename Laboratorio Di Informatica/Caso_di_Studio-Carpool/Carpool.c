@@ -11,11 +11,11 @@ const char *readGender(const Gender_t *gender)
 
 const char *readRating(const Rating_t *rating)
 {
-	const static char *rating_star[LENGHT_ARRAY_RATING] = {READ_RATING_ONE_STAR, READ_RATING_TWO_STAR,
+	const static char *rating_star[LENGHT_ARRAY_RATING] = {READ_RATING_NONE,READ_RATING_ONE_STAR, READ_RATING_TWO_STAR,
 														  READ_RATING_THREE_STAR, READ_RATING_FOUR_STAR,
 														  READ_RATING_FIVE_STAR};
 
-	return rating_star[*rating - 1]; // - 1 was added because the array starts from 0 while the value one_star starts from 1
+	return rating_star[*rating];
 }
 
 void setWord(char word[], const char printf_value[]) // The procedure set a valid value to the word passed by pointer
@@ -245,9 +245,9 @@ void resetDriver(Driver_t *driver)
 	strcpy(driver -> phone_number, NULL_STRING);
 	resetDate(&driver -> birthday);
 	driver -> gender = male - 1;
-	driver -> driving_capacity = one_star - 1;
-	driver -> comfort_capacity = one_star - 1;
-	driver -> average_rating = one_star - 1;
+	driver -> driving_capacity = none;
+	driver -> comfort_capacity = none;
+	driver -> average_rating = none;
 	driver -> deleted = false;
 }
 
@@ -268,10 +268,13 @@ void setDriver(Driver_t *driver, const int *id)
 	setNumberPhone(driver -> phone_number);
 	setDate(&driver -> birthday, MIN_YEAR_BIRTHDAY, MAX_YEAR_BIRTHDAY, DRIVER_BIRTHDAY_PRINTF_VALUE);
 	setNumberInput((int *) &driver -> gender, male, custom, DRIVER_GENDER_PRINTF_VALUE_INPUT, DRIVER_GENDER_PRINTF_VALUE_ERROR);
+
+	/*
 	setNumberInput((int *) &driver -> driving_capacity, one_star, five_star, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_INPUT, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_ERROR);
 	setNumberInput((int *) &driver -> comfort_capacity, one_star, five_star, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_INPUT, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_ERROR);
 
 	driver -> average_rating = (driver -> driving_capacity + driver -> comfort_capacity) / NUMBER_OF_RATING;
+	*/
 
 	driver -> deleted = false;
 }
@@ -323,10 +326,6 @@ void showMemberDriver(void)
 	printf("\n|         %d          |     Birthday     |", birthday);
 	printf("\n+--------------------+------------------+");
 	printf("\n|         %d          |      Gender      |", gender);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          | Driving Capacity |", driving_capacity);
-	printf("\n+--------------------+------------------+");
-	printf("\n|         %d          | Comfort Capacity |", comfort_capacity);
 	printf("\n+--------------------+------------------+");
 }
 
@@ -522,6 +521,7 @@ void resetBookingTravel(Booking_travel_t *booking_travel)
 	strcpy(booking_travel -> arrival_destination, NULL_STRING);
 	resetDate(&booking_travel -> departure_date);
 	resetTime(&booking_travel -> departure_time);
+	booking_travel -> number_seats = -1;
 }
 
 File_status_t addStruct(const char path_file_driver[], const char path_file_travel[], const int *id, bool select_struct) // This function returns true if the struct has been added to the system
@@ -574,7 +574,7 @@ File_status_t editStruct(const char path_file_driver[], const char path_file_tra
 				showMemberDriver(); // Output of the member
 
 				// Get the member of the driver that the user wants to edit
-				setNumberInput((int *) &member_input_driver, name, comfort_capacity, MEMBER_PRINTF_VALUE_INPUT, MEMBER_PRINTF_VALUE_ERROR);
+				setNumberInput((int *) &member_input_driver, name, gender, MEMBER_PRINTF_VALUE_INPUT, MEMBER_PRINTF_VALUE_ERROR);
 
 				switch(member_input_driver)
 				{
@@ -600,14 +600,6 @@ File_status_t editStruct(const char path_file_driver[], const char path_file_tra
 						break;
 					case gender:
 						setNumberInput((int *) &driver.gender, male, custom, DRIVER_GENDER_PRINTF_VALUE_INPUT, DRIVER_GENDER_PRINTF_VALUE_ERROR);
-						break;
-					case driving_capacity:
-						setNumberInput((int *) &driver.driving_capacity, one_star, five_star, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_INPUT, DRIVER_DRIVING_CAPACITY_PRINTF_VALUE_ERROR);
-						driver.average_rating = (driver.driving_capacity + driver.comfort_capacity) / NUMBER_OF_RATING;
-						break;
-					case comfort_capacity:
-						setNumberInput((int *) &driver.comfort_capacity, one_star, five_star, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_INPUT, DRIVER_COMFORT_CAPACITY_PRINTF_VALUE_ERROR);
-						driver.average_rating = (driver.driving_capacity + driver.comfort_capacity) / NUMBER_OF_RATING;
 						break;
 					default:
 						break;
@@ -642,7 +634,7 @@ File_status_t editStruct(const char path_file_driver[], const char path_file_tra
 				showMemberTravel(); // Output of the member
 
 				// Get the member of the travel that the user wants to edit
-				setNumberInput((int *) &member_input_travel, name, comfort_capacity, MEMBER_PRINTF_VALUE_INPUT, MEMBER_PRINTF_VALUE_ERROR);
+				setNumberInput((int *) &member_input_travel, departure_destination, additional_notes, MEMBER_PRINTF_VALUE_INPUT, MEMBER_PRINTF_VALUE_ERROR);
 
 				switch(member_input_travel)
 				{
@@ -955,6 +947,136 @@ bool bookTravel(const char path_file_driver[], const char path_file_travel[])
 	}
 
 	return travel_booked;
+}
+
+File_status_t manageRating(const char path_file_driver[], const char path_file_rating[])
+{
+	File_status_t operation = error;
+	Driver_t driver;
+	Rating_operation_t rating;
+
+	int number_rating_driving_capacity = 0;
+	int sum_rating_driving_capacity = 0;
+	int number_rating_comfort_capacity = 0;
+	int sum_rating_comfort_capacity = 0;
+	int number_total_rating = 0;
+	int sum_total_rating = 0;
+
+	long int i = 0;
+	long int j = 0;
+
+	resetDriver(&driver);
+
+	while(i < getNumberRecord(path_file_driver, sizeof(Driver_t)))
+	{
+		// Reset variable
+		j = 0;
+		number_rating_driving_capacity = 0;
+		sum_rating_driving_capacity = 0;
+		number_rating_comfort_capacity = 0;
+		sum_rating_comfort_capacity = 0;
+		number_total_rating = 0;
+		sum_total_rating = 0;
+
+		operation = readFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_SET);
+		while(operation == done)
+		{
+			operation = readFile(path_file_rating, &rating, sizeof(Rating_operation_t), j, SEEK_SET);
+			if(isIdDriverEqual(&driver, &rating.id_driver))
+			{
+				number_total_rating++;
+				sum_total_rating += rating.rating;
+				if(rating.option_rating)
+				{
+					number_rating_comfort_capacity++;
+					sum_rating_comfort_capacity += rating.rating;
+				}
+				else
+				{
+					number_rating_driving_capacity++;
+					sum_rating_driving_capacity += rating.rating;
+				}
+			}
+			j++;
+		}
+
+		if(number_total_rating)
+		{
+			driver.average_rating = sum_total_rating / number_total_rating;
+
+			if(number_rating_comfort_capacity)
+			{
+				driver.comfort_capacity = sum_rating_comfort_capacity / number_rating_comfort_capacity;
+			}
+
+			if(number_rating_driving_capacity)
+			{
+				driver.driving_capacity = sum_rating_driving_capacity / number_rating_driving_capacity;
+			}
+
+			operation = writeFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_SET);
+		}
+
+		i++;
+	}
+
+	return operation;
+}
+
+File_status_t evaluateDriver(const char path_file_driver[], const char path_file_rating[])
+{
+	File_status_t operation = error;
+	Rating_operation_t rating;
+	Driver_t driver;
+	bool id_driver_not_valid = true;
+
+	long int i = 0;
+
+	resetDriver(&driver);
+
+	showAllStructs(path_file_driver, NULL, DRIVER);
+
+	do
+	{
+		setNumberInput(&rating.id_driver, INT_MIN, INT_MAX, EVALUATE_ID_DRIVER_PRINTF_VALUE_INPUT, EVALUATE_ID_DRIVER_PRINTF_VALUE_ERROR);
+		i = 0;
+		do
+		{
+			operation = readFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_SET);
+			if(isIdDriverEqual(&driver, &rating.id_driver))
+			{
+				id_driver_not_valid = false;
+			}
+			i++;
+		}
+		while(operation == done && id_driver_not_valid);
+
+		if(id_driver_not_valid)
+		{
+			printf("\nThe ID that you have entered doesn't belong to the system");
+		}
+	}
+	while(id_driver_not_valid);
+
+	setNumberInput((int *) &rating.option_rating, false, true, EVALUATE_CHOICHE_RATING_PRINTF_VALUE_INPUT, EVALUATE_CHOICHE_RATING_PRINTF_VALUE_ERROR);
+
+	if(rating.option_rating)
+	{
+		setNumberInput((int *) &rating.rating,one_star, five_star, EVALUATE_COMFORT_CAPACITY_PRINTF_VALUE_INPUT, EVALUATE_COMFORT_CAPACITY_PRINTF_VALUE_ERROR);
+	}
+	else
+	{
+		setNumberInput((int *) &rating.rating, one_star, five_star, EVALUATE_DRIVING_CAPACITY_PRINTF_VALUE_INPUT, EVALUATE_DRIVING_CAPACITY_PRINTF_VALUE_ERROR);
+	}
+
+	operation = writeFile(path_file_rating, &rating, sizeof(Rating_operation_t), 0, SEEK_END);
+
+	if(operation)
+	{
+		operation = manageRating(path_file_driver, path_file_rating);
+	}
+
+	return operation;
 }
 
 File_status_t updateID(const char path_file[], const long int offset, int *id)
