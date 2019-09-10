@@ -8,6 +8,14 @@
     P.S -- For a better visualization of the output it is preferable to put the window in full screen  --
 */
 
+/**
+ * @file main.c
+ * @author Vincenzo Susso
+ * @date 2019 Sep 10
+ * @version 1.0
+ * @brief main file
+ */
+
 // -- Libraries --
 #include "main.h"
 

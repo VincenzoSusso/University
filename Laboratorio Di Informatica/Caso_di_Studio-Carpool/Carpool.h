@@ -290,7 +290,13 @@
  * This user-defined type is used to evalutate the driver's capacity, this user-defined type was also created in order
  * to improve the readability.
  */
-typedef enum {none, one_star, two_star, three_star, four_star, five_star} Rating_t;
+typedef enum {none, /**< This member is used when driver has no rating */
+			 one_star, /**< This member is used to assign one star rating to the driver */
+			 two_star, /**< This member is used to assign two star rating to the driver */
+			 three_star, /**< This member is used to assign three star rating to the driver */
+			 four_star, /**< This member is used to assign four star rating to the driver */
+			 five_star /**< This member is used to assign five star rating to the driver */
+} Rating_t;
 
 
 /**
@@ -298,7 +304,10 @@ typedef enum {none, one_star, two_star, three_star, four_star, five_star} Rating
  * This user-defined type is used to know the gender of the driver, this user-defined type was also created in order to improve
  * the readability.
  */
-typedef enum {male, female, custom} Gender_t;
+typedef enum {male, /**< This member is used to indicate that the driver's gender is male */
+			 female, /**< This member is used to indicate that the driver's gender is female */
+			 custom /**< This member is used to indicate that the driver's gender is custom */
+} Gender_t;
 
 
 /**
@@ -306,16 +315,39 @@ typedef enum {male, female, custom} Gender_t;
  * This user-defined type is used in order to define the member of the struct Driver_t, this user-defined type was created in
  * order to edit the member of the struct Driver_t.
  */
-typedef enum {id_driver = -1, name, surname, email, password, phone_number, birthday, gender, deleted_driver} Driver_members_t;
+typedef enum {id_driver = -1, /**< This member is used to indicates the driver's ID */
+			 name, /**< This member is used to indicate the driver's name */
+			 surname, /**< This member is used to indicate the driver's surname */
+			 email, /**< This member is used to indicate the driver's email */
+			 password, /**< This member is used to indicate the driver's password */
+			 phone_number, /**< This member is used to indicate the driver's phone_number */
+			 birthday, /**< This member is used to indicate the driver's birthday */
+			 gender, /**< This member is used to indicate the driver's gender */
+			 deleted_driver /**< This member is used to indicate the driver's deletion */
+} Driver_members_t;
 
 
 /**
  * @enum Driver_sort_key
  * This user-defined type is used in order to sort the drivers using several sort-key.
  */
-typedef enum {inc_id_driver, dec_id_driver, inc_name, dec_name, inc_surname, dec_surname, inc_birthday, dec_birthday,
-			 inc_gender, dec_gender, inc_driving_capacity, dec_driving_capacity, inc_comfort_capacity, dec_comfort_capacity,
-			 inc_average_rating, dec_average_rating} Driver_sort_key;
+typedef enum {inc_id_driver, /**< This member is used to sort drivers using increasing ID as sorting-key */
+			 dec_id_driver, /**< This member is used to sort drivers using decreasing ID as sorting-key */
+			 inc_name, /**< This member is used to sort drivers using increasing driver's name as sorting-key */
+			 dec_name, /**< This member is used to sort drivers using decreasing driver's name as sorting-key */
+			 inc_surname, /**< This member is used to sort drivers using increasing driver's surname as sorting-key */
+			 dec_surname, /**< This member is used to sort drivers using decreasing driver's surname as sorting-key */
+			 inc_birthday, /**< This member is used to sort drivers using increasing driver's birthday as sorting-key */
+			 dec_birthday, /**< This member is used to sort drivers using decreasing driver's birthday as sorting-key */
+			 inc_gender, /**< This member is used to sort drivers using increasing driver's gender as sorting-key */
+			 dec_gender, /**< This member is used to sort drivers using decreasing driver's gender as sorting-key */
+			 inc_driving_capacity, /**< This member is used to sort drivers using increasing driver's driving capacity as sorting-key */
+			 dec_driving_capacity, /**< This member is used to sort drivers using decreasing driver's driving capacity as sorting-key */
+			 inc_comfort_capacity, /**< This member is used to sort drivers using increasing driver's comfort capacity as sorting-key */
+			 dec_comfort_capacity, /**< This member is used to sort drivers using decreasing driver's comfort capacity as sorting-key */
+			 inc_average_rating, /**< This member is used to sort drivers using increasing driver's average rating as sorting-key */
+			 dec_average_rating /**< This member is used to sort drivers using decreasing driver's average rating as sorting-key */
+} Driver_sort_key;
 
 
 /**
@@ -323,17 +355,39 @@ typedef enum {inc_id_driver, dec_id_driver, inc_name, dec_name, inc_surname, dec
  * This user-defined type is used in order to define the member of the struct Travel_t, this user-defined type was created in
  * order to edit the member of the struct Travel_t.
  */
-typedef enum {id_travel = -2, id_driver_, departure_destination, arrival_destination, departure_date, departure_time,
-			 total_seats, free_seats, price, additional_notes, deleted_travel} Travel_members_t;
+typedef enum {id_travel = -2, /**< This member is used to indicates the travel's ID */
+			 id_driver_, /**< This member is used to indicates the ID of the driver that will offer the travel */
+			 departure_destination, /**< This member is used to indicates the travel's departure destination */
+			 arrival_destination, /**< This member is used to indicates the travel's arrival destination */
+			 departure_date, /**< This member is used to indicates the travel's departure date */
+			 departure_time, /**< This member is used to indicates the travel's departure time */
+			 total_seats, /**< This member is used to indicates the veicle's total seats */
+			 free_seats, /**< This member is used to indicates the veicle's free seats */
+			 price, /**< This member is used to indicates the travel's price */
+			 additional_notes, /**< This member is used to indicates the travel's additional notes */
+			 deleted_travel /**< This member is used to indicate the travel's deletion */
+} Travel_members_t;
 
 
 /**
 * @enum Driver_sort_key
 * This user-defined type is used in order to sort the travels using several sort-key.
 */
-typedef enum {inc_id_travel, dec_id_travel, inc_departure_destination, dec_departure_destination, inc_arrival_destination,
-			 dec_arrival_destination, inc_departure_date, dec_departure_date, inc_price, dec_price, inc_total_seats,
-			 dec_total_seats, inc_free_seats, dec_free_seats} Travel_sort_key;
+typedef enum {inc_id_travel, /**< This member is used to sort travels using increasing ID as sorting-key */
+			 dec_id_travel, /**< This member is used to sort travels using decreasing ID as sorting-key */
+			 inc_departure_destination, /**< This member is used to sort travels using increasing departure destination as sorting-key */
+			 dec_departure_destination, /**< This member is used to sort travels using decreasing departure destination as sorting-key */
+			 inc_arrival_destination, /**< This member is used to sort travels using increasing arrival destination as sorting-key */
+			 dec_arrival_destination, /**< This member is used to sort travels using decreasing arrival destination as sorting-key */
+			 inc_departure_date,  /**< This member is used to sort travels using increasing departure date as sorting-key */
+			 dec_departure_date, /**< This member is used to sort travels using decreasing departure date as sorting-key */
+			 inc_price, /**< This member is used to sort travels using increasing price as sorting-key */
+			 dec_price, /**< This member is used to sort travels using decreasing price as sorting-key */
+			 inc_total_seats, /**< This member is used to sort travels using increasing veicle's total seats as sorting-key */
+			 dec_total_seats, /**< This member is used to sort travels using decreasing veicle's total seats as sorting-key */
+			 inc_free_seats, /**< This member is used to sort travels using increasing veicle's free seats as sorting-key */
+			 dec_free_seats /**< This member is used to sort travels using decreasing veicle's free seats as sorting-key */
+} Travel_sort_key;
 
 
 /**
@@ -342,18 +396,18 @@ typedef enum {inc_id_travel, dec_id_travel, inc_departure_destination, dec_depar
  */
 typedef struct
 {
-	int id; /**<Unique ID per driver*/
-	char name[MAX_LENGHT_STRINGS];
-	char surname[MAX_LENGHT_STRINGS];
-	char email[MAX_LENGHT_EMAIL];
-	char password[MAX_LENGHT_STRINGS];
-	char phone_number[MAX_LENGHT_PHONE_NUMBER];
-	Date_t birthday;
-	Gender_t gender;
-	Rating_t driving_capacity;
-	Rating_t comfort_capacity;
-	Rating_t average_rating;
-	bool deleted; /**<If this member is true, means that the driver is deleted*/
+	int id; /**< This member is used to store the driver's ID */
+	char name[MAX_LENGHT_STRINGS]; /**< This member is used to store the driver's name */
+	char surname[MAX_LENGHT_STRINGS]; /**< This member is used to store the driver's surname */
+	char email[MAX_LENGHT_EMAIL]; /**< This member is used to store the driver's email */
+	char password[MAX_LENGHT_STRINGS]; /**< This member is used to store the driver's password */
+	char phone_number[MAX_LENGHT_PHONE_NUMBER]; /**< This member is used to store the driver's phone number */
+	Date_t birthday; /**< This member is used to store the driver's birthday */
+	Gender_t gender; /**< This member is used to store the driver's gender */
+	Rating_t driving_capacity; /**< This member is used to store the driver's driving capacity */
+	Rating_t comfort_capacity; /**< This member is used to store the driver's comfort capacity */
+	Rating_t average_rating; /**< This member is used to store the driver's average rating */
+	bool deleted; /**< This member is used to know if the driver is deleted, if this member is true, means that the driver is deleted */
 } Driver_t;
 
 
@@ -363,17 +417,17 @@ typedef struct
  */
 typedef struct
 {
-	int id; /**<Unique ID per travel*/
-	int id_driver;
-	char departure_destination[MAX_LENGHT_STRINGS];
-	char arrival_destination[MAX_LENGHT_STRINGS];
-	char additional_notes[MAX_LENGHT_ADDITIONAL_NOTES];
-	Date_t departure_date;
-	Time_t departure_time;
-	double price;
-	unsigned short total_seats;
-	unsigned short free_seats;
-	bool deleted; /**<If this member is true, means that the travel is deleted*/
+	int id; /**< This member is used to store the travel's ID */
+	int id_driver; /**< This member is used to store the ID of the driver that will offer the travel */
+	char departure_destination[MAX_LENGHT_STRINGS]; /**< This member is used to store the travel's departure destination */
+	char arrival_destination[MAX_LENGHT_STRINGS]; /**< This member is used to store the travel's arrival destination */
+	char additional_notes[MAX_LENGHT_ADDITIONAL_NOTES]; /**< This member is used to store the travel's additional notes */
+	Date_t departure_date; /**< This member is used to store the travel's departure date */
+	Time_t departure_time; /**< This member is used to store the travel's departure time */
+	double price; /**< This member is used to store the travel's price */
+	unsigned short total_seats; /**< This member is used to store the veicle's total seats (It must include the driver's seat) */
+	unsigned short free_seats; /**< This member is used to store the veicle's free seats */
+	bool deleted; /**< This member is used to know if the travel is deleted, if this member is true, means that the travel is deleted */
 } Travel_t;
 
 
@@ -383,9 +437,9 @@ typedef struct
  */
 typedef struct
 {
-	int id_driver;
-	bool option_rating; // If it is true it means that rating refers to driver capacity, otherwise it refers to comfort capacity
-	Rating_t rating;
+	int id_driver; /**< This member is used to store the ID of the driver that has been evalutated */
+	bool option_rating; /**< This member is used to know which evalutation the user wants to do, if \"option rating\" is true it means that rating refers to driver capacity, otherwise it refers to comfort capacity */
+	Rating_t rating; /**< This member is used to store the evalutation that the user has made */
 } Rating_file_t;
 
 
@@ -395,11 +449,11 @@ typedef struct
  */
 typedef struct
 {
-	char departure_destination[MAX_LENGHT_STRINGS];
-	char arrival_destination[MAX_LENGHT_STRINGS];
-	Date_t departure_date;
-	Time_t departure_time;
-	unsigned short number_seats;
+	char departure_destination[MAX_LENGHT_STRINGS]; /**< This member is used to store the departure destination of the travel that the user wants to book */
+	char arrival_destination[MAX_LENGHT_STRINGS]; /**< This member is used to store the arrival destination of the travel that the user wants to book */
+	Date_t departure_date; /**< This member is used to store the departure date of the travel that the user wants to book */
+	Time_t departure_time; /**< This member is used to store the departure time of the travel that the user wants to book */
+	unsigned short number_seats; /**< This member is used to store the number of seats that the user needs in order to book the travel */
 } Booking_travel_t;
 
 // -- Procedure & Functions Prototypes --
@@ -688,11 +742,11 @@ File_status_t evaluateDriver(const char path_file_driver[], const char path_file
 
 /**
  * @fn updateID(const char path_file[], const long int offset, int *id)
- * This function is used in order to update the ID passed by pointer and save its into the file
+ * This function is used in order to update the ID passed by pointer and save its into the file.
  * @param path_file is the relative path where IDs are stored.
  * @param offset can be set to \"OFFSET_ID_DRIVER\" in order to update the unique ID of the drivers, otherwise offset
  * can be set to \"OFFSET_ID_TRAVEL\" in order to update the unique ID of the travels.
- * @param id is the unique identifier that will be updated
+ * @param id is the unique identifier that will be updated.
  * @return 1 if the ID was updated, otherwise the function will return 0
  */
 File_status_t updateID(const char path_file[], const long int offset, int *id);
@@ -723,9 +777,55 @@ long int getIndexUser(const char path_file_driver[], const char path_file_travel
  */
 long int getIndex(const char path_file[], const int *id, bool select_struct);
 
-double setSort(const char path_file[], long int start, long int end, bool select_struct); // It returns the seconds that the sort has spent
+
+
+/**
+ * @fn setSort(const char path_file[], long int start, long int end, bool select_struct)
+ * This function is used to ask to the user to enter the key_sort.
+ * @param path_file is the relative path of the file that the user wants to sort.
+ * @param start is the offset of the first record of the file.
+ * @param end is the offset of the last record of the file.
+ * @param select_struct is used to sort Driver_t or Travel_t, if select_struct is equal to \"DRIVER\" then the
+ * drivers will be sorted, if select_struct is equal to \"TRAVEL\" then the travels will be sorted.
+ * @return the time that the sorting has spent, otherwise this function will return 0.
+ */
+double setSort(const char path_file[], long int start, long int end, bool select_struct);
+
+
+/**
+ * @fn mergeSort(const char path_file[], long int start, long int end, bool select_struct, int key_sort)
+ * This procedure is used to split the records.
+ * @param path_file is the relative path of the file that the user wants to sort.
+ * @param start is the offset of the first record of the file.
+ * @param end is the offset of the last record of the file.
+ * @param select_struct is used to sort Driver_t or Travel_t, if select_struct is equal to \"DRIVER\" then the
+ * drivers will be sorted, if select_struct is equal to \"TRAVEL\" then the travels will be sorted.
+ * @param key_sort is used to indicate the key sort of the sorting.
+ */
 void mergeSort(const char path_file[], long int start, long int end, bool select_struct, int key_sort);
+
+
+/**
+ * @fn mergeDriver(const char path_file[], long int start, long int middle, long int end, int key_sort)
+ * This procedure is used to merge the driver's records.
+ * @param path_file is the relative path of the driver's file that the user wants to sort.
+ * @param start is the offset of the first record of the file.
+ * @param middle is the offset of the medium driver's record.
+ * @param end is the offset of the last record of the file.
+ * @param key_sort is used to indicate the key sort of the sorting.
+ */
 void mergeDriver(const char path_file[], long int start, long int middle, long int end, int key_sort);
+
+
+/**
+ * @fn mergeTravel(const char path_file[], long int start, long int middle, long int end, int key_sort)
+ * This procedure is used to merge the travel's records.
+ * @param path_file is the relative path of the travel's file that the user wants to sort.
+ * @param start is the offset of the first record of the file.
+ * @param middle is the offset of the medium driver's record.
+ * @param end is the offset of the last record of the file.
+ * @param key_sort is used to indicate the key sort of the sorting.
+ */
 void mergeTravel(const char path_file[], long int start, long int middle, long int end, int key_sort);
 
 #endif

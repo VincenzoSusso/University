@@ -55,9 +55,9 @@
  * @enum File_status_t
  * This user-defined type is used to manage the operation with files.
  */
-typedef enum {error_file = 0, /**< this value is returned when a fatal error has occurred*/
-			 fail, /**< this value is returned when a minor error has occurred so the program can continue to run*/
-			 done /**< this value is returned when error has not occurred */
+typedef enum {error_file = 0, /**< This value is returned when a fatal error has occurred*/
+			 fail, /**< This value is returned when a minor error has occurred so the program can continue to run*/
+			 done /**< This value is returned when error has not occurred */
 } File_status_t;
 
 // -- Procedure & Functions Prototypes --

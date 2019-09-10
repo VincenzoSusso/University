@@ -1,11 +1,20 @@
 // -- Libraries --
 #include "Carpool.h"
 
+/**
+ * @file Carpool.c
+ * @author Vincenzo Susso
+ * @date 2019 Sep 10
+ * @version 1.0
+ * @brief This file is the implementation file of Carpool.h
+ */
+
 // -- Procedure & Functions --
 const char *readGender(const Gender_t *gender)
 {
 	const static char *gender_name[LENGHT_ARRAY_GENDER] = {READ_GENDER_MALE, READ_GENDER_FEMALE, READ_GENDER_CUSTOM};
 
+	// Using the value of the pointer (*gender) as index of the array
 	return gender_name[*gender];
 }
 
@@ -15,6 +24,7 @@ const char *readRating(const Rating_t *rating)
 														  READ_RATING_THREE_STAR, READ_RATING_FOUR_STAR,
 														  READ_RATING_FIVE_STAR};
 
+	// Using the value of the pointer (*rating) as index of the array
 	return rating_star[*rating];
 }
 
@@ -33,6 +43,7 @@ void setWord(char word[], const char printf_value[]) // The procedure set a vali
 		addNullCharacterString(word);
 		clearBuffer();
 
+		// Testing the input
 		flag = isVoidString(word) || !isLatinString(word) || !isIncluded(MIN_LENGHT_STRINGS, MAX_LENGHT_STRINGS, (int) strlen(word));
 		if(flag)
 		{
@@ -58,6 +69,7 @@ void setEmail(char email[])
 		addNullCharacterString(email);
 		clearBuffer();
 
+		// Testing input
 		flag = isVoidString(email) || !isEmail(email) || !isIncluded(MIN_LENGHT_STRINGS, MAX_LENGHT_EMAIL, (int) strlen(email));
 		if(flag)
 		{
@@ -83,6 +95,7 @@ void setPassword(char password[])
 		addNullCharacterString(password);
 		clearBuffer();
 
+		// Testing input
 		flag = isVoidString(password) || !isPassword(password) || !isIncluded(MIN_LENGHT_PASSWORD, MAX_LENGHT_STRINGS, (int) strlen(password));
 		if(flag)
 		{
@@ -108,6 +121,7 @@ void setPhoneNumber(char phone_number[])
 		addNullCharacterString(phone_number);
 		clearBuffer();
 
+		// Testing input
 		flag = isVoidString(phone_number) || !isPhoneNumber(phone_number) || !isIncluded(MIN_LENGHT_PHONE_NUMBER, MAX_LENGHT_PHONE_NUMBER, (int) strlen(phone_number));
 		if(flag)
 		{
@@ -121,9 +135,11 @@ void setPhoneNumber(char phone_number[])
 void setAdditionalNotes(char additional_notes[])
 {
 	bool flag = false;
-	bool user_choice_additional_notes = false; // This variable is used in order to know if the user want or not add additional notes
 
-	strcpy(additional_notes, NULL_STRING);
+	// This variable is used in order to know if the user want or not add additional notes
+	bool user_choice_additional_notes = false;
+
+	strcpy(additional_notes, NULL_STRING); // Reset additional notes
 
 
 	setNumberInput((int *) &user_choice_additional_notes, false, true, "Do you want to add additional notes to the travel (No = 0, Yes = 1): ", "The choice that you have entered is not valid");
@@ -137,6 +153,7 @@ void setAdditionalNotes(char additional_notes[])
 			addNullCharacterString(additional_notes);
 			clearBuffer();
 
+			// Testing input
 			flag = isVoidString(additional_notes) || !isIncluded(MIN_LENGHT_STRINGS, MAX_LENGHT_ADDITIONAL_NOTES, strlen(additional_notes));
 
 			if(flag)
@@ -163,33 +180,34 @@ void setPrice(double *price)
 		addNullCharacterString(price_input);
 		clearBuffer();
 
-			flag = !isDecimalNumber(price_input) || isVoidString(price_input);
+		// Testing input
+		flag = !isDecimalNumber(price_input) || isVoidString(price_input);
 
-			if(!flag)
+		if(!flag)
+		{
+			// The input can be converted to double
+			*price = (double) strtod(price_input, NULL);
+
+			if(*price < MIN_PRICE || *price > MAX_PRICE)
 			{
-				// The input can be converted to double
-				*price = (double) strtod(price_input, NULL);
-
-				if(*price < MIN_PRICE || *price > MAX_PRICE)
-				{
-					// The string is not included
-					flag = true;
-				}
-
-			}
-			else
-			{
-				// The string is not a number
+				// The string is not included
 				flag = true;
 			}
 
-			if(flag)
-			{
-				printf("\nThe price that you have inserted is not valid (it should be between %.2lf%s and %.2lf%s, and the integer part should be separeted to the decimal portion by a period \".\")", MIN_PRICE, DOLLAR_STRING, MAX_PRICE, DOLLAR_STRING);
-			}
-
 		}
-		while(flag);
+		else
+		{
+			// The string is not a number
+			flag = true;
+		}
+
+		if(flag)
+		{
+			printf("\nThe price that you have inserted is not valid (it should be between %.2lf%s and %.2lf%s, and the integer part should be separeted to the decimal portion by a period \".\")", MIN_PRICE, DOLLAR_STRING, MAX_PRICE, DOLLAR_STRING);
+		}
+
+	}
+	while(flag);
 }
 
 void setNumberInput(int *input, const int min, const int max, const char printf_value_input[], const char printf_value_error[])
@@ -206,6 +224,7 @@ void setNumberInput(int *input, const int min, const int max, const char printf_
 		addNullCharacterString(string_input);
 		clearBuffer();
 
+		// Testing input
 		flag = !isNumberString(string_input) || isVoidString(string_input);
 
 		if(!flag)
@@ -517,7 +536,7 @@ void resetBookingTravel(Booking_travel_t *booking_travel)
 	booking_travel -> number_seats = -1;
 }
 
-File_status_t addStruct(const char path_file_driver[], const char path_file_travel[], const int *id, bool select_struct) // This function returns true if the struct has been added to the system
+File_status_t addStruct(const char path_file_driver[], const char path_file_travel[], const int *id, bool select_struct)
 {
 	File_status_t operation = error_file;
 	Driver_t driver;
@@ -540,14 +559,14 @@ File_status_t addStruct(const char path_file_driver[], const char path_file_trav
 	return operation;
 }
 
-File_status_t editStruct(const char path_file_driver[], const char path_file_travel[], bool select_struct) // This function returns true if the struct has been edited
+File_status_t editStruct(const char path_file_driver[], const char path_file_travel[], bool select_struct)
 {
 	File_status_t operation = done;
 	Driver_t driver;
 	Travel_t travel;
 	Driver_members_t member_input_driver = id_driver - 1;
 	Travel_members_t member_input_travel = id_travel - 1;
-	long int index_id = INDEX_NOT_FOUND; // This variable is used to get the index of the ID
+	long int index_record = INDEX_NOT_FOUND; // This variable is used to get the index of the record
 
 	resetDriver(&driver);
 	resetTravel(&travel);
@@ -556,12 +575,14 @@ File_status_t editStruct(const char path_file_driver[], const char path_file_tra
 	{
 
 		// Get index of the driver that the user want to edit
-		index_id = getIndexUser(path_file_driver, path_file_travel, "Enter the ID of the driver that you want to edit: ", "The ID of the driver that you want to edit is not valid", DRIVER);
+		index_record = getIndexUser(path_file_driver, path_file_travel, "Enter the ID of the driver that you want to edit: ", "The ID of the driver that you want to edit is not valid", DRIVER);
 
-		if(index_id != INDEX_NOT_FOUND)
+		if(index_record != INDEX_NOT_FOUND)
 		{
+			// Index has been found
+
 			// Loads driver from file
-			operation = readFile(path_file_driver, &driver, sizeof(Driver_t), index_id, SEEK_SET);
+			operation = readFile(path_file_driver, &driver, sizeof(Driver_t), index_record, SEEK_SET);
 			if(operation == done)
 			{
 				showMemberDriver(); // Output of the member
@@ -599,11 +620,11 @@ File_status_t editStruct(const char path_file_driver[], const char path_file_tra
 				}
 
 				// Write the edited driver into file
-				operation = writeFile(path_file_driver, &driver, sizeof(Driver_t), index_id, SEEK_SET);
+				operation = writeFile(path_file_driver, &driver, sizeof(Driver_t), index_record, SEEK_SET);
 			}
 			else
 			{
-				// Force the operation to error in order to report the error
+				// Force the operation to error bacause an error has occurred during the reading of the file
 				operation = error_file;
 			}
 		}
@@ -616,12 +637,14 @@ File_status_t editStruct(const char path_file_driver[], const char path_file_tra
 	else
 	{
 		// Get index of the travel that the user want to edit
-		index_id = getIndexUser(path_file_driver, path_file_travel, "Enter the ID of the travel that you want to edit: ", "The ID of the travel that you want to edit is not valid", TRAVEL);
+		index_record = getIndexUser(path_file_driver, path_file_travel, "Enter the ID of the travel that you want to edit: ", "The ID of the travel that you want to edit is not valid", TRAVEL);
 
-		if(index_id != INDEX_NOT_FOUND)
+		if(index_record != INDEX_NOT_FOUND)
 		{
+			// Index has been found
+
 			// Loads travel from file
-			operation = readFile(path_file_travel, &travel, sizeof(Travel_t), index_id, SEEK_SET);
+			operation = readFile(path_file_travel, &travel, sizeof(Travel_t), index_record, SEEK_SET);
 			if(operation == done)
 			{
 				showMemberTravel(); // Output of the member
@@ -671,11 +694,11 @@ File_status_t editStruct(const char path_file_driver[], const char path_file_tra
 				}
 
 				// Write the edited travel into file
-				operation = writeFile(path_file_travel, &travel, sizeof(Travel_t), index_id, SEEK_SET);
+				operation = writeFile(path_file_travel, &travel, sizeof(Travel_t), index_record, SEEK_SET);
 			}
 			else
 			{
-				// Force the operation to error in order to report the error
+				// Force the operation to error bacause an error has occurred during the reading of the file
 				operation = error_file;
 			}
 		}
@@ -689,13 +712,13 @@ File_status_t editStruct(const char path_file_driver[], const char path_file_tra
 	return operation;
 }
 
-File_status_t deleteStruct(const char path_file_driver[], const char path_file_travel[], bool select_struct) // This function returns true if the struct has been deleted to the system
+File_status_t deleteStruct(const char path_file_driver[], const char path_file_travel[], bool select_struct)
 {
 	File_status_t operation = done;
 	Driver_t driver;
 	Travel_t travel;
 	int id = -1;
-	long int index_id = INDEX_NOT_FOUND; // Variable that will store the index of the ID
+	long int index_record = INDEX_NOT_FOUND; // Variable that will store the index of the record
 	long int i = 0; // Used to search travel to delete after the delete of the driver
 
 	resetDriver(&driver);
@@ -705,17 +728,17 @@ File_status_t deleteStruct(const char path_file_driver[], const char path_file_t
 	{
 
 		// Get index of the driver that the user want to delete
-		index_id = getIndexUser(path_file_driver, path_file_travel, "Enter the ID of the driver that you want to delete: ", "The ID of the driver that you want to delete is not valid", DRIVER);
+		index_record = getIndexUser(path_file_driver, path_file_travel, "Enter the ID of the driver that you want to delete: ", "The ID of the driver that you want to delete is not valid", DRIVER);
 
-		if(index_id != INDEX_NOT_FOUND)
+		if(index_record != INDEX_NOT_FOUND)
 		{
 			// The driver has been found so the system will delete him
-			operation = readFile(path_file_driver, &driver, sizeof(Driver_t), index_id, SEEK_SET);
+			operation = readFile(path_file_driver, &driver, sizeof(Driver_t), index_record, SEEK_SET);
 			if(operation == done)
 			{
 				id = driver.id; // Get the ID in order to search the travel to delete
 				driver.deleted = true;
-				operation = writeFile(path_file_driver, &driver, sizeof(Driver_t), index_id, SEEK_SET);
+				operation = writeFile(path_file_driver, &driver, sizeof(Driver_t), index_record, SEEK_SET);
 			}
 
 			if(operation == done)
@@ -743,16 +766,16 @@ File_status_t deleteStruct(const char path_file_driver[], const char path_file_t
 	else
 	{
 		// Get index of the driver that the user want to delete
-		index_id = getIndexUser(path_file_driver, path_file_travel, "Enter the ID of the travel that you want to delete: ", "The ID of the driver that you want to delete is not valid", TRAVEL);
+		index_record = getIndexUser(path_file_driver, path_file_travel, "Enter the ID of the travel that you want to delete: ", "The ID of the driver that you want to delete is not valid", TRAVEL);
 
-		if(index_id != INDEX_NOT_FOUND)
+		if(index_record != INDEX_NOT_FOUND)
 		{
 			// The driver has been found so the system will delete him
-			operation = readFile(path_file_travel, &travel, sizeof(Travel_t), index_id, SEEK_SET);
+			operation = readFile(path_file_travel, &travel, sizeof(Travel_t), index_record, SEEK_SET);
 			if(operation == done)
 			{
 				travel.deleted = true;
-				operation = writeFile(path_file_travel, &travel, sizeof(Travel_t), index_id, SEEK_SET);
+				operation = writeFile(path_file_travel, &travel, sizeof(Travel_t), index_record, SEEK_SET);
 			}
 		}
 		else
@@ -828,7 +851,6 @@ bool bookTravel(const char path_file_driver[], const char path_file_travel[])
 	int id_input_travel = -1; // This variable is used to take the input of the ID
 
 	int id_travel = -1; // Used to check if the ID that the user has choosen is valid
-	bool valid_id_travel = false;
 	long int i = 0; // Index of the travel's file
 	long int j = 0; // Index of the temporary file
 
@@ -902,34 +924,26 @@ bool bookTravel(const char path_file_driver[], const char path_file_travel[])
 				i++;
 			}
 
-			// Compare ID to the travel
-			do
+
+			// Get the number of the ID of the travel that the user wants to book
+			setNumberInput(&id_input_travel, INT_MIN, INT_MAX, "Enter the ID of the travel that you want to book: ", "The ID of the travel that you want to book is not valid");
+			reading_operation = done;
+			i = 0;
+			travel_booked = false; // Used to check if the ID of the driver is a correct ID
+
+			// Booking the travel with the ID specified by the user
+			while(i < j && reading_operation == done)
 			{
-				// Get the number of the ID of the travel that the user wants to book
-				setNumberInput(&id_input_travel, INT_MIN, INT_MAX, "Enter the ID of the travel that you want to book: ", "The ID of the travel that you want to book is not valid");
-				reading_operation = done;
-				i = 0;
-
-				while(i < j && reading_operation == done && travel_booked)
+				reading_operation = readFile(BOOK_TRAVEL_TEMP_FILE_PATH, &id_travel, sizeof(int), i, SEEK_SET);
+				if(id_input_travel == id_travel)
 				{
-					reading_operation = readFile(BOOK_TRAVEL_TEMP_FILE_PATH, &id_travel, sizeof(int), i, SEEK_SET);
-					if(id_input_travel == id_travel)
-					{
-						travel_booked = true;
-						valid_id_travel = true;
-						readFile(path_file_travel, &travel, sizeof(Travel_t), getIndex(path_file_travel, &id_travel, TRAVEL), SEEK_SET);
-						travel.free_seats -= booking_travel.number_seats;
-						writeFile(path_file_travel, &travel, sizeof(Travel_t), getIndex(path_file_travel, &id_travel, TRAVEL), SEEK_SET);
-					}
-					i++;
+					travel_booked = true;
+					readFile(path_file_travel, &travel, sizeof(Travel_t), getIndex(path_file_travel, &id_travel, TRAVEL), SEEK_SET);
+					travel.free_seats -= booking_travel.number_seats;
+					writeFile(path_file_travel, &travel, sizeof(Travel_t), getIndex(path_file_travel, &id_travel, TRAVEL), SEEK_SET);
 				}
-
-				if(!valid_id_travel)
-				{
-					printf("\nThe ID that you have entered doesn't belong to the list");
-				}
+				i++;
 			}
-			while(!valid_id_travel);
 		}
 
 		deleteFile(BOOK_TRAVEL_TEMP_FILE_PATH);
@@ -948,15 +962,20 @@ File_status_t manageRating(const char path_file_driver[], const char path_file_r
 	Driver_t driver;
 	Rating_file_t rating;
 
+	// Used to calculate the driving capacity
 	int number_rating_driving_capacity = 0;
 	int sum_rating_driving_capacity = 0;
+
+	// Used to calculate the comfort capacity
 	int number_rating_comfort_capacity = 0;
 	int sum_rating_comfort_capacity = 0;
+
+	// Used to calculate the average rating
 	int number_total_rating = 0;
 	int sum_total_rating = 0;
 
-	long int i = 0;
-	long int j = 0;
+	long int i = 0; // Index of drivers
+	long int j = 0; // Index of ratings
 
 	resetDriver(&driver);
 
@@ -971,21 +990,29 @@ File_status_t manageRating(const char path_file_driver[], const char path_file_r
 		number_total_rating = 0;
 		sum_total_rating = 0;
 
+		// Get driver from file
 		operation = readFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_SET);
 		while(operation == done)
 		{
+			// Searchin rating of the driver that has just been read from the file
 			operation = readFile(path_file_rating, &rating, sizeof(Rating_file_t), j, SEEK_SET);
 			if(isIdDriverEqual(&driver, &rating.id_driver))
 			{
+				// A rating of the travel has been found
+
+				// Operations used to calculate the arithmetic mean of total rating
 				number_total_rating++;
 				sum_total_rating += rating.rating;
+
 				if(rating.option_rating)
 				{
+					// Operations used to calculate the arithmetic mean of comfort capacity
 					number_rating_comfort_capacity++;
 					sum_rating_comfort_capacity += rating.rating;
 				}
 				else
 				{
+					// Operations used to calculate the arithmetic mean of driving capacity
 					number_rating_driving_capacity++;
 					sum_rating_driving_capacity += rating.rating;
 				}
@@ -995,15 +1022,19 @@ File_status_t manageRating(const char path_file_driver[], const char path_file_r
 
 		if(number_total_rating)
 		{
-			driver.average_rating = sum_total_rating / number_total_rating;
+			// Assigning the arithmetic mean to the driver
+
+			driver.average_rating = sum_total_rating / number_total_rating; // Calculating arithmetic mean of total rating
 
 			if(number_rating_comfort_capacity)
 			{
+				// Calculating arithmetic mean of comfort rating
 				driver.comfort_capacity = sum_rating_comfort_capacity / number_rating_comfort_capacity;
 			}
 
 			if(number_rating_driving_capacity)
 			{
+				// Calculating arithmetic mean of driving rating
 				driver.driving_capacity = sum_rating_driving_capacity / number_rating_driving_capacity;
 			}
 
@@ -1021,7 +1052,7 @@ File_status_t evaluateDriver(const char path_file_driver[], const char path_file
 	File_status_t operation = error_file;
 	Rating_file_t rating;
 	Driver_t driver;
-	bool id_driver_not_valid = true;
+	bool id_driver_not_valid = true; // Used to understand if the user has entered a valid ID
 
 	long int i = 0;
 
@@ -1029,44 +1060,50 @@ File_status_t evaluateDriver(const char path_file_driver[], const char path_file
 
 	showAllStructs(path_file_driver, NULL, DRIVER);
 
+	// Get the id of the driver to evalutate
+	setNumberInput(&rating.id_driver, INT_MIN, INT_MAX, "Enter the ID of the driver that you want to evaluate: ", "The ID that you have entered is not valid");
+
+	i = 0;
 	do
 	{
-		setNumberInput(&rating.id_driver, INT_MIN, INT_MAX, "Enter the ID of the driver that you want to evaluate: ", "The ID that you have entered is not valid");
-		i = 0;
-		do
+		operation = readFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_SET);
+		if(isIdDriverEqual(&driver, &rating.id_driver))
 		{
-			operation = readFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_SET);
-			if(isIdDriverEqual(&driver, &rating.id_driver))
-			{
-				id_driver_not_valid = false;
-			}
-			i++;
+			id_driver_not_valid = false;
 		}
-		while(operation == done && id_driver_not_valid);
-
-		if(id_driver_not_valid)
-		{
-			printf("\nThe ID that you have entered doesn't belong to the system");
-		}
+		i++;
 	}
-	while(id_driver_not_valid);
+	while(operation == done && id_driver_not_valid);
 
-	setNumberInput((int *) &rating.option_rating, false, true, "Enter what you want to evaluate (Driving capacity = 0, Comfort capacity = 1): ", "The choice that you have entered is not valid");
-
-	if(rating.option_rating)
+	if(id_driver_not_valid)
 	{
-		setNumberInput((int *) &rating.rating,one_star, five_star, "Enter the driver's comfort capacity (It should be between 1 and 5): ", "The driver's driving capacity that you have entered is not valid");
+		printf("\nThe ID that you have entered doesn't belong to the system");
+		operation = error_file;
 	}
 	else
 	{
-		setNumberInput((int *) &rating.rating, one_star, five_star, "Enter the driver's driving capacity (It should be between 1 and 5): ", "The driver's driving capacity that you have entered is not valid");
-	}
+		// Get the kind of evalutating that the user wants to do
+		setNumberInput((int *) &rating.option_rating, false, true, "Enter what you want to evaluate (Driving capacity = 0, Comfort capacity = 1): ", "The choice that you have entered is not valid");
 
-	operation = writeFile(path_file_rating, &rating, sizeof(Rating_file_t), 0, SEEK_END);
+		if(rating.option_rating)
+		{
+			// Entering the comfort rating
+			setNumberInput((int *) &rating.rating,one_star, five_star, "Enter the driver's comfort capacity (It should be between 1 and 5): ", "The driver's driving capacity that you have entered is not valid");
+		}
+		else
+		{
+			// Entering the driving rating
+			setNumberInput((int *) &rating.rating, one_star, five_star, "Enter the driver's driving capacity (It should be between 1 and 5): ", "The driver's driving capacity that you have entered is not valid");
+		}
 
-	if(operation)
-	{
-		operation = manageRating(path_file_driver, path_file_rating);
+		// Writing the rating to the file
+		operation = writeFile(path_file_rating, &rating, sizeof(Rating_file_t), 0, SEEK_END);
+
+		if(operation)
+		{
+			// Adding the rating to the driver
+			operation = manageRating(path_file_driver, path_file_rating);
+		}
 	}
 
 	return operation;
@@ -1082,7 +1119,6 @@ File_status_t updateID(const char path_file[], const long int offset, int *id)
 	return operation;
 }
 
-// This function return the index of the driver's ID, the driver's ID is entered by the user using keyboard
 long int getIndexUser(const char path_file_driver[], const char path_file_travel[], const char printf_value_input[], const char printf_value_error[], bool select_struct)
 {
 	File_status_t operation = error_file;
@@ -1103,6 +1139,7 @@ long int getIndexUser(const char path_file_driver[], const char path_file_travel
 			setNumberInput(&id_input, INT_MIN, INT_MAX, printf_value_input, printf_value_error);
 			do
 			{
+				// Reading drivers
 				operation = readFile(path_file_driver, &driver, sizeof(Driver_t), i, SEEK_SET);
 				if(operation == done)
 				{
@@ -1112,7 +1149,7 @@ long int getIndexUser(const char path_file_driver[], const char path_file_travel
 						index_id = i;
 					}
 				}
-					i++;
+				i++;
 			}
 			while(operation == done);
 		}
@@ -1125,6 +1162,7 @@ long int getIndexUser(const char path_file_driver[], const char path_file_travel
 			setNumberInput(&id_input, INT_MIN, INT_MAX, printf_value_input, printf_value_error);
 			do
 			{
+				// Reading travels
 				operation = readFile(path_file_travel, &travel, sizeof(Travel_t), i, SEEK_SET);
 				if(operation == done)
 				{
@@ -1143,7 +1181,6 @@ long int getIndexUser(const char path_file_driver[], const char path_file_travel
 	return index_id;
 }
 
-// This function return the index of the driver's ID, the driver's ID is passed by pointer
 long int getIndex(const char path_file[], const int *id, bool select_struct)
 {
 	File_status_t operation = error_file;
@@ -1159,6 +1196,7 @@ long int getIndex(const char path_file[], const int *id, bool select_struct)
 	{
 		do
 		{
+			// Reading drivers
 			operation = readFile(path_file, &driver, sizeof(driver), i, SEEK_SET);
 			if(operation == done)
 			{
@@ -1176,6 +1214,7 @@ long int getIndex(const char path_file[], const int *id, bool select_struct)
 	{
 		do
 		{
+			// Reading travels
 			operation = readFile(path_file, &travel, sizeof(travel), i, SEEK_SET);
 			if(operation == done)
 			{
@@ -1193,27 +1232,29 @@ long int getIndex(const char path_file[], const int *id, bool select_struct)
 	return index_id;
 }
 
-double setSort(const char path_file[], long int start, long int end, bool select_struct) // It returns the seconds that the sort has spent
+double setSort(const char path_file[], long int start, long int end, bool select_struct)
 {
-	double sorting_seconds = 0;
+	double sorting_seconds = 0; // Returning value that shows how many seconds have the sorting alghoritm spent
+
 	time_t sorting_start = 0;
 	time_t sorting_end = 0;
-	int sorting_input = -1;
+
+	int sort_key_input = -1;
 
 	if(select_struct)
 	{
 		showSortKeyDriver();
-		setNumberInput(&sorting_input, inc_id_driver, dec_average_rating, "Enter the number of sorting that you want to do on the drivers: ", "The number of sorting that you have entered is not valid");
+		setNumberInput(&sort_key_input, inc_id_driver, dec_average_rating, "Enter the number of sorting that you want to do on the drivers: ", "The number of sorting that you have entered is not valid");
 		sorting_start = clock();
-		mergeSort(path_file, start, end, select_struct, sorting_input);
+		mergeSort(path_file, start, end, select_struct, sort_key_input);
 		sorting_end = clock();
 	}
 	else
 	{
 		showSortKeyTravel();
-		setNumberInput(&sorting_input, inc_id_travel, dec_free_seats, "Enter the number of sorting that you want to do on the travels: ", "The number of sorting that you have entered is not valid");
+		setNumberInput(&sort_key_input, inc_id_travel, dec_free_seats, "Enter the number of sorting that you want to do on the travels: ", "The number of sorting that you have entered is not valid");
 		sorting_start = clock();
-		mergeSort(path_file, start, end, select_struct, sorting_input);
+		mergeSort(path_file, start, end, select_struct, sort_key_input);
 		sorting_end = clock();
 	}
 
@@ -1266,6 +1307,7 @@ void mergeDriver(const char path_file[], long int start, long int middle, long i
 			readFile(path_file, &first_driver, sizeof(Driver_t), i, SEEK_SET);
 			readFile(path_file, &second_driver, sizeof(Driver_t), j, SEEK_SET);
 
+			// Using the sorting key to make different kind of sorting
 			switch(key_sort)
 			{
 				case inc_id_driver:
@@ -1511,6 +1553,7 @@ void mergeTravel(const char path_file[], long int start, long int middle, long i
 			readFile(path_file, &first_travel, sizeof(Travel_t), i, SEEK_SET);
 			readFile(path_file, &second_travel, sizeof(Travel_t), j, SEEK_SET);
 
+			// Using the sorting key to make different kind of sorting
 			switch(key_sort)
 			{
 				case inc_id_travel:

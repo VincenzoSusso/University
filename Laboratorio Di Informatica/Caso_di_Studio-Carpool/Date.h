@@ -140,7 +140,19 @@
  * @enum Month_t
  * This user-defined type is used in order to indicates the months and improve the readability.
  */
-typedef enum {january = 1, february, march, april, may, june, july, august, september, october, november, december} Month_t;
+typedef enum {january = 1, /**< This member is used to indicate the month of January*/
+			 february, /**< This member is used to indicate the month of February*/
+			 march, /**< This member is used to indicate the month of March*/
+			 april, /**< This member is used to indicate the month of April*/
+			 may, /**< This member is used to indicate the month of May*/
+			 june, /**< This member is used to indicate the month of June*/
+			 july, /**< This member is used to indicate the month of July*/
+			 august, /**< This member is used to indicate the month of August*/
+			 september, /**< This member is used to indicate the month of September*/
+			 october, /**< This member is used to indicate the month of October*/
+			 november, /**< This member is used to indicate the month of November*/
+			 december /**< This member is used to indicate the month of December*/
+} Month_t;
 
 
 /**
@@ -159,9 +171,9 @@ typedef enum {older = -1, /**< The first date/time is older than the second one*
  */
 typedef struct
 {
-	unsigned short year;
-	Month_t month;
-	unsigned short day;
+	unsigned short year; /**< This member is used to store the year of the date */
+	Month_t month; /**< This member is used to store the month of the date */
+	unsigned short day; /**< This member is used to store the day of the date */
 } Date_t;
 
 
@@ -171,8 +183,8 @@ typedef struct
  */
 typedef struct
 {
-	unsigned short hour;
-	unsigned short minute;
+	unsigned short hour; /**< This member is used to store the hour of the time */
+	unsigned short minute; /**< This member is used to store the minute of the time */
 } Time_t;
 
 
