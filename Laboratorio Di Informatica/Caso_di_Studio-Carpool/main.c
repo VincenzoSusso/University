@@ -72,7 +72,7 @@ int main(void)
 		showMenu();
 
 		// Get input
-		setNumberInput((int *) &menu_choice, add_driver, exit_menu, MENU_CHOICHE_PRINTF_VALUE_INPUT, MENU_CHOICHE_PRINTF_VALUE_ERROR);
+		setNumberInput((int *) &menu_choice, add_driver, exit_menu, "Enter a choice: ", "The choice that you have made is not valid");
 
 		switch(menu_choice)
 		{

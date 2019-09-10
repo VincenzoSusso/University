@@ -17,15 +17,7 @@
 #define DRIVERS_FILE_PATH "../Files/Drivers.dat"
 #define TRAVELS_FILE_PATH "../Files/Travels.dat"
 #define RATINGS_FILE_PATH "../Files/Ratings.dat"
-#define ID_FILE_PATH "../Files/ID.dat" // This file is used in order to generate unique ID for drivers and for travels
-
-// Those constant are used to manage the offset of the ID files
-#define OFFSET_ID_DRIVER 0
-#define OFFSET_ID_TRAVEL 1
-
-// Those constant are used to take the input
-#define MENU_CHOICHE_PRINTF_VALUE_INPUT "Enter a choice: "
-#define MENU_CHOICHE_PRINTF_VALUE_ERROR "The choice that you have made is not valid"
+#define ID_FILE_PATH "../Files/ID.dat" // This file is used in order to manage unique ID for drivers and for travel
 
 // -- User-Defined types --
 typedef enum

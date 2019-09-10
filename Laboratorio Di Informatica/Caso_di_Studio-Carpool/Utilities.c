@@ -1,13 +1,21 @@
 // -- Libraries --
 #include "Utilities.h"
 
+/**
+ * @file Utilities.c
+ * @author Vincenzo Susso
+ * @date 2019 Sep 09
+ * @version 1.0
+ * @brief This file is the implementation file of Utilities.h
+ */
+
 // -- Procedure & Functions --
 void clearBuffer(void)
 {
     while(getchar() != NEWLINE_CHARACTER){};
 }
 
-void initializeCMD(void) // This function is used to enable ANSI escape sequences on CMD
+void initializeCMD(void)
 {
 	// For more information, please visit here: https://stackoverflow.com/questions/47157714/escape-character-doesnt-work
 
@@ -18,7 +26,7 @@ void initializeCMD(void) // This function is used to enable ANSI escape sequence
 	SetConsoleMode(console, consoleMode);
 }
 
-void printfError(const char string[]) // This function is used to make a printf() in red color
+void printfError(const char string[])
 {
 	printf("%s%s%s", RED, string, RESET);
 }
@@ -28,7 +36,7 @@ void addNullCharacterString(char string[])
 	strcat(string, NULL_STRING);
 }
 
-void capitalizeString(char string[]) // This procedure converts the first letter of the string to uppercase and the other ones to lowercase
+void capitalizeString(char string[])
 {
 	unsigned short i = 0;
 
@@ -41,7 +49,7 @@ void capitalizeString(char string[]) // This procedure converts the first letter
 
 }
 
-bool isIncluded(const int min, const int max, const int number) // This function return true if the number is included between min and max
+bool isIncluded(const int min, const int max, const int number)
 {
 	bool included_number = false;
 
@@ -53,7 +61,7 @@ bool isIncluded(const int min, const int max, const int number) // This function
 	return included_number;
 }
 
-bool isLatinString(const char string[]) // This function return true if each character of the string belongs to the Latin alphabet
+bool isLatinString(const char string[])
 {
 	bool latin_string = false;
 	unsigned short i = 0;
@@ -74,7 +82,7 @@ bool isLatinString(const char string[]) // This function return true if each cha
 	return latin_string;
 }
 
-bool isNumberString(const char string[]) // This function return true if each character of the string is a digit
+bool isNumberString(const char string[])
 {
 	bool number = false;
 	unsigned short i = 0;
@@ -107,23 +115,22 @@ bool isVoidString(const char string[])
     return void_string;
 }
 
+/**
+ * The format of email addresses is \"local-part\@domain\".
+ * The local-part of the email address may use any of these ASCII characters:
+ * - Uppercase and lowercase Latin letters A to Z and a to z;
+ * - Digits 0 to 9;
+ * - Dot \".\", provided that it is not the first or last character, and provided also that it does not appear
+ * consecutively;
+ *
+ * The domain name part of an email address has to conform to strict guidelines:
+ * - Uppercase and lowercase Latin letters A to Z and a to z;
+ * - Digits 0 to 9, provided that top-level domain names are not all-numeric;
+ * 	For more informations, please visit here: https://en.wikipedia.org/wiki/Email_address
+ */
+
 bool isEmail(const char email[])
 {
-	/*
-		The format of email addresses is local-part@domain.
-
-		The local-part of the email address may use any of these ASCII characters:
-		- Uppercase and lowercase Latin letters A to Z and a to z;
-		- Digits 0 to 9;
-		- Dot ., provided that it is not the first or last character, and provided also that it does not appear consecutively;
-
-		The domain name part of an email address has to conform to strict guidelines:
-		- Uppercase and lowercase Latin letters A to Z and a to z;
-		- Digits 0 to 9, provided that top-level domain names are not all-numeric;
-
-		For more informations, please visit here: https://en.wikipedia.org/wiki/Email_address
-	*/
-
 	bool valid_email = true;
 	unsigned short number_dot_domain = 0; // Used to verify if the domain of the email has one dot
 	unsigned short i = 0;
@@ -136,12 +143,18 @@ bool isEmail(const char email[])
 
 	if(copied_email)
 	{
-		strcpy(copied_email, email); // The use of the function strtok() modify the original string so I use a copied string to check the email
-		local_part = strtok(copied_email, AT_SIGN_STRING); // The function strtok() replaces the @ with a null character and splits the string
-		domain = strtok(NULL, NULL_STRING); // The function strtok() takes a pointer NULL in order to re-start from the null character previously inserted
+		// The use of the function strtok() modify the original string so I use a copied string to check the email
+		strcpy(copied_email, email);
+
+		 // The function strtok() replaces the @ with a null character and splits the string
+		local_part = strtok(copied_email, AT_SIGN_STRING);
+
+		// The function strtok() takes a pointer NULL in order to re-start from the null character previously inserted
+		domain = strtok(NULL, NULL_STRING);
 	}
 	else
 	{
+		// copied_email was not allocated
 		valid_email = false;
 	}
 
@@ -249,24 +262,31 @@ bool isPassword(const char password[])
 	return valid_password;
 }
 
-bool isNumberPhone(const char phone_number[])
+bool isPhoneNumber(const char phone_number[])
 {
 	bool valid_phone_number = true;
-	char *copied_number_phone = NULL;
-	char *country_code = NULL; // Used to point to the country code of the number phone
-	char *subscriber_number = NULL; // Used to point to the number path of the number phone
+
+	char *copied_phone_number = NULL;
+	char *country_code = NULL; // Used to point to the country code of the phone number
+	char *subscriber_number = NULL; // Used to point to the number path of the phone number
 
 	// The + 1 was added in order to allow the dynamic array to store the null character
-	copied_number_phone = malloc(sizeof(char) * (strlen(phone_number) + 1));
+	copied_phone_number = malloc(sizeof(char) * (strlen(phone_number) + 1));
 
-	if(copied_number_phone)
+	if(copied_phone_number)
 	{
-		strcpy(copied_number_phone, phone_number); // The use of the function strtok() modify the original string so I use a copied string to check the phone number
-		country_code = strtok(copied_number_phone, SPACE_STRING); // The function strtok() replaces the space with a null character and splits the string
-		subscriber_number = strtok(NULL, NULL_STRING); // The function strtok() takes a pointer NULL in order to re-start from the null character previously inserted
+		// The use of the function strtok() modify the original string so I use a copied string to check the phone number
+		strcpy(copied_phone_number, phone_number);
+
+		// The function strtok() replaces the space with a null character and splits the string
+		country_code = strtok(copied_phone_number, SPACE_STRING);
+
+		// The function strtok() takes a pointer NULL in order to re-start from the null character previously inserted
+		subscriber_number = strtok(NULL, NULL_STRING);
 	}
 	else
 	{
+		// copied_phone_number was not allocated
 		valid_phone_number = false;
 	}
 
@@ -293,7 +313,7 @@ bool isNumberPhone(const char phone_number[])
 		valid_phone_number = false;
 	}
 
-	free(copied_number_phone);
+	free(copied_phone_number);
 
 	return valid_phone_number;
 }
@@ -310,9 +330,14 @@ bool isDecimalNumber(const char decimal_number[])
 
 	if(copied_decimal_number)
 	{
-		strcpy(copied_decimal_number, decimal_number); // The use of the function strtok() modify the original string so I use a copied string to check the decimal number
-		integer_part = strtok(copied_decimal_number, PERIOD_STRING); // The function strtok() replaces the space with a null character and splits the string
-		decimal_portion = strtok(NULL, NULL_STRING); // The function strtok() takes a pointer NULL in order to re-start from the null character previously inserted
+		// The use of the function strtok() modify the original string so I use a copied string to check the decimal number
+		strcpy(copied_decimal_number, decimal_number);
+
+		// The function strtok() replaces the space with a null character and splits the string
+		integer_part = strtok(copied_decimal_number, PERIOD_STRING);
+
+		// The function strtok() takes a pointer NULL in order to re-start from the null character previously inserted
+		decimal_portion = strtok(NULL, NULL_STRING);
 	}
 	else
 	{
@@ -332,7 +357,7 @@ bool isDecimalNumber(const char decimal_number[])
 	return valid_number;
 }
 
-double getSecondSort(const time_t start, const time_t end) //Used to calculate the number of second that the sort has spend
+double getSecondSort(const time_t start, const time_t end)
 {
      return  ((double) (end - start)) / CLOCKS_PER_SEC;
 }

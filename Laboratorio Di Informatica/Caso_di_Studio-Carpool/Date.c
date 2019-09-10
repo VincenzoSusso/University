@@ -1,7 +1,20 @@
 // -- Libraries --
 #include "Date.h"
 
+/**
+ * @file Date.c
+ * @author Vincenzo Susso
+ * @date 2019 Sep 09
+ * @version 1.0
+ * @brief This file is the implementation file of Date.h
+ */
+
 // -- Procedure & Functions --
+/**
+ * In the Gregorian calendar, every year that is exactly divisible by four is a leap year, except for
+ * years that are exactly divisible by 100, but these centurial years are leap years if they are exactly
+ * divisible by 400.
+*/
 bool isLeapYear(const unsigned short year)
 {
 	bool leap_year = false;
@@ -19,37 +32,35 @@ bool isLeapYear(const unsigned short year)
 	return leap_year;
 }
 
-bool isValidDate(const Date_t date, const unsigned short min_year, const unsigned short max_year)
+bool isValidDate(const Date_t *date, const unsigned short min_year, const unsigned short max_year)
 {
-	// Those variable are used in order to avoid bugs due to the use of the same variable for many scopes
 	bool valid_date = false;
 
-
 	// If the year or the month is not valid, all the date is wrong
-	if(isIncluded(january, december, date.month) && isIncluded(min_year, max_year, date.year))
+	if(isIncluded(january, december, date -> month) && isIncluded(min_year, max_year, date -> year))
 	{
-		if(date.month == february)
+		if(date -> month == february)
 		{
-			if(isLeapYear(date.year))
+			if(isLeapYear(date -> year))
 			{
 				// The year is a lap year so the month has twenty-nine days
-				valid_date = isIncluded(MIN_DAY, MAX_DAY_FEBRUARY, date.day);
+				valid_date = isIncluded(MIN_DAY, MAX_DAY_FEBRUARY, date -> day);
 			}
 			else
 			{
 				// The year is not a lap year so the month has twenty-eight days
-				valid_date = isIncluded(MIN_DAY, MAX_DAY_FEBRUARY - 1, date.day);
+				valid_date = isIncluded(MIN_DAY, MAX_DAY_FEBRUARY - 1, date -> day);
 			}
 		}
-		else if(date.month == april || date.month == june || date.month == september || date.month == november)
+		else if(date -> month == april || date -> month == june || date -> month == september || date -> month == november)
 		{
 			// The month has thirty days
-			valid_date = isIncluded(MIN_DAY, MAX_DAY - 1, date.day);
+			valid_date = isIncluded(MIN_DAY, MAX_DAY - 1, date -> day);
 		}
 		else
 		{
 			// The month has thirty-one days
-			valid_date = isIncluded(MIN_DAY, MAX_DAY, date.day);
+			valid_date = isIncluded(MIN_DAY, MAX_DAY, date -> day);
 		}
 	}
 
@@ -63,7 +74,6 @@ void resetDate(Date_t *date)
 	date -> day = MIN_DAY - 1;
 }
 
-// The procedure set a valid value to the date passed by pointer
 void setDate(Date_t *date, const unsigned short min_year, const unsigned short max_year, const char printf_value[])
 {
 	bool flag = false;
@@ -85,6 +95,7 @@ void setDate(Date_t *date, const unsigned short min_year, const unsigned short m
 		addNullCharacterString(date_input);
 		clearBuffer();
 
+		// Splitting the date
 		year = strtok(date_input, DATE_DELIMITER);
 		month = strtok(NULL, DATE_DELIMITER);
 		day = strtok(NULL, NULL_STRING);
@@ -101,7 +112,7 @@ void setDate(Date_t *date, const unsigned short min_year, const unsigned short m
 			}
 		}
 
-		flag = !isValidDate(*date, min_year, max_year);
+		flag = !isValidDate(date, min_year, max_year);
 		if(flag)
 		{
 			printf("\nThe %s that you have entered is not valid", printf_value);
@@ -111,11 +122,11 @@ void setDate(Date_t *date, const unsigned short min_year, const unsigned short m
 	while(flag);
 }
 
-bool isValidTime(const Time_t time)
+bool isValidTime(const Time_t *time)
 {
 	bool valid_time = false;
 
-	if(isIncluded(MIN_HOUR, MAX_HOUR, time.hour) && isIncluded(MIN_MINUTE, MAX_MINUTE, time.minute))
+	if(isIncluded(MIN_HOUR, MAX_HOUR, time -> hour) && isIncluded(MIN_MINUTE, MAX_MINUTE, time -> minute))
 	{
 		valid_time = true;
 	}
@@ -149,6 +160,7 @@ void setTime(Time_t *time, const char printf_value[]) // The procedure set a val
 		addNullCharacterString(time_input);
 		clearBuffer();
 
+		// Splitting time
 		hour = strtok(time_input, TIME_DELIMITER);
 		minute = strtok(NULL, NULL_STRING);
 
@@ -163,7 +175,7 @@ void setTime(Time_t *time, const char printf_value[]) // The procedure set a val
 			}
 		}
 
-		flag = !isValidTime(*time);
+		flag = !isValidTime(time);
 		if(flag)
 		{
 			printf("\nThe %s that you have entered is not valid", printf_value);
@@ -171,12 +183,6 @@ void setTime(Time_t *time, const char printf_value[]) // The procedure set a val
 
 	}
 	while(flag);
-}
-
-
-bool areDatesEquals(const Date_t *first_date, const Date_t *second_date)
-{
-	return (first_date -> year == second_date -> year) && ((first_date -> month) == (second_date -> month)) && ((first_date -> day) == (second_date -> day));
 }
 
 Date_order_t cmpDate(const Date_t *first_date, const Date_t *second_date)

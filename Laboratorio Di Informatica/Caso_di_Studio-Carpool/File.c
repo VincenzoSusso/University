@@ -1,6 +1,14 @@
 // -- Libraries --
 #include "File.h"
 
+/**
+ * @file File.c
+ * @author Vincenzo Susso
+ * @date 2019 Sep 10
+ * @version 1.0
+ * @brief This file is the implementation file of File.h
+ */
+
 // -- Procedure & Functions --
 File_status_t isValidFile(const char path_file[])
 {
@@ -11,12 +19,13 @@ File_status_t isValidFile(const char path_file[])
 	if(mkdir(DIRECTORY_PATH)) // Create a directory named "Files" if it doesn't exsist
 	{
 		/*
-		 	 When mkdir fails, it returns -1 so it executes the if-then statement; when an error occurs, errno is set on a value based on kind of error
-		 	 that has been verified, so if mkdir has failed because the directory esist, errno will be set to EEXIST
+		 	 When mkdir fails, it returns -1 so it executes the if-then statement; when an error occurs, errno is set on
+		 	 a value based on kind of error that has been verified, so if mkdir has failed because the directory esist,
+		 	 errno will be set to EEXIST
 		 */
 		if(errno != EEXIST)
 		{
-			valid_file = error;
+			valid_file = error_file;
 		}
 	}
 	errno = 0;
@@ -25,7 +34,7 @@ File_status_t isValidFile(const char path_file[])
 	file = fopen(path_file, "ab");
 	if(!file)
 	{
-		valid_file = error;
+		valid_file = error_file;
 	}
 	fclose(file);
 
@@ -34,7 +43,7 @@ File_status_t isValidFile(const char path_file[])
 
 File_status_t deleteFile(const char path_file[])
 {
-	File_status_t deleted_file = error;
+	File_status_t deleted_file = error_file;
 
 	if(!remove(path_file))
 	{
@@ -59,13 +68,13 @@ File_status_t writeFile(const char path_file[], void* pointer, size_t pointer_si
 		if(number_member_written < NUMBER_MEMBER_FILE)
 		{
 			// The writing of the file has failed
-			file_written = error;
+			file_written = error_file;
 		}
 	}
 	else
 	{
 		// The file cannot be opened
-		file_written = error;
+		file_written = error_file;
 	}
 
 	fclose(file);
@@ -97,14 +106,14 @@ File_status_t readFile(const char path_file[], void* pointer, size_t pointer_siz
 			else
 			{
 				// An error has occurred during the reading of the file
-				file_read = error;
+				file_read = error_file;
 			}
 		}
 	}
 	else
 	{
 		// The file cannot be opened
-		file_read = error;
+		file_read = error_file;
 	}
 
 	fclose(file);
