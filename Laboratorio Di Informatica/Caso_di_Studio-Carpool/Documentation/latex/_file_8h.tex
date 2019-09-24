@@ -1,0 +1,206 @@
+\hypertarget{_file_8h}{}\doxysection{C\+:/\+Users/\+Win\+Enzo/\+Documents/\+Eclipse/\+Caso\+\_\+di\+\_\+\+Studio-\/\+Carpool/src/\+File.h File Reference}
+\label{_file_8h}\index{C:/Users/WinEnzo/Documents/Eclipse/Caso\_di\_Studio-\/Carpool/src/File.h@{C:/Users/WinEnzo/Documents/Eclipse/Caso\_di\_Studio-\/Carpool/src/File.h}}
+
+
+This library was created in order to provide some procedures and functions that are used to files.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$direct.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_file_8h_a1750933f1f71cf994e1dc923a03310ad}{D\+I\+R\+E\+C\+T\+O\+R\+Y\+\_\+\+P\+A\+TH}}~\char`\"{}../Files\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_file_8h_ad674d1c152d246cd35fb06ada5d7b833}{N\+U\+M\+B\+E\+R\+\_\+\+M\+E\+M\+B\+E\+R\+\_\+\+F\+I\+LE}}~1
+\item 
+\#define \mbox{\hyperlink{_file_8h_ad305610f9e98fa1e5fdb8a4781e9ec82}{I\+N\+D\+E\+X\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND}}~-\/1
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \{ \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792ae02d8aeece24384f1c4d4d9881895d67}{error\+\_\+file}} = 0, 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792aaea362e279f9e16c14e6daddb6a00def}{fail}}, 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792a9041c40ebd1ff09fe453b594ad748199}{done}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_file_8h_aa1d6aa2cb48b25859c792c1b64589b98}{is\+Valid\+File}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_file_8h_a785debfd7ee869ae7f8d640815351e34}{delete\+File}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_file_8h_a5e6c89d4a04db8740bd956e35bffd0bf}{write\+File}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, void $\ast$pointer, size\+\_\+t pointer\+\_\+size, long int offset, int whence)
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_file_8h_a5b5c00f1464725464582f720759ee8c4}{read\+File}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, void $\ast$pointer, size\+\_\+t pointer\+\_\+size, long int offset, int whence)
+\item 
+long int \mbox{\hyperlink{_file_8h_a5154251f4a3a353f9cb883f0ddf22927}{get\+Last\+Index}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{_file_8h_afb71b821ed1525f79c393bd28fee7b44}{get\+Number\+Record}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, size\+\_\+t size\+\_\+record)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This library was created in order to provide some procedures and functions that are used to files. 
+
+\begin{DoxyAuthor}{Author}
+Vincenzo Susso 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2019 Sep 10 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 This library can check if a file exits and can create new files, furthermore this library can read and write a file. This library can get the number of records that have been saved into a file. 
+\end{DoxyVersion}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_file_8h_a1750933f1f71cf994e1dc923a03310ad}\label{_file_8h_a1750933f1f71cf994e1dc923a03310ad}} 
+\index{File.h@{File.h}!DIRECTORY\_PATH@{DIRECTORY\_PATH}}
+\index{DIRECTORY\_PATH@{DIRECTORY\_PATH}!File.h@{File.h}}
+\doxysubsubsection{\texorpdfstring{DIRECTORY\_PATH}{DIRECTORY\_PATH}}
+{\footnotesize\ttfamily \#define D\+I\+R\+E\+C\+T\+O\+R\+Y\+\_\+\+P\+A\+TH~\char`\"{}../Files\char`\"{}}
+
+This string is used to indicates the relative path of the directory that will store all the files. \mbox{\Hypertarget{_file_8h_ad305610f9e98fa1e5fdb8a4781e9ec82}\label{_file_8h_ad305610f9e98fa1e5fdb8a4781e9ec82}} 
+\index{File.h@{File.h}!INDEX\_NOT\_FOUND@{INDEX\_NOT\_FOUND}}
+\index{INDEX\_NOT\_FOUND@{INDEX\_NOT\_FOUND}!File.h@{File.h}}
+\doxysubsubsection{\texorpdfstring{INDEX\_NOT\_FOUND}{INDEX\_NOT\_FOUND}}
+{\footnotesize\ttfamily \#define I\+N\+D\+E\+X\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND~-\/1}
+
+This integer is used to indicates that the index of a record has not been found. \mbox{\Hypertarget{_file_8h_ad674d1c152d246cd35fb06ada5d7b833}\label{_file_8h_ad674d1c152d246cd35fb06ada5d7b833}} 
+\index{File.h@{File.h}!NUMBER\_MEMBER\_FILE@{NUMBER\_MEMBER\_FILE}}
+\index{NUMBER\_MEMBER\_FILE@{NUMBER\_MEMBER\_FILE}!File.h@{File.h}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_MEMBER\_FILE}{NUMBER\_MEMBER\_FILE}}
+{\footnotesize\ttfamily \#define N\+U\+M\+B\+E\+R\+\_\+\+M\+E\+M\+B\+E\+R\+\_\+\+F\+I\+LE~1}
+
+This integer indicates the number of member that the file can read/write. This integer can be used to check if the file has been read or written correctly. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_file_8h_aee0362ef1b580a84067bb31bc59a3792}\label{_file_8h_aee0362ef1b580a84067bb31bc59a3792}} 
+\index{File.h@{File.h}!File\_status\_t@{File\_status\_t}}
+\index{File\_status\_t@{File\_status\_t}!File.h@{File.h}}
+\doxysubsubsection{\texorpdfstring{File\_status\_t}{File\_status\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}}}
+
+This user-\/defined type is used to manage the operation with files. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{error\_file@{error\_file}!File.h@{File.h}}\index{File.h@{File.h}!error\_file@{error\_file}}}\mbox{\Hypertarget{_file_8h_aee0362ef1b580a84067bb31bc59a3792ae02d8aeece24384f1c4d4d9881895d67}\label{_file_8h_aee0362ef1b580a84067bb31bc59a3792ae02d8aeece24384f1c4d4d9881895d67}} 
+error\+\_\+file&This value is returned when a fatal error has occurred \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{fail@{fail}!File.h@{File.h}}\index{File.h@{File.h}!fail@{fail}}}\mbox{\Hypertarget{_file_8h_aee0362ef1b580a84067bb31bc59a3792aaea362e279f9e16c14e6daddb6a00def}\label{_file_8h_aee0362ef1b580a84067bb31bc59a3792aaea362e279f9e16c14e6daddb6a00def}} 
+fail&This value is returned when a minor error has occurred so the program can continue to run \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{done@{done}!File.h@{File.h}}\index{File.h@{File.h}!done@{done}}}\mbox{\Hypertarget{_file_8h_aee0362ef1b580a84067bb31bc59a3792a9041c40ebd1ff09fe453b594ad748199}\label{_file_8h_aee0362ef1b580a84067bb31bc59a3792a9041c40ebd1ff09fe453b594ad748199}} 
+done&This value is returned when error has not occurred \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_file_8h_a785debfd7ee869ae7f8d640815351e34}\label{_file_8h_a785debfd7ee869ae7f8d640815351e34}} 
+\index{File.h@{File.h}!deleteFile@{deleteFile}}
+\index{deleteFile@{deleteFile}!File.h@{File.h}}
+\doxysubsubsection{\texorpdfstring{deleteFile()}{deleteFile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} delete\+File (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function will delete the file specified in the path\+\_\+file. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the path of the file to delete. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+2 if the file has been deleted, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_file_8h_a5154251f4a3a353f9cb883f0ddf22927}\label{_file_8h_a5154251f4a3a353f9cb883f0ddf22927}} 
+\index{File.h@{File.h}!getLastIndex@{getLastIndex}}
+\index{getLastIndex@{getLastIndex}!File.h@{File.h}}
+\doxysubsubsection{\texorpdfstring{getLastIndex()}{getLastIndex()}}
+{\footnotesize\ttfamily long int get\+Last\+Index (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function will return the last index of the file specified by the path passed by pointer. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the path of the file that will be read to get the last index of the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the index of the file if it has been found, otherwise It will return -\/1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_file_8h_afb71b821ed1525f79c393bd28fee7b44}\label{_file_8h_afb71b821ed1525f79c393bd28fee7b44}} 
+\index{File.h@{File.h}!getNumberRecord@{getNumberRecord}}
+\index{getNumberRecord@{getNumberRecord}!File.h@{File.h}}
+\doxysubsubsection{\texorpdfstring{getNumberRecord()}{getNumberRecord()}}
+{\footnotesize\ttfamily int get\+Number\+Record (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{size\+\_\+t}]{size\+\_\+record }\end{DoxyParamCaption})}
+
+This function will return the number of records that have been saved into the file specified by the path passed by pointer. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the path of the file that will be read to get the number of records that have been saved into the file \\
+\hline
+{\em size\+\_\+record} & is the size of records that have been saved into the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of records that have been saved into the file, otherwise It will return 0 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_file_8h_aa1d6aa2cb48b25859c792c1b64589b98}\label{_file_8h_aa1d6aa2cb48b25859c792c1b64589b98}} 
+\index{File.h@{File.h}!isValidFile@{isValidFile}}
+\index{isValidFile@{isValidFile}!File.h@{File.h}}
+\doxysubsubsection{\texorpdfstring{isValidFile()}{isValidFile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} is\+Valid\+File (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function checks if the directory and the file specified in the path\+\_\+file exist, otherwise this function will create the directory and the file. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the path of the file to check or create. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+2 if the directory and the file exist or if they have been created, otherwise It will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_file_8h_a5b5c00f1464725464582f720759ee8c4}\label{_file_8h_a5b5c00f1464725464582f720759ee8c4}} 
+\index{File.h@{File.h}!readFile@{readFile}}
+\index{readFile@{readFile}!File.h@{File.h}}
+\doxysubsubsection{\texorpdfstring{readFile()}{readFile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} read\+File (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{void $\ast$}]{pointer,  }\item[{size\+\_\+t}]{pointer\+\_\+size,  }\item[{long int}]{offset,  }\item[{int}]{whence }\end{DoxyParamCaption})}
+
+This function will read the file specified by the path passed by pointer whence the offset is specified. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the path of the file to read \\
+\hline
+{\em pointer} & will point the element that will be read to the file \\
+\hline
+{\em pointer\+\_\+size} & is the size of the pointer that will be read to the file \\
+\hline
+{\em offset} & is where the file will be read \\
+\hline
+{\em whence} & is where the file will start to count the offset \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+2 if the file has been read, 1 if the file has reached E\+OF, otherwise this function will return 0 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_file_8h_a5e6c89d4a04db8740bd956e35bffd0bf}\label{_file_8h_a5e6c89d4a04db8740bd956e35bffd0bf}} 
+\index{File.h@{File.h}!writeFile@{writeFile}}
+\index{writeFile@{writeFile}!File.h@{File.h}}
+\doxysubsubsection{\texorpdfstring{writeFile()}{writeFile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} write\+File (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{void $\ast$}]{pointer,  }\item[{size\+\_\+t}]{pointer\+\_\+size,  }\item[{long int}]{offset,  }\item[{int}]{whence }\end{DoxyParamCaption})}
+
+This function will write the file specified by the path passed by pointer whence the offset is specified. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the path of the file to write \\
+\hline
+{\em pointer} & will point the element that will be written to the file \\
+\hline
+{\em pointer\+\_\+size} & is the size of the pointer that will be written to the file \\
+\hline
+{\em offset} & is where the file will be written \\
+\hline
+{\em whence} & is where the file will start to count the offset \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+2 if the file has been written, otherwise this function will return 0 
+\end{DoxyReturn}

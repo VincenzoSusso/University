@@ -1,0 +1,604 @@
+\hypertarget{_carpool_8c}{}\doxysection{C\+:/\+Users/\+Win\+Enzo/\+Documents/\+Eclipse/\+Caso\+\_\+di\+\_\+\+Studio-\/\+Carpool/src/\+Carpool.c File Reference}
+\label{_carpool_8c}\index{C:/Users/WinEnzo/Documents/Eclipse/Caso\_di\_Studio-\/Carpool/src/Carpool.c@{C:/Users/WinEnzo/Documents/Eclipse/Caso\_di\_Studio-\/Carpool/src/Carpool.c}}
+
+
+This file is the implementation file of \mbox{\hyperlink{_carpool_8h}{Carpool.\+h}}.  
+
+
+{\ttfamily \#include \char`\"{}Carpool.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{_carpool_8c_a9d18d62334194924ebd839a681414646}{read\+Gender}} (const \mbox{\hyperlink{_carpool_8h_aea0ac35116fa81886d820422ded4d807}{Gender\+\_\+t}} $\ast$\mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a3852ad964b0057c9a04ee17eb1f9a0fb}{gender}})
+\item 
+const char $\ast$ \mbox{\hyperlink{_carpool_8c_a30e62380df108d068af4894b1ec17bf9}{read\+Rating}} (const \mbox{\hyperlink{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89}{Rating\+\_\+t}} $\ast$rating)
+\item 
+void \mbox{\hyperlink{_carpool_8c_a1550b9da6a284b321a2aab61c7d40a96}{set\+Word}} (char word\mbox{[}$\,$\mbox{]}, const char printf\+\_\+value\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8c_a15eca10657322b73663fdf7f89c082c8}{set\+Email}} (char \mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58aeba54621f7fdcd8115863434763b2cfa}{email}}\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8c_a88ce171e97f15f3a25a3c1ff8514bcac}{set\+Password}} (char \mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a09116bef1d274b09829ea49487887dc2}{password}}\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8c_af9c206993d58e2c7018342c8492496a1}{set\+Phone\+Number}} (char \mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58afdc998182262eef3b1a2887b593c3c05}{phone\+\_\+number}}\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8c_a7e6f6ae38e94415ae340714b0120a883}{set\+Additional\+Notes}} (char \mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a3a98a04563bb24d1bdf1586e89a6543e}{additional\+\_\+notes}}\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8c_a986273ddc415d8d3a874724379cc8a1d}{set\+Price}} (double $\ast$\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7ac18d2aaa88694e92b2d68eb84dc28753}{price}})
+\item 
+void \mbox{\hyperlink{_carpool_8c_adf36b53cbe88aff4b203c9c13660f72c}{set\+Number\+Input}} (int $\ast$input, const int min, const int max, const char printf\+\_\+value\+\_\+input\mbox{[}$\,$\mbox{]}, const char printf\+\_\+value\+\_\+error\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8c_a3dc8ac56dfe32dbfb6994a62881e2513}{reset\+Driver}} (\mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$driver)
+\item 
+void \mbox{\hyperlink{_carpool_8c_a399463b462a785e5084f37e7873f385d}{set\+Driver}} (\mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$driver, const int $\ast$id)
+\item 
+void \mbox{\hyperlink{_carpool_8c_a05e394f43f6ca21695e0ac76487946fd}{read\+Driver}} (const \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$driver)
+\item 
+bool \mbox{\hyperlink{_carpool_8c_ac41fc366ddfd195178914d3dc82ff6b9}{is\+Id\+Driver\+Equal}} (const \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$driver, const int $\ast$id)
+\item 
+void \mbox{\hyperlink{_carpool_8c_ae67eb482a84c2af7bb37bc08f1f306b0}{show\+Member\+Driver}} (void)
+\item 
+void \mbox{\hyperlink{_carpool_8c_a3353916e1419e9f273c21dd4df9a2484}{show\+Sort\+Key\+Driver}} (void)
+\item 
+void \mbox{\hyperlink{_carpool_8c_a3eb10326e294bdab7d9c5edb252d411a}{reset\+Travel}} (\mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$travel)
+\item 
+void \mbox{\hyperlink{_carpool_8c_a6847ba1bfbc6f31ace16be0879a65b95}{set\+Travel}} (\mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$travel, const int $\ast$id, const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8c_af1a355fe7237fe3db3a3cde0d2e6d58a}{read\+Travel}} (const \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$travel, const char path\+\_\+driver\+\_\+file\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{_carpool_8c_add241aedbebded5b1f09992038598505}{is\+Id\+Travel\+Equal}} (const \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$travel, const int $\ast$id)
+\item 
+void \mbox{\hyperlink{_carpool_8c_a14bef394d44a445661eb175552bb6730}{show\+Member\+Travel}} (void)
+\item 
+void \mbox{\hyperlink{_carpool_8c_a201fc338cfa0c419186615de9e551677}{show\+Sort\+Key\+Travel}} (void)
+\item 
+void \mbox{\hyperlink{_carpool_8c_a3a1b2e8ba54d3ff7e4cfb76abc22228f}{reset\+Booking\+Travel}} (\mbox{\hyperlink{struct_booking__travel__t}{Booking\+\_\+travel\+\_\+t}} $\ast$booking\+\_\+travel)
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8c_a96741621358c643f0d5e3efe66579334}{add\+Struct}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]}, const int $\ast$id, bool select\+\_\+struct)
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8c_ae08e9ff8a426d1553e99f240d3d51079}{edit\+Struct}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]}, bool select\+\_\+struct)
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8c_a6e8a65abdc62873a35d5b05b2e45a3df}{delete\+Struct}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]}, bool select\+\_\+struct)
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8c_afef4295fd3c5449f0564cbf354a06e1a}{show\+All\+Structs}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]}, bool select\+\_\+struct)
+\item 
+bool \mbox{\hyperlink{_carpool_8c_a4b997605e80c0a4e3f07bbe29a5489e3}{book\+Travel}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8c_a3aff5cdfedc08effc6d884cf59ffb7f5}{manage\+Rating}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+rating\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8c_a03990d3df16b0f7ef4299fe465e0bf3c}{evaluate\+Driver}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+rating\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8c_a4dad1ffd54b6882fbab9a1dbafd3a31f}{update\+ID}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, const long int offset, int $\ast$id)
+\item 
+long int \mbox{\hyperlink{_carpool_8c_a97e195f9c04e75b2c8ca671c60fe984a}{get\+Index\+User}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]}, const char printf\+\_\+value\+\_\+input\mbox{[}$\,$\mbox{]}, const char printf\+\_\+value\+\_\+error\mbox{[}$\,$\mbox{]}, bool select\+\_\+struct)
+\item 
+long int \mbox{\hyperlink{_carpool_8c_a8160ddcdba9ea168ef7e630d90d3fdf7}{get\+Index}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, const int $\ast$id, bool select\+\_\+struct)
+\item 
+double \mbox{\hyperlink{_carpool_8c_ae81b81eadcee775258b5317c9ffb6fab}{set\+Sort}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, long int start, long int end, bool select\+\_\+struct)
+\item 
+void \mbox{\hyperlink{_carpool_8c_a1000c28b78052b8c24329bd2706f968d}{merge\+Sort}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, long int start, long int end, bool select\+\_\+struct, int key\+\_\+sort)
+\item 
+void \mbox{\hyperlink{_carpool_8c_a06627c5d7d2f750da662a0ab7a98868d}{merge\+Driver}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, long int start, long int middle, long int end, int key\+\_\+sort)
+\item 
+void \mbox{\hyperlink{_carpool_8c_a949f65e565cfa3a517edf0622cf412d9}{merge\+Travel}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, long int start, long int middle, long int end, int key\+\_\+sort)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file is the implementation file of \mbox{\hyperlink{_carpool_8h}{Carpool.\+h}}. 
+
+\begin{DoxyAuthor}{Author}
+Vincenzo Susso 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2019 Sep 10 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_carpool_8c_a96741621358c643f0d5e3efe66579334}\label{_carpool_8c_a96741621358c643f0d5e3efe66579334}} 
+\index{Carpool.c@{Carpool.c}!addStruct@{addStruct}}
+\index{addStruct@{addStruct}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{addStruct()}{addStruct()}}
+{\footnotesize\ttfamily add\+Struct (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]},  }\item[{const int $\ast$}]{id,  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to set a struct between \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} and \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} and save them into a file. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+travel} & is the relative path of the travel\textquotesingle{}s file. \\
+\hline
+{\em id} & is the unique ID of driver or travel. \\
+\hline
+{\em select\+\_\+struct} & is used to set \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then a driver will be added to the system, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then a travel will be added to the system. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+2 if the struct is added to the system, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_a4b997605e80c0a4e3f07bbe29a5489e3}\label{_carpool_8c_a4b997605e80c0a4e3f07bbe29a5489e3}} 
+\index{Carpool.c@{Carpool.c}!bookTravel@{bookTravel}}
+\index{bookTravel@{bookTravel}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{bookTravel()}{bookTravel()}}
+{\footnotesize\ttfamily book\+Travel (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function is used in order to book a travel. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+travel} & is the relative path of the travel\textquotesingle{}s file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a travel has been booked, otherwise this function will return false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_a6e8a65abdc62873a35d5b05b2e45a3df}\label{_carpool_8c_a6e8a65abdc62873a35d5b05b2e45a3df}} 
+\index{Carpool.c@{Carpool.c}!deleteStruct@{deleteStruct}}
+\index{deleteStruct@{deleteStruct}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{deleteStruct()}{deleteStruct()}}
+{\footnotesize\ttfamily delete\+Struct (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]},  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to delete a struct between \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} and \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+travel} & is the relative path of the travel\textquotesingle{}s file \\
+\hline
+{\em select\+\_\+struct} & is used to delete \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then a driver will be deleted, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then a travel will be deleted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+2 if the struct has been deleted, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_ae08e9ff8a426d1553e99f240d3d51079}\label{_carpool_8c_ae08e9ff8a426d1553e99f240d3d51079}} 
+\index{Carpool.c@{Carpool.c}!editStruct@{editStruct}}
+\index{editStruct@{editStruct}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{editStruct()}{editStruct()}}
+{\footnotesize\ttfamily edit\+Struct (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]},  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to edit a struct between \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} and \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} and save them into a file. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+travel} & is the relative path of the travel\textquotesingle{}s file \\
+\hline
+{\em select\+\_\+struct} & is used to edit \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then a driver will be edited and added to the system, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then a travel will be edited and added to the system. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+2 if the struct has been edited and added to the system, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_a03990d3df16b0f7ef4299fe465e0bf3c}\label{_carpool_8c_a03990d3df16b0f7ef4299fe465e0bf3c}} 
+\index{Carpool.c@{Carpool.c}!evaluateDriver@{evaluateDriver}}
+\index{evaluateDriver@{evaluateDriver}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{evaluateDriver()}{evaluateDriver()}}
+{\footnotesize\ttfamily evaluate\+Driver (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+rating\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function is used in order to allow users to enter evaluations to the drivers. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+rating} & is the relative path of the rating\textquotesingle{}s file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the user has evaluate driver, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_a8160ddcdba9ea168ef7e630d90d3fdf7}\label{_carpool_8c_a8160ddcdba9ea168ef7e630d90d3fdf7}} 
+\index{Carpool.c@{Carpool.c}!getIndex@{getIndex}}
+\index{getIndex@{getIndex}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{getIndex()}{getIndex()}}
+{\footnotesize\ttfamily get\+Index (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{const int $\ast$}]{id,  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to return the index of the ID that is passed by pointer. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em id} & is used to search the index of the struct. \\
+\hline
+{\em select\+\_\+struct} & is used to get index of \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then the driver\textquotesingle{}s index will be searched, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then the travel\textquotesingle{}s index will be searched. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the index of the struct if it has been found, otherwise the function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_a97e195f9c04e75b2c8ca671c60fe984a}\label{_carpool_8c_a97e195f9c04e75b2c8ca671c60fe984a}} 
+\index{Carpool.c@{Carpool.c}!getIndexUser@{getIndexUser}}
+\index{getIndexUser@{getIndexUser}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{getIndexUser()}{getIndexUser()}}
+{\footnotesize\ttfamily get\+Index\+User (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]},  }\item[{const char}]{printf\+\_\+value\+\_\+input\mbox{[}$\,$\mbox{]},  }\item[{const char}]{printf\+\_\+value\+\_\+error\mbox{[}$\,$\mbox{]},  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to return the index of the ID that is entered by the user using keyboard. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+travel} & is the relative path of the travel\textquotesingle{}s file. \\
+\hline
+{\em printf\+\_\+value\+\_\+input} & is used to ask to the user to enter the ID of the struct he needs. \\
+\hline
+{\em printf\+\_\+value\+\_\+error} & is used to report to the user if there was an error during the entering of the ID that he needs. \\
+\hline
+{\em select\+\_\+struct} & is used to get index of \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then the driver\textquotesingle{}s index will be searched, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then the travel\textquotesingle{}s index will be searched. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the index of the struct if it has been found, otherwise the function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_ac41fc366ddfd195178914d3dc82ff6b9}\label{_carpool_8c_ac41fc366ddfd195178914d3dc82ff6b9}} 
+\index{Carpool.c@{Carpool.c}!isIdDriverEqual@{isIdDriverEqual}}
+\index{isIdDriverEqual@{isIdDriverEqual}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{isIdDriverEqual()}{isIdDriverEqual()}}
+{\footnotesize\ttfamily is\+Id\+Driver\+Equal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$}]{driver,  }\item[{const int $\ast$}]{id }\end{DoxyParamCaption})}
+
+This function is used to compare the driver\textquotesingle{}s ID passed by pointer with the other id passed by pointer. P.\+S\+: if the driver is deleted, the function will not compares the ID. 
+\begin{DoxyParams}{Parameters}
+{\em driver} & is used as first member of the comparision. \\
+\hline
+{\em id} & is used as the second member of the comparision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the driver\textquotesingle{}s ID is equal to id, otherwise the function will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_add241aedbebded5b1f09992038598505}\label{_carpool_8c_add241aedbebded5b1f09992038598505}} 
+\index{Carpool.c@{Carpool.c}!isIdTravelEqual@{isIdTravelEqual}}
+\index{isIdTravelEqual@{isIdTravelEqual}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{isIdTravelEqual()}{isIdTravelEqual()}}
+{\footnotesize\ttfamily is\+Id\+Travel\+Equal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$}]{travel,  }\item[{const int $\ast$}]{id }\end{DoxyParamCaption})}
+
+This function is used to compare the travel\textquotesingle{}s ID passed by pointer with the other id passed by pointer. P.\+S\+: if the travel is deleted, the function will not compares the ID. 
+\begin{DoxyParams}{Parameters}
+{\em travel} & is used as first member of the comparision. \\
+\hline
+{\em id} & is used as second member of the comparision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the travel\textquotesingle{}s ID is equal to id, otherwise the function will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_a3aff5cdfedc08effc6d884cf59ffb7f5}\label{_carpool_8c_a3aff5cdfedc08effc6d884cf59ffb7f5}} 
+\index{Carpool.c@{Carpool.c}!manageRating@{manageRating}}
+\index{manageRating@{manageRating}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{manageRating()}{manageRating()}}
+{\footnotesize\ttfamily manage\+Rating (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+rating\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function is used in order to assign the evalutations to the drivers. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+rating} & is the relative path of the rating\textquotesingle{}s file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if evalutations have been assigned to the drivers, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_a06627c5d7d2f750da662a0ab7a98868d}\label{_carpool_8c_a06627c5d7d2f750da662a0ab7a98868d}} 
+\index{Carpool.c@{Carpool.c}!mergeDriver@{mergeDriver}}
+\index{mergeDriver@{mergeDriver}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{mergeDriver()}{mergeDriver()}}
+{\footnotesize\ttfamily merge\+Driver (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{long int}]{start,  }\item[{long int}]{middle,  }\item[{long int}]{end,  }\item[{int}]{key\+\_\+sort }\end{DoxyParamCaption})}
+
+This procedure is used to merge the driver\textquotesingle{}s records. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the relative path of the driver\textquotesingle{}s file that the user wants to sort. \\
+\hline
+{\em start} & is the offset of the first record of the file. \\
+\hline
+{\em middle} & is the offset of the medium driver\textquotesingle{}s record. \\
+\hline
+{\em end} & is the offset of the last record of the file. \\
+\hline
+{\em key\+\_\+sort} & is used to indicate the key sort of the sorting. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_a1000c28b78052b8c24329bd2706f968d}\label{_carpool_8c_a1000c28b78052b8c24329bd2706f968d}} 
+\index{Carpool.c@{Carpool.c}!mergeSort@{mergeSort}}
+\index{mergeSort@{mergeSort}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{mergeSort()}{mergeSort()}}
+{\footnotesize\ttfamily merge\+Sort (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{long int}]{start,  }\item[{long int}]{end,  }\item[{bool}]{select\+\_\+struct,  }\item[{int}]{key\+\_\+sort }\end{DoxyParamCaption})}
+
+This procedure is used to split the records. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the relative path of the file that the user wants to sort. \\
+\hline
+{\em start} & is the offset of the first record of the file. \\
+\hline
+{\em end} & is the offset of the last record of the file. \\
+\hline
+{\em select\+\_\+struct} & is used to sort \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then the drivers will be sorted, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then the travels will be sorted. \\
+\hline
+{\em key\+\_\+sort} & is used to indicate the key sort of the sorting. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_a949f65e565cfa3a517edf0622cf412d9}\label{_carpool_8c_a949f65e565cfa3a517edf0622cf412d9}} 
+\index{Carpool.c@{Carpool.c}!mergeTravel@{mergeTravel}}
+\index{mergeTravel@{mergeTravel}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{mergeTravel()}{mergeTravel()}}
+{\footnotesize\ttfamily merge\+Travel (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{long int}]{start,  }\item[{long int}]{middle,  }\item[{long int}]{end,  }\item[{int}]{key\+\_\+sort }\end{DoxyParamCaption})}
+
+This procedure is used to merge the travel\textquotesingle{}s records. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the relative path of the travel\textquotesingle{}s file that the user wants to sort. \\
+\hline
+{\em start} & is the offset of the first record of the file. \\
+\hline
+{\em middle} & is the offset of the medium driver\textquotesingle{}s record. \\
+\hline
+{\em end} & is the offset of the last record of the file. \\
+\hline
+{\em key\+\_\+sort} & is used to indicate the key sort of the sorting. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_a05e394f43f6ca21695e0ac76487946fd}\label{_carpool_8c_a05e394f43f6ca21695e0ac76487946fd}} 
+\index{Carpool.c@{Carpool.c}!readDriver@{readDriver}}
+\index{readDriver@{readDriver}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{readDriver()}{readDriver()}}
+{\footnotesize\ttfamily read\+Driver (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$}]{driver }\end{DoxyParamCaption})}
+
+This procedure prints every members of the drivers passed by pointer. P.\+S\+: if the driver is deleted, the procedure will not read the driver. 
+\begin{DoxyParams}{Parameters}
+{\em driver} & is printed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_a9d18d62334194924ebd839a681414646}\label{_carpool_8c_a9d18d62334194924ebd839a681414646}} 
+\index{Carpool.c@{Carpool.c}!readGender@{readGender}}
+\index{readGender@{readGender}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{readGender()}{readGender()}}
+{\footnotesize\ttfamily $\ast$ read\+Gender (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_carpool_8h_aea0ac35116fa81886d820422ded4d807}{Gender\+\_\+t}} $\ast$}]{gender }\end{DoxyParamCaption})}
+
+This function returns the letteral output using the pointer $\ast$gender as a index of array\textquotesingle{}s string. For more information, please visit here\+: \href{https://stackoverflow.com/questions/1496313/returning-c-string-from-a-function}{\texttt{ https\+://stackoverflow.\+com/questions/1496313/returning-\/c-\/string-\/from-\/a-\/function}} 
+\begin{DoxyParams}{Parameters}
+{\em gender} & is used to return a letteral output. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+"Male" if ($\ast$gender) is equal to 0, "Female" if ($\ast$gender) is equal to 1, otherwise It will return "Custom". 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_a30e62380df108d068af4894b1ec17bf9}\label{_carpool_8c_a30e62380df108d068af4894b1ec17bf9}} 
+\index{Carpool.c@{Carpool.c}!readRating@{readRating}}
+\index{readRating@{readRating}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{readRating()}{readRating()}}
+{\footnotesize\ttfamily $\ast$ read\+Rating (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89}{Rating\+\_\+t}} $\ast$}]{rating }\end{DoxyParamCaption})}
+
+This function returns the letteral output using the pointer $\ast$rating as a index of array\textquotesingle{}s string. For more information, please visit here\+: \href{https://stackoverflow.com/questions/1496313/returning-c-string-from-a-function}{\texttt{ https\+://stackoverflow.\+com/questions/1496313/returning-\/c-\/string-\/from-\/a-\/function}} 
+\begin{DoxyParams}{Parameters}
+{\em rating} & is used to return a letteral output. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+"None" if ({\itshape rating) is equal to 0, "}" if ($\ast$rating) is equal to 1, "$\ast$$\ast$" if ($\ast$rating) is equal to 2, "$\ast$$\ast$$\ast$" if ($\ast$rating) is equal to 3, "$\ast$$\ast$$\ast$$\ast$" if ($\ast$rating) is equal to 4 and "$\ast$$\ast$$\ast$$\ast$$\ast$" if ($\ast$rating) is equal to 5. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_af1a355fe7237fe3db3a3cde0d2e6d58a}\label{_carpool_8c_af1a355fe7237fe3db3a3cde0d2e6d58a}} 
+\index{Carpool.c@{Carpool.c}!readTravel@{readTravel}}
+\index{readTravel@{readTravel}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{readTravel()}{readTravel()}}
+{\footnotesize\ttfamily read\+Travel (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$}]{travel,  }\item[{const char}]{path\+\_\+driver\+\_\+file\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure prints every members of the travel passed by pointer. P.\+S\+: if the travel is deleted, the procedure will not read the travel. 
+\begin{DoxyParams}{Parameters}
+{\em travel} & is printed. \\
+\hline
+{\em path\+\_\+driver\+\_\+file} & is used to print information of the driver that will offer the travel. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_a3a1b2e8ba54d3ff7e4cfb76abc22228f}\label{_carpool_8c_a3a1b2e8ba54d3ff7e4cfb76abc22228f}} 
+\index{Carpool.c@{Carpool.c}!resetBookingTravel@{resetBookingTravel}}
+\index{resetBookingTravel@{resetBookingTravel}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{resetBookingTravel()}{resetBookingTravel()}}
+{\footnotesize\ttfamily reset\+Booking\+Travel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_booking__travel__t}{Booking\+\_\+travel\+\_\+t}} $\ast$}]{booking\+\_\+travel }\end{DoxyParamCaption})}
+
+This procedure reset the booking\+\_\+travel passed by pointer assigning invalid values to all the booking\+\_\+travel\textquotesingle{}s members. 
+\begin{DoxyParams}{Parameters}
+{\em booking\+\_\+travel} & is resetted by the procedure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_a3dc8ac56dfe32dbfb6994a62881e2513}\label{_carpool_8c_a3dc8ac56dfe32dbfb6994a62881e2513}} 
+\index{Carpool.c@{Carpool.c}!resetDriver@{resetDriver}}
+\index{resetDriver@{resetDriver}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{resetDriver()}{resetDriver()}}
+{\footnotesize\ttfamily reset\+Driver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$}]{driver }\end{DoxyParamCaption})}
+
+This procedure reset the driver passed by pointer assigning invalid values to all the driver\textquotesingle{}s members. 
+\begin{DoxyParams}{Parameters}
+{\em driver} & is resetted by the procedure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_a3eb10326e294bdab7d9c5edb252d411a}\label{_carpool_8c_a3eb10326e294bdab7d9c5edb252d411a}} 
+\index{Carpool.c@{Carpool.c}!resetTravel@{resetTravel}}
+\index{resetTravel@{resetTravel}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{resetTravel()}{resetTravel()}}
+{\footnotesize\ttfamily reset\+Travel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$}]{travel }\end{DoxyParamCaption})}
+
+This procedure reset the travel passed by pointer assigning invalid values to all the travel\textquotesingle{}s members. 
+\begin{DoxyParams}{Parameters}
+{\em travel} & is resetted by the procedure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_a7e6f6ae38e94415ae340714b0120a883}\label{_carpool_8c_a7e6f6ae38e94415ae340714b0120a883}} 
+\index{Carpool.c@{Carpool.c}!setAdditionalNotes@{setAdditionalNotes}}
+\index{setAdditionalNotes@{setAdditionalNotes}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{setAdditionalNotes()}{setAdditionalNotes()}}
+{\footnotesize\ttfamily set\+Additional\+Notes (\begin{DoxyParamCaption}\item[{char}]{additional\+\_\+notes\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the additional notes passed by pointer. The additional notes should not be void strings and can contains spaces. 
+\begin{DoxyParams}{Parameters}
+{\em additional\+\_\+notes} & is set to a valid additional notes. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_a399463b462a785e5084f37e7873f385d}\label{_carpool_8c_a399463b462a785e5084f37e7873f385d}} 
+\index{Carpool.c@{Carpool.c}!setDriver@{setDriver}}
+\index{setDriver@{setDriver}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{setDriver()}{setDriver()}}
+{\footnotesize\ttfamily set\+Driver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$}]{driver,  }\item[{const int $\ast$}]{id }\end{DoxyParamCaption})}
+
+This procedure set valid value to every members of the driver passed by pointer. 
+\begin{DoxyParams}{Parameters}
+{\em driver} & is used to set valid value to every members. \\
+\hline
+{\em id} & is the unique id of the driver. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_a15eca10657322b73663fdf7f89c082c8}\label{_carpool_8c_a15eca10657322b73663fdf7f89c082c8}} 
+\index{Carpool.c@{Carpool.c}!setEmail@{setEmail}}
+\index{setEmail@{setEmail}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{setEmail()}{setEmail()}}
+{\footnotesize\ttfamily set\+Email (\begin{DoxyParamCaption}\item[{char}]{email\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the email passed by pointer. A valid email has the following format "localpart@domain". 
+\begin{DoxyParams}{Parameters}
+{\em email} & is set to a valid email. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_adf36b53cbe88aff4b203c9c13660f72c}\label{_carpool_8c_adf36b53cbe88aff4b203c9c13660f72c}} 
+\index{Carpool.c@{Carpool.c}!setNumberInput@{setNumberInput}}
+\index{setNumberInput@{setNumberInput}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{setNumberInput()}{setNumberInput()}}
+{\footnotesize\ttfamily set\+Number\+Input (\begin{DoxyParamCaption}\item[{int $\ast$}]{input,  }\item[{const int}]{min,  }\item[{const int}]{max,  }\item[{const char}]{printf\+\_\+value\+\_\+input\mbox{[}$\,$\mbox{]},  }\item[{const char}]{printf\+\_\+value\+\_\+error\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the input passed by pointer. A valid value is made only of digits. 
+\begin{DoxyParams}{Parameters}
+{\em input} & is set to a valid number. \\
+\hline
+{\em min} & is the minimun valid number. \\
+\hline
+{\em max} & is the maximum valid number. \\
+\hline
+{\em printf\+\_\+value\+\_\+input} & is used to ask to the user what he should enter. \\
+\hline
+{\em printf\+\_\+value\+\_\+error} & is used to report to the user if there was an error during the entering of the number. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_a88ce171e97f15f3a25a3c1ff8514bcac}\label{_carpool_8c_a88ce171e97f15f3a25a3c1ff8514bcac}} 
+\index{Carpool.c@{Carpool.c}!setPassword@{setPassword}}
+\index{setPassword@{setPassword}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{setPassword()}{setPassword()}}
+{\footnotesize\ttfamily set\+Password (\begin{DoxyParamCaption}\item[{char}]{password\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the password passed by pointer. The password should contains at least one uppercase character and one digit. 
+\begin{DoxyParams}{Parameters}
+{\em password} & is set to a valid password. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_af9c206993d58e2c7018342c8492496a1}\label{_carpool_8c_af9c206993d58e2c7018342c8492496a1}} 
+\index{Carpool.c@{Carpool.c}!setPhoneNumber@{setPhoneNumber}}
+\index{setPhoneNumber@{setPhoneNumber}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{setPhoneNumber()}{setPhoneNumber()}}
+{\footnotesize\ttfamily set\+Phone\+Number (\begin{DoxyParamCaption}\item[{char}]{phone\+\_\+number\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the number phone passed by pointer. A valid number phone has the followig format "+xxx xxxxxxxxxxxx". 
+\begin{DoxyParams}{Parameters}
+{\em phone\+\_\+number} & is set to a valid number phone. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_a986273ddc415d8d3a874724379cc8a1d}\label{_carpool_8c_a986273ddc415d8d3a874724379cc8a1d}} 
+\index{Carpool.c@{Carpool.c}!setPrice@{setPrice}}
+\index{setPrice@{setPrice}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{setPrice()}{setPrice()}}
+{\footnotesize\ttfamily set\+Price (\begin{DoxyParamCaption}\item[{double $\ast$}]{price }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the price passed by pointer. 
+\begin{DoxyParams}{Parameters}
+{\em price} & is set to a valid price. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_ae81b81eadcee775258b5317c9ffb6fab}\label{_carpool_8c_ae81b81eadcee775258b5317c9ffb6fab}} 
+\index{Carpool.c@{Carpool.c}!setSort@{setSort}}
+\index{setSort@{setSort}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{setSort()}{setSort()}}
+{\footnotesize\ttfamily set\+Sort (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{long int}]{start,  }\item[{long int}]{end,  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to ask to the user to enter the key\+\_\+sort. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the relative path of the file that the user wants to sort. \\
+\hline
+{\em start} & is the offset of the first record of the file. \\
+\hline
+{\em end} & is the offset of the last record of the file. \\
+\hline
+{\em select\+\_\+struct} & is used to sort \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then the drivers will be sorted, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then the travels will be sorted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the time that the sorting has spent, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_a6847ba1bfbc6f31ace16be0879a65b95}\label{_carpool_8c_a6847ba1bfbc6f31ace16be0879a65b95}} 
+\index{Carpool.c@{Carpool.c}!setTravel@{setTravel}}
+\index{setTravel@{setTravel}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{setTravel()}{setTravel()}}
+{\footnotesize\ttfamily void set\+Travel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$}]{travel,  }\item[{const int $\ast$}]{id,  }\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_carpool_8c_a1550b9da6a284b321a2aab61c7d40a96}\label{_carpool_8c_a1550b9da6a284b321a2aab61c7d40a96}} 
+\index{Carpool.c@{Carpool.c}!setWord@{setWord}}
+\index{setWord@{setWord}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{setWord()}{setWord()}}
+{\footnotesize\ttfamily set\+Word (\begin{DoxyParamCaption}\item[{char}]{word\mbox{[}$\,$\mbox{]},  }\item[{const char}]{printf\+\_\+value\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the word passed by pointer. A valid word is made of only latin characters and it is not void. 
+\begin{DoxyParams}{Parameters}
+{\em word} & is set to a valid string. \\
+\hline
+{\em printf\+\_\+value} & is used to ask to the user what he should enter. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8c_afef4295fd3c5449f0564cbf354a06e1a}\label{_carpool_8c_afef4295fd3c5449f0564cbf354a06e1a}} 
+\index{Carpool.c@{Carpool.c}!showAllStructs@{showAllStructs}}
+\index{showAllStructs@{showAllStructs}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{showAllStructs()}{showAllStructs()}}
+{\footnotesize\ttfamily show\+All\+Structs (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]},  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to show all records of \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+travel} & is the relative path of the travel\textquotesingle{}s file \\
+\hline
+{\em select\+\_\+struct} & is used to read all records of \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then all drivers will be read (except the deleted ones), if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then all travels will be read (except the deleted ones). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if all the records has been read, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8c_ae67eb482a84c2af7bb37bc08f1f306b0}\label{_carpool_8c_ae67eb482a84c2af7bb37bc08f1f306b0}} 
+\index{Carpool.c@{Carpool.c}!showMemberDriver@{showMemberDriver}}
+\index{showMemberDriver@{showMemberDriver}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{showMemberDriver()}{showMemberDriver()}}
+{\footnotesize\ttfamily show\+Member\+Driver (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+This procedure is used to show all the driver\textquotesingle{}s member. This procedure is used during the editing of driver\textquotesingle{}s member. \mbox{\Hypertarget{_carpool_8c_a14bef394d44a445661eb175552bb6730}\label{_carpool_8c_a14bef394d44a445661eb175552bb6730}} 
+\index{Carpool.c@{Carpool.c}!showMemberTravel@{showMemberTravel}}
+\index{showMemberTravel@{showMemberTravel}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{showMemberTravel()}{showMemberTravel()}}
+{\footnotesize\ttfamily show\+Member\+Travel (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+This procedure is used to show all the travel\textquotesingle{}s member. This procedure is used during the editing of travel\textquotesingle{}s member. \mbox{\Hypertarget{_carpool_8c_a3353916e1419e9f273c21dd4df9a2484}\label{_carpool_8c_a3353916e1419e9f273c21dd4df9a2484}} 
+\index{Carpool.c@{Carpool.c}!showSortKeyDriver@{showSortKeyDriver}}
+\index{showSortKeyDriver@{showSortKeyDriver}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{showSortKeyDriver()}{showSortKeyDriver()}}
+{\footnotesize\ttfamily show\+Sort\+Key\+Driver (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+This procedure is used to show all the driver\textquotesingle{}s sort-\/key. \mbox{\Hypertarget{_carpool_8c_a201fc338cfa0c419186615de9e551677}\label{_carpool_8c_a201fc338cfa0c419186615de9e551677}} 
+\index{Carpool.c@{Carpool.c}!showSortKeyTravel@{showSortKeyTravel}}
+\index{showSortKeyTravel@{showSortKeyTravel}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{showSortKeyTravel()}{showSortKeyTravel()}}
+{\footnotesize\ttfamily show\+Sort\+Key\+Travel (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+This procedure is used to show all the travel\textquotesingle{}s sort-\/key. \mbox{\Hypertarget{_carpool_8c_a4dad1ffd54b6882fbab9a1dbafd3a31f}\label{_carpool_8c_a4dad1ffd54b6882fbab9a1dbafd3a31f}} 
+\index{Carpool.c@{Carpool.c}!updateID@{updateID}}
+\index{updateID@{updateID}!Carpool.c@{Carpool.c}}
+\doxysubsubsection{\texorpdfstring{updateID()}{updateID()}}
+{\footnotesize\ttfamily update\+ID (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{const long int}]{offset,  }\item[{int $\ast$}]{id }\end{DoxyParamCaption})}
+
+This function is used in order to update the ID passed by pointer and save its into the file. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the relative path where I\+Ds are stored. \\
+\hline
+{\em offset} & can be set to "O\+F\+F\+S\+E\+T\+\_\+\+I\+D\+\_\+\+D\+R\+I\+V\+ER" in order to update the unique ID of the drivers, otherwise offset can be set to "O\+F\+F\+S\+E\+T\+\_\+\+I\+D\+\_\+\+T\+R\+A\+V\+EL" in order to update the unique ID of the travels. \\
+\hline
+{\em id} & is the unique identifier that will be updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the ID was updated, otherwise the function will return 0 
+\end{DoxyReturn}

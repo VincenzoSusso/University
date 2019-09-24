@@ -1,0 +1,108 @@
+\hypertarget{struct_travel__t}{}\doxysection{Travel\+\_\+t Struct Reference}
+\label{struct_travel__t}\index{Travel\_t@{Travel\_t}}
+
+
+{\ttfamily \#include $<$Carpool.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_travel__t_a94ce5314b0c13d0d11b4e54c4ce5e561}{id}}
+\item 
+int \mbox{\hyperlink{struct_travel__t_ac0a3630b04131edb54063d6cabf5c004}{id\+\_\+driver}}
+\item 
+char \mbox{\hyperlink{struct_travel__t_abdac6852d50d3ae376ad5d90ecd76188}{departure\+\_\+destination}} \mbox{[}\mbox{\hyperlink{_carpool_8h_ac0f7a1acc71e13eca8e326cbfd1af98b}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+S\+T\+R\+I\+N\+GS}}\mbox{]}
+\item 
+char \mbox{\hyperlink{struct_travel__t_a1db8a3385c93fac97516fdd0dc92772b}{arrival\+\_\+destination}} \mbox{[}\mbox{\hyperlink{_carpool_8h_ac0f7a1acc71e13eca8e326cbfd1af98b}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+S\+T\+R\+I\+N\+GS}}\mbox{]}
+\item 
+char \mbox{\hyperlink{struct_travel__t_a1c15e5fba8780f6c360eb837a1ecf8a7}{additional\+\_\+notes}} \mbox{[}\mbox{\hyperlink{_carpool_8h_aa8a22ab9d44ab03376b598bd1fed0b50}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+A\+D\+D\+I\+T\+I\+O\+N\+A\+L\+\_\+\+N\+O\+T\+ES}}\mbox{]}
+\item 
+\mbox{\hyperlink{struct_date__t}{Date\+\_\+t}} \mbox{\hyperlink{struct_travel__t_ab53aac6bf58a6d3941905a00cda01ac1}{departure\+\_\+date}}
+\item 
+\mbox{\hyperlink{struct_time__t}{Time\+\_\+t}} \mbox{\hyperlink{struct_travel__t_ac2e7e0f326fc5667849a34d982608ec8}{departure\+\_\+time}}
+\item 
+double \mbox{\hyperlink{struct_travel__t_a7adaadc7e6ecf3c6848ca40ac697d444}{price}}
+\item 
+unsigned short \mbox{\hyperlink{struct_travel__t_a3d0c05dd40297218a6f59af40b5d2795}{total\+\_\+seats}}
+\item 
+unsigned short \mbox{\hyperlink{struct_travel__t_a507263d2c37e8814b80d965063fea3a8}{free\+\_\+seats}}
+\item 
+bool \mbox{\hyperlink{struct_travel__t_a7ebdc83f16be59b1a1eac954360eb01c}{deleted}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This user-\/defined type is used in order to manage travels. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct_travel__t_a1c15e5fba8780f6c360eb837a1ecf8a7}\label{struct_travel__t_a1c15e5fba8780f6c360eb837a1ecf8a7}} 
+\index{Travel\_t@{Travel\_t}!additional\_notes@{additional\_notes}}
+\index{additional\_notes@{additional\_notes}!Travel\_t@{Travel\_t}}
+\doxysubsubsection{\texorpdfstring{additional\_notes}{additional\_notes}}
+{\footnotesize\ttfamily char Travel\+\_\+t\+::additional\+\_\+notes\mbox{[}\mbox{\hyperlink{_carpool_8h_aa8a22ab9d44ab03376b598bd1fed0b50}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+A\+D\+D\+I\+T\+I\+O\+N\+A\+L\+\_\+\+N\+O\+T\+ES}}\mbox{]}}
+
+This member is used to store the travel\textquotesingle{}s additional notes \mbox{\Hypertarget{struct_travel__t_a1db8a3385c93fac97516fdd0dc92772b}\label{struct_travel__t_a1db8a3385c93fac97516fdd0dc92772b}} 
+\index{Travel\_t@{Travel\_t}!arrival\_destination@{arrival\_destination}}
+\index{arrival\_destination@{arrival\_destination}!Travel\_t@{Travel\_t}}
+\doxysubsubsection{\texorpdfstring{arrival\_destination}{arrival\_destination}}
+{\footnotesize\ttfamily char Travel\+\_\+t\+::arrival\+\_\+destination\mbox{[}\mbox{\hyperlink{_carpool_8h_ac0f7a1acc71e13eca8e326cbfd1af98b}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+S\+T\+R\+I\+N\+GS}}\mbox{]}}
+
+This member is used to store the travel\textquotesingle{}s arrival destination \mbox{\Hypertarget{struct_travel__t_a7ebdc83f16be59b1a1eac954360eb01c}\label{struct_travel__t_a7ebdc83f16be59b1a1eac954360eb01c}} 
+\index{Travel\_t@{Travel\_t}!deleted@{deleted}}
+\index{deleted@{deleted}!Travel\_t@{Travel\_t}}
+\doxysubsubsection{\texorpdfstring{deleted}{deleted}}
+{\footnotesize\ttfamily bool Travel\+\_\+t\+::deleted}
+
+This member is used to know if the travel is deleted, if this member is true, means that the travel is deleted \mbox{\Hypertarget{struct_travel__t_ab53aac6bf58a6d3941905a00cda01ac1}\label{struct_travel__t_ab53aac6bf58a6d3941905a00cda01ac1}} 
+\index{Travel\_t@{Travel\_t}!departure\_date@{departure\_date}}
+\index{departure\_date@{departure\_date}!Travel\_t@{Travel\_t}}
+\doxysubsubsection{\texorpdfstring{departure\_date}{departure\_date}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_date__t}{Date\+\_\+t}} Travel\+\_\+t\+::departure\+\_\+date}
+
+This member is used to store the travel\textquotesingle{}s departure date \mbox{\Hypertarget{struct_travel__t_abdac6852d50d3ae376ad5d90ecd76188}\label{struct_travel__t_abdac6852d50d3ae376ad5d90ecd76188}} 
+\index{Travel\_t@{Travel\_t}!departure\_destination@{departure\_destination}}
+\index{departure\_destination@{departure\_destination}!Travel\_t@{Travel\_t}}
+\doxysubsubsection{\texorpdfstring{departure\_destination}{departure\_destination}}
+{\footnotesize\ttfamily char Travel\+\_\+t\+::departure\+\_\+destination\mbox{[}\mbox{\hyperlink{_carpool_8h_ac0f7a1acc71e13eca8e326cbfd1af98b}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+S\+T\+R\+I\+N\+GS}}\mbox{]}}
+
+This member is used to store the travel\textquotesingle{}s departure destination \mbox{\Hypertarget{struct_travel__t_ac2e7e0f326fc5667849a34d982608ec8}\label{struct_travel__t_ac2e7e0f326fc5667849a34d982608ec8}} 
+\index{Travel\_t@{Travel\_t}!departure\_time@{departure\_time}}
+\index{departure\_time@{departure\_time}!Travel\_t@{Travel\_t}}
+\doxysubsubsection{\texorpdfstring{departure\_time}{departure\_time}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_time__t}{Time\+\_\+t}} Travel\+\_\+t\+::departure\+\_\+time}
+
+This member is used to store the travel\textquotesingle{}s departure time \mbox{\Hypertarget{struct_travel__t_a507263d2c37e8814b80d965063fea3a8}\label{struct_travel__t_a507263d2c37e8814b80d965063fea3a8}} 
+\index{Travel\_t@{Travel\_t}!free\_seats@{free\_seats}}
+\index{free\_seats@{free\_seats}!Travel\_t@{Travel\_t}}
+\doxysubsubsection{\texorpdfstring{free\_seats}{free\_seats}}
+{\footnotesize\ttfamily unsigned short Travel\+\_\+t\+::free\+\_\+seats}
+
+This member is used to store the veicle\textquotesingle{}s free seats \mbox{\Hypertarget{struct_travel__t_a94ce5314b0c13d0d11b4e54c4ce5e561}\label{struct_travel__t_a94ce5314b0c13d0d11b4e54c4ce5e561}} 
+\index{Travel\_t@{Travel\_t}!id@{id}}
+\index{id@{id}!Travel\_t@{Travel\_t}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily int Travel\+\_\+t\+::id}
+
+This member is used to store the travel\textquotesingle{}s ID \mbox{\Hypertarget{struct_travel__t_ac0a3630b04131edb54063d6cabf5c004}\label{struct_travel__t_ac0a3630b04131edb54063d6cabf5c004}} 
+\index{Travel\_t@{Travel\_t}!id\_driver@{id\_driver}}
+\index{id\_driver@{id\_driver}!Travel\_t@{Travel\_t}}
+\doxysubsubsection{\texorpdfstring{id\_driver}{id\_driver}}
+{\footnotesize\ttfamily int Travel\+\_\+t\+::id\+\_\+driver}
+
+This member is used to store the ID of the driver that will offer the travel \mbox{\Hypertarget{struct_travel__t_a7adaadc7e6ecf3c6848ca40ac697d444}\label{struct_travel__t_a7adaadc7e6ecf3c6848ca40ac697d444}} 
+\index{Travel\_t@{Travel\_t}!price@{price}}
+\index{price@{price}!Travel\_t@{Travel\_t}}
+\doxysubsubsection{\texorpdfstring{price}{price}}
+{\footnotesize\ttfamily double Travel\+\_\+t\+::price}
+
+This member is used to store the travel\textquotesingle{}s price \mbox{\Hypertarget{struct_travel__t_a3d0c05dd40297218a6f59af40b5d2795}\label{struct_travel__t_a3d0c05dd40297218a6f59af40b5d2795}} 
+\index{Travel\_t@{Travel\_t}!total\_seats@{total\_seats}}
+\index{total\_seats@{total\_seats}!Travel\_t@{Travel\_t}}
+\doxysubsubsection{\texorpdfstring{total\_seats}{total\_seats}}
+{\footnotesize\ttfamily unsigned short Travel\+\_\+t\+::total\+\_\+seats}
+
+This member is used to store the veicle\textquotesingle{}s total seats (It must include the driver\textquotesingle{}s seat) 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Win\+Enzo/\+Documents/\+Eclipse/\+Caso\+\_\+di\+\_\+\+Studio-\/\+Carpool/src/\mbox{\hyperlink{_carpool_8h}{Carpool.\+h}}\end{DoxyCompactItemize}

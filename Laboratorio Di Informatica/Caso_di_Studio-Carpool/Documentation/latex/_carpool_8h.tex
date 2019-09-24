@@ -1,0 +1,1301 @@
+\hypertarget{_carpool_8h}{}\doxysection{C\+:/\+Users/\+Win\+Enzo/\+Documents/\+Eclipse/\+Caso\+\_\+di\+\_\+\+Studio-\/\+Carpool/src/\+Carpool.h File Reference}
+\label{_carpool_8h}\index{C:/Users/WinEnzo/Documents/Eclipse/Caso\_di\_Studio-\/Carpool/src/Carpool.h@{C:/Users/WinEnzo/Documents/Eclipse/Caso\_di\_Studio-\/Carpool/src/Carpool.h}}
+
+
+This library was created in order to manage drivers and travels.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Date.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Utilities.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}File.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{struct_rating__file__t}{Rating\+\_\+file\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{struct_booking__travel__t}{Booking\+\_\+travel\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a45044c35ca9fe4a00b497f05d2b818cc}{D\+R\+I\+V\+ER}}~true
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_ab6a8e7c4a8c18de412146ad11c944ddc}{T\+R\+A\+V\+EL}}~false
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_ac0f7a1acc71e13eca8e326cbfd1af98b}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+S\+T\+R\+I\+N\+GS}}~20
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_afd5b3032114c4aa2cd2d58b10324515e}{M\+I\+N\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+S\+T\+R\+I\+N\+GS}}~2
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a7550d52835c345bd886e8a98f572bc1e}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+E\+M\+A\+IL}}~40
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a028dc12a1cfd95581efaa5eccf8144bb}{M\+I\+N\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+P\+A\+S\+S\+W\+O\+RD}}~8
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a0f1f965346b1939805f9e2eb136d3370}{M\+I\+N\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+P\+H\+O\+N\+E\+\_\+\+N\+U\+M\+B\+ER}}~8
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_aa6aba44e7e3db7b898110f03e2d25e60}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+P\+H\+O\+N\+E\+\_\+\+N\+U\+M\+B\+ER}}~18
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_aa8a22ab9d44ab03376b598bd1fed0b50}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+A\+D\+D\+I\+T\+I\+O\+N\+A\+L\+\_\+\+N\+O\+T\+ES}}~40
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_acbf07a5e322c08d7133e3d0948f0247a}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+I\+N\+P\+UT}}~8
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_af180aee53d2434932437872af10d1c53}{M\+I\+N\+\_\+\+Y\+E\+A\+R\+\_\+\+B\+I\+R\+T\+H\+D\+AY}}~1915
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a661688d4e18dc53f414697e6cae2b926}{M\+A\+X\+\_\+\+Y\+E\+A\+R\+\_\+\+B\+I\+R\+T\+H\+D\+AY}}~2001
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_aed43359aa38d684b26369307c8ec3d55}{M\+I\+N\+\_\+\+Y\+E\+A\+R\+\_\+\+T\+R\+A\+V\+EL}}~2019
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a822e570aaf5fac15e94f3d5bb7742d33}{M\+A\+X\+\_\+\+Y\+E\+A\+R\+\_\+\+T\+R\+A\+V\+EL}}~2050
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a48596ce4abc2a7a1d3c5073c2f80f793}{M\+I\+N\+\_\+\+P\+R\+I\+CE}}~0.\+01
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a53f3ae13ee0ff031598cb9e9ed247a7c}{M\+A\+X\+\_\+\+P\+R\+I\+CE}}~9999.\+99
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_aca1a9d9509f65b2edcdb2e29c111875f}{D\+O\+L\+L\+A\+R\+\_\+\+S\+T\+R\+I\+NG}}~\char`\"{}\$\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_ab3c020c5b7abfd69b2008b951eb219ac}{M\+I\+N\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+E\+A\+TS}}~2
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a2ff672f82b90c6b455321d5b1f32e365}{M\+A\+X\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+E\+A\+TS}}~9
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_af6bc89d7f116c85a1729dc2fe70030ae}{M\+I\+N\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+F\+R\+E\+E\+\_\+\+S\+E\+A\+TS}}~0
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_af35120eacbafcb2102da5aa0e1e284e7}{M\+A\+X\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+F\+R\+E\+E\+\_\+\+S\+E\+A\+TS}}~8
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a1c598396229dadf9d948f4f797d21b4b}{L\+E\+N\+G\+H\+T\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+G\+E\+N\+D\+ER}}~3
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a11c725358ee45992c491085c57365d10}{R\+E\+A\+D\+\_\+\+G\+E\+N\+D\+E\+R\+\_\+\+M\+A\+LE}}~\char`\"{}Male\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_af3b9f470f200b69b7f2fcdeab23b63bf}{R\+E\+A\+D\+\_\+\+G\+E\+N\+D\+E\+R\+\_\+\+F\+E\+M\+A\+LE}}~\char`\"{}Female\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_ac288422b95a750044e8078990b9f4e2d}{R\+E\+A\+D\+\_\+\+G\+E\+N\+D\+E\+R\+\_\+\+C\+U\+S\+T\+OM}}~\char`\"{}Custom\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a74a6c84f8e80493f12531bd8d78fb60c}{L\+E\+N\+G\+H\+T\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+R\+A\+T\+I\+NG}}~6
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a71599c640b93646f99f55560889f5574}{R\+E\+A\+D\+\_\+\+R\+A\+T\+I\+N\+G\+\_\+\+N\+O\+NE}}~\char`\"{}None\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a8e27f25897f192b078eb129e378e94b6}{R\+E\+A\+D\+\_\+\+R\+A\+T\+I\+N\+G\+\_\+\+O\+N\+E\+\_\+\+S\+T\+AR}}~\char`\"{}$\ast$\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_ac1c3b49a215a5e5ed98f464d5d9f5885}{R\+E\+A\+D\+\_\+\+R\+A\+T\+I\+N\+G\+\_\+\+T\+W\+O\+\_\+\+S\+T\+AR}}~\char`\"{}$\ast$$\ast$\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_aa6d569af0b2242fa99807b8c4ed53317}{R\+E\+A\+D\+\_\+\+R\+A\+T\+I\+N\+G\+\_\+\+T\+H\+R\+E\+E\+\_\+\+S\+T\+AR}}~\char`\"{}$\ast$$\ast$$\ast$\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a916ff8abc488e8a3dae3ec4229b28742}{R\+E\+A\+D\+\_\+\+R\+A\+T\+I\+N\+G\+\_\+\+F\+O\+U\+R\+\_\+\+S\+T\+AR}}~\char`\"{}$\ast$$\ast$$\ast$$\ast$\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_ac57866299b05438f585b6333ce2dbfa1}{R\+E\+A\+D\+\_\+\+R\+A\+T\+I\+N\+G\+\_\+\+F\+I\+V\+E\+\_\+\+S\+T\+AR}}~\char`\"{}$\ast$$\ast$$\ast$$\ast$$\ast$\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_aba29acf4c593272c80677ed98ec1fcbc}{A\+L\+R\+E\+A\+D\+Y\+\_\+\+S\+O\+R\+T\+ED}}~1
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a8153b99b44fc03db347beac8dfdbad12}{O\+F\+F\+S\+E\+T\+\_\+\+I\+D\+\_\+\+D\+R\+I\+V\+ER}}~0
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a6fcfe735ba3e312cca3cb1ce83744c68}{O\+F\+F\+S\+E\+T\+\_\+\+I\+D\+\_\+\+T\+R\+A\+V\+EL}}~1
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_a21b5d9bc8a855d89f3b5c8499c07ad5f}{M\+E\+R\+G\+E\+\_\+\+T\+E\+M\+P\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+TH}}~\char`\"{}../Files/Temp\+Sort.\+dat\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_carpool_8h_aecaa2894fb3bfc92a98e331dbbf3c882}{B\+O\+O\+K\+\_\+\+T\+R\+A\+V\+E\+L\+\_\+\+T\+E\+M\+P\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+TH}}~\char`\"{}../Files/Temp\+Book.\+dat\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89}{Rating\+\_\+t}} \{ \newline
+\mbox{\hyperlink{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89ab7e4e0120a041dbe6528b050c04269e0}{none}}, 
+\mbox{\hyperlink{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89a62f31c8aacfa3be11dcda5c9dcbedff4}{one\+\_\+star}}, 
+\mbox{\hyperlink{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89aff198f377f6c1e6b6909c9307d9b5655}{two\+\_\+star}}, 
+\mbox{\hyperlink{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89ab8ec39ad40c5d51ed19661d5dfa3a421}{three\+\_\+star}}, 
+\newline
+\mbox{\hyperlink{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89ae5468205b498d8ccded22470b764b472}{four\+\_\+star}}, 
+\mbox{\hyperlink{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89a71d7aebc35f35074dee6cfb9a3769d65}{five\+\_\+star}}
+ \}
+\item 
+enum \mbox{\hyperlink{_carpool_8h_aea0ac35116fa81886d820422ded4d807}{Gender\+\_\+t}} \{ \mbox{\hyperlink{_carpool_8h_aea0ac35116fa81886d820422ded4d807adf25e9c17aa25418942eca3003c33410}{male}}, 
+\mbox{\hyperlink{_carpool_8h_aea0ac35116fa81886d820422ded4d807afc8285f7507b26f68c8b72f4dc38e34f}{female}}, 
+\mbox{\hyperlink{_carpool_8h_aea0ac35116fa81886d820422ded4d807a696330762bb8080a67d7ef4bd19db845}{custom}}
+ \}
+\item 
+enum \mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58}{Driver\+\_\+members\+\_\+t}} \{ \newline
+\mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58aa029ab413a07d74ba66311d6adfec773}{id\+\_\+driver}} = -\/1, 
+\mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a30f86b30ff07d8d12d3ae0aab53dc7a1}{name}}, 
+\mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58af310801d63ee05b45bd1d7e3f4a5fd20}{surname}}, 
+\mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58aeba54621f7fdcd8115863434763b2cfa}{email}}, 
+\newline
+\mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a09116bef1d274b09829ea49487887dc2}{password}}, 
+\mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58afdc998182262eef3b1a2887b593c3c05}{phone\+\_\+number}}, 
+\mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58aac4a309a59b7c54d85a13cf32e531fb2}{birthday}}, 
+\mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a3852ad964b0057c9a04ee17eb1f9a0fb}{gender}}, 
+\newline
+\mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a07308aa928fe7dbb4e0ba680c0957925}{deleted\+\_\+driver}}
+ \}
+\item 
+enum \mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8e}{Driver\+\_\+sort\+\_\+key}} \{ \newline
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8ea1b31b57e74f9b0bd050bd4a91bff07ff}{inc\+\_\+id\+\_\+driver}}, 
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8ea7d175bbc444150d72ffe9e158f0d6b18}{dec\+\_\+id\+\_\+driver}}, 
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8ea55d5777877a5684d89cef5a3ca8b5940}{inc\+\_\+name}}, 
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8ea0f080a1aa24511fd689b495228e23ed7}{dec\+\_\+name}}, 
+\newline
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8ea08382127894390e872c1bdb869fdac24}{inc\+\_\+surname}}, 
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8ea0add31e20d825f91b6dddaa8034e78f8}{dec\+\_\+surname}}, 
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8eab6a734b0e54bcd55e31ee9e724f3a027}{inc\+\_\+birthday}}, 
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8eabfc952a2b5d5c8220c7e1185027b02c6}{dec\+\_\+birthday}}, 
+\newline
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8eaa987205e23dd254e6b969e4404c2c83a}{inc\+\_\+gender}}, 
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8eab790e07b577b670a714ecebbdc708a3b}{dec\+\_\+gender}}, 
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8eadbb15dd1157a8f9cafe76f4f92739884}{inc\+\_\+driving\+\_\+capacity}}, 
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8ea9d8522c26bb30a808315c682d59931cf}{dec\+\_\+driving\+\_\+capacity}}, 
+\newline
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8eaf735903cfdcc2472751f9a2f9d63d0a6}{inc\+\_\+comfort\+\_\+capacity}}, 
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8ea0bb0d6b8572a541ede4ca497d4505855}{dec\+\_\+comfort\+\_\+capacity}}, 
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8ea346807694345ba6aa7b0191dc35b5b0e}{inc\+\_\+average\+\_\+rating}}, 
+\mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8eae1bf997f14093085c1f1d973cf1faa8e}{dec\+\_\+average\+\_\+rating}}
+ \}
+\item 
+enum \mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7}{Travel\+\_\+members\+\_\+t}} \{ \newline
+\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a2903522474007d7a72fbb35cc3e2411d}{id\+\_\+travel}} = -\/2, 
+\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7afdc20cb734c080612c27d719ea0ee840}{id\+\_\+driver\+\_\+}}, 
+\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a9835ede4cb40807a072abe28f60517a0}{departure\+\_\+destination}}, 
+\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a060e84ac52eb49017386e28fd6a29f96}{arrival\+\_\+destination}}, 
+\newline
+\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a62d5cc171d529578718a165cfa8e4c25}{departure\+\_\+date}}, 
+\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a4584f9f147cedbccc8c8de715e167d4f}{departure\+\_\+time}}, 
+\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a20466f70d1716ae277f99072b77b081d}{total\+\_\+seats}}, 
+\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7ae13f5412b1eab2a17b3516e0e7ebd060}{free\+\_\+seats}}, 
+\newline
+\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7ac18d2aaa88694e92b2d68eb84dc28753}{price}}, 
+\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a3a98a04563bb24d1bdf1586e89a6543e}{additional\+\_\+notes}}, 
+\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a7af2c51a46be272695fddbdf115089b9}{deleted\+\_\+travel}}
+ \}
+\item 
+enum \mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212be}{Travel\+\_\+sort\+\_\+key}} \{ \newline
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212bea1de654977ae555667f22089151c2e1fc}{inc\+\_\+id\+\_\+travel}}, 
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212beae9c3bd65131c632349a6bc96ef9c69bc}{dec\+\_\+id\+\_\+travel}}, 
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212bead22c4a2f887e08ea39e5d6d22679e1bb}{inc\+\_\+departure\+\_\+destination}}, 
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212beaea6ac780c559c454161f6c96108e7d6a}{dec\+\_\+departure\+\_\+destination}}, 
+\newline
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212bea3f1844f3232f477b54767f25c436c862}{inc\+\_\+arrival\+\_\+destination}}, 
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212bea9f8608aad1ff20f5af5c2c4c22ff8ce9}{dec\+\_\+arrival\+\_\+destination}}, 
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212bea31f11d2e02e7b81eff302f2bdf7e34ea}{inc\+\_\+departure\+\_\+date}}, 
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212bea55a50557eaaac4a59b78b0349c3bd13e}{dec\+\_\+departure\+\_\+date}}, 
+\newline
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212bea787f9d66cf63533a62140c0c6189065b}{inc\+\_\+price}}, 
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212beaef4b34850e3661aec38a3fbd5cfce6af}{dec\+\_\+price}}, 
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212beaa8fe690d6b5a7bc9eba0ac0c268d113f}{inc\+\_\+total\+\_\+seats}}, 
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212beac4106aa943bf9c016648c647e0ca060c}{dec\+\_\+total\+\_\+seats}}, 
+\newline
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212beaee0198309cf7417b4a2373ba944bce4f}{inc\+\_\+free\+\_\+seats}}, 
+\mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212bea6d743d00d11e22c87695ed5d1384223d}{dec\+\_\+free\+\_\+seats}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{_carpool_8h_aaa79d1b70bb1417bd6ed8486b34d2bac}{read\+Gender}} (const \mbox{\hyperlink{_carpool_8h_aea0ac35116fa81886d820422ded4d807}{Gender\+\_\+t}} $\ast$\mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a3852ad964b0057c9a04ee17eb1f9a0fb}{gender}})
+\item 
+const char $\ast$ \mbox{\hyperlink{_carpool_8h_af1e978600784ac8c81c6ac45e3c92f00}{read\+Rating}} (const \mbox{\hyperlink{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89}{Rating\+\_\+t}} $\ast$rating)
+\item 
+void \mbox{\hyperlink{_carpool_8h_a65b2dbdece64da6bede766017c79b70f}{set\+Word}} (char word\mbox{[}$\,$\mbox{]}, const char printf\+\_\+value\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8h_aed60e78064270215e6743d881b704935}{set\+Email}} (char \mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58aeba54621f7fdcd8115863434763b2cfa}{email}}\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8h_a9c706de195e5ae2da23d186ab67a959e}{set\+Password}} (char \mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a09116bef1d274b09829ea49487887dc2}{password}}\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8h_a2e1f9697d85c4f1c2010d31f42dfeb51}{set\+Phone\+Number}} (char \mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58afdc998182262eef3b1a2887b593c3c05}{phone\+\_\+number}}\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8h_a03880ea63015d44e22a1cf2406d8f4f6}{set\+Additional\+Notes}} (char \mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a3a98a04563bb24d1bdf1586e89a6543e}{additional\+\_\+notes}}\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8h_a90a6cbb81885926d58348dccd90ae19a}{set\+Price}} (double $\ast$\mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7ac18d2aaa88694e92b2d68eb84dc28753}{price}})
+\item 
+void \mbox{\hyperlink{_carpool_8h_aba32d316909490d2fce42377228393f8}{set\+Number\+Input}} (int $\ast$input, const int min, const int max, const char printf\+\_\+value\+\_\+input\mbox{[}$\,$\mbox{]}, const char printf\+\_\+value\+\_\+error\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8h_a0eb88f61b7352b2f60e5e83abf490553}{reset\+Driver}} (\mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$driver)
+\item 
+void \mbox{\hyperlink{_carpool_8h_a39754160679983a2c595954ac2e9158c}{set\+Driver}} (\mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$driver, const int $\ast$id)
+\item 
+void \mbox{\hyperlink{_carpool_8h_aea6bb44172bba4cca8030732c01230fc}{read\+Driver}} (const \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$driver)
+\item 
+bool \mbox{\hyperlink{_carpool_8h_a994ffacea56e3714434c0f9604ae03e4}{is\+Id\+Driver\+Equal}} (const \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$driver, const int $\ast$id)
+\item 
+void \mbox{\hyperlink{_carpool_8h_a2d5e3a1ebf317d9c94017eda5f83f1f1}{show\+Member\+Driver}} (void)
+\item 
+void \mbox{\hyperlink{_carpool_8h_acfd502ec21149c2870b6a0800a1caa6a}{show\+Sort\+Key\+Driver}} (void)
+\item 
+void \mbox{\hyperlink{_carpool_8h_a025aba3447a5833a6ad729f678dbe0d6}{reset\+Travel}} (\mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$travel)
+\item 
+void \mbox{\hyperlink{_carpool_8h_a6847ba1bfbc6f31ace16be0879a65b95}{set\+Travel}} (\mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$travel, const int $\ast$id, const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_carpool_8h_a7ebfdd86940290400cd56c4c8383efa3}{read\+Travel}} (const \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$travel, const char path\+\_\+driver\+\_\+file\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{_carpool_8h_a45d90db251059ab2de9c2b83359dd4ec}{is\+Id\+Travel\+Equal}} (const \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$travel, const int $\ast$id)
+\item 
+void \mbox{\hyperlink{_carpool_8h_abcb2d1ac2e8f2874cdec49ff8eae8ecd}{show\+Member\+Travel}} (void)
+\item 
+void \mbox{\hyperlink{_carpool_8h_aad5d57f5d8f5cdccdc3b4035f664942d}{show\+Sort\+Key\+Travel}} (void)
+\item 
+void \mbox{\hyperlink{_carpool_8h_a8a08d0329b2b60fc10695f099ff2d8b3}{reset\+Booking\+Travel}} (\mbox{\hyperlink{struct_booking__travel__t}{Booking\+\_\+travel\+\_\+t}} $\ast$booking\+\_\+travel)
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8h_a03da7b5554631f32013b95423debc1ce}{add\+Struct}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]}, const int $\ast$id, bool select\+\_\+struct)
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8h_acfeebc1a472efb1ea4f98498851eb8d7}{edit\+Struct}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]}, bool select\+\_\+struct)
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8h_ab650220f32485ef822882a83e28cce8a}{delete\+Struct}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]}, bool select\+\_\+struct)
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8h_a7fab9cc5663e274fe493bef476e3d664}{show\+All\+Structs}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]}, bool select\+\_\+struct)
+\item 
+bool \mbox{\hyperlink{_carpool_8h_a5d48643cec83522cd2a4f8f3a782b2db}{book\+Travel}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8h_af9152424117e5bee5628162c7f8337e4}{manage\+Rating}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+rating\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8h_a75fdda62135f0f4c7ca2041193b60262}{evaluate\+Driver}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+rating\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} \mbox{\hyperlink{_carpool_8h_ae8af3ae184e6af780450e43bc0919238}{update\+ID}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, const long int offset, int $\ast$id)
+\item 
+long int \mbox{\hyperlink{_carpool_8h_a3dd522c551ba4e2808037a6fb48dcf98}{get\+Index\+User}} (const char path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]}, const char path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]}, const char printf\+\_\+value\+\_\+input\mbox{[}$\,$\mbox{]}, const char printf\+\_\+value\+\_\+error\mbox{[}$\,$\mbox{]}, bool select\+\_\+struct)
+\item 
+long int \mbox{\hyperlink{_carpool_8h_a7e9b13b2587130aab4b18ce7a675bb55}{get\+Index}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, const int $\ast$id, bool select\+\_\+struct)
+\item 
+double \mbox{\hyperlink{_carpool_8h_a5c5a67afc11334add85a56405c4384e1}{set\+Sort}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, long int start, long int end, bool select\+\_\+struct)
+\item 
+void \mbox{\hyperlink{_carpool_8h_a82afbb3f3f3ba4b8865fcbacd7c9f1d8}{merge\+Sort}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, long int start, long int end, bool select\+\_\+struct, int key\+\_\+sort)
+\item 
+void \mbox{\hyperlink{_carpool_8h_af40f15f6f338abfbee0eb315d21a0b37}{merge\+Driver}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, long int start, long int middle, long int end, int key\+\_\+sort)
+\item 
+void \mbox{\hyperlink{_carpool_8h_a1b93412a79331f074c0a9704af12af4f}{merge\+Travel}} (const char path\+\_\+file\mbox{[}$\,$\mbox{]}, long int start, long int middle, long int end, int key\+\_\+sort)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This library was created in order to manage drivers and travels. 
+
+\begin{DoxyAuthor}{Author}
+Vincenzo Susso 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2019 Sep 10 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 This library was developed to create, edit and delete drivers and travels, furthermore this library allows to save drivers and travels into files. 
+\end{DoxyVersion}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_carpool_8h_aba29acf4c593272c80677ed98ec1fcbc}\label{_carpool_8h_aba29acf4c593272c80677ed98ec1fcbc}} 
+\index{Carpool.h@{Carpool.h}!ALREADY\_SORTED@{ALREADY\_SORTED}}
+\index{ALREADY\_SORTED@{ALREADY\_SORTED}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{ALREADY\_SORTED}{ALREADY\_SORTED}}
+{\footnotesize\ttfamily \#define A\+L\+R\+E\+A\+D\+Y\+\_\+\+S\+O\+R\+T\+ED~1}
+
+This integer is used to see if the number of record is one, this case means that the records are already sorted. \mbox{\Hypertarget{_carpool_8h_aecaa2894fb3bfc92a98e331dbbf3c882}\label{_carpool_8h_aecaa2894fb3bfc92a98e331dbbf3c882}} 
+\index{Carpool.h@{Carpool.h}!BOOK\_TRAVEL\_TEMP\_FILE\_PATH@{BOOK\_TRAVEL\_TEMP\_FILE\_PATH}}
+\index{BOOK\_TRAVEL\_TEMP\_FILE\_PATH@{BOOK\_TRAVEL\_TEMP\_FILE\_PATH}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{BOOK\_TRAVEL\_TEMP\_FILE\_PATH}{BOOK\_TRAVEL\_TEMP\_FILE\_PATH}}
+{\footnotesize\ttfamily \#define B\+O\+O\+K\+\_\+\+T\+R\+A\+V\+E\+L\+\_\+\+T\+E\+M\+P\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+TH~\char`\"{}../Files/Temp\+Book.\+dat\char`\"{}}
+
+This string is used to indicates the relative path of a temporary file used during the booking of a travel. \mbox{\Hypertarget{_carpool_8h_aca1a9d9509f65b2edcdb2e29c111875f}\label{_carpool_8h_aca1a9d9509f65b2edcdb2e29c111875f}} 
+\index{Carpool.h@{Carpool.h}!DOLLAR\_STRING@{DOLLAR\_STRING}}
+\index{DOLLAR\_STRING@{DOLLAR\_STRING}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{DOLLAR\_STRING}{DOLLAR\_STRING}}
+{\footnotesize\ttfamily \#define D\+O\+L\+L\+A\+R\+\_\+\+S\+T\+R\+I\+NG~\char`\"{}\$\char`\"{}}
+
+This string is used in order to indicates the currency of the travel\textquotesingle{}s price. \mbox{\Hypertarget{_carpool_8h_a45044c35ca9fe4a00b497f05d2b818cc}\label{_carpool_8h_a45044c35ca9fe4a00b497f05d2b818cc}} 
+\index{Carpool.h@{Carpool.h}!DRIVER@{DRIVER}}
+\index{DRIVER@{DRIVER}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{DRIVER}{DRIVER}}
+{\footnotesize\ttfamily \#define D\+R\+I\+V\+ER~true}
+
+This boolean is used to indicates that the a struct of \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} will be modified into the procedure and functions. \mbox{\Hypertarget{_carpool_8h_a1c598396229dadf9d948f4f797d21b4b}\label{_carpool_8h_a1c598396229dadf9d948f4f797d21b4b}} 
+\index{Carpool.h@{Carpool.h}!LENGHT\_ARRAY\_GENDER@{LENGHT\_ARRAY\_GENDER}}
+\index{LENGHT\_ARRAY\_GENDER@{LENGHT\_ARRAY\_GENDER}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{LENGHT\_ARRAY\_GENDER}{LENGHT\_ARRAY\_GENDER}}
+{\footnotesize\ttfamily \#define L\+E\+N\+G\+H\+T\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+G\+E\+N\+D\+ER~3}
+
+This integer is used to indicates the lenght of the array that is used to converts the numeral output of gender to letteral output. \mbox{\Hypertarget{_carpool_8h_a74a6c84f8e80493f12531bd8d78fb60c}\label{_carpool_8h_a74a6c84f8e80493f12531bd8d78fb60c}} 
+\index{Carpool.h@{Carpool.h}!LENGHT\_ARRAY\_RATING@{LENGHT\_ARRAY\_RATING}}
+\index{LENGHT\_ARRAY\_RATING@{LENGHT\_ARRAY\_RATING}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{LENGHT\_ARRAY\_RATING}{LENGHT\_ARRAY\_RATING}}
+{\footnotesize\ttfamily \#define L\+E\+N\+G\+H\+T\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+R\+A\+T\+I\+NG~6}
+
+This integer is used to indicates the lenght of the array that is used to converts the numeral output of rating to letteral output. \mbox{\Hypertarget{_carpool_8h_aa8a22ab9d44ab03376b598bd1fed0b50}\label{_carpool_8h_aa8a22ab9d44ab03376b598bd1fed0b50}} 
+\index{Carpool.h@{Carpool.h}!MAX\_LENGHT\_ADDITIONAL\_NOTES@{MAX\_LENGHT\_ADDITIONAL\_NOTES}}
+\index{MAX\_LENGHT\_ADDITIONAL\_NOTES@{MAX\_LENGHT\_ADDITIONAL\_NOTES}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LENGHT\_ADDITIONAL\_NOTES}{MAX\_LENGHT\_ADDITIONAL\_NOTES}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+A\+D\+D\+I\+T\+I\+O\+N\+A\+L\+\_\+\+N\+O\+T\+ES~40}
+
+This integer is used to indicates the maximum lenght of additional notes. \mbox{\Hypertarget{_carpool_8h_a7550d52835c345bd886e8a98f572bc1e}\label{_carpool_8h_a7550d52835c345bd886e8a98f572bc1e}} 
+\index{Carpool.h@{Carpool.h}!MAX\_LENGHT\_EMAIL@{MAX\_LENGHT\_EMAIL}}
+\index{MAX\_LENGHT\_EMAIL@{MAX\_LENGHT\_EMAIL}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LENGHT\_EMAIL}{MAX\_LENGHT\_EMAIL}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+E\+M\+A\+IL~40}
+
+This integer is used to indicates the maximum lenght of emails. \mbox{\Hypertarget{_carpool_8h_acbf07a5e322c08d7133e3d0948f0247a}\label{_carpool_8h_acbf07a5e322c08d7133e3d0948f0247a}} 
+\index{Carpool.h@{Carpool.h}!MAX\_LENGHT\_NUMBER\_INPUT@{MAX\_LENGHT\_NUMBER\_INPUT}}
+\index{MAX\_LENGHT\_NUMBER\_INPUT@{MAX\_LENGHT\_NUMBER\_INPUT}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LENGHT\_NUMBER\_INPUT}{MAX\_LENGHT\_NUMBER\_INPUT}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+I\+N\+P\+UT~8}
+
+This integer is used to indicates lenght of string that is used to take a number as input. \mbox{\Hypertarget{_carpool_8h_aa6aba44e7e3db7b898110f03e2d25e60}\label{_carpool_8h_aa6aba44e7e3db7b898110f03e2d25e60}} 
+\index{Carpool.h@{Carpool.h}!MAX\_LENGHT\_PHONE\_NUMBER@{MAX\_LENGHT\_PHONE\_NUMBER}}
+\index{MAX\_LENGHT\_PHONE\_NUMBER@{MAX\_LENGHT\_PHONE\_NUMBER}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LENGHT\_PHONE\_NUMBER}{MAX\_LENGHT\_PHONE\_NUMBER}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+P\+H\+O\+N\+E\+\_\+\+N\+U\+M\+B\+ER~18}
+
+This integer is used to indicates the maximum lenght of phone\+\_\+number. \mbox{\Hypertarget{_carpool_8h_ac0f7a1acc71e13eca8e326cbfd1af98b}\label{_carpool_8h_ac0f7a1acc71e13eca8e326cbfd1af98b}} 
+\index{Carpool.h@{Carpool.h}!MAX\_LENGHT\_STRINGS@{MAX\_LENGHT\_STRINGS}}
+\index{MAX\_LENGHT\_STRINGS@{MAX\_LENGHT\_STRINGS}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LENGHT\_STRINGS}{MAX\_LENGHT\_STRINGS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+S\+T\+R\+I\+N\+GS~20}
+
+This integer is used to indicates the maximum lenght of strings. \mbox{\Hypertarget{_carpool_8h_af35120eacbafcb2102da5aa0e1e284e7}\label{_carpool_8h_af35120eacbafcb2102da5aa0e1e284e7}} 
+\index{Carpool.h@{Carpool.h}!MAX\_NUMBER\_FREE\_SEATS@{MAX\_NUMBER\_FREE\_SEATS}}
+\index{MAX\_NUMBER\_FREE\_SEATS@{MAX\_NUMBER\_FREE\_SEATS}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_NUMBER\_FREE\_SEATS}{MAX\_NUMBER\_FREE\_SEATS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+F\+R\+E\+E\+\_\+\+S\+E\+A\+TS~8}
+
+This integer is used to indicates the maximum number of free seats in a veicle. \mbox{\Hypertarget{_carpool_8h_a2ff672f82b90c6b455321d5b1f32e365}\label{_carpool_8h_a2ff672f82b90c6b455321d5b1f32e365}} 
+\index{Carpool.h@{Carpool.h}!MAX\_NUMBER\_TOTAL\_SEATS@{MAX\_NUMBER\_TOTAL\_SEATS}}
+\index{MAX\_NUMBER\_TOTAL\_SEATS@{MAX\_NUMBER\_TOTAL\_SEATS}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_NUMBER\_TOTAL\_SEATS}{MAX\_NUMBER\_TOTAL\_SEATS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+E\+A\+TS~9}
+
+This integer is used to indicates the maximum number of total seats in a veicle (It include the driver\textquotesingle{}s seat). \mbox{\Hypertarget{_carpool_8h_a53f3ae13ee0ff031598cb9e9ed247a7c}\label{_carpool_8h_a53f3ae13ee0ff031598cb9e9ed247a7c}} 
+\index{Carpool.h@{Carpool.h}!MAX\_PRICE@{MAX\_PRICE}}
+\index{MAX\_PRICE@{MAX\_PRICE}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_PRICE}{MAX\_PRICE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+P\+R\+I\+CE~9999.\+99}
+
+This double is used to indicates the maximum travel\textquotesingle{}s price. \mbox{\Hypertarget{_carpool_8h_a661688d4e18dc53f414697e6cae2b926}\label{_carpool_8h_a661688d4e18dc53f414697e6cae2b926}} 
+\index{Carpool.h@{Carpool.h}!MAX\_YEAR\_BIRTHDAY@{MAX\_YEAR\_BIRTHDAY}}
+\index{MAX\_YEAR\_BIRTHDAY@{MAX\_YEAR\_BIRTHDAY}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_YEAR\_BIRTHDAY}{MAX\_YEAR\_BIRTHDAY}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+Y\+E\+A\+R\+\_\+\+B\+I\+R\+T\+H\+D\+AY~2001}
+
+This integer is used to indicates the maximum valid year to be a driver. \mbox{\Hypertarget{_carpool_8h_a822e570aaf5fac15e94f3d5bb7742d33}\label{_carpool_8h_a822e570aaf5fac15e94f3d5bb7742d33}} 
+\index{Carpool.h@{Carpool.h}!MAX\_YEAR\_TRAVEL@{MAX\_YEAR\_TRAVEL}}
+\index{MAX\_YEAR\_TRAVEL@{MAX\_YEAR\_TRAVEL}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_YEAR\_TRAVEL}{MAX\_YEAR\_TRAVEL}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+Y\+E\+A\+R\+\_\+\+T\+R\+A\+V\+EL~2050}
+
+This integer is used to indicates the maximum valid year to create a travel. \mbox{\Hypertarget{_carpool_8h_a21b5d9bc8a855d89f3b5c8499c07ad5f}\label{_carpool_8h_a21b5d9bc8a855d89f3b5c8499c07ad5f}} 
+\index{Carpool.h@{Carpool.h}!MERGE\_TEMP\_FILE\_PATH@{MERGE\_TEMP\_FILE\_PATH}}
+\index{MERGE\_TEMP\_FILE\_PATH@{MERGE\_TEMP\_FILE\_PATH}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MERGE\_TEMP\_FILE\_PATH}{MERGE\_TEMP\_FILE\_PATH}}
+{\footnotesize\ttfamily \#define M\+E\+R\+G\+E\+\_\+\+T\+E\+M\+P\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+TH~\char`\"{}../Files/Temp\+Sort.\+dat\char`\"{}}
+
+This string is used to indicates the relative path of a temporary file used during the sorting. \mbox{\Hypertarget{_carpool_8h_a028dc12a1cfd95581efaa5eccf8144bb}\label{_carpool_8h_a028dc12a1cfd95581efaa5eccf8144bb}} 
+\index{Carpool.h@{Carpool.h}!MIN\_LENGHT\_PASSWORD@{MIN\_LENGHT\_PASSWORD}}
+\index{MIN\_LENGHT\_PASSWORD@{MIN\_LENGHT\_PASSWORD}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_LENGHT\_PASSWORD}{MIN\_LENGHT\_PASSWORD}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+P\+A\+S\+S\+W\+O\+RD~8}
+
+This integer is used to indicates the minimum lenght of passwords. \mbox{\Hypertarget{_carpool_8h_a0f1f965346b1939805f9e2eb136d3370}\label{_carpool_8h_a0f1f965346b1939805f9e2eb136d3370}} 
+\index{Carpool.h@{Carpool.h}!MIN\_LENGHT\_PHONE\_NUMBER@{MIN\_LENGHT\_PHONE\_NUMBER}}
+\index{MIN\_LENGHT\_PHONE\_NUMBER@{MIN\_LENGHT\_PHONE\_NUMBER}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_LENGHT\_PHONE\_NUMBER}{MIN\_LENGHT\_PHONE\_NUMBER}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+P\+H\+O\+N\+E\+\_\+\+N\+U\+M\+B\+ER~8}
+
+This integer is used to indicates the minimum lenght of phone number. \mbox{\Hypertarget{_carpool_8h_afd5b3032114c4aa2cd2d58b10324515e}\label{_carpool_8h_afd5b3032114c4aa2cd2d58b10324515e}} 
+\index{Carpool.h@{Carpool.h}!MIN\_LENGHT\_STRINGS@{MIN\_LENGHT\_STRINGS}}
+\index{MIN\_LENGHT\_STRINGS@{MIN\_LENGHT\_STRINGS}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_LENGHT\_STRINGS}{MIN\_LENGHT\_STRINGS}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+S\+T\+R\+I\+N\+GS~2}
+
+This integer is used to indicates the minimum lenght of strings. \mbox{\Hypertarget{_carpool_8h_af6bc89d7f116c85a1729dc2fe70030ae}\label{_carpool_8h_af6bc89d7f116c85a1729dc2fe70030ae}} 
+\index{Carpool.h@{Carpool.h}!MIN\_NUMBER\_FREE\_SEATS@{MIN\_NUMBER\_FREE\_SEATS}}
+\index{MIN\_NUMBER\_FREE\_SEATS@{MIN\_NUMBER\_FREE\_SEATS}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_NUMBER\_FREE\_SEATS}{MIN\_NUMBER\_FREE\_SEATS}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+F\+R\+E\+E\+\_\+\+S\+E\+A\+TS~0}
+
+This integer is used to indicates the mimimum number of free seats in a veicle. \mbox{\Hypertarget{_carpool_8h_ab3c020c5b7abfd69b2008b951eb219ac}\label{_carpool_8h_ab3c020c5b7abfd69b2008b951eb219ac}} 
+\index{Carpool.h@{Carpool.h}!MIN\_NUMBER\_TOTAL\_SEATS@{MIN\_NUMBER\_TOTAL\_SEATS}}
+\index{MIN\_NUMBER\_TOTAL\_SEATS@{MIN\_NUMBER\_TOTAL\_SEATS}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_NUMBER\_TOTAL\_SEATS}{MIN\_NUMBER\_TOTAL\_SEATS}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+E\+A\+TS~2}
+
+This integer is used to indicates the minimum number of total seats in a veicle (It include the driver\textquotesingle{}s seat). \mbox{\Hypertarget{_carpool_8h_a48596ce4abc2a7a1d3c5073c2f80f793}\label{_carpool_8h_a48596ce4abc2a7a1d3c5073c2f80f793}} 
+\index{Carpool.h@{Carpool.h}!MIN\_PRICE@{MIN\_PRICE}}
+\index{MIN\_PRICE@{MIN\_PRICE}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_PRICE}{MIN\_PRICE}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+P\+R\+I\+CE~0.\+01}
+
+This double is used to indicates the minimum travel\textquotesingle{}s price. \mbox{\Hypertarget{_carpool_8h_af180aee53d2434932437872af10d1c53}\label{_carpool_8h_af180aee53d2434932437872af10d1c53}} 
+\index{Carpool.h@{Carpool.h}!MIN\_YEAR\_BIRTHDAY@{MIN\_YEAR\_BIRTHDAY}}
+\index{MIN\_YEAR\_BIRTHDAY@{MIN\_YEAR\_BIRTHDAY}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_YEAR\_BIRTHDAY}{MIN\_YEAR\_BIRTHDAY}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+Y\+E\+A\+R\+\_\+\+B\+I\+R\+T\+H\+D\+AY~1915}
+
+This integer is used to indicates the minimum valid year to be a driver. \mbox{\Hypertarget{_carpool_8h_aed43359aa38d684b26369307c8ec3d55}\label{_carpool_8h_aed43359aa38d684b26369307c8ec3d55}} 
+\index{Carpool.h@{Carpool.h}!MIN\_YEAR\_TRAVEL@{MIN\_YEAR\_TRAVEL}}
+\index{MIN\_YEAR\_TRAVEL@{MIN\_YEAR\_TRAVEL}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_YEAR\_TRAVEL}{MIN\_YEAR\_TRAVEL}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+Y\+E\+A\+R\+\_\+\+T\+R\+A\+V\+EL~2019}
+
+This integer is used to indicates the minimum valid year to create a travel. \mbox{\Hypertarget{_carpool_8h_a8153b99b44fc03db347beac8dfdbad12}\label{_carpool_8h_a8153b99b44fc03db347beac8dfdbad12}} 
+\index{Carpool.h@{Carpool.h}!OFFSET\_ID\_DRIVER@{OFFSET\_ID\_DRIVER}}
+\index{OFFSET\_ID\_DRIVER@{OFFSET\_ID\_DRIVER}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{OFFSET\_ID\_DRIVER}{OFFSET\_ID\_DRIVER}}
+{\footnotesize\ttfamily \#define O\+F\+F\+S\+E\+T\+\_\+\+I\+D\+\_\+\+D\+R\+I\+V\+ER~0}
+
+This integer is used to update the driver\textquotesingle{}s ID. \mbox{\Hypertarget{_carpool_8h_a6fcfe735ba3e312cca3cb1ce83744c68}\label{_carpool_8h_a6fcfe735ba3e312cca3cb1ce83744c68}} 
+\index{Carpool.h@{Carpool.h}!OFFSET\_ID\_TRAVEL@{OFFSET\_ID\_TRAVEL}}
+\index{OFFSET\_ID\_TRAVEL@{OFFSET\_ID\_TRAVEL}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{OFFSET\_ID\_TRAVEL}{OFFSET\_ID\_TRAVEL}}
+{\footnotesize\ttfamily \#define O\+F\+F\+S\+E\+T\+\_\+\+I\+D\+\_\+\+T\+R\+A\+V\+EL~1}
+
+This integer is used to update the travel\textquotesingle{}s ID. \mbox{\Hypertarget{_carpool_8h_ac288422b95a750044e8078990b9f4e2d}\label{_carpool_8h_ac288422b95a750044e8078990b9f4e2d}} 
+\index{Carpool.h@{Carpool.h}!READ\_GENDER\_CUSTOM@{READ\_GENDER\_CUSTOM}}
+\index{READ\_GENDER\_CUSTOM@{READ\_GENDER\_CUSTOM}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{READ\_GENDER\_CUSTOM}{READ\_GENDER\_CUSTOM}}
+{\footnotesize\ttfamily \#define R\+E\+A\+D\+\_\+\+G\+E\+N\+D\+E\+R\+\_\+\+C\+U\+S\+T\+OM~\char`\"{}Custom\char`\"{}}
+
+This string is used as string that will be shown instead of numeral output. \mbox{\Hypertarget{_carpool_8h_af3b9f470f200b69b7f2fcdeab23b63bf}\label{_carpool_8h_af3b9f470f200b69b7f2fcdeab23b63bf}} 
+\index{Carpool.h@{Carpool.h}!READ\_GENDER\_FEMALE@{READ\_GENDER\_FEMALE}}
+\index{READ\_GENDER\_FEMALE@{READ\_GENDER\_FEMALE}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{READ\_GENDER\_FEMALE}{READ\_GENDER\_FEMALE}}
+{\footnotesize\ttfamily \#define R\+E\+A\+D\+\_\+\+G\+E\+N\+D\+E\+R\+\_\+\+F\+E\+M\+A\+LE~\char`\"{}Female\char`\"{}}
+
+This string is used as string that will be shown instead of numeral output. \mbox{\Hypertarget{_carpool_8h_a11c725358ee45992c491085c57365d10}\label{_carpool_8h_a11c725358ee45992c491085c57365d10}} 
+\index{Carpool.h@{Carpool.h}!READ\_GENDER\_MALE@{READ\_GENDER\_MALE}}
+\index{READ\_GENDER\_MALE@{READ\_GENDER\_MALE}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{READ\_GENDER\_MALE}{READ\_GENDER\_MALE}}
+{\footnotesize\ttfamily \#define R\+E\+A\+D\+\_\+\+G\+E\+N\+D\+E\+R\+\_\+\+M\+A\+LE~\char`\"{}Male\char`\"{}}
+
+This string is used as string that will be shown instead of numeral output. \mbox{\Hypertarget{_carpool_8h_ac57866299b05438f585b6333ce2dbfa1}\label{_carpool_8h_ac57866299b05438f585b6333ce2dbfa1}} 
+\index{Carpool.h@{Carpool.h}!READ\_RATING\_FIVE\_STAR@{READ\_RATING\_FIVE\_STAR}}
+\index{READ\_RATING\_FIVE\_STAR@{READ\_RATING\_FIVE\_STAR}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{READ\_RATING\_FIVE\_STAR}{READ\_RATING\_FIVE\_STAR}}
+{\footnotesize\ttfamily \#define R\+E\+A\+D\+\_\+\+R\+A\+T\+I\+N\+G\+\_\+\+F\+I\+V\+E\+\_\+\+S\+T\+AR~\char`\"{}$\ast$$\ast$$\ast$$\ast$$\ast$\char`\"{}}
+
+This string is used as string that will be shown instead of numeral output. \mbox{\Hypertarget{_carpool_8h_a916ff8abc488e8a3dae3ec4229b28742}\label{_carpool_8h_a916ff8abc488e8a3dae3ec4229b28742}} 
+\index{Carpool.h@{Carpool.h}!READ\_RATING\_FOUR\_STAR@{READ\_RATING\_FOUR\_STAR}}
+\index{READ\_RATING\_FOUR\_STAR@{READ\_RATING\_FOUR\_STAR}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{READ\_RATING\_FOUR\_STAR}{READ\_RATING\_FOUR\_STAR}}
+{\footnotesize\ttfamily \#define R\+E\+A\+D\+\_\+\+R\+A\+T\+I\+N\+G\+\_\+\+F\+O\+U\+R\+\_\+\+S\+T\+AR~\char`\"{}$\ast$$\ast$$\ast$$\ast$\char`\"{}}
+
+This string is used as string that will be shown instead of numeral output. \mbox{\Hypertarget{_carpool_8h_a71599c640b93646f99f55560889f5574}\label{_carpool_8h_a71599c640b93646f99f55560889f5574}} 
+\index{Carpool.h@{Carpool.h}!READ\_RATING\_NONE@{READ\_RATING\_NONE}}
+\index{READ\_RATING\_NONE@{READ\_RATING\_NONE}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{READ\_RATING\_NONE}{READ\_RATING\_NONE}}
+{\footnotesize\ttfamily \#define R\+E\+A\+D\+\_\+\+R\+A\+T\+I\+N\+G\+\_\+\+N\+O\+NE~\char`\"{}None\char`\"{}}
+
+This string is used as string that will be shown instead of numeral output. \mbox{\Hypertarget{_carpool_8h_a8e27f25897f192b078eb129e378e94b6}\label{_carpool_8h_a8e27f25897f192b078eb129e378e94b6}} 
+\index{Carpool.h@{Carpool.h}!READ\_RATING\_ONE\_STAR@{READ\_RATING\_ONE\_STAR}}
+\index{READ\_RATING\_ONE\_STAR@{READ\_RATING\_ONE\_STAR}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{READ\_RATING\_ONE\_STAR}{READ\_RATING\_ONE\_STAR}}
+{\footnotesize\ttfamily \#define R\+E\+A\+D\+\_\+\+R\+A\+T\+I\+N\+G\+\_\+\+O\+N\+E\+\_\+\+S\+T\+AR~\char`\"{}$\ast$\char`\"{}}
+
+This string is used as string that will be shown instead of numeral output. \mbox{\Hypertarget{_carpool_8h_aa6d569af0b2242fa99807b8c4ed53317}\label{_carpool_8h_aa6d569af0b2242fa99807b8c4ed53317}} 
+\index{Carpool.h@{Carpool.h}!READ\_RATING\_THREE\_STAR@{READ\_RATING\_THREE\_STAR}}
+\index{READ\_RATING\_THREE\_STAR@{READ\_RATING\_THREE\_STAR}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{READ\_RATING\_THREE\_STAR}{READ\_RATING\_THREE\_STAR}}
+{\footnotesize\ttfamily \#define R\+E\+A\+D\+\_\+\+R\+A\+T\+I\+N\+G\+\_\+\+T\+H\+R\+E\+E\+\_\+\+S\+T\+AR~\char`\"{}$\ast$$\ast$$\ast$\char`\"{}}
+
+This string is used as string that will be shown instead of numeral output. \mbox{\Hypertarget{_carpool_8h_ac1c3b49a215a5e5ed98f464d5d9f5885}\label{_carpool_8h_ac1c3b49a215a5e5ed98f464d5d9f5885}} 
+\index{Carpool.h@{Carpool.h}!READ\_RATING\_TWO\_STAR@{READ\_RATING\_TWO\_STAR}}
+\index{READ\_RATING\_TWO\_STAR@{READ\_RATING\_TWO\_STAR}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{READ\_RATING\_TWO\_STAR}{READ\_RATING\_TWO\_STAR}}
+{\footnotesize\ttfamily \#define R\+E\+A\+D\+\_\+\+R\+A\+T\+I\+N\+G\+\_\+\+T\+W\+O\+\_\+\+S\+T\+AR~\char`\"{}$\ast$$\ast$\char`\"{}}
+
+This string is used as string that will be shown instead of numeral output. \mbox{\Hypertarget{_carpool_8h_ab6a8e7c4a8c18de412146ad11c944ddc}\label{_carpool_8h_ab6a8e7c4a8c18de412146ad11c944ddc}} 
+\index{Carpool.h@{Carpool.h}!TRAVEL@{TRAVEL}}
+\index{TRAVEL@{TRAVEL}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{TRAVEL}{TRAVEL}}
+{\footnotesize\ttfamily \#define T\+R\+A\+V\+EL~false}
+
+This boolean is used to indicates that the a struct of \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} will be modified into the procedure and functions. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58}\label{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58}} 
+\index{Carpool.h@{Carpool.h}!Driver\_members\_t@{Driver\_members\_t}}
+\index{Driver\_members\_t@{Driver\_members\_t}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{Driver\_members\_t}{Driver\_members\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58}{Driver\+\_\+members\+\_\+t}}}
+
+This user-\/defined type is used in order to define the member of the struct \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}}, this user-\/defined type was created in order to edit the member of the struct \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}}. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{id\_driver@{id\_driver}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!id\_driver@{id\_driver}}}\mbox{\Hypertarget{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58aa029ab413a07d74ba66311d6adfec773}\label{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58aa029ab413a07d74ba66311d6adfec773}} 
+id\+\_\+driver&This member is used to indicates the driver\textquotesingle{}s ID \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{name@{name}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!name@{name}}}\mbox{\Hypertarget{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a30f86b30ff07d8d12d3ae0aab53dc7a1}\label{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a30f86b30ff07d8d12d3ae0aab53dc7a1}} 
+name&This member is used to indicate the driver\textquotesingle{}s name \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{surname@{surname}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!surname@{surname}}}\mbox{\Hypertarget{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58af310801d63ee05b45bd1d7e3f4a5fd20}\label{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58af310801d63ee05b45bd1d7e3f4a5fd20}} 
+surname&This member is used to indicate the driver\textquotesingle{}s surname \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{email@{email}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!email@{email}}}\mbox{\Hypertarget{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58aeba54621f7fdcd8115863434763b2cfa}\label{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58aeba54621f7fdcd8115863434763b2cfa}} 
+email&This member is used to indicate the driver\textquotesingle{}s email \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{password@{password}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!password@{password}}}\mbox{\Hypertarget{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a09116bef1d274b09829ea49487887dc2}\label{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a09116bef1d274b09829ea49487887dc2}} 
+password&This member is used to indicate the driver\textquotesingle{}s password \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{phone\_number@{phone\_number}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!phone\_number@{phone\_number}}}\mbox{\Hypertarget{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58afdc998182262eef3b1a2887b593c3c05}\label{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58afdc998182262eef3b1a2887b593c3c05}} 
+phone\+\_\+number&This member is used to indicate the driver\textquotesingle{}s phone\+\_\+number \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{birthday@{birthday}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!birthday@{birthday}}}\mbox{\Hypertarget{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58aac4a309a59b7c54d85a13cf32e531fb2}\label{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58aac4a309a59b7c54d85a13cf32e531fb2}} 
+birthday&This member is used to indicate the driver\textquotesingle{}s birthday \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{gender@{gender}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!gender@{gender}}}\mbox{\Hypertarget{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a3852ad964b0057c9a04ee17eb1f9a0fb}\label{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a3852ad964b0057c9a04ee17eb1f9a0fb}} 
+gender&This member is used to indicate the driver\textquotesingle{}s gender \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{deleted\_driver@{deleted\_driver}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!deleted\_driver@{deleted\_driver}}}\mbox{\Hypertarget{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a07308aa928fe7dbb4e0ba680c0957925}\label{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a07308aa928fe7dbb4e0ba680c0957925}} 
+deleted\+\_\+driver&This member is used to indicate the driver\textquotesingle{}s deletion \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8e}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8e}} 
+\index{Carpool.h@{Carpool.h}!Driver\_sort\_key@{Driver\_sort\_key}}
+\index{Driver\_sort\_key@{Driver\_sort\_key}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{Driver\_sort\_key}{Driver\_sort\_key}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_carpool_8h_ad4c327628678a189320e3b4988816b8e}{Driver\+\_\+sort\+\_\+key}}}
+
+This user-\/defined type is used in order to sort the drivers using several sort-\/key.
+
+This user-\/defined type is used in order to sort the travels using several sort-\/key. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_id\_driver@{inc\_id\_driver}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_id\_driver@{inc\_id\_driver}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8ea1b31b57e74f9b0bd050bd4a91bff07ff}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8ea1b31b57e74f9b0bd050bd4a91bff07ff}} 
+inc\+\_\+id\+\_\+driver&This member is used to sort drivers using increasing ID as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_id\_driver@{dec\_id\_driver}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_id\_driver@{dec\_id\_driver}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8ea7d175bbc444150d72ffe9e158f0d6b18}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8ea7d175bbc444150d72ffe9e158f0d6b18}} 
+dec\+\_\+id\+\_\+driver&This member is used to sort drivers using decreasing ID as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_name@{inc\_name}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_name@{inc\_name}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8ea55d5777877a5684d89cef5a3ca8b5940}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8ea55d5777877a5684d89cef5a3ca8b5940}} 
+inc\+\_\+name&This member is used to sort drivers using increasing driver\textquotesingle{}s name as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_name@{dec\_name}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_name@{dec\_name}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8ea0f080a1aa24511fd689b495228e23ed7}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8ea0f080a1aa24511fd689b495228e23ed7}} 
+dec\+\_\+name&This member is used to sort drivers using decreasing driver\textquotesingle{}s name as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_surname@{inc\_surname}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_surname@{inc\_surname}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8ea08382127894390e872c1bdb869fdac24}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8ea08382127894390e872c1bdb869fdac24}} 
+inc\+\_\+surname&This member is used to sort drivers using increasing driver\textquotesingle{}s surname as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_surname@{dec\_surname}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_surname@{dec\_surname}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8ea0add31e20d825f91b6dddaa8034e78f8}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8ea0add31e20d825f91b6dddaa8034e78f8}} 
+dec\+\_\+surname&This member is used to sort drivers using decreasing driver\textquotesingle{}s surname as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_birthday@{inc\_birthday}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_birthday@{inc\_birthday}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8eab6a734b0e54bcd55e31ee9e724f3a027}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8eab6a734b0e54bcd55e31ee9e724f3a027}} 
+inc\+\_\+birthday&This member is used to sort drivers using increasing driver\textquotesingle{}s birthday as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_birthday@{dec\_birthday}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_birthday@{dec\_birthday}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8eabfc952a2b5d5c8220c7e1185027b02c6}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8eabfc952a2b5d5c8220c7e1185027b02c6}} 
+dec\+\_\+birthday&This member is used to sort drivers using decreasing driver\textquotesingle{}s birthday as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_gender@{inc\_gender}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_gender@{inc\_gender}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8eaa987205e23dd254e6b969e4404c2c83a}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8eaa987205e23dd254e6b969e4404c2c83a}} 
+inc\+\_\+gender&This member is used to sort drivers using increasing driver\textquotesingle{}s gender as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_gender@{dec\_gender}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_gender@{dec\_gender}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8eab790e07b577b670a714ecebbdc708a3b}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8eab790e07b577b670a714ecebbdc708a3b}} 
+dec\+\_\+gender&This member is used to sort drivers using decreasing driver\textquotesingle{}s gender as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_driving\_capacity@{inc\_driving\_capacity}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_driving\_capacity@{inc\_driving\_capacity}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8eadbb15dd1157a8f9cafe76f4f92739884}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8eadbb15dd1157a8f9cafe76f4f92739884}} 
+inc\+\_\+driving\+\_\+capacity&This member is used to sort drivers using increasing driver\textquotesingle{}s driving capacity as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_driving\_capacity@{dec\_driving\_capacity}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_driving\_capacity@{dec\_driving\_capacity}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8ea9d8522c26bb30a808315c682d59931cf}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8ea9d8522c26bb30a808315c682d59931cf}} 
+dec\+\_\+driving\+\_\+capacity&This member is used to sort drivers using decreasing driver\textquotesingle{}s driving capacity as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_comfort\_capacity@{inc\_comfort\_capacity}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_comfort\_capacity@{inc\_comfort\_capacity}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8eaf735903cfdcc2472751f9a2f9d63d0a6}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8eaf735903cfdcc2472751f9a2f9d63d0a6}} 
+inc\+\_\+comfort\+\_\+capacity&This member is used to sort drivers using increasing driver\textquotesingle{}s comfort capacity as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_comfort\_capacity@{dec\_comfort\_capacity}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_comfort\_capacity@{dec\_comfort\_capacity}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8ea0bb0d6b8572a541ede4ca497d4505855}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8ea0bb0d6b8572a541ede4ca497d4505855}} 
+dec\+\_\+comfort\+\_\+capacity&This member is used to sort drivers using decreasing driver\textquotesingle{}s comfort capacity as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_average\_rating@{inc\_average\_rating}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_average\_rating@{inc\_average\_rating}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8ea346807694345ba6aa7b0191dc35b5b0e}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8ea346807694345ba6aa7b0191dc35b5b0e}} 
+inc\+\_\+average\+\_\+rating&This member is used to sort drivers using increasing driver\textquotesingle{}s average rating as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_average\_rating@{dec\_average\_rating}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_average\_rating@{dec\_average\_rating}}}\mbox{\Hypertarget{_carpool_8h_ad4c327628678a189320e3b4988816b8eae1bf997f14093085c1f1d973cf1faa8e}\label{_carpool_8h_ad4c327628678a189320e3b4988816b8eae1bf997f14093085c1f1d973cf1faa8e}} 
+dec\+\_\+average\+\_\+rating&This member is used to sort drivers using decreasing driver\textquotesingle{}s average rating as sorting-\/key \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_carpool_8h_aea0ac35116fa81886d820422ded4d807}\label{_carpool_8h_aea0ac35116fa81886d820422ded4d807}} 
+\index{Carpool.h@{Carpool.h}!Gender\_t@{Gender\_t}}
+\index{Gender\_t@{Gender\_t}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{Gender\_t}{Gender\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_carpool_8h_aea0ac35116fa81886d820422ded4d807}{Gender\+\_\+t}}}
+
+This user-\/defined type is used to know the gender of the driver, this user-\/defined type was also created in order to improve the readability. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{male@{male}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!male@{male}}}\mbox{\Hypertarget{_carpool_8h_aea0ac35116fa81886d820422ded4d807adf25e9c17aa25418942eca3003c33410}\label{_carpool_8h_aea0ac35116fa81886d820422ded4d807adf25e9c17aa25418942eca3003c33410}} 
+male&This member is used to indicate that the driver\textquotesingle{}s gender is male \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{female@{female}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!female@{female}}}\mbox{\Hypertarget{_carpool_8h_aea0ac35116fa81886d820422ded4d807afc8285f7507b26f68c8b72f4dc38e34f}\label{_carpool_8h_aea0ac35116fa81886d820422ded4d807afc8285f7507b26f68c8b72f4dc38e34f}} 
+female&This member is used to indicate that the driver\textquotesingle{}s gender is female \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{custom@{custom}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!custom@{custom}}}\mbox{\Hypertarget{_carpool_8h_aea0ac35116fa81886d820422ded4d807a696330762bb8080a67d7ef4bd19db845}\label{_carpool_8h_aea0ac35116fa81886d820422ded4d807a696330762bb8080a67d7ef4bd19db845}} 
+custom&This member is used to indicate that the driver\textquotesingle{}s gender is custom \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89}\label{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89}} 
+\index{Carpool.h@{Carpool.h}!Rating\_t@{Rating\_t}}
+\index{Rating\_t@{Rating\_t}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{Rating\_t}{Rating\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89}{Rating\+\_\+t}}}
+
+This user-\/defined type is used to evalutate the driver\textquotesingle{}s capacity, this user-\/defined type was also created in order to improve the readability. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{none@{none}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!none@{none}}}\mbox{\Hypertarget{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89ab7e4e0120a041dbe6528b050c04269e0}\label{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89ab7e4e0120a041dbe6528b050c04269e0}} 
+none&none This member is used when driver has no rating \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{one\_star@{one\_star}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!one\_star@{one\_star}}}\mbox{\Hypertarget{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89a62f31c8aacfa3be11dcda5c9dcbedff4}\label{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89a62f31c8aacfa3be11dcda5c9dcbedff4}} 
+one\+\_\+star&one\+\_\+star This member is used to assign one star rating to the driver \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{two\_star@{two\_star}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!two\_star@{two\_star}}}\mbox{\Hypertarget{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89aff198f377f6c1e6b6909c9307d9b5655}\label{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89aff198f377f6c1e6b6909c9307d9b5655}} 
+two\+\_\+star&two\+\_\+star This member is used to assign two star rating to the driver \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{three\_star@{three\_star}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!three\_star@{three\_star}}}\mbox{\Hypertarget{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89ab8ec39ad40c5d51ed19661d5dfa3a421}\label{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89ab8ec39ad40c5d51ed19661d5dfa3a421}} 
+three\+\_\+star&three\+\_\+star This member is used to assign three star rating to the driver \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{four\_star@{four\_star}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!four\_star@{four\_star}}}\mbox{\Hypertarget{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89ae5468205b498d8ccded22470b764b472}\label{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89ae5468205b498d8ccded22470b764b472}} 
+four\+\_\+star&four\+\_\+star This member is used to assign four star rating to the driver \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{five\_star@{five\_star}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!five\_star@{five\_star}}}\mbox{\Hypertarget{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89a71d7aebc35f35074dee6cfb9a3769d65}\label{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89a71d7aebc35f35074dee6cfb9a3769d65}} 
+five\+\_\+star&five\+\_\+star This member is used to assign five star rating to the driver \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7}\label{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7}} 
+\index{Carpool.h@{Carpool.h}!Travel\_members\_t@{Travel\_members\_t}}
+\index{Travel\_members\_t@{Travel\_members\_t}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{Travel\_members\_t}{Travel\_members\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7}{Travel\+\_\+members\+\_\+t}}}
+
+This user-\/defined type is used in order to define the member of the struct \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, this user-\/defined type was created in order to edit the member of the struct \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{id\_travel@{id\_travel}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!id\_travel@{id\_travel}}}\mbox{\Hypertarget{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a2903522474007d7a72fbb35cc3e2411d}\label{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a2903522474007d7a72fbb35cc3e2411d}} 
+id\+\_\+travel&This member is used to indicates the travel\textquotesingle{}s ID \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{id\_driver\_@{id\_driver\_}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!id\_driver\_@{id\_driver\_}}}\mbox{\Hypertarget{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7afdc20cb734c080612c27d719ea0ee840}\label{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7afdc20cb734c080612c27d719ea0ee840}} 
+id\+\_\+driver\+\_\+&This member is used to indicates the ID of the driver that will offer the travel \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{departure\_destination@{departure\_destination}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!departure\_destination@{departure\_destination}}}\mbox{\Hypertarget{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a9835ede4cb40807a072abe28f60517a0}\label{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a9835ede4cb40807a072abe28f60517a0}} 
+departure\+\_\+destination&This member is used to indicates the travel\textquotesingle{}s departure destination \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{arrival\_destination@{arrival\_destination}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!arrival\_destination@{arrival\_destination}}}\mbox{\Hypertarget{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a060e84ac52eb49017386e28fd6a29f96}\label{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a060e84ac52eb49017386e28fd6a29f96}} 
+arrival\+\_\+destination&This member is used to indicates the travel\textquotesingle{}s arrival destination \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{departure\_date@{departure\_date}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!departure\_date@{departure\_date}}}\mbox{\Hypertarget{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a62d5cc171d529578718a165cfa8e4c25}\label{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a62d5cc171d529578718a165cfa8e4c25}} 
+departure\+\_\+date&This member is used to indicates the travel\textquotesingle{}s departure date \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{departure\_time@{departure\_time}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!departure\_time@{departure\_time}}}\mbox{\Hypertarget{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a4584f9f147cedbccc8c8de715e167d4f}\label{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a4584f9f147cedbccc8c8de715e167d4f}} 
+departure\+\_\+time&This member is used to indicates the travel\textquotesingle{}s departure time \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{total\_seats@{total\_seats}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!total\_seats@{total\_seats}}}\mbox{\Hypertarget{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a20466f70d1716ae277f99072b77b081d}\label{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a20466f70d1716ae277f99072b77b081d}} 
+total\+\_\+seats&This member is used to indicates the veicle\textquotesingle{}s total seats \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{free\_seats@{free\_seats}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!free\_seats@{free\_seats}}}\mbox{\Hypertarget{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7ae13f5412b1eab2a17b3516e0e7ebd060}\label{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7ae13f5412b1eab2a17b3516e0e7ebd060}} 
+free\+\_\+seats&This member is used to indicates the veicle\textquotesingle{}s free seats \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{price@{price}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!price@{price}}}\mbox{\Hypertarget{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7ac18d2aaa88694e92b2d68eb84dc28753}\label{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7ac18d2aaa88694e92b2d68eb84dc28753}} 
+price&This member is used to indicates the travel\textquotesingle{}s price \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{additional\_notes@{additional\_notes}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!additional\_notes@{additional\_notes}}}\mbox{\Hypertarget{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a3a98a04563bb24d1bdf1586e89a6543e}\label{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a3a98a04563bb24d1bdf1586e89a6543e}} 
+additional\+\_\+notes&This member is used to indicates the travel\textquotesingle{}s additional notes \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{deleted\_travel@{deleted\_travel}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!deleted\_travel@{deleted\_travel}}}\mbox{\Hypertarget{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a7af2c51a46be272695fddbdf115089b9}\label{_carpool_8h_afe86ebb29b50a56cfa62745aabd8afd7a7af2c51a46be272695fddbdf115089b9}} 
+deleted\+\_\+travel&This member is used to indicate the travel\textquotesingle{}s deletion \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212be}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212be}} 
+\index{Carpool.h@{Carpool.h}!Travel\_sort\_key@{Travel\_sort\_key}}
+\index{Travel\_sort\_key@{Travel\_sort\_key}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{Travel\_sort\_key}{Travel\_sort\_key}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_carpool_8h_ae072d76df81fbb043dbac40c749212be}{Travel\+\_\+sort\+\_\+key}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_id\_travel@{inc\_id\_travel}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_id\_travel@{inc\_id\_travel}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212bea1de654977ae555667f22089151c2e1fc}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212bea1de654977ae555667f22089151c2e1fc}} 
+inc\+\_\+id\+\_\+travel&This member is used to sort travels using increasing ID as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_id\_travel@{dec\_id\_travel}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_id\_travel@{dec\_id\_travel}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212beae9c3bd65131c632349a6bc96ef9c69bc}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212beae9c3bd65131c632349a6bc96ef9c69bc}} 
+dec\+\_\+id\+\_\+travel&This member is used to sort travels using decreasing ID as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_departure\_destination@{inc\_departure\_destination}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_departure\_destination@{inc\_departure\_destination}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212bead22c4a2f887e08ea39e5d6d22679e1bb}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212bead22c4a2f887e08ea39e5d6d22679e1bb}} 
+inc\+\_\+departure\+\_\+destination&This member is used to sort travels using increasing departure destination as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_departure\_destination@{dec\_departure\_destination}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_departure\_destination@{dec\_departure\_destination}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212beaea6ac780c559c454161f6c96108e7d6a}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212beaea6ac780c559c454161f6c96108e7d6a}} 
+dec\+\_\+departure\+\_\+destination&This member is used to sort travels using decreasing departure destination as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_arrival\_destination@{inc\_arrival\_destination}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_arrival\_destination@{inc\_arrival\_destination}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212bea3f1844f3232f477b54767f25c436c862}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212bea3f1844f3232f477b54767f25c436c862}} 
+inc\+\_\+arrival\+\_\+destination&This member is used to sort travels using increasing arrival destination as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_arrival\_destination@{dec\_arrival\_destination}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_arrival\_destination@{dec\_arrival\_destination}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212bea9f8608aad1ff20f5af5c2c4c22ff8ce9}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212bea9f8608aad1ff20f5af5c2c4c22ff8ce9}} 
+dec\+\_\+arrival\+\_\+destination&This member is used to sort travels using decreasing arrival destination as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_departure\_date@{inc\_departure\_date}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_departure\_date@{inc\_departure\_date}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212bea31f11d2e02e7b81eff302f2bdf7e34ea}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212bea31f11d2e02e7b81eff302f2bdf7e34ea}} 
+inc\+\_\+departure\+\_\+date&This member is used to sort travels using increasing departure date as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_departure\_date@{dec\_departure\_date}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_departure\_date@{dec\_departure\_date}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212bea55a50557eaaac4a59b78b0349c3bd13e}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212bea55a50557eaaac4a59b78b0349c3bd13e}} 
+dec\+\_\+departure\+\_\+date&This member is used to sort travels using decreasing departure date as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_price@{inc\_price}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_price@{inc\_price}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212bea787f9d66cf63533a62140c0c6189065b}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212bea787f9d66cf63533a62140c0c6189065b}} 
+inc\+\_\+price&This member is used to sort travels using increasing price as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_price@{dec\_price}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_price@{dec\_price}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212beaef4b34850e3661aec38a3fbd5cfce6af}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212beaef4b34850e3661aec38a3fbd5cfce6af}} 
+dec\+\_\+price&This member is used to sort travels using decreasing price as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_total\_seats@{inc\_total\_seats}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_total\_seats@{inc\_total\_seats}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212beaa8fe690d6b5a7bc9eba0ac0c268d113f}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212beaa8fe690d6b5a7bc9eba0ac0c268d113f}} 
+inc\+\_\+total\+\_\+seats&This member is used to sort travels using increasing veicle\textquotesingle{}s total seats as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_total\_seats@{dec\_total\_seats}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_total\_seats@{dec\_total\_seats}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212beac4106aa943bf9c016648c647e0ca060c}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212beac4106aa943bf9c016648c647e0ca060c}} 
+dec\+\_\+total\+\_\+seats&This member is used to sort travels using decreasing veicle\textquotesingle{}s total seats as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inc\_free\_seats@{inc\_free\_seats}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!inc\_free\_seats@{inc\_free\_seats}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212beaee0198309cf7417b4a2373ba944bce4f}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212beaee0198309cf7417b4a2373ba944bce4f}} 
+inc\+\_\+free\+\_\+seats&This member is used to sort travels using increasing veicle\textquotesingle{}s free seats as sorting-\/key \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{dec\_free\_seats@{dec\_free\_seats}!Carpool.h@{Carpool.h}}\index{Carpool.h@{Carpool.h}!dec\_free\_seats@{dec\_free\_seats}}}\mbox{\Hypertarget{_carpool_8h_ae072d76df81fbb043dbac40c749212bea6d743d00d11e22c87695ed5d1384223d}\label{_carpool_8h_ae072d76df81fbb043dbac40c749212bea6d743d00d11e22c87695ed5d1384223d}} 
+dec\+\_\+free\+\_\+seats&This member is used to sort travels using decreasing veicle\textquotesingle{}s free seats as sorting-\/key \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_carpool_8h_a03da7b5554631f32013b95423debc1ce}\label{_carpool_8h_a03da7b5554631f32013b95423debc1ce}} 
+\index{Carpool.h@{Carpool.h}!addStruct@{addStruct}}
+\index{addStruct@{addStruct}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{addStruct()}{addStruct()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} add\+Struct (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]},  }\item[{const int $\ast$}]{id,  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to set a struct between \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} and \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} and save them into a file. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+travel} & is the relative path of the travel\textquotesingle{}s file. \\
+\hline
+{\em id} & is the unique ID of driver or travel. \\
+\hline
+{\em select\+\_\+struct} & is used to set \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then a driver will be added to the system, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then a travel will be added to the system. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+2 if the struct is added to the system, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_a5d48643cec83522cd2a4f8f3a782b2db}\label{_carpool_8h_a5d48643cec83522cd2a4f8f3a782b2db}} 
+\index{Carpool.h@{Carpool.h}!bookTravel@{bookTravel}}
+\index{bookTravel@{bookTravel}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{bookTravel()}{bookTravel()}}
+{\footnotesize\ttfamily bool book\+Travel (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function is used in order to book a travel. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+travel} & is the relative path of the travel\textquotesingle{}s file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a travel has been booked, otherwise this function will return false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_ab650220f32485ef822882a83e28cce8a}\label{_carpool_8h_ab650220f32485ef822882a83e28cce8a}} 
+\index{Carpool.h@{Carpool.h}!deleteStruct@{deleteStruct}}
+\index{deleteStruct@{deleteStruct}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{deleteStruct()}{deleteStruct()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} delete\+Struct (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]},  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to delete a struct between \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} and \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+travel} & is the relative path of the travel\textquotesingle{}s file \\
+\hline
+{\em select\+\_\+struct} & is used to delete \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then a driver will be deleted, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then a travel will be deleted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+2 if the struct has been deleted, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_acfeebc1a472efb1ea4f98498851eb8d7}\label{_carpool_8h_acfeebc1a472efb1ea4f98498851eb8d7}} 
+\index{Carpool.h@{Carpool.h}!editStruct@{editStruct}}
+\index{editStruct@{editStruct}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{editStruct()}{editStruct()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} edit\+Struct (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]},  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to edit a struct between \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} and \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} and save them into a file. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+travel} & is the relative path of the travel\textquotesingle{}s file \\
+\hline
+{\em select\+\_\+struct} & is used to edit \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then a driver will be edited and added to the system, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then a travel will be edited and added to the system. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+2 if the struct has been edited and added to the system, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_a75fdda62135f0f4c7ca2041193b60262}\label{_carpool_8h_a75fdda62135f0f4c7ca2041193b60262}} 
+\index{Carpool.h@{Carpool.h}!evaluateDriver@{evaluateDriver}}
+\index{evaluateDriver@{evaluateDriver}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{evaluateDriver()}{evaluateDriver()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} evaluate\+Driver (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+rating\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function is used in order to allow users to enter evaluations to the drivers. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+rating} & is the relative path of the rating\textquotesingle{}s file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the user has evaluate driver, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_a7e9b13b2587130aab4b18ce7a675bb55}\label{_carpool_8h_a7e9b13b2587130aab4b18ce7a675bb55}} 
+\index{Carpool.h@{Carpool.h}!getIndex@{getIndex}}
+\index{getIndex@{getIndex}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{getIndex()}{getIndex()}}
+{\footnotesize\ttfamily long int get\+Index (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{const int $\ast$}]{id,  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to return the index of the ID that is passed by pointer. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em id} & is used to search the index of the struct. \\
+\hline
+{\em select\+\_\+struct} & is used to get index of \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then the driver\textquotesingle{}s index will be searched, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then the travel\textquotesingle{}s index will be searched. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the index of the struct if it has been found, otherwise the function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_a3dd522c551ba4e2808037a6fb48dcf98}\label{_carpool_8h_a3dd522c551ba4e2808037a6fb48dcf98}} 
+\index{Carpool.h@{Carpool.h}!getIndexUser@{getIndexUser}}
+\index{getIndexUser@{getIndexUser}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{getIndexUser()}{getIndexUser()}}
+{\footnotesize\ttfamily long int get\+Index\+User (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]},  }\item[{const char}]{printf\+\_\+value\+\_\+input\mbox{[}$\,$\mbox{]},  }\item[{const char}]{printf\+\_\+value\+\_\+error\mbox{[}$\,$\mbox{]},  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to return the index of the ID that is entered by the user using keyboard. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+travel} & is the relative path of the travel\textquotesingle{}s file. \\
+\hline
+{\em printf\+\_\+value\+\_\+input} & is used to ask to the user to enter the ID of the struct he needs. \\
+\hline
+{\em printf\+\_\+value\+\_\+error} & is used to report to the user if there was an error during the entering of the ID that he needs. \\
+\hline
+{\em select\+\_\+struct} & is used to get index of \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then the driver\textquotesingle{}s index will be searched, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then the travel\textquotesingle{}s index will be searched. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the index of the struct if it has been found, otherwise the function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_a994ffacea56e3714434c0f9604ae03e4}\label{_carpool_8h_a994ffacea56e3714434c0f9604ae03e4}} 
+\index{Carpool.h@{Carpool.h}!isIdDriverEqual@{isIdDriverEqual}}
+\index{isIdDriverEqual@{isIdDriverEqual}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{isIdDriverEqual()}{isIdDriverEqual()}}
+{\footnotesize\ttfamily bool is\+Id\+Driver\+Equal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$}]{driver,  }\item[{const int $\ast$}]{id }\end{DoxyParamCaption})}
+
+This function is used to compare the driver\textquotesingle{}s ID passed by pointer with the other id passed by pointer. P.\+S\+: if the driver is deleted, the function will not compares the ID. 
+\begin{DoxyParams}{Parameters}
+{\em driver} & is used as first member of the comparision. \\
+\hline
+{\em id} & is used as the second member of the comparision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the driver\textquotesingle{}s ID is equal to id, otherwise the function will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_a45d90db251059ab2de9c2b83359dd4ec}\label{_carpool_8h_a45d90db251059ab2de9c2b83359dd4ec}} 
+\index{Carpool.h@{Carpool.h}!isIdTravelEqual@{isIdTravelEqual}}
+\index{isIdTravelEqual@{isIdTravelEqual}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{isIdTravelEqual()}{isIdTravelEqual()}}
+{\footnotesize\ttfamily bool is\+Id\+Travel\+Equal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$}]{travel,  }\item[{const int $\ast$}]{id }\end{DoxyParamCaption})}
+
+This function is used to compare the travel\textquotesingle{}s ID passed by pointer with the other id passed by pointer. P.\+S\+: if the travel is deleted, the function will not compares the ID. 
+\begin{DoxyParams}{Parameters}
+{\em travel} & is used as first member of the comparision. \\
+\hline
+{\em id} & is used as second member of the comparision. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the travel\textquotesingle{}s ID is equal to id, otherwise the function will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_af9152424117e5bee5628162c7f8337e4}\label{_carpool_8h_af9152424117e5bee5628162c7f8337e4}} 
+\index{Carpool.h@{Carpool.h}!manageRating@{manageRating}}
+\index{manageRating@{manageRating}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{manageRating()}{manageRating()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} manage\+Rating (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+rating\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function is used in order to assign the evalutations to the drivers. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+rating} & is the relative path of the rating\textquotesingle{}s file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if evalutations have been assigned to the drivers, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_af40f15f6f338abfbee0eb315d21a0b37}\label{_carpool_8h_af40f15f6f338abfbee0eb315d21a0b37}} 
+\index{Carpool.h@{Carpool.h}!mergeDriver@{mergeDriver}}
+\index{mergeDriver@{mergeDriver}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{mergeDriver()}{mergeDriver()}}
+{\footnotesize\ttfamily void merge\+Driver (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{long int}]{start,  }\item[{long int}]{middle,  }\item[{long int}]{end,  }\item[{int}]{key\+\_\+sort }\end{DoxyParamCaption})}
+
+This procedure is used to merge the driver\textquotesingle{}s records. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the relative path of the driver\textquotesingle{}s file that the user wants to sort. \\
+\hline
+{\em start} & is the offset of the first record of the file. \\
+\hline
+{\em middle} & is the offset of the medium driver\textquotesingle{}s record. \\
+\hline
+{\em end} & is the offset of the last record of the file. \\
+\hline
+{\em key\+\_\+sort} & is used to indicate the key sort of the sorting. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_a82afbb3f3f3ba4b8865fcbacd7c9f1d8}\label{_carpool_8h_a82afbb3f3f3ba4b8865fcbacd7c9f1d8}} 
+\index{Carpool.h@{Carpool.h}!mergeSort@{mergeSort}}
+\index{mergeSort@{mergeSort}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{mergeSort()}{mergeSort()}}
+{\footnotesize\ttfamily void merge\+Sort (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{long int}]{start,  }\item[{long int}]{end,  }\item[{bool}]{select\+\_\+struct,  }\item[{int}]{key\+\_\+sort }\end{DoxyParamCaption})}
+
+This procedure is used to split the records. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the relative path of the file that the user wants to sort. \\
+\hline
+{\em start} & is the offset of the first record of the file. \\
+\hline
+{\em end} & is the offset of the last record of the file. \\
+\hline
+{\em select\+\_\+struct} & is used to sort \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then the drivers will be sorted, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then the travels will be sorted. \\
+\hline
+{\em key\+\_\+sort} & is used to indicate the key sort of the sorting. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_a1b93412a79331f074c0a9704af12af4f}\label{_carpool_8h_a1b93412a79331f074c0a9704af12af4f}} 
+\index{Carpool.h@{Carpool.h}!mergeTravel@{mergeTravel}}
+\index{mergeTravel@{mergeTravel}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{mergeTravel()}{mergeTravel()}}
+{\footnotesize\ttfamily void merge\+Travel (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{long int}]{start,  }\item[{long int}]{middle,  }\item[{long int}]{end,  }\item[{int}]{key\+\_\+sort }\end{DoxyParamCaption})}
+
+This procedure is used to merge the travel\textquotesingle{}s records. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the relative path of the travel\textquotesingle{}s file that the user wants to sort. \\
+\hline
+{\em start} & is the offset of the first record of the file. \\
+\hline
+{\em middle} & is the offset of the medium driver\textquotesingle{}s record. \\
+\hline
+{\em end} & is the offset of the last record of the file. \\
+\hline
+{\em key\+\_\+sort} & is used to indicate the key sort of the sorting. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_aea6bb44172bba4cca8030732c01230fc}\label{_carpool_8h_aea6bb44172bba4cca8030732c01230fc}} 
+\index{Carpool.h@{Carpool.h}!readDriver@{readDriver}}
+\index{readDriver@{readDriver}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{readDriver()}{readDriver()}}
+{\footnotesize\ttfamily void read\+Driver (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$}]{driver }\end{DoxyParamCaption})}
+
+This procedure prints every members of the drivers passed by pointer. P.\+S\+: if the driver is deleted, the procedure will not read the driver. 
+\begin{DoxyParams}{Parameters}
+{\em driver} & is printed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_aaa79d1b70bb1417bd6ed8486b34d2bac}\label{_carpool_8h_aaa79d1b70bb1417bd6ed8486b34d2bac}} 
+\index{Carpool.h@{Carpool.h}!readGender@{readGender}}
+\index{readGender@{readGender}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{readGender()}{readGender()}}
+{\footnotesize\ttfamily const char$\ast$ read\+Gender (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_carpool_8h_aea0ac35116fa81886d820422ded4d807}{Gender\+\_\+t}} $\ast$}]{gender }\end{DoxyParamCaption})}
+
+This function returns the letteral output using the pointer $\ast$gender as a index of array\textquotesingle{}s string. For more information, please visit here\+: \href{https://stackoverflow.com/questions/1496313/returning-c-string-from-a-function}{\texttt{ https\+://stackoverflow.\+com/questions/1496313/returning-\/c-\/string-\/from-\/a-\/function}} 
+\begin{DoxyParams}{Parameters}
+{\em gender} & is used to return a letteral output. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+"Male" if ($\ast$gender) is equal to 0, "Female" if ($\ast$gender) is equal to 1, otherwise It will return "Custom". 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_af1e978600784ac8c81c6ac45e3c92f00}\label{_carpool_8h_af1e978600784ac8c81c6ac45e3c92f00}} 
+\index{Carpool.h@{Carpool.h}!readRating@{readRating}}
+\index{readRating@{readRating}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{readRating()}{readRating()}}
+{\footnotesize\ttfamily const char$\ast$ read\+Rating (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{_carpool_8h_a3bb68f8f682a03866a6e46ac5d298c89}{Rating\+\_\+t}} $\ast$}]{rating }\end{DoxyParamCaption})}
+
+This function returns the letteral output using the pointer $\ast$rating as a index of array\textquotesingle{}s string. For more information, please visit here\+: \href{https://stackoverflow.com/questions/1496313/returning-c-string-from-a-function}{\texttt{ https\+://stackoverflow.\+com/questions/1496313/returning-\/c-\/string-\/from-\/a-\/function}} 
+\begin{DoxyParams}{Parameters}
+{\em rating} & is used to return a letteral output. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+"None" if ({\itshape rating) is equal to 0, "}" if ($\ast$rating) is equal to 1, "$\ast$$\ast$" if ($\ast$rating) is equal to 2, "$\ast$$\ast$$\ast$" if ($\ast$rating) is equal to 3, "$\ast$$\ast$$\ast$$\ast$" if ($\ast$rating) is equal to 4 and "$\ast$$\ast$$\ast$$\ast$$\ast$" if ($\ast$rating) is equal to 5. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_a7ebfdd86940290400cd56c4c8383efa3}\label{_carpool_8h_a7ebfdd86940290400cd56c4c8383efa3}} 
+\index{Carpool.h@{Carpool.h}!readTravel@{readTravel}}
+\index{readTravel@{readTravel}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{readTravel()}{readTravel()}}
+{\footnotesize\ttfamily void read\+Travel (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$}]{travel,  }\item[{const char}]{path\+\_\+driver\+\_\+file\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure prints every members of the travel passed by pointer. P.\+S\+: if the travel is deleted, the procedure will not read the travel. 
+\begin{DoxyParams}{Parameters}
+{\em travel} & is printed. \\
+\hline
+{\em path\+\_\+driver\+\_\+file} & is used to print information of the driver that will offer the travel. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_a8a08d0329b2b60fc10695f099ff2d8b3}\label{_carpool_8h_a8a08d0329b2b60fc10695f099ff2d8b3}} 
+\index{Carpool.h@{Carpool.h}!resetBookingTravel@{resetBookingTravel}}
+\index{resetBookingTravel@{resetBookingTravel}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{resetBookingTravel()}{resetBookingTravel()}}
+{\footnotesize\ttfamily void reset\+Booking\+Travel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_booking__travel__t}{Booking\+\_\+travel\+\_\+t}} $\ast$}]{booking\+\_\+travel }\end{DoxyParamCaption})}
+
+This procedure reset the booking\+\_\+travel passed by pointer assigning invalid values to all the booking\+\_\+travel\textquotesingle{}s members. 
+\begin{DoxyParams}{Parameters}
+{\em booking\+\_\+travel} & is resetted by the procedure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_a0eb88f61b7352b2f60e5e83abf490553}\label{_carpool_8h_a0eb88f61b7352b2f60e5e83abf490553}} 
+\index{Carpool.h@{Carpool.h}!resetDriver@{resetDriver}}
+\index{resetDriver@{resetDriver}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{resetDriver()}{resetDriver()}}
+{\footnotesize\ttfamily void reset\+Driver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$}]{driver }\end{DoxyParamCaption})}
+
+This procedure reset the driver passed by pointer assigning invalid values to all the driver\textquotesingle{}s members. 
+\begin{DoxyParams}{Parameters}
+{\em driver} & is resetted by the procedure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_a025aba3447a5833a6ad729f678dbe0d6}\label{_carpool_8h_a025aba3447a5833a6ad729f678dbe0d6}} 
+\index{Carpool.h@{Carpool.h}!resetTravel@{resetTravel}}
+\index{resetTravel@{resetTravel}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{resetTravel()}{resetTravel()}}
+{\footnotesize\ttfamily void reset\+Travel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$}]{travel }\end{DoxyParamCaption})}
+
+This procedure reset the travel passed by pointer assigning invalid values to all the travel\textquotesingle{}s members. 
+\begin{DoxyParams}{Parameters}
+{\em travel} & is resetted by the procedure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_a03880ea63015d44e22a1cf2406d8f4f6}\label{_carpool_8h_a03880ea63015d44e22a1cf2406d8f4f6}} 
+\index{Carpool.h@{Carpool.h}!setAdditionalNotes@{setAdditionalNotes}}
+\index{setAdditionalNotes@{setAdditionalNotes}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{setAdditionalNotes()}{setAdditionalNotes()}}
+{\footnotesize\ttfamily void set\+Additional\+Notes (\begin{DoxyParamCaption}\item[{char}]{additional\+\_\+notes\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the additional notes passed by pointer. The additional notes should not be void strings and can contains spaces. 
+\begin{DoxyParams}{Parameters}
+{\em additional\+\_\+notes} & is set to a valid additional notes. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_a39754160679983a2c595954ac2e9158c}\label{_carpool_8h_a39754160679983a2c595954ac2e9158c}} 
+\index{Carpool.h@{Carpool.h}!setDriver@{setDriver}}
+\index{setDriver@{setDriver}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{setDriver()}{setDriver()}}
+{\footnotesize\ttfamily void set\+Driver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} $\ast$}]{driver,  }\item[{const int $\ast$}]{id }\end{DoxyParamCaption})}
+
+This procedure set valid value to every members of the driver passed by pointer. 
+\begin{DoxyParams}{Parameters}
+{\em driver} & is used to set valid value to every members. \\
+\hline
+{\em id} & is the unique id of the driver. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_aed60e78064270215e6743d881b704935}\label{_carpool_8h_aed60e78064270215e6743d881b704935}} 
+\index{Carpool.h@{Carpool.h}!setEmail@{setEmail}}
+\index{setEmail@{setEmail}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{setEmail()}{setEmail()}}
+{\footnotesize\ttfamily void set\+Email (\begin{DoxyParamCaption}\item[{char}]{email\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the email passed by pointer. A valid email has the following format "localpart@domain". 
+\begin{DoxyParams}{Parameters}
+{\em email} & is set to a valid email. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_aba32d316909490d2fce42377228393f8}\label{_carpool_8h_aba32d316909490d2fce42377228393f8}} 
+\index{Carpool.h@{Carpool.h}!setNumberInput@{setNumberInput}}
+\index{setNumberInput@{setNumberInput}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{setNumberInput()}{setNumberInput()}}
+{\footnotesize\ttfamily void set\+Number\+Input (\begin{DoxyParamCaption}\item[{int $\ast$}]{input,  }\item[{const int}]{min,  }\item[{const int}]{max,  }\item[{const char}]{printf\+\_\+value\+\_\+input\mbox{[}$\,$\mbox{]},  }\item[{const char}]{printf\+\_\+value\+\_\+error\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the input passed by pointer. A valid value is made only of digits. 
+\begin{DoxyParams}{Parameters}
+{\em input} & is set to a valid number. \\
+\hline
+{\em min} & is the minimun valid number. \\
+\hline
+{\em max} & is the maximum valid number. \\
+\hline
+{\em printf\+\_\+value\+\_\+input} & is used to ask to the user what he should enter. \\
+\hline
+{\em printf\+\_\+value\+\_\+error} & is used to report to the user if there was an error during the entering of the number. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_a9c706de195e5ae2da23d186ab67a959e}\label{_carpool_8h_a9c706de195e5ae2da23d186ab67a959e}} 
+\index{Carpool.h@{Carpool.h}!setPassword@{setPassword}}
+\index{setPassword@{setPassword}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{setPassword()}{setPassword()}}
+{\footnotesize\ttfamily void set\+Password (\begin{DoxyParamCaption}\item[{char}]{password\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the password passed by pointer. The password should contains at least one uppercase character and one digit. 
+\begin{DoxyParams}{Parameters}
+{\em password} & is set to a valid password. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_a2e1f9697d85c4f1c2010d31f42dfeb51}\label{_carpool_8h_a2e1f9697d85c4f1c2010d31f42dfeb51}} 
+\index{Carpool.h@{Carpool.h}!setPhoneNumber@{setPhoneNumber}}
+\index{setPhoneNumber@{setPhoneNumber}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{setPhoneNumber()}{setPhoneNumber()}}
+{\footnotesize\ttfamily void set\+Phone\+Number (\begin{DoxyParamCaption}\item[{char}]{phone\+\_\+number\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the number phone passed by pointer. A valid number phone has the followig format "+xxx xxxxxxxxxxxx". 
+\begin{DoxyParams}{Parameters}
+{\em phone\+\_\+number} & is set to a valid number phone. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_a90a6cbb81885926d58348dccd90ae19a}\label{_carpool_8h_a90a6cbb81885926d58348dccd90ae19a}} 
+\index{Carpool.h@{Carpool.h}!setPrice@{setPrice}}
+\index{setPrice@{setPrice}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{setPrice()}{setPrice()}}
+{\footnotesize\ttfamily void set\+Price (\begin{DoxyParamCaption}\item[{double $\ast$}]{price }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the price passed by pointer. 
+\begin{DoxyParams}{Parameters}
+{\em price} & is set to a valid price. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_a5c5a67afc11334add85a56405c4384e1}\label{_carpool_8h_a5c5a67afc11334add85a56405c4384e1}} 
+\index{Carpool.h@{Carpool.h}!setSort@{setSort}}
+\index{setSort@{setSort}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{setSort()}{setSort()}}
+{\footnotesize\ttfamily double set\+Sort (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{long int}]{start,  }\item[{long int}]{end,  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to ask to the user to enter the key\+\_\+sort. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the relative path of the file that the user wants to sort. \\
+\hline
+{\em start} & is the offset of the first record of the file. \\
+\hline
+{\em end} & is the offset of the last record of the file. \\
+\hline
+{\em select\+\_\+struct} & is used to sort \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then the drivers will be sorted, if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then the travels will be sorted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the time that the sorting has spent, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_a6847ba1bfbc6f31ace16be0879a65b95}\label{_carpool_8h_a6847ba1bfbc6f31ace16be0879a65b95}} 
+\index{Carpool.h@{Carpool.h}!setTravel@{setTravel}}
+\index{setTravel@{setTravel}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{setTravel()}{setTravel()}}
+{\footnotesize\ttfamily void set\+Travel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}} $\ast$}]{travel,  }\item[{const int $\ast$}]{id,  }\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_carpool_8h_a65b2dbdece64da6bede766017c79b70f}\label{_carpool_8h_a65b2dbdece64da6bede766017c79b70f}} 
+\index{Carpool.h@{Carpool.h}!setWord@{setWord}}
+\index{setWord@{setWord}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{setWord()}{setWord()}}
+{\footnotesize\ttfamily void set\+Word (\begin{DoxyParamCaption}\item[{char}]{word\mbox{[}$\,$\mbox{]},  }\item[{const char}]{printf\+\_\+value\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure is used to set a valid value to the word passed by pointer. A valid word is made of only latin characters and it is not void. 
+\begin{DoxyParams}{Parameters}
+{\em word} & is set to a valid string. \\
+\hline
+{\em printf\+\_\+value} & is used to ask to the user what he should enter. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_carpool_8h_a7fab9cc5663e274fe493bef476e3d664}\label{_carpool_8h_a7fab9cc5663e274fe493bef476e3d664}} 
+\index{Carpool.h@{Carpool.h}!showAllStructs@{showAllStructs}}
+\index{showAllStructs@{showAllStructs}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{showAllStructs()}{showAllStructs()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} show\+All\+Structs (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\+\_\+driver\mbox{[}$\,$\mbox{]},  }\item[{const char}]{path\+\_\+file\+\_\+travel\mbox{[}$\,$\mbox{]},  }\item[{bool}]{select\+\_\+struct }\end{DoxyParamCaption})}
+
+This function is used to show all records of \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file\+\_\+driver} & is the relative path of the driver\textquotesingle{}s file. \\
+\hline
+{\em path\+\_\+file\+\_\+travel} & is the relative path of the travel\textquotesingle{}s file \\
+\hline
+{\em select\+\_\+struct} & is used to read all records of \mbox{\hyperlink{struct_driver__t}{Driver\+\_\+t}} or \mbox{\hyperlink{struct_travel__t}{Travel\+\_\+t}}, if select\+\_\+struct is equal to "D\+R\+I\+V\+ER" then all drivers will be read (except the deleted ones), if select\+\_\+struct is equal to "T\+R\+A\+V\+EL" then all travels will be read (except the deleted ones). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if all the records has been read, otherwise this function will return 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_carpool_8h_a2d5e3a1ebf317d9c94017eda5f83f1f1}\label{_carpool_8h_a2d5e3a1ebf317d9c94017eda5f83f1f1}} 
+\index{Carpool.h@{Carpool.h}!showMemberDriver@{showMemberDriver}}
+\index{showMemberDriver@{showMemberDriver}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{showMemberDriver()}{showMemberDriver()}}
+{\footnotesize\ttfamily void show\+Member\+Driver (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+This procedure is used to show all the driver\textquotesingle{}s member. This procedure is used during the editing of driver\textquotesingle{}s member. \mbox{\Hypertarget{_carpool_8h_abcb2d1ac2e8f2874cdec49ff8eae8ecd}\label{_carpool_8h_abcb2d1ac2e8f2874cdec49ff8eae8ecd}} 
+\index{Carpool.h@{Carpool.h}!showMemberTravel@{showMemberTravel}}
+\index{showMemberTravel@{showMemberTravel}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{showMemberTravel()}{showMemberTravel()}}
+{\footnotesize\ttfamily void show\+Member\+Travel (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+This procedure is used to show all the travel\textquotesingle{}s member. This procedure is used during the editing of travel\textquotesingle{}s member. \mbox{\Hypertarget{_carpool_8h_acfd502ec21149c2870b6a0800a1caa6a}\label{_carpool_8h_acfd502ec21149c2870b6a0800a1caa6a}} 
+\index{Carpool.h@{Carpool.h}!showSortKeyDriver@{showSortKeyDriver}}
+\index{showSortKeyDriver@{showSortKeyDriver}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{showSortKeyDriver()}{showSortKeyDriver()}}
+{\footnotesize\ttfamily void show\+Sort\+Key\+Driver (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+This procedure is used to show all the driver\textquotesingle{}s sort-\/key. \mbox{\Hypertarget{_carpool_8h_aad5d57f5d8f5cdccdc3b4035f664942d}\label{_carpool_8h_aad5d57f5d8f5cdccdc3b4035f664942d}} 
+\index{Carpool.h@{Carpool.h}!showSortKeyTravel@{showSortKeyTravel}}
+\index{showSortKeyTravel@{showSortKeyTravel}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{showSortKeyTravel()}{showSortKeyTravel()}}
+{\footnotesize\ttfamily void show\+Sort\+Key\+Travel (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+This procedure is used to show all the travel\textquotesingle{}s sort-\/key. \mbox{\Hypertarget{_carpool_8h_ae8af3ae184e6af780450e43bc0919238}\label{_carpool_8h_ae8af3ae184e6af780450e43bc0919238}} 
+\index{Carpool.h@{Carpool.h}!updateID@{updateID}}
+\index{updateID@{updateID}!Carpool.h@{Carpool.h}}
+\doxysubsubsection{\texorpdfstring{updateID()}{updateID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_file_8h_aee0362ef1b580a84067bb31bc59a3792}{File\+\_\+status\+\_\+t}} update\+ID (\begin{DoxyParamCaption}\item[{const char}]{path\+\_\+file\mbox{[}$\,$\mbox{]},  }\item[{const long int}]{offset,  }\item[{int $\ast$}]{id }\end{DoxyParamCaption})}
+
+This function is used in order to update the ID passed by pointer and save its into the file. 
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & is the relative path where I\+Ds are stored. \\
+\hline
+{\em offset} & can be set to "O\+F\+F\+S\+E\+T\+\_\+\+I\+D\+\_\+\+D\+R\+I\+V\+ER" in order to update the unique ID of the drivers, otherwise offset can be set to "O\+F\+F\+S\+E\+T\+\_\+\+I\+D\+\_\+\+T\+R\+A\+V\+EL" in order to update the unique ID of the travels. \\
+\hline
+{\em id} & is the unique identifier that will be updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the ID was updated, otherwise the function will return 0 
+\end{DoxyReturn}

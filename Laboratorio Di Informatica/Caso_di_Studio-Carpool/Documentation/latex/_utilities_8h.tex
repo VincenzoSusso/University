@@ -1,0 +1,437 @@
+\hypertarget{_utilities_8h}{}\doxysection{C\+:/\+Users/\+Win\+Enzo/\+Documents/\+Eclipse/\+Caso\+\_\+di\+\_\+\+Studio-\/\+Carpool/src/\+Utilities.h File Reference}
+\label{_utilities_8h}\index{C:/Users/WinEnzo/Documents/Eclipse/Caso\_di\_Studio-\/Carpool/src/Utilities.h@{C:/Users/WinEnzo/Documents/Eclipse/Caso\_di\_Studio-\/Carpool/src/Utilities.h}}
+
+
+This library was created in order to provide some utility procedures and functions.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_af718cb9ce29d1b255d014dfd26e48be8}{N\+E\+W\+L\+I\+N\+E\+\_\+\+C\+H\+A\+R\+A\+C\+T\+ER}}~\textquotesingle{}\textbackslash{}n\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_a26f3adf3f3e699ec5204b74ee6e3cda4}{N\+E\+W\+L\+I\+N\+E\+\_\+\+S\+T\+R\+I\+NG}}~\char`\"{}\textbackslash{}n\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_a80012c802477d91e74ec46e0feeb6517}{S\+P\+A\+C\+E\+\_\+\+S\+T\+R\+I\+NG}}~\char`\"{} \char`\"{}
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_af1dc14f5199c7ddd6404f221ce581a7f}{N\+U\+L\+L\+\_\+\+S\+T\+R\+I\+NG}}~\char`\"{}\textbackslash{}0\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_ad83a14992ce92df73cfe98c53dd1bed4}{P\+E\+R\+I\+O\+D\+\_\+\+C\+H\+A\+R\+A\+C\+T\+ER}}~\textquotesingle{}.\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_a6b13e2f29bcf31047951d2c72a65156d}{A\+T\+\_\+\+S\+I\+G\+N\+\_\+\+S\+T\+R\+I\+NG}}~\char`\"{}@\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_a4e83cb9cbe22941387d1b6dbfb02dde8}{N\+U\+M\+B\+E\+R\+\_\+\+D\+O\+T\+\_\+\+D\+O\+M\+A\+IN}}~1
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_af574705b5400d590e2e438b6af3c7f93}{P\+L\+U\+S\+\_\+\+C\+H\+A\+R\+A\+C\+T\+ER}}~\textquotesingle{}+\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_a6e65ecaf813b21c3a729f9cc02c92ea1}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+C\+O\+U\+N\+T\+R\+Y\+\_\+\+C\+O\+DE}}~4
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_a36af0398b792ef3c4d0589b889e024a6}{M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+S\+U\+B\+S\+C\+R\+I\+B\+E\+R\+\_\+\+N\+U\+M\+B\+ER}}~12
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_adea10ce1395062362fa10299e0ae6410}{M\+I\+N\+\_\+\+U\+P\+P\+E\+R\+C\+A\+S\+E\+\_\+\+C\+H\+A\+R\+A\+C\+T\+E\+RS}}~1
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_a37063f8daa7ef7dc8268bf8818c67320}{M\+I\+N\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+C\+H\+A\+R\+A\+C\+T\+E\+RS}}~1
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_a5819263c85fa1e3662680e9595aa1a8b}{S\+P\+A\+C\+E\+\_\+\+C\+H\+A\+R\+A\+C\+T\+ER}}~\textquotesingle{} \textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_a81d60f465e70b624e0e7238470c1692d}{B\+A\+S\+E\+\_\+\+S\+T\+R\+T\+OL}}~10
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_ac84d269f6c6553dad697a0ff53e7a3ad}{P\+E\+R\+I\+O\+D\+\_\+\+S\+T\+R\+I\+NG}}~\char`\"{}.\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_ae2cfd4702b7b3a9487a2c39ad545ef30}{M\+A\+T\+C\+H\+I\+N\+G\+\_\+\+P\+E\+R\+C\+E\+NT}}~70
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_a081602122d09c870dfc62e0fc54392dd}{F\+L\+O\+O\+R\+\_\+\+R\+O\+U\+N\+D\+I\+NG}}~0.\+5
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_ae27e461d89a21edab92d159f61669183}{E\+N\+A\+B\+L\+E\+\_\+\+V\+I\+R\+T\+U\+A\+L\+\_\+\+T\+E\+R\+M\+I\+N\+A\+L\+\_\+\+P\+R\+O\+C\+E\+S\+S\+I\+NG}}~0x0004
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_ab702106cf3b3e96750b6845ded4e0299}{R\+E\+S\+ET}}~\char`\"{}\textbackslash{}033\mbox{[}0m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{_utilities_8h_a8d23feea868a983c8c2b661e1e16972f}{R\+ED}}~\char`\"{}\textbackslash{}033\mbox{[}31m\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_utilities_8h_a0db4f88ab018095150ad3c05a6b658b5}{clear\+Buffer}} (void)
+\item 
+void \mbox{\hyperlink{_utilities_8h_ad3be6be86a5244329cf2b499dae47b68}{initialize\+C\+MD}} (void)
+\item 
+void \mbox{\hyperlink{_utilities_8h_ac8b5ba1e0479ffa1090d30cfdfc3a3d2}{printf\+Error}} (const char string\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_utilities_8h_a14571e2d26a883e666460c1165da15d4}{add\+Null\+Character\+String}} (char string\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_utilities_8h_a7b84e7762986b56cc4bbb557b69bbc2b}{capitalize\+String}} (char string\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{_utilities_8h_a1a31e694ade96cf241f19519a3cd280e}{is\+Included}} (const int min, const int max, const int number)
+\item 
+bool \mbox{\hyperlink{_utilities_8h_ac54bb18d27afbaafcf397384e1427db3}{is\+Number\+String}} (const char string\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{_utilities_8h_a7d4e04474fdb6f95c4b30f4fcf3edb40}{is\+Latin\+String}} (const char string\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{_utilities_8h_a7fd002ea86a20059e8e60b496306fa8d}{is\+Void\+String}} (const char string\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{_utilities_8h_ab8f3023e71bf05765f3eecb1189b76ce}{is\+Email}} (const char \mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58aeba54621f7fdcd8115863434763b2cfa}{email}}\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{_utilities_8h_a3b596f95fc1e05ee0949cdb8568c8757}{is\+Password}} (const char \mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58a09116bef1d274b09829ea49487887dc2}{password}}\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{_utilities_8h_a44ec4eb9fdb2ba3ab59c82c1331596e9}{is\+Phone\+Number}} (const char \mbox{\hyperlink{_carpool_8h_a54dfc46bc126f167b5ea51399d297a58afdc998182262eef3b1a2887b593c3c05}{phone\+\_\+number}}\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{_utilities_8h_a8280fb492229cf3618d2eadb587c1231}{is\+Decimal\+Number}} (const char decimal\+\_\+number\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{_utilities_8h_abedb5e236c214ee0bdba490e9ccc2567}{cmp\+String}} (char first\+\_\+string\mbox{[}$\,$\mbox{]}, char second\+\_\+string\mbox{[}$\,$\mbox{]})
+\item 
+double \mbox{\hyperlink{_utilities_8h_affcf531895226c0ca997db149036c471}{get\+Second\+Sort}} (const time\+\_\+t start, const time\+\_\+t end)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This library was created in order to provide some utility procedures and functions. 
+
+\begin{DoxyAuthor}{Author}
+Vincenzo Susso 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2019 Sep 09 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 This library provide several utility, for example, the procedure clean\+Buffer() can clear the buffer after an input, some function are used in order to check the correct insertion of a string and some function are used to operate on strings. 
+\end{DoxyVersion}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_utilities_8h_a6b13e2f29bcf31047951d2c72a65156d}\label{_utilities_8h_a6b13e2f29bcf31047951d2c72a65156d}} 
+\index{Utilities.h@{Utilities.h}!AT\_SIGN\_STRING@{AT\_SIGN\_STRING}}
+\index{AT\_SIGN\_STRING@{AT\_SIGN\_STRING}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{AT\_SIGN\_STRING}{AT\_SIGN\_STRING}}
+{\footnotesize\ttfamily \#define A\+T\+\_\+\+S\+I\+G\+N\+\_\+\+S\+T\+R\+I\+NG~\char`\"{}@\char`\"{}}
+
+This string is used in order to check if the email has an at sign character \char`\"{}@\char`\"{}. \mbox{\Hypertarget{_utilities_8h_a81d60f465e70b624e0e7238470c1692d}\label{_utilities_8h_a81d60f465e70b624e0e7238470c1692d}} 
+\index{Utilities.h@{Utilities.h}!BASE\_STRTOL@{BASE\_STRTOL}}
+\index{BASE\_STRTOL@{BASE\_STRTOL}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{BASE\_STRTOL}{BASE\_STRTOL}}
+{\footnotesize\ttfamily \#define B\+A\+S\+E\+\_\+\+S\+T\+R\+T\+OL~10}
+
+This integer is used as base during the convertion of a string to long. \mbox{\Hypertarget{_utilities_8h_ae27e461d89a21edab92d159f61669183}\label{_utilities_8h_ae27e461d89a21edab92d159f61669183}} 
+\index{Utilities.h@{Utilities.h}!ENABLE\_VIRTUAL\_TERMINAL\_PROCESSING@{ENABLE\_VIRTUAL\_TERMINAL\_PROCESSING}}
+\index{ENABLE\_VIRTUAL\_TERMINAL\_PROCESSING@{ENABLE\_VIRTUAL\_TERMINAL\_PROCESSING}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{ENABLE\_VIRTUAL\_TERMINAL\_PROCESSING}{ENABLE\_VIRTUAL\_TERMINAL\_PROCESSING}}
+{\footnotesize\ttfamily \#define E\+N\+A\+B\+L\+E\+\_\+\+V\+I\+R\+T\+U\+A\+L\+\_\+\+T\+E\+R\+M\+I\+N\+A\+L\+\_\+\+P\+R\+O\+C\+E\+S\+S\+I\+NG~0x0004}
+
+This hexadecimal is used in order to enable A\+N\+SI escape sequences on C\+MD (pre Windows 10). \mbox{\Hypertarget{_utilities_8h_a081602122d09c870dfc62e0fc54392dd}\label{_utilities_8h_a081602122d09c870dfc62e0fc54392dd}} 
+\index{Utilities.h@{Utilities.h}!FLOOR\_ROUNDING@{FLOOR\_ROUNDING}}
+\index{FLOOR\_ROUNDING@{FLOOR\_ROUNDING}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{FLOOR\_ROUNDING}{FLOOR\_ROUNDING}}
+{\footnotesize\ttfamily \#define F\+L\+O\+O\+R\+\_\+\+R\+O\+U\+N\+D\+I\+NG~0.\+5}
+
+This float is used to approximate a decimal number correctly. The function floor(double x) return the number x rounded dows, so, because of this i need this const. E.\+g\+: floor(3.\+1) = 3 floor(3.\+8) = 3 floor(4.\+2) = 4 Using const\+: floor(3.\+1 + F\+L\+O\+O\+R\+\_\+\+R\+O\+U\+N\+D\+I\+NG) = 3 floor(3.\+8 + F\+L\+O\+O\+R\+\_\+\+R\+O\+U\+N\+D\+I\+NG) = 4 \mbox{\Hypertarget{_utilities_8h_ae2cfd4702b7b3a9487a2c39ad545ef30}\label{_utilities_8h_ae2cfd4702b7b3a9487a2c39ad545ef30}} 
+\index{Utilities.h@{Utilities.h}!MATCHING\_PERCENT@{MATCHING\_PERCENT}}
+\index{MATCHING\_PERCENT@{MATCHING\_PERCENT}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{MATCHING\_PERCENT}{MATCHING\_PERCENT}}
+{\footnotesize\ttfamily \#define M\+A\+T\+C\+H\+I\+N\+G\+\_\+\+P\+E\+R\+C\+E\+NT~70}
+
+This integer is used when comparing two strings to indicate the percentage needed. \mbox{\Hypertarget{_utilities_8h_a6e65ecaf813b21c3a729f9cc02c92ea1}\label{_utilities_8h_a6e65ecaf813b21c3a729f9cc02c92ea1}} 
+\index{Utilities.h@{Utilities.h}!MAX\_LENGHT\_COUNTRY\_CODE@{MAX\_LENGHT\_COUNTRY\_CODE}}
+\index{MAX\_LENGHT\_COUNTRY\_CODE@{MAX\_LENGHT\_COUNTRY\_CODE}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LENGHT\_COUNTRY\_CODE}{MAX\_LENGHT\_COUNTRY\_CODE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+C\+O\+U\+N\+T\+R\+Y\+\_\+\+C\+O\+DE~4}
+
+This integer is used to check the correct number of characters that made the country code, this integer is obtained by\+: Plus character \char`\"{}+\char`\"{} + Country code lenght (3). \mbox{\Hypertarget{_utilities_8h_a36af0398b792ef3c4d0589b889e024a6}\label{_utilities_8h_a36af0398b792ef3c4d0589b889e024a6}} 
+\index{Utilities.h@{Utilities.h}!MAX\_LENGHT\_SUBSCRIBER\_NUMBER@{MAX\_LENGHT\_SUBSCRIBER\_NUMBER}}
+\index{MAX\_LENGHT\_SUBSCRIBER\_NUMBER@{MAX\_LENGHT\_SUBSCRIBER\_NUMBER}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LENGHT\_SUBSCRIBER\_NUMBER}{MAX\_LENGHT\_SUBSCRIBER\_NUMBER}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+L\+E\+N\+G\+H\+T\+\_\+\+S\+U\+B\+S\+C\+R\+I\+B\+E\+R\+\_\+\+N\+U\+M\+B\+ER~12}
+
+This integer is used to check the correct number of characters that made the subscriber number. \mbox{\Hypertarget{_utilities_8h_a37063f8daa7ef7dc8268bf8818c67320}\label{_utilities_8h_a37063f8daa7ef7dc8268bf8818c67320}} 
+\index{Utilities.h@{Utilities.h}!MIN\_NUMBER\_CHARACTERS@{MIN\_NUMBER\_CHARACTERS}}
+\index{MIN\_NUMBER\_CHARACTERS@{MIN\_NUMBER\_CHARACTERS}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_NUMBER\_CHARACTERS}{MIN\_NUMBER\_CHARACTERS}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+C\+H\+A\+R\+A\+C\+T\+E\+RS~1}
+
+This integer is used to check if the password has the minimum number of digits. \mbox{\Hypertarget{_utilities_8h_adea10ce1395062362fa10299e0ae6410}\label{_utilities_8h_adea10ce1395062362fa10299e0ae6410}} 
+\index{Utilities.h@{Utilities.h}!MIN\_UPPERCASE\_CHARACTERS@{MIN\_UPPERCASE\_CHARACTERS}}
+\index{MIN\_UPPERCASE\_CHARACTERS@{MIN\_UPPERCASE\_CHARACTERS}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_UPPERCASE\_CHARACTERS}{MIN\_UPPERCASE\_CHARACTERS}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+U\+P\+P\+E\+R\+C\+A\+S\+E\+\_\+\+C\+H\+A\+R\+A\+C\+T\+E\+RS~1}
+
+This integer is used to check if the password has the minimum number of uppercase characters. \mbox{\Hypertarget{_utilities_8h_af718cb9ce29d1b255d014dfd26e48be8}\label{_utilities_8h_af718cb9ce29d1b255d014dfd26e48be8}} 
+\index{Utilities.h@{Utilities.h}!NEWLINE\_CHARACTER@{NEWLINE\_CHARACTER}}
+\index{NEWLINE\_CHARACTER@{NEWLINE\_CHARACTER}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{NEWLINE\_CHARACTER}{NEWLINE\_CHARACTER}}
+{\footnotesize\ttfamily \#define N\+E\+W\+L\+I\+N\+E\+\_\+\+C\+H\+A\+R\+A\+C\+T\+ER~\textquotesingle{}\textbackslash{}n\textquotesingle{}}
+
+This character is used in order to clean the buffer after an input. \mbox{\Hypertarget{_utilities_8h_a26f3adf3f3e699ec5204b74ee6e3cda4}\label{_utilities_8h_a26f3adf3f3e699ec5204b74ee6e3cda4}} 
+\index{Utilities.h@{Utilities.h}!NEWLINE\_STRING@{NEWLINE\_STRING}}
+\index{NEWLINE\_STRING@{NEWLINE\_STRING}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{NEWLINE\_STRING}{NEWLINE\_STRING}}
+{\footnotesize\ttfamily \#define N\+E\+W\+L\+I\+N\+E\+\_\+\+S\+T\+R\+I\+NG~\char`\"{}\textbackslash{}n\char`\"{}}
+
+This character is used in order to check if the input string is a void string. \mbox{\Hypertarget{_utilities_8h_af1dc14f5199c7ddd6404f221ce581a7f}\label{_utilities_8h_af1dc14f5199c7ddd6404f221ce581a7f}} 
+\index{Utilities.h@{Utilities.h}!NULL\_STRING@{NULL\_STRING}}
+\index{NULL\_STRING@{NULL\_STRING}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{NULL\_STRING}{NULL\_STRING}}
+{\footnotesize\ttfamily \#define N\+U\+L\+L\+\_\+\+S\+T\+R\+I\+NG~\char`\"{}\textbackslash{}0\char`\"{}}
+
+This character is used in order to check if the input string is a void string. \mbox{\Hypertarget{_utilities_8h_a4e83cb9cbe22941387d1b6dbfb02dde8}\label{_utilities_8h_a4e83cb9cbe22941387d1b6dbfb02dde8}} 
+\index{Utilities.h@{Utilities.h}!NUMBER\_DOT\_DOMAIN@{NUMBER\_DOT\_DOMAIN}}
+\index{NUMBER\_DOT\_DOMAIN@{NUMBER\_DOT\_DOMAIN}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_DOT\_DOMAIN}{NUMBER\_DOT\_DOMAIN}}
+{\footnotesize\ttfamily \#define N\+U\+M\+B\+E\+R\+\_\+\+D\+O\+T\+\_\+\+D\+O\+M\+A\+IN~1}
+
+This integer is used in order to check if the domain of the email has the right number of dots. \mbox{\Hypertarget{_utilities_8h_ad83a14992ce92df73cfe98c53dd1bed4}\label{_utilities_8h_ad83a14992ce92df73cfe98c53dd1bed4}} 
+\index{Utilities.h@{Utilities.h}!PERIOD\_CHARACTER@{PERIOD\_CHARACTER}}
+\index{PERIOD\_CHARACTER@{PERIOD\_CHARACTER}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{PERIOD\_CHARACTER}{PERIOD\_CHARACTER}}
+{\footnotesize\ttfamily \#define P\+E\+R\+I\+O\+D\+\_\+\+C\+H\+A\+R\+A\+C\+T\+ER~\textquotesingle{}.\textquotesingle{}}
+
+This character is used in order to check if the email has a valid domain. \mbox{\Hypertarget{_utilities_8h_ac84d269f6c6553dad697a0ff53e7a3ad}\label{_utilities_8h_ac84d269f6c6553dad697a0ff53e7a3ad}} 
+\index{Utilities.h@{Utilities.h}!PERIOD\_STRING@{PERIOD\_STRING}}
+\index{PERIOD\_STRING@{PERIOD\_STRING}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{PERIOD\_STRING}{PERIOD\_STRING}}
+{\footnotesize\ttfamily \#define P\+E\+R\+I\+O\+D\+\_\+\+S\+T\+R\+I\+NG~\char`\"{}.\char`\"{}}
+
+This string is used to check if a decimal number has a period. \mbox{\Hypertarget{_utilities_8h_af574705b5400d590e2e438b6af3c7f93}\label{_utilities_8h_af574705b5400d590e2e438b6af3c7f93}} 
+\index{Utilities.h@{Utilities.h}!PLUS\_CHARACTER@{PLUS\_CHARACTER}}
+\index{PLUS\_CHARACTER@{PLUS\_CHARACTER}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{PLUS\_CHARACTER}{PLUS\_CHARACTER}}
+{\footnotesize\ttfamily \#define P\+L\+U\+S\+\_\+\+C\+H\+A\+R\+A\+C\+T\+ER~\textquotesingle{}+\textquotesingle{}}
+
+This character is used in order to check if the number has a valid country code. \mbox{\Hypertarget{_utilities_8h_a8d23feea868a983c8c2b661e1e16972f}\label{_utilities_8h_a8d23feea868a983c8c2b661e1e16972f}} 
+\index{Utilities.h@{Utilities.h}!RED@{RED}}
+\index{RED@{RED}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{RED}{RED}}
+{\footnotesize\ttfamily \#define R\+ED~\char`\"{}\textbackslash{}033\mbox{[}31m\char`\"{}}
+
+This escape sequence makes the text red. \mbox{\Hypertarget{_utilities_8h_ab702106cf3b3e96750b6845ded4e0299}\label{_utilities_8h_ab702106cf3b3e96750b6845ded4e0299}} 
+\index{Utilities.h@{Utilities.h}!RESET@{RESET}}
+\index{RESET@{RESET}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{RESET}{RESET}}
+{\footnotesize\ttfamily \#define R\+E\+S\+ET~\char`\"{}\textbackslash{}033\mbox{[}0m\char`\"{}}
+
+This escape sequence resets the color of the text. \mbox{\Hypertarget{_utilities_8h_a5819263c85fa1e3662680e9595aa1a8b}\label{_utilities_8h_a5819263c85fa1e3662680e9595aa1a8b}} 
+\index{Utilities.h@{Utilities.h}!SPACE\_CHARACTER@{SPACE\_CHARACTER}}
+\index{SPACE\_CHARACTER@{SPACE\_CHARACTER}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{SPACE\_CHARACTER}{SPACE\_CHARACTER}}
+{\footnotesize\ttfamily \#define S\+P\+A\+C\+E\+\_\+\+C\+H\+A\+R\+A\+C\+T\+ER~\textquotesingle{} \textquotesingle{}}
+
+This character is used to check if the password doesn\textquotesingle{}t have a space. \mbox{\Hypertarget{_utilities_8h_a80012c802477d91e74ec46e0feeb6517}\label{_utilities_8h_a80012c802477d91e74ec46e0feeb6517}} 
+\index{Utilities.h@{Utilities.h}!SPACE\_STRING@{SPACE\_STRING}}
+\index{SPACE\_STRING@{SPACE\_STRING}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{SPACE\_STRING}{SPACE\_STRING}}
+{\footnotesize\ttfamily \#define S\+P\+A\+C\+E\+\_\+\+S\+T\+R\+I\+NG~\char`\"{} \char`\"{}}
+
+This character is used in order to check if the input string is a void string. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_utilities_8h_a14571e2d26a883e666460c1165da15d4}\label{_utilities_8h_a14571e2d26a883e666460c1165da15d4}} 
+\index{Utilities.h@{Utilities.h}!addNullCharacterString@{addNullCharacterString}}
+\index{addNullCharacterString@{addNullCharacterString}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{addNullCharacterString()}{addNullCharacterString()}}
+{\footnotesize\ttfamily void add\+Null\+Character\+String (\begin{DoxyParamCaption}\item[{char}]{string\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+The procedure adds the null character to the string in order to indicates the end of the string. 
+\begin{DoxyParams}{Parameters}
+{\em string} & null character is added. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_utilities_8h_a7b84e7762986b56cc4bbb557b69bbc2b}\label{_utilities_8h_a7b84e7762986b56cc4bbb557b69bbc2b}} 
+\index{Utilities.h@{Utilities.h}!capitalizeString@{capitalizeString}}
+\index{capitalizeString@{capitalizeString}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{capitalizeString()}{capitalizeString()}}
+{\footnotesize\ttfamily void capitalize\+String (\begin{DoxyParamCaption}\item[{char}]{string\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure converts the first letter of the string to uppercase and the other ones to lowercase. 
+\begin{DoxyParams}{Parameters}
+{\em string} & is converted in a string with the first character in uppercase and the other ones to lowercase. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_utilities_8h_a0db4f88ab018095150ad3c05a6b658b5}\label{_utilities_8h_a0db4f88ab018095150ad3c05a6b658b5}} 
+\index{Utilities.h@{Utilities.h}!clearBuffer@{clearBuffer}}
+\index{clearBuffer@{clearBuffer}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{clearBuffer()}{clearBuffer()}}
+{\footnotesize\ttfamily void clear\+Buffer (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+This procedure is used to clear the buffer after an input, this procedure delete the \textquotesingle{}\textbackslash{}n\textquotesingle{} character that usually remains into the buffer after a scanf(). \mbox{\Hypertarget{_utilities_8h_abedb5e236c214ee0bdba490e9ccc2567}\label{_utilities_8h_abedb5e236c214ee0bdba490e9ccc2567}} 
+\index{Utilities.h@{Utilities.h}!cmpString@{cmpString}}
+\index{cmpString@{cmpString}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{cmpString()}{cmpString()}}
+{\footnotesize\ttfamily bool cmp\+String (\begin{DoxyParamCaption}\item[{char}]{first\+\_\+string\mbox{[}$\,$\mbox{]},  }\item[{char}]{second\+\_\+string\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function is used to compare two strings. If the matching of the strings is equal or above the 70\%, the string will return true. 
+\begin{DoxyParams}{Parameters}
+{\em first\+\_\+string} & is the first member to compare. \\
+\hline
+{\em second\+\_\+string} & is the second member to compare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the matching of the strings is equal or abouve the 70\%, otherwise this funtion will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_utilities_8h_affcf531895226c0ca997db149036c471}\label{_utilities_8h_affcf531895226c0ca997db149036c471}} 
+\index{Utilities.h@{Utilities.h}!getSecondSort@{getSecondSort}}
+\index{getSecondSort@{getSecondSort}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{getSecondSort()}{getSecondSort()}}
+{\footnotesize\ttfamily double get\+Second\+Sort (\begin{DoxyParamCaption}\item[{const time\+\_\+t}]{start,  }\item[{const time\+\_\+t}]{end }\end{DoxyParamCaption})}
+
+This function is used to calculate the number of second that the sort has spent. 
+\begin{DoxyParams}{Parameters}
+{\em start} & indicates when the sorting starts. \\
+\hline
+{\em end} & indicates when the sorting ends. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the seconds that the sorting algorithms has spent. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_utilities_8h_ad3be6be86a5244329cf2b499dae47b68}\label{_utilities_8h_ad3be6be86a5244329cf2b499dae47b68}} 
+\index{Utilities.h@{Utilities.h}!initializeCMD@{initializeCMD}}
+\index{initializeCMD@{initializeCMD}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{initializeCMD()}{initializeCMD()}}
+{\footnotesize\ttfamily void initialize\+C\+MD (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+This procedure is used to enable A\+N\+SI escape sequences on C\+MD. \mbox{\Hypertarget{_utilities_8h_a8280fb492229cf3618d2eadb587c1231}\label{_utilities_8h_a8280fb492229cf3618d2eadb587c1231}} 
+\index{Utilities.h@{Utilities.h}!isDecimalNumber@{isDecimalNumber}}
+\index{isDecimalNumber@{isDecimalNumber}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{isDecimalNumber()}{isDecimalNumber()}}
+{\footnotesize\ttfamily bool is\+Decimal\+Number (\begin{DoxyParamCaption}\item[{const char}]{decimal\+\_\+number\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function checks if the decimal number is valid. 
+\begin{DoxyParams}{Parameters}
+{\em decimal\+\_\+number} & is checked in order to see if It is valid. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the decimal number is valid, otherwise It will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_utilities_8h_ab8f3023e71bf05765f3eecb1189b76ce}\label{_utilities_8h_ab8f3023e71bf05765f3eecb1189b76ce}} 
+\index{Utilities.h@{Utilities.h}!isEmail@{isEmail}}
+\index{isEmail@{isEmail}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{isEmail()}{isEmail()}}
+{\footnotesize\ttfamily bool is\+Email (\begin{DoxyParamCaption}\item[{const char}]{email\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+The format of email addresses is "local-\/part@domain". The local-\/part of the email address may use any of these A\+S\+C\+II characters\+:
+\begin{DoxyItemize}
+\item Uppercase and lowercase Latin letters A to Z and a to z;
+\item Digits 0 to 9;
+\item Dot ".", provided that it is not the first or last character, and provided also that it does not appear consecutively;
+\end{DoxyItemize}
+
+The domain name part of an email address has to conform to strict guidelines\+:
+\begin{DoxyItemize}
+\item Uppercase and lowercase Latin letters A to Z and a to z;
+\item Digits 0 to 9, provided that top-\/level domain names are not all-\/numeric; For more informations, please visit here\+: \href{https://en.wikipedia.org/wiki/Email_address}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Email\+\_\+address}}
+\end{DoxyItemize}
+
+This function checks if email is valid. The email should be of the format "localname@domain". 
+\begin{DoxyParams}{Parameters}
+{\em email} & is checked in order to see if It is valid. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the email is valid, otherwise It will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_utilities_8h_a1a31e694ade96cf241f19519a3cd280e}\label{_utilities_8h_a1a31e694ade96cf241f19519a3cd280e}} 
+\index{Utilities.h@{Utilities.h}!isIncluded@{isIncluded}}
+\index{isIncluded@{isIncluded}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{isIncluded()}{isIncluded()}}
+{\footnotesize\ttfamily bool is\+Included (\begin{DoxyParamCaption}\item[{const int}]{min,  }\item[{const int}]{max,  }\item[{const int}]{number }\end{DoxyParamCaption})}
+
+This function checks if the number is included between min and max. 
+\begin{DoxyParams}{Parameters}
+{\em min} & is the minimum valid value. \\
+\hline
+{\em max} & is the maximum valid value. \\
+\hline
+{\em number} & is what the user wants to test. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if number is included between min and max, otherwise It will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_utilities_8h_a7d4e04474fdb6f95c4b30f4fcf3edb40}\label{_utilities_8h_a7d4e04474fdb6f95c4b30f4fcf3edb40}} 
+\index{Utilities.h@{Utilities.h}!isLatinString@{isLatinString}}
+\index{isLatinString@{isLatinString}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{isLatinString()}{isLatinString()}}
+{\footnotesize\ttfamily bool is\+Latin\+String (\begin{DoxyParamCaption}\item[{const char}]{string\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function checks if each character of the string belongs to the Latin alphabet. 
+\begin{DoxyParams}{Parameters}
+{\em string} & is checked in order to see if each character of the string belongs to the Latin alphabet. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if each character of the string belongs to the Lating alphabet, otherwise It will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_utilities_8h_ac54bb18d27afbaafcf397384e1427db3}\label{_utilities_8h_ac54bb18d27afbaafcf397384e1427db3}} 
+\index{Utilities.h@{Utilities.h}!isNumberString@{isNumberString}}
+\index{isNumberString@{isNumberString}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{isNumberString()}{isNumberString()}}
+{\footnotesize\ttfamily bool is\+Number\+String (\begin{DoxyParamCaption}\item[{const char}]{string\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function checks if each character of the string is a digit. 
+\begin{DoxyParams}{Parameters}
+{\em string} & is checked in order to see if each character of the string is a digit. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if each character of the string is a digit, otherwise It will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_utilities_8h_a3b596f95fc1e05ee0949cdb8568c8757}\label{_utilities_8h_a3b596f95fc1e05ee0949cdb8568c8757}} 
+\index{Utilities.h@{Utilities.h}!isPassword@{isPassword}}
+\index{isPassword@{isPassword}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{isPassword()}{isPassword()}}
+{\footnotesize\ttfamily bool is\+Password (\begin{DoxyParamCaption}\item[{const char}]{password\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function checks if the password is valid. The password should have at least one character uppercase and one digit. 
+\begin{DoxyParams}{Parameters}
+{\em password} & is checked in order to see if It is valid. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the password is valid, otherwise It will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_utilities_8h_a44ec4eb9fdb2ba3ab59c82c1331596e9}\label{_utilities_8h_a44ec4eb9fdb2ba3ab59c82c1331596e9}} 
+\index{Utilities.h@{Utilities.h}!isPhoneNumber@{isPhoneNumber}}
+\index{isPhoneNumber@{isPhoneNumber}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{isPhoneNumber()}{isPhoneNumber()}}
+{\footnotesize\ttfamily bool is\+Phone\+Number (\begin{DoxyParamCaption}\item[{const char}]{phone\+\_\+number\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function checks if the phone number is valid. The phone number should be of the format "+xxx xxxxxxxxxxxx" 
+\begin{DoxyParams}{Parameters}
+{\em phone\+\_\+number} & is checked in order to see if It is valid. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the phone number is valid, otherwise It will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_utilities_8h_a7fd002ea86a20059e8e60b496306fa8d}\label{_utilities_8h_a7fd002ea86a20059e8e60b496306fa8d}} 
+\index{Utilities.h@{Utilities.h}!isVoidString@{isVoidString}}
+\index{isVoidString@{isVoidString}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{isVoidString()}{isVoidString()}}
+{\footnotesize\ttfamily bool is\+Void\+String (\begin{DoxyParamCaption}\item[{const char}]{string\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This function checks if the string is void. 
+\begin{DoxyParams}{Parameters}
+{\em string} & is checked in order to see if the string is void. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string is void, otherwise It will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_utilities_8h_ac8b5ba1e0479ffa1090d30cfdfc3a3d2}\label{_utilities_8h_ac8b5ba1e0479ffa1090d30cfdfc3a3d2}} 
+\index{Utilities.h@{Utilities.h}!printfError@{printfError}}
+\index{printfError@{printfError}!Utilities.h@{Utilities.h}}
+\doxysubsubsection{\texorpdfstring{printfError()}{printfError()}}
+{\footnotesize\ttfamily void printf\+Error (\begin{DoxyParamCaption}\item[{const char}]{string\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure printf the string in red. 
+\begin{DoxyParams}{Parameters}
+{\em string} & is printed in red. \\
+\hline
+\end{DoxyParams}

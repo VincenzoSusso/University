@@ -1,0 +1,178 @@
+\hypertarget{_date_8c}{}\doxysection{C\+:/\+Users/\+Win\+Enzo/\+Documents/\+Eclipse/\+Caso\+\_\+di\+\_\+\+Studio-\/\+Carpool/src/\+Date.c File Reference}
+\label{_date_8c}\index{C:/Users/WinEnzo/Documents/Eclipse/Caso\_di\_Studio-\/Carpool/src/Date.c@{C:/Users/WinEnzo/Documents/Eclipse/Caso\_di\_Studio-\/Carpool/src/Date.c}}
+
+
+This file is the implementation file of \mbox{\hyperlink{_date_8h}{Date.\+h}}.  
+
+
+{\ttfamily \#include \char`\"{}Date.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{_date_8c_af75f4034de445783cdfb61b13d742a5b}{is\+Leap\+Year}} (const unsigned short year)
+\item 
+bool \mbox{\hyperlink{_date_8c_abcfe868d59d7ff8f4ed23a1f67c44768}{is\+Valid\+Date}} (const \mbox{\hyperlink{struct_date__t}{Date\+\_\+t}} $\ast$date, const unsigned short min\+\_\+year, const unsigned short max\+\_\+year)
+\item 
+void \mbox{\hyperlink{_date_8c_a8d60194cfdfc961ec8e4a4c5779dc8d3}{reset\+Date}} (\mbox{\hyperlink{struct_date__t}{Date\+\_\+t}} $\ast$date)
+\item 
+void \mbox{\hyperlink{_date_8c_a9b9369f6a015a2d30e9ceca6a03a4265}{set\+Date}} (\mbox{\hyperlink{struct_date__t}{Date\+\_\+t}} $\ast$date, const unsigned short min\+\_\+year, const unsigned short max\+\_\+year, const char printf\+\_\+value\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{_date_8c_ad628c710fd34758bf6e8e6eee10cb1d7}{is\+Valid\+Time}} (const \mbox{\hyperlink{struct_time__t}{Time\+\_\+t}} $\ast$time)
+\item 
+void \mbox{\hyperlink{_date_8c_a180ed75fc70c48ed58d443b7feb98581}{reset\+Time}} (\mbox{\hyperlink{struct_time__t}{Time\+\_\+t}} $\ast$time)
+\item 
+void \mbox{\hyperlink{_date_8c_a35904bc88fc1c3d6b8afbb5c409405b9}{set\+Time}} (\mbox{\hyperlink{struct_time__t}{Time\+\_\+t}} $\ast$time, const char printf\+\_\+value\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{_date_8h_ab6958c4eaf6d9c8536bf9d4ac4f1c720}{Date\+\_\+order\+\_\+t}} \mbox{\hyperlink{_date_8c_a346570cdbf9c5a067d6951290312553c}{cmp\+Date}} (const \mbox{\hyperlink{struct_date__t}{Date\+\_\+t}} $\ast$first\+\_\+date, const \mbox{\hyperlink{struct_date__t}{Date\+\_\+t}} $\ast$second\+\_\+date)
+\item 
+\mbox{\hyperlink{_date_8h_ab6958c4eaf6d9c8536bf9d4ac4f1c720}{Date\+\_\+order\+\_\+t}} \mbox{\hyperlink{_date_8c_a75418694665793db62acb07d554662cf}{cmp\+Time}} (const \mbox{\hyperlink{struct_time__t}{Time\+\_\+t}} $\ast$first\+\_\+time, const \mbox{\hyperlink{struct_time__t}{Time\+\_\+t}} $\ast$second\+\_\+time)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file is the implementation file of \mbox{\hyperlink{_date_8h}{Date.\+h}}. 
+
+\begin{DoxyAuthor}{Author}
+Vincenzo Susso 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2019 Sep 09 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_date_8c_a346570cdbf9c5a067d6951290312553c}\label{_date_8c_a346570cdbf9c5a067d6951290312553c}} 
+\index{Date.c@{Date.c}!cmpDate@{cmpDate}}
+\index{cmpDate@{cmpDate}!Date.c@{Date.c}}
+\doxysubsubsection{\texorpdfstring{cmpDate()}{cmpDate()}}
+{\footnotesize\ttfamily cmp\+Date (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_date__t}{Date\+\_\+t}} $\ast$}]{first\+\_\+date,  }\item[{const \mbox{\hyperlink{struct_date__t}{Date\+\_\+t}} $\ast$}]{second\+\_\+date }\end{DoxyParamCaption})}
+
+This functions is used to compare two dates. 
+\begin{DoxyParams}{Parameters}
+{\em first\+\_\+date} & passed by pointer is used as a date to compare. \\
+\hline
+{\em second\+\_\+date} & passed by pointer is used as a date to compare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if the first date is older than the second one, 0 if the first date is equal to the second one, 1 if the first date is later than the second one. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_date_8c_a75418694665793db62acb07d554662cf}\label{_date_8c_a75418694665793db62acb07d554662cf}} 
+\index{Date.c@{Date.c}!cmpTime@{cmpTime}}
+\index{cmpTime@{cmpTime}!Date.c@{Date.c}}
+\doxysubsubsection{\texorpdfstring{cmpTime()}{cmpTime()}}
+{\footnotesize\ttfamily cmp\+Time (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_time__t}{Time\+\_\+t}} $\ast$}]{first\+\_\+time,  }\item[{const \mbox{\hyperlink{struct_time__t}{Time\+\_\+t}} $\ast$}]{second\+\_\+time }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+\_\+time} & passed by pointer is used as a time to compare. \\
+\hline
+{\em second\+\_\+time} & passed by pointer is used as a time to compare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if the first time is older than the second one, 0 if the first time is equal to the second one, 1 if the first time is later than the second one. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_date_8c_af75f4034de445783cdfb61b13d742a5b}\label{_date_8c_af75f4034de445783cdfb61b13d742a5b}} 
+\index{Date.c@{Date.c}!isLeapYear@{isLeapYear}}
+\index{isLeapYear@{isLeapYear}!Date.c@{Date.c}}
+\doxysubsubsection{\texorpdfstring{isLeapYear()}{isLeapYear()}}
+{\footnotesize\ttfamily is\+Leap\+Year (\begin{DoxyParamCaption}\item[{const unsigned short}]{year }\end{DoxyParamCaption})}
+
+In the Gregorian calendar, every year that is exactly divisible by four is a leap year, except for years that are exactly divisible by 100, but these centurial years are leap years if they are exactly divisible by 400.
+
+This function checks if the year is a leap year. 
+\begin{DoxyParams}{Parameters}
+{\em year} & is checked in order to see if it is a leap year. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the year is a leap year, otherwise It will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_date_8c_abcfe868d59d7ff8f4ed23a1f67c44768}\label{_date_8c_abcfe868d59d7ff8f4ed23a1f67c44768}} 
+\index{Date.c@{Date.c}!isValidDate@{isValidDate}}
+\index{isValidDate@{isValidDate}!Date.c@{Date.c}}
+\doxysubsubsection{\texorpdfstring{isValidDate()}{isValidDate()}}
+{\footnotesize\ttfamily is\+Valid\+Date (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_date__t}{Date\+\_\+t}} $\ast$}]{date,  }\item[{const unsigned short}]{min\+\_\+year,  }\item[{const unsigned short}]{max\+\_\+year }\end{DoxyParamCaption})}
+
+This function checks if the date that has been passed by pointer is a valid date and It is included between min\+\_\+year and max\+\_\+year. 
+\begin{DoxyParams}{Parameters}
+{\em date} & is checked in order to see if it is valid. \\
+\hline
+{\em min\+\_\+year} & is the older valid year. \\
+\hline
+{\em max\+\_\+year} & is the later valid year. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the date is a valid date, otherwise It will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_date_8c_ad628c710fd34758bf6e8e6eee10cb1d7}\label{_date_8c_ad628c710fd34758bf6e8e6eee10cb1d7}} 
+\index{Date.c@{Date.c}!isValidTime@{isValidTime}}
+\index{isValidTime@{isValidTime}!Date.c@{Date.c}}
+\doxysubsubsection{\texorpdfstring{isValidTime()}{isValidTime()}}
+{\footnotesize\ttfamily is\+Valid\+Time (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_time__t}{Time\+\_\+t}} $\ast$}]{time }\end{DoxyParamCaption})}
+
+This function checks if the time that has been passed by pointer is a valid time. 
+\begin{DoxyParams}{Parameters}
+{\em time} & is checked in order to see if it is valid. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the time is a valid time, otherwise It will return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_date_8c_a8d60194cfdfc961ec8e4a4c5779dc8d3}\label{_date_8c_a8d60194cfdfc961ec8e4a4c5779dc8d3}} 
+\index{Date.c@{Date.c}!resetDate@{resetDate}}
+\index{resetDate@{resetDate}!Date.c@{Date.c}}
+\doxysubsubsection{\texorpdfstring{resetDate()}{resetDate()}}
+{\footnotesize\ttfamily reset\+Date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_date__t}{Date\+\_\+t}} $\ast$}]{date }\end{DoxyParamCaption})}
+
+This procedure reset the date passed by pointer assigning invalid values to the date. 
+\begin{DoxyParams}{Parameters}
+{\em date} & is resetted by the procedure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_date_8c_a180ed75fc70c48ed58d443b7feb98581}\label{_date_8c_a180ed75fc70c48ed58d443b7feb98581}} 
+\index{Date.c@{Date.c}!resetTime@{resetTime}}
+\index{resetTime@{resetTime}!Date.c@{Date.c}}
+\doxysubsubsection{\texorpdfstring{resetTime()}{resetTime()}}
+{\footnotesize\ttfamily reset\+Time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_time__t}{Time\+\_\+t}} $\ast$}]{time }\end{DoxyParamCaption})}
+
+This procedure reset the time passed by pointer assigning invalid values to the time. 
+\begin{DoxyParams}{Parameters}
+{\em time} & is resetted by the procedure \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_date_8c_a9b9369f6a015a2d30e9ceca6a03a4265}\label{_date_8c_a9b9369f6a015a2d30e9ceca6a03a4265}} 
+\index{Date.c@{Date.c}!setDate@{setDate}}
+\index{setDate@{setDate}!Date.c@{Date.c}}
+\doxysubsubsection{\texorpdfstring{setDate()}{setDate()}}
+{\footnotesize\ttfamily set\+Date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_date__t}{Date\+\_\+t}} $\ast$}]{date,  }\item[{const unsigned short}]{min\+\_\+year,  }\item[{const unsigned short}]{max\+\_\+year,  }\item[{const char}]{printf\+\_\+value\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure sets a valid date to the date passed by pointer, the date must be included between min\+\_\+year and max\+\_\+year. 
+\begin{DoxyParams}{Parameters}
+{\em date} & is used to assigns a valid value. \\
+\hline
+{\em min\+\_\+year} & is the older valid year. \\
+\hline
+{\em max\+\_\+year} & is the later valid\+\_\+year. \\
+\hline
+{\em printf\+\_\+value} & says to the users what they should enter. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_date_8c_a35904bc88fc1c3d6b8afbb5c409405b9}\label{_date_8c_a35904bc88fc1c3d6b8afbb5c409405b9}} 
+\index{Date.c@{Date.c}!setTime@{setTime}}
+\index{setTime@{setTime}!Date.c@{Date.c}}
+\doxysubsubsection{\texorpdfstring{setTime()}{setTime()}}
+{\footnotesize\ttfamily set\+Time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_time__t}{Time\+\_\+t}} $\ast$}]{time,  }\item[{const char}]{printf\+\_\+value\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+This procedure sets a valid time to the time passed by pointer. 
+\begin{DoxyParams}{Parameters}
+{\em time} & is used to assigns a valid value. \\
+\hline
+{\em printf\+\_\+value} & says to the users what they should enter. \\
+\hline
+\end{DoxyParams}
