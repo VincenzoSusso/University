@@ -38,9 +38,9 @@ int main(void)
 		list1.insert(0, 50);
 		std::cout << "List1: " << list1.toString() << std::endl << std::endl;
 	}
-	catch(const char* errore) 
+	catch(const char* error) 
 	{
-		std::cerr << std::endl << errore << std::endl;
+		std::cerr << std::endl << error << std::endl;
 	}
 
 	list1.~ArrayList();
@@ -68,9 +68,9 @@ int main(void)
 		list2.insert(list2.begin(), 50);
 		std::cout << "List2: " << list2.toString() << std::endl << std::endl;
 	}
-	catch(const char* errore) 
+	catch(const char* error) 
 	{
-		std::cerr << std::endl << errore << std::endl;
+		std::cerr << std::endl << error << std::endl;
 	}
 
 	list2.~LinkedList();

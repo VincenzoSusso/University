@@ -47,8 +47,6 @@ class LinkedList : public List<TypeElement, Node<TypeElement>* >
     private:
         // -- Attributes --
         Node<TypeElement> *head;
-
-        // -- Private Methods --
 };
 
 // -- Implementation --
