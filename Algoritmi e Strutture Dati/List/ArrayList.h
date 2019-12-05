@@ -189,6 +189,25 @@ std::string ArrayList<TypeElement>::toString(void)
     return string;
 }
 
+template <>
+std::string ArrayList<std::string>::toString(void)
+{
+    std::string string = "";
+    position position = this -> begin();
+    
+    if(!(this -> empty()))
+    {
+        while(!(this -> end(position)))
+        {
+            string += this -> read(position) + " ";
+            position = this -> next(position);
+        }
+        string += this -> read(position) + " ";
+    }
+    
+    return string;
+}
+
 template <class TypeElement>
 void ArrayList<TypeElement>::setLength(unsigned short length)
 {
