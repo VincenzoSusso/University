@@ -1,0 +1,17 @@
+Data la seguente base di dati BANCA, che descrive informazioni relative ai correntisti e dipendenti di una banca.
+- CORRENTISTI(CF, Cogn, Nome, DataNascita, TipoContratto, CittaResidenza)
+	N.B: Valori ammessi TipoContratto = {TempoDeterminato, TempoIndeterminato}
+- DIPENDENTE(CF, Nome, Cogn, DataNasc, Qualifica)
+	N.B: Valori ammessi Qualifica = {Impiegato, Quadro, Dirigente}
+- CONTO_CORRENTE(NumCC, CF_Correntista, Saldo)
+	N.B: Un conto corrente può avere un solo correntista
+
+1) CREARE la base di dati e le rispettive tabelle avendo curi di definirne chiave e vincoli
+2) POPOLARE la base di dati con un numero significativo (es 4,5) di istanze per tabella avendo cura di non rappresentare solo situazioni particolari (es. un solo correntista)
+3) FORMULARE le query SQL in grado di soddisfare le seguenti richieste:
+	3.1) Trovare: nome, cognome e codice fiscale dei correntisti che hanno un lavoro a tempo determinato ed un saldo superiore a 100 mila euro. Mostrare i risultati rispetto alla città di residenza
+	3.2) Trovare: nome, cognome e codice fiscale dei dipendenti con un contratto a tempo indeterminato che hanno più di un contro corrente. Per ognuno mostrare i numeri di conto corrente posseduto
+	3.3) Trovare: nome, cognome e codice fiscale dei dipendenti con qualifica di dirigente che non possiedono alcun conto corrente presso la banca
+4) MODIFICARE la base di dati per:
+	4.1) Consentire di avere traccia delle filiali della banca ed il relativo direttore (che è un dipendente con qualunque qualifica)
+	4.2) Tenere traccia della filiale presso la quale è stato aperto un conto corrente (N.B: un conto corrente può essere aperto presso una sola filiale)
