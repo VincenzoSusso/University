@@ -1,0 +1,18 @@
+Data la seguente base di dati PROGETTI che descrive l'organizzazione aziendale in divisioni ed il coinvolgimento degli impiegati nei progetti della stessa:
+- IMPIEGATO(Matricola, Nome, Cognome, DataNascita, Stipendio)
+- PROGETTO(CodProgetto, Nome, DataInizio, DataFine, Budget, Responsabile)
+	N.B: responsabile è un impiegato che ha la responsabilità del progetto
+- COINVOLGIMENTO(MatrImpiegato, CodProgetto)
+	N.B: COINVOLGIMENTO tiene traccia degli impiegati coinvolti nei progetti e non anche dei responsabili
+- DIVISIONE(CodDivisione, Nome, BudgetDivisione, Direttore)
+	N.B: direttore è un impiegato che dirige una divisione
+- AFFILIAZIONE(Matricola, CodiceDivisione, PercentualeTempo)
+	N.B: ALLIFLIAZIONE tiene traccia degli impiegati afferenti alle divisioni, ivi incluso il direttore
+
+1) CREARE la base di dati e le rispettive tabelle avendo cura di definire chiavi e vincoli
+2) POPOLARE la base di dati con un numero significativo (es .4) di istanze per tabella avendo cura di non rappresentare solo situazioni particolari (es. un solo progetto)
+3) Scrivere le query SQL in grado di soddisfare le seguenti richieste:
+	3.1) Trovare: nome, cognome e stipendio dei responsabili di progetti non ancora conclusi ed aventi un budget inferiore a 70 mila euro. Di tali progetti mostrare: il nome, il relativo budget, l'elenco(nome e cognome) degli impiegati che lavorano al progetto ed hanno uno stipendio di almeno 50 mila euro
+	3.2) Trovare: nome, cognome e stipendio degli impiegati che ricoprono solo il ruolo di responsabile di progetto e non sono coinvolti ad altro titolo in altri progetti
+	3.3) Mostrare: il nome delle divisioni dell'azienda, il nome, cognome e matricola dei loro direttori e la loro percemtuale di tempo che gli stessi spendono in essa
+4) MODIFICARE la base di dati considerando l'abolizione della organizzazione aziendale in divisioni
