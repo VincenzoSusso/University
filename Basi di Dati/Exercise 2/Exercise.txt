@@ -1,0 +1,13 @@
+Data la base di dati CINETECA, costituita dalle tabelle di seguito riportate, e che descrive informazioni di vario tipo relative ad un insieme di film:
+- ATTORE(CodAttore, Nome, Cogn, DataNascita),
+- CANTANTE(CodCantante, Nome, Cogn, DataNascita),
+- FILM(Cod, Titolo, Regista, Anno),
+- FILM-ATTORE(CodFilm, CodAttore)
+
+1) CREARE la base di dati e le rispettive tabelle avendo cura di definirne i vincoli
+2) POPOLARE la base di dati con un numero significativo (es. 5) di istanze per tabella avendo cura di non rappresentare solo situazioni particolari (es. un solo film)
+3) Scrivere le query SQL in grado di soddisfare le seguenti richieste:
+	3.1) Mostrare Titolo, Regista e Cast dei relativi Attori(ovvero nome, cognome e data di nascita di tutti gli attori che hanno recitato in un film) dei film realizzati nel 2000
+	3.2) Trovare Nome e Cognome di coloro i quali hanno recitato in non più di un film
+	3.3) Trovare nome e cognome di coloro i quali nella loro carriera sono stati attori e cantanti
+4) Modificare la base di dati per consentire di specificare l'esistenza di più di un regista per un film
