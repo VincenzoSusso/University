@@ -1,0 +1,15 @@
+Data la base di dati IMMOBILI che descrive l'anagrafica dei cittadini e la loro eventuale situazione immobiliare:
+- IMMOBILE(Cod, Tipo, Indirizzo, Città)
+	Tipo -> Valori Ammessi = {Appartamento, Villa, Casa d'epoca}
+- ANAGRAFICA_CITTADINO(CodFiscale, Nome, Cogn, DataNascita, IndirizzoResidenza, Citta)
+- IMMOBILE-PROPRIETARIO(CodFiscale, CodImmobile)
+
+1) CREARE la base di dati e le rispettive tabelle avendo cura di definirne i vincoli
+2) POPOLARE la base di dati con un numero significativo (es. 4) di istanze per tabella avendo cura di non rappresentare solo situazioni particolari (es. un solo cittadino con un certo numero di immobili)
+3) Scrivere le query SQL in grado di soddisfare le seguenti richieste:
+	3.1) Trovare: Nome, Cognome e Codice Fiscale di tutti coloro i quali sono proprietari di un immobile ma in una città diversa da quella di residenza, ovvero non possiedono alcuna casa nella città di residenza
+	3.2) Trovare: Nome, Cognome e Codice Fiscale dei cittadini che risiedono in un appartamento pur essendo proprietari, nella stessa città di residenza, di una villa 
+	3.3) Trovare: Nome, Cognome e Codice Fiscale dei cittadini residenti a Milano e che non possiedono alcun immobile
+4) MODIFICARE la base di dati per rappresentare che un cittadino possa essere proprietario di al più un immobile
+
+NOTA: Le informazioni circa il tipo di immobile in cui un cittadino risiede possono essere ottenute solo a partire dall'indirizzo e la città in cui il cittadino risiede. Si suppone che l'indirizzo comprenda il numero dell'interno per cui è possibile risalire dall'indirizzo e città alle informazioni relative all'immobile.
