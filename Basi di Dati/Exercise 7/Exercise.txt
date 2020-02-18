@@ -1,0 +1,16 @@
+Data la base di dati BANCA, costituita dalle tabelle di seguito riportate, e che descrive informazioni relative ai correntisti e dipendenti di una banca:
+- CORRENTISTI(CF, Cogn, Nome, DataNascita)
+- DIPENDENTE(CF, Cogn, Nome, DataNascita, Filiale, Qualifica)
+	N.B: Valori ammessi Qualifica = {Impiegato, Quadro, Dirigenti}
+	N.B: Dirigente <> Direttore
+- FILIALE(Cod, NomeFiliale, Citta, CF_Direttore)
+- CONTO_CORRENTE(NumCC, CodFiliale)
+- TITOLARE_CC(NumCC, CF_Titolare)
+
+1) CREARE la base di dati e le rispettive tabelle avendo cura di definirne i vincoli
+2) POPOLARE la base di dati con un numero significativo (es. 4,5) di istanze per tabella avendo cura di non rappresentare solo situazioni particolari (es. un solo correntista)
+3) scrivere le query SQL in grado di soddisfare le seguenti richieste:
+	3.1) Trovare i conti correnti cointestati (aventi più di un correntista come titolare). Per ognuno di essi mostrare: il numero di conto, il nome della filiale in cui è stato aperto ed il nome e cognome dei titolari del conto
+	3.2) Trovare il nome e cognome dei dirigenti che non hanno alcun conto corrente in nessuna filiale della banca
+	3.3) Trovare il nome di tutte le filiali che hano sede a bari e che hanno un direttore nato dopo il 01/01/1970. Mostrare quindi il nome, il cognome e la data di nascita del direttore.
+4) MODIFICARE la base di dati per consentire SOLO la gestione di conti correnti con un unico intestatario
