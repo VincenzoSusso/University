@@ -1,0 +1,16 @@
+Data la seguente base di dati AUTO-MOTO che descrive informazioni relative ai proprietari di auto e moto d'italia:
+- AUTO(Targa, Tipo)
+	N.B: Tipo -> Valori Ammessi: {Sportiva, Berlina, Utilitaria}
+- MOTO(Targa, Tipo)
+	N.B Tipo -> Valori Ammessi: {Custom, CafeRacer, GranTurismo}
+- PROPRIETARIO(CodFiscale, Nome, Cognome, CittaResidenza)
+- AUTO-PROPRIETARIO(Targa, CodFiscale)
+- MOTO-PROPRIETARIO(Targa, CodFiscale)
+
+1) CREARE la base di dati e le rispettive tabelle avendo cura di definirne i vincoli
+2) POPOLARE la base di dati con un numero significativo (es. 3/4) di istanze per tabella avendo cura di non rappresentare solo situazioni particolari (es. un solo libro)
+3) scrivere le query SQL in grado di soddisfare le seguenti richieste:
+	3.1) Trovare: Nome, Cognome, Cod.Fiscale e cittò di coloro i quali posseggono una moto custom ma non posseggono alcuna auto
+	3.2) Trovare: Nome, Cognome, Cod.Fiscale di coloro i quali risiedono a Bari e sono proprietari sia di una moto custom che di una moto cafe racer
+	3.3) Trovare: Nome, Cognome, Cod.Fiscale di coloro i quali risiedono a Bari e posseggono più di una moto
+4) MODIFICARE la base di dati per gestire il fatto che una persona possieda al più una moto
