@@ -1,4 +1,4 @@
-# Esercizio 7
+# Esercizio 6
 Realizzare una SocketServer che gestisce un sistema simile ad una chat, in particolare:
 - Il server deve gestire più connessioni di socket Client;
 - Ogni Client può inviare dei comandi che devono essere interpretati ed eseguiti lato server.
