@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
@@ -34,6 +35,9 @@ plt.show()
 
 homesInfo = homes.drop(labels="medianValueHouses", axis=1).values
 homesValues = homes["medianValueHouses"].values
+
+# Standardizing the dataset
+homesInfo = StandardScaler().fit_transform(homesInfo)
 
 homesInfoTrain, homesInfoTest, homesValuesTrain, homesValuesTest = train_test_split(homesInfo, homesValues,
                                                                                     test_size=TEST_SIZE)
