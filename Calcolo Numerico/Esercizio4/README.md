@@ -1,4 +1,4 @@
-# Esercizio 3
+# Esercizio 4
 
 Si scriva una funzione *Matlab* che implementi il seguente metodo numerico per il calcolo della radice n-esima di un numero *S > 0*:
 
