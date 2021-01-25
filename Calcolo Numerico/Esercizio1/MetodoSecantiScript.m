@@ -1,7 +1,7 @@
 f = @(x) ((sin(x)/x) - x);
 x_0 = 1;
 x_1 = 0.9;
-tolleranza = 1e-6;
+tolleranza = 1e-16;
 max_iterate = 50;
 
 [zero_funzione, iterate] = MetodoSecanti(f, x_0, x_1, tolleranza, max_iterate);

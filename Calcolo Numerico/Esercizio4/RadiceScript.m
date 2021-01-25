@@ -1,6 +1,6 @@
 S = 286797;
 n = 5;
-tolleranza = 1e-6;
+tolleranza = 1e-10;
 max_iterate = 100;
 
 [approssimazione, iterate] = calcolaRadiceN(S, n, tolleranza, max_iterate);
