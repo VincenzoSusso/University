@@ -8,7 +8,7 @@ function [soluzione, iterate, residuo] = MetodoGaussSeidel(A, b, x_0, max_iterat
     while true
         x_k_1 = L \ (b - (U * x_k));
         
-        errore_relativo = norm(x_k_1 - x_k) / norm(x_k_1);
+        errore_relativo = norm(x_k_1 - x_k, inf) / norm(x_k_1, inf);
         
         x_k = x_k_1;
         
@@ -20,7 +20,7 @@ function [soluzione, iterate, residuo] = MetodoGaussSeidel(A, b, x_0, max_iterat
     
     if errore_relativo <= tolleranza && iterate <= max_iterate
         soluzione = x_k_1;
-        residuo = norm((A * soluzione) - b);
+        residuo = norm((A * soluzione) - b, inf);
     else
         soluzione = NaN;
         residuo = NaN;

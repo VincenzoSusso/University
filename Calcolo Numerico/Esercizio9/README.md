@@ -1,4 +1,4 @@
-# Esercizio 8
+# Esercizio 9
 
 Si scriva una funzione *Matlab* che implementi il seguente metodo numerico (detto dei trapezi) per il calcolo approssimato degli integrali definiti.  Dati una funzione a valori reali *f* definita nell’intervallo *[a,b]* ,*n≥1* intero naturale, siano *h= (b−a)/n* e *xj=a+jh*, per ogni *j= 0,...,n*.  Allora si ha:
 
