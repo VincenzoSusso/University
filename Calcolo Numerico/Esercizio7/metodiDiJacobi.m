@@ -7,9 +7,8 @@ function [soluzione, iterate, residuo] = metodiDiJacobi(A, b, x_0, tolleranza, m
     
     iterate = 0;
     while true
-        x_k_1 = b - (R * x_k);
-        x_k_1 = D \ x_k_1;
-        errore_relativo = norm(x_k - x_k_1) / norm(x_k);
+        x_k_1 = D \ (b - (R * x_k));
+        errore_relativo = norm(x_k_1 - x_k) / norm(x_k_1);
         
         x_k = x_k_1;
         

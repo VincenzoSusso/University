@@ -6,8 +6,7 @@ function [soluzione, iterate, residuo] = MetodoGaussSeidel(A, b, x_0, max_iterat
     
     iterate = 0;
     while true
-        x_k_1 = b - (U * x_k);
-        x_k_1 = L \ x_k_1;
+        x_k_1 = L \ (b - (U * x_k));
         
         errore_relativo = norm(x_k_1 - x_k) / norm(x_k_1);
         
