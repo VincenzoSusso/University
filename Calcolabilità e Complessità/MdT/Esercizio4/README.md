@@ -1,4 +1,4 @@
-# Esercizio 1
+# Esercizio 4
 
 Si scriva una *MdT* che calcoli la seguente funzione:
 
