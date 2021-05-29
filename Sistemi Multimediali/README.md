@@ -1,5 +1,5 @@
-# Calcolabilità e Complessità
+# Sistemi Multimediali
 
-This directory will store my projects developed during the course *"Calcolabilità e Complessità"*.
+This directory will store my projects developed during the course *"Sistemi Multimediali"*.
 
-In this course, I will develop models of computation developed using the program *"JFLAP 8.0 (Beta)"*.
+In this univerity's course, I will follow a [udemy course](https://www.udemy.com/course/laravel-7-for-beginners-practical-course/) and I will develop some web application in *Laravel*.
